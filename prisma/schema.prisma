@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Shop {
+  id                         String               @id @default(cuid())
+  shopDomain                 String               @unique
+  shopHandle                 String?
+  accessToken                String?
+  installedAt                DateTime             @default(now())
+  uninstalledAt              DateTime?
+  plan                       String              @default("BASIC")
+  currentPlanHandle          String?
+  currentSubscriptionId      String?
+  currentSubscriptionStatus  String?
+  billingSyncedAt            DateTime?
+  locale                     String               @default("en")
+  brandingName               String?
+  brandingPrimaryColor       String?
+  merchantNotification       String?
+  withdrawalDays             Int                  @default(14)
+  legalPageUrl               String?
+  privacyPageUrl             String?
+  supportEmail               String?
+  dpaAcceptedAt              DateTime?
+  requests                   WithdrawalRequest[]
+  emailTemplates             EmailTemplate[]
+  createdAt                  DateTime             @default(now())
+  updatedAt                  DateTime             @updatedAt
+  resolvedAt                 DateTime?
+}
+
+model WithdrawalRequest {
+  id                      String               @id @default(cuid())
+  publicReference         String               @unique
+  shopId                  String
+  orderNumber             String?
+  orderId                 String?
+  customerEmail           String
+  customerName            String?
+  reason                  String?
+  status                  String     @default("RECEIVED")
+  source                  String        @default("STOREFRONT")
+  locale                  String               @default("en")
+  legalCopyVersion        String?
+  metadataJson            String?
+  submittedAt             DateTime             @default(now())
+  resolvedAt              DateTime?
+  createdAt               DateTime             @default(now())
+  updatedAt               DateTime             @updatedAt
+  shop                    Shop                 @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  verificationStatus      String               @default("UNVERIFIED")
+}
+
+model EmailTemplate {
+  id                      String               @id @default(cuid())
+  shopId                  String
+  code                    String
+  subject                 String
+  bodyHtml                String
+  isDefault               Boolean              @default(false)
+  createdAt               DateTime             @default(now())
+  updatedAt               DateTime             @updatedAt
+  shop                    Shop                 @relation(fields: [shopId], references: [id], onDelete: Cascade)
+
+  @@unique([shopId, code])
+}

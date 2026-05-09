@@ -1,0 +1,42 @@
+{% liquid
+  assign app_url = block.settings.app_url
+  assign shop_domain = shop.permanent_domain
+%}
+
+<div
+  class="eu-withdrawal-button-root"
+  data-app-url="{{ app_url | escape }}"
+  data-shop-domain="{{ shop_domain | escape }}"
+  data-locale="{{ request.locale.iso_code | default: 'en' | escape }}"
+  data-button-label="{{ block.settings.button_label | escape }}"
+  data-heading="{{ block.settings.heading | escape }}"
+></div>
+
+{{ 'withdrawal-button.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "EU withdrawal button",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "app_url",
+      "label": "App base URL",
+      "default": "https://reach-plastic-contribution-mixing.trycloudflare.com"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Exercise your right to withdraw"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Modal heading",
+      "default": "Exercise your right of withdrawal"
+    }
+  ]
+}
+{% endschema %}

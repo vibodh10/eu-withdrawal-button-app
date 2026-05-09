@@ -1,0 +1,58 @@
+# Node modules
+node_modules/
+.pnp/
+.pnp.js
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.cache/
+.parcel-cache/
+
+# Prisma
+.prisma/
+*.db
+prisma/migrations/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# VSCode / IDEs
+.vscode/
+.idea/
+*.iml
+
+# MacOS
+.DS_Store
+
+# Temporary / swap
+tmp/
+temp/
+*.swp
+*.swo
+
+# Shopify theme / assets (if you generate locally)
+.shopify/
+
+sessions.sqlite

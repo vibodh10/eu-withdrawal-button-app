@@ -1,0 +1,40 @@
+{
+  "name": "eu-withdrawal-button-app",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
+    "dev:server": "node src/server.js",
+    "dev:web": "npm --prefix web run dev",
+    "build": "npm --prefix web run build",
+    "start": "node src/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:push": "prisma db push"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@shopify/app-bridge-utils": "^3.5.1",
+    "@shopify/shopify-api": "^13.0.0",
+    "@shopify/shopify-app-session-storage-sqlite": "^6.0.0",
+    "compression": "^1.7.5",
+    "concurrently": "^9.1.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.1.0",
+    "jose": "^5.9.6",
+    "jsonwebtoken": "^9.0.3",
+    "jwks-rsa": "^4.0.1",
+    "morgan": "^1.10.0",
+    "nanoid": "^5.0.8",
+    "nodemailer": "^6.9.16",
+    "prisma": "^5.22.0",
+    "resend": "^6.12.2"
+  }
+}
