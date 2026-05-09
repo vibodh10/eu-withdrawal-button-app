@@ -72,3 +72,5 @@ This is now meaningfully closer to submission quality, but there are still some 
 - run a real Partner Dashboard managed pricing test on a dev store
 - verify the exact GraphQL shape returned by your store for `planHandle`
 - complete end-to-end QA for install, upgrade, downgrade, uninstall, and webhook replay cases
+
+## Now there are migrations!!!!!!!!!

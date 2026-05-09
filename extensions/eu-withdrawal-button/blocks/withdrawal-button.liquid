@@ -1,5 +1,5 @@
 {% liquid
-  assign app_url = block.settings.app_url
+  assign app_url = "https://eu-withdrawal-button-web-production.up.railway.app"
   assign shop_domain = shop.permanent_domain
 %}
 
@@ -19,12 +19,6 @@
   "name": "EU withdrawal button",
   "target": "section",
   "settings": [
-    {
-      "type": "text",
-      "id": "app_url",
-      "label": "App base URL",
-      "default": "https://reach-plastic-contribution-mixing.trycloudflare.com"
-    },
     {
       "type": "text",
       "id": "button_label",

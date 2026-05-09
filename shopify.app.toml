@@ -2,7 +2,7 @@
 
 client_id = "81289b3627a4fcf9087c7e859971e4ff"
 name = "EU Withdrawal Button Made Easy"
-application_url = "https://immobile-spoils-succulent.ngrok-free.dev"
+application_url = "https://eu-withdrawal-button-web-production.up.railway.app"
 embedded = true
 handle = "eu-withdrawal-button-2026"
 
@@ -25,7 +25,7 @@ use_legacy_install_flow = false
 
 [auth]
 redirect_urls = [
-  "https://immobile-spoils-succulent.ngrok-free.dev/auth/callback"
+  "https://eu-withdrawal-button-web-production.up.railway.app/auth/callback"
 ]
 
 [pos]
