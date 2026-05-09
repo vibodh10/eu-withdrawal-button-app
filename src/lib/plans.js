@@ -18,7 +18,7 @@ export const PLANS = {
     code: 'PRO',
     handle: process.env.SHOPIFY_MANAGED_PRICING_PRO_HANDLE || 'pro',
     name: 'Pro',
-    priceLabel: '£1/month',
+    priceLabel: '$1/month',
     features: [
       'Everything in Basic',
       'Custom email templates',
