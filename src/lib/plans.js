@@ -8,7 +8,7 @@ export const PLANS = {
       'EU-compliant withdrawal flow',
       'Unlimited withdrawal requests',
       'Automatic confirmation emails',
-      'Theme app extension install',
+      'Theme app block support',
       'Request dashboard',
       'Merchant notifications',
       'Basic compliance included'
