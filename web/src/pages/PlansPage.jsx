@@ -21,7 +21,7 @@ export default function PlansPage({ boot, onReload }) {
 
       if (result.confirmationUrl) {
 
-        open(result.confirmationUrl, "_top");
+        window.top.location.href = result.confirmationUrl;
 
       }
 
