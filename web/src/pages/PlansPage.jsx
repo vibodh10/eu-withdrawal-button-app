@@ -2,17 +2,15 @@ import { useState } from "react";
 import { Page, Layout, Card, Text, Button, BlockStack, InlineStack, Banner } from "@shopify/polaris";
 import { openManagedPricing, syncBilling } from "../api";
 import FeatureList from "../components/FeatureList.jsx";
-import {Redirect} from "@shopify/app-bridge/actions";
-import {useAppBridge} from "@shopify/app-bridge-react";
 
 export default function PlansPage({ boot, onReload }) {
   const [state, setState] = useState({ working: false, error: "", message: "" });
   const plans = boot.plans;
 
-  const app = useAppBridge();
-
   async function managePlan() {
+
     try {
+
       setState({
         working: true,
         error: "",
@@ -23,12 +21,8 @@ export default function PlansPage({ boot, onReload }) {
 
       if (result.confirmationUrl) {
 
-        const redirect = Redirect.create(app);
+        open(result.confirmationUrl, "_top");
 
-        redirect.dispatch(
-            Redirect.Action.REMOTE,
-            result.confirmationUrl
-        );
       }
 
     } catch (e) {
@@ -39,6 +33,7 @@ export default function PlansPage({ boot, onReload }) {
       });
 
     }
+
   }
 
   async function refreshBilling() {
