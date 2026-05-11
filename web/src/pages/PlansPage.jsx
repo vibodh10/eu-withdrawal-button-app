@@ -2,21 +2,42 @@ import { useState } from "react";
 import { Page, Layout, Card, Text, Button, BlockStack, InlineStack, Banner } from "@shopify/polaris";
 import { openManagedPricing, syncBilling } from "../api";
 import FeatureList from "../components/FeatureList.jsx";
+import {Redirect} from "@shopify/app-bridge/actions";
+import {useAppBridge} from "@shopify/app-bridge-react";
 
 export default function PlansPage({ boot, onReload }) {
   const [state, setState] = useState({ working: false, error: "", message: "" });
   const plans = boot.plans;
 
+  const app = useAppBridge();
+
   async function managePlan() {
     try {
-      setState({ working: true, error: "", message: "" });
+      setState({
+        working: true,
+        error: "",
+        message: ""
+      });
+
       const result = await openManagedPricing();
+
       if (result.confirmationUrl) {
-        window.open(result.confirmationUrl, "_blank");
-        setState({ working: false, message: "Managed pricing page opened in a new tab." });
+
+        const redirect = Redirect.create(app);
+
+        redirect.dispatch(
+            Redirect.Action.REMOTE,
+            result.confirmationUrl
+        );
       }
+
     } catch (e) {
-      setState({ working: false, error: e.message });
+
+      setState({
+        working: false,
+        error: e.message
+      });
+
     }
   }
 
