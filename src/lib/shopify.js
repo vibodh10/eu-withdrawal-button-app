@@ -6,7 +6,7 @@ import {SQLiteSessionStorage} from "@shopify/shopify-app-session-storage-sqlite"
 
 const DEFAULT_APP_URL = process.env.APP_URL || 'http://localhost:3000';
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET || '';
-const SHOPIFY_APP_HANDLE = process.env.SHOPIFY_APP_HANDLE || 'eu-withdrawal-button';
+const SHOPIFY_APP_HANDLE = process.env.SHOPIFY_APP_HANDLE || 'eu-withdrawal-button-2026';
 
 function normalizeShopDomain(value) {
   if (!value) return null;
