@@ -72,7 +72,7 @@ export default function SettingsPage({ boot, onReload }) {
                         tone="info"
                         title="Upgrade to Pro to unlock advanced settings"
                     >
-                      Custom emails, legal settings, and adjustable withdrawal periods are available on Pro.
+                      Legal settings and adjustable withdrawal periods are available on Pro.
                     </Banner>
                 )}
                 <TextField label="Legal page URL" value={form.legalPageUrl} disabled={proLocked} onChange={(v) => updateField("legalPageUrl", v)} />
