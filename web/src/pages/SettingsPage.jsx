@@ -202,6 +202,15 @@ export default function SettingsPage({ boot, onReload }) {
               <BlockStack gap="300">
                 <Text variant="headingMd">Email Templates</Text>
 
+                {proLocked && (
+                    <Banner
+                        tone="info"
+                        title="Upgrade to Pro to unlock custom email templates"
+                    >
+                      Customize confirmation emails sent to customers with your own branding, messaging, and HTML templates.
+                    </Banner>
+                )}
+
                 <Text variant="bodySm" tone="subdued">
                   Customize the confirmation email sent to customers.
                   You can use variables like {"{{reference}}"}, {"{{shopName}}"}, {"{{customerEmail}}"} and {"{{customerName}}"}.
@@ -223,6 +232,7 @@ export default function SettingsPage({ boot, onReload }) {
                 />
 
                 <Button
+                    variant="primary"
                     onClick={async () => {
                       try {
                         await apiSend("/admin/email-templates/CONFIRMATION", "PATCH", {
@@ -235,6 +245,8 @@ export default function SettingsPage({ boot, onReload }) {
                         setState({ saving: false, error: e.message });
                       }
                     }}
+                    loading={state.saving}
+                    disabled={proLocked}
                 >
                   Save Template
                 </Button>
