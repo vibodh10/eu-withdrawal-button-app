@@ -12,9 +12,9 @@ import {
     Tooltip,
     TextField,
     InlineStack,
-    BlockStack
+    BlockStack, Modal
 } from "@shopify/polaris";
-import { apiGet, apiSend, getAuthHeaders } from "../api";
+import { apiGet, apiSend } from "../api";
 
 const statuses = ["RECEIVED", "CONFIRMED", "REVIEWED", "APPROVED", "REJECTED"];
 
@@ -65,6 +65,27 @@ export default function RequestsPage() {
     const [loading, setLoading] = useState(true);
     const [updatingId, setUpdatingId] = useState(null);
     const [isPro, setIsPro] = useState(false);
+    const [selectedResources, setSelectedResources] = useState([]);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [selectedCustomer, setSelectedCustomer] = useState(null);
+    const [bulkDeleteModalOpen, setBulkDeleteModalOpen] = useState(false);
+
+    async function deleteSelected() {
+        try {
+            await Promise.all(
+                selectedResources.map((id) =>
+                    apiSend(`/admin/requests/${id}`, "DELETE")
+                )
+            );
+
+            setSelectedResources([]);
+            setBulkDeleteModalOpen(false);
+
+            await load();
+        } catch {
+            alert("Failed to delete selected requests");
+        }
+    }
 
     const [filters, setFilters] = useState({
         status: "",
@@ -132,6 +153,23 @@ export default function RequestsPage() {
             window.URL.revokeObjectURL(url);
         } catch {
             alert("Failed to export CSV");
+        }
+    }
+
+    async function confirmDeleteCustomer() {
+        if (!selectedCustomer) return;
+
+        try {
+            await apiSend("/admin/delete-customer", "DELETE", {
+                email: selectedCustomer.customerEmail,
+            });
+
+            setDeleteModalOpen(false);
+            setSelectedCustomer(null);
+
+            await load();
+        } catch {
+            alert("Failed to delete customer data");
         }
     }
 
@@ -207,6 +245,19 @@ export default function RequestsPage() {
                             <IndexTable
                                 resourceName={{ singular: "request", plural: "requests" }}
                                 itemCount={filteredRows.length}
+                                selectedItemsCount={
+                                    selectedResources.length === filteredRows.length
+                                        ? "All"
+                                        : selectedResources.length
+                                }
+                                onSelectionChange={setSelectedResources}
+                                bulkActions={[
+                                    {
+                                        content: "Delete selected",
+                                        destructive: true,
+                                        onAction: () => setBulkDeleteModalOpen(true),
+                                    },
+                                ]}
                                 headings={[
                                     { title: "Reference" },
                                     { title: "Customer" },
@@ -221,16 +272,28 @@ export default function RequestsPage() {
                                     const verification = getVerificationUI(row.verificationStatus);
 
                                     return (
-                                        <IndexTable.Row id={row.id} key={row.id} position={index}>
+                                        <IndexTable.Row
+                                            id={row.id}
+                                            key={row.id}
+                                            position={index}
+                                            selected={selectedResources.includes(row.id)}
+                                        >
 
                                             <IndexTable.Cell>
-                                                <Text fontWeight="medium">{row.publicReference}</Text>
+                                                <Text fontWeight="medium">
+                                                    {row.publicReference}
+                                                </Text>
                                             </IndexTable.Cell>
 
                                             <IndexTable.Cell>
                                                 <BlockStack gap="050">
-                                                    <Text fontWeight="medium">{row.customerName || "Unknown"}</Text>
-                                                    <Text tone="subdued" variant="bodySm">{row.customerEmail}</Text>
+                                                    <Text fontWeight="medium">
+                                                        {row.customerName || "Unknown"}
+                                                    </Text>
+
+                                                    <Text tone="subdued" variant="bodySm">
+                                                        {row.customerEmail}
+                                                    </Text>
                                                 </BlockStack>
                                             </IndexTable.Cell>
 
@@ -240,18 +303,24 @@ export default function RequestsPage() {
 
                                             <IndexTable.Cell>
                                                 <Tooltip content={verification.tooltip}>
-                                                    <Badge tone={verification.tone}>{verification.label}</Badge>
+                                                    <Badge tone={verification.tone}>
+                                                        {verification.label}
+                                                    </Badge>
                                                 </Tooltip>
                                             </IndexTable.Cell>
 
                                             <IndexTable.Cell>
-                                                <InlineStack gap="200" align="center"><Select
-                                                        options={statuses.map(s => ({ label: s, value: s }))}
-                                                        value={row.status}
-                                                        onChange={(value) => updateStatus(row.id, value)}
-                                                        disabled={updatingId === row.id}
-                                                    />
-                                                </InlineStack>
+                                                <Select
+                                                    options={statuses.map((s) => ({
+                                                        label: s,
+                                                        value: s
+                                                    }))}
+                                                    value={row.status}
+                                                    onChange={(value) =>
+                                                        updateStatus(row.id, value)
+                                                    }
+                                                    disabled={updatingId === row.id}
+                                                />
                                             </IndexTable.Cell>
 
                                             <IndexTable.Cell>
@@ -262,21 +331,9 @@ export default function RequestsPage() {
                                                 <Button
                                                     tone="critical"
                                                     size="slim"
-                                                    onClick={async () => {
-                                                        if (!confirm(`Delete data for ${row.customerEmail}?`)) return;
-
-                                                        const headers = await getAuthHeaders();
-
-                                                        await fetch("/admin/delete-customer", {
-                                                            method: "DELETE",
-                                                            headers: {
-                                                                ...headers,
-                                                                "Content-Type": "application/json"
-                                                            },
-                                                            body: JSON.stringify({ email: row.customerEmail })
-                                                        });
-
-                                                        load();
+                                                    onClick={() => {
+                                                        setSelectedCustomer(row);
+                                                        setDeleteModalOpen(true);
                                                     }}
                                                 >
                                                     Delete Customer Data
@@ -300,6 +357,61 @@ export default function RequestsPage() {
 
                 </Layout.Section>
             </Layout>
+
+            <Modal
+                open={deleteModalOpen}
+                onClose={() => {
+                    setDeleteModalOpen(false);
+                    setSelectedCustomer(null);
+                }}
+                title="Delete customer data"
+                primaryAction={{
+                    content: "Delete",
+                    destructive: true,
+                    onAction: confirmDeleteCustomer,
+                }}
+                secondaryActions={[
+                    {
+                        content: "Cancel",
+                        onAction: () => {
+                            setDeleteModalOpen(false);
+                            setSelectedCustomer(null);
+                        },
+                    },
+                ]}
+            >
+                <Modal.Section>
+                    <Text as="p">
+                        This will permanently delete all stored withdrawal data for{" "}
+                        <strong>{selectedCustomer?.customerEmail}</strong>.
+                    </Text>
+                </Modal.Section>
+            </Modal>
+
+            <Modal
+                open={bulkDeleteModalOpen}
+                onClose={() => setBulkDeleteModalOpen(false)}
+                title="Delete selected requests"
+                primaryAction={{
+                    content: "Delete requests",
+                    destructive: true,
+                    onAction: deleteSelected,
+                }}
+                secondaryActions={[
+                    {
+                        content: "Cancel",
+                        onAction: () => setBulkDeleteModalOpen(false),
+                    },
+                ]}
+            >
+                <Modal.Section>
+                    <Text as="p">
+                        This will permanently delete{" "}
+                        <strong>{selectedResources.length}</strong>{" "}
+                        selected withdrawal request(s).
+                    </Text>
+                </Modal.Section>
+            </Modal>
         </Page>
     );
 }
