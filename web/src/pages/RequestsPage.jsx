@@ -278,7 +278,6 @@ export default function RequestsPage() {
                                             id={row.id}
                                             key={row.id}
                                             position={index}
-                                            selected={selectedResources.includes(row.id)}
                                             selectable
                                         >
 
