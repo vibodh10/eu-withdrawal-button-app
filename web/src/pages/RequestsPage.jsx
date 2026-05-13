@@ -246,15 +246,8 @@ export default function RequestsPage() {
                                 resourceName={{ singular: "request", plural: "requests" }}
                                 itemCount={filteredRows.length}
                                 selectedItemsCount={selectedResources.length}
-                                onSelectionChange={(selectionType, toggleType, selection) => {
-                                    if (!selection) {
-                                        setSelectedResources([]);
-                                        return;
-                                    }
-
-                                    setSelectedResources(
-                                        Array.isArray(selection) ? selection : [selection]
-                                    );
+                                onSelectionChange={(selectedItems) => {
+                                    setSelectedResources(selectedItems);
                                 }}
                                 promotedBulkActions={[
                                     {
@@ -281,6 +274,7 @@ export default function RequestsPage() {
                                             id={row.id}
                                             key={row.id}
                                             position={index}
+                                            selected={selectedResources.includes(row.id)}
                                         >
 
                                             <IndexTable.Cell>
