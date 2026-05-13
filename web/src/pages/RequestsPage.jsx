@@ -12,7 +12,7 @@ import {
     Tooltip,
     TextField,
     InlineStack,
-    BlockStack, Modal
+    BlockStack, Modal, useIndexResourceState
 } from "@shopify/polaris";
 import { apiGet, apiSend } from "../api";
 
@@ -65,7 +65,11 @@ export default function RequestsPage() {
     const [loading, setLoading] = useState(true);
     const [updatingId, setUpdatingId] = useState(null);
     const [isPro, setIsPro] = useState(false);
-    const [selectedResources, setSelectedResources] = useState([]);
+    const {
+        selectedResources,
+        allResourcesSelected,
+        handleSelectionChange,
+    } = useIndexResourceState(filteredRows);
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [bulkDeleteModalOpen, setBulkDeleteModalOpen] = useState(false);
@@ -245,10 +249,10 @@ export default function RequestsPage() {
                             <IndexTable
                                 resourceName={{ singular: "request", plural: "requests" }}
                                 itemCount={filteredRows.length}
-                                selectedItemsCount={selectedResources.length}
-                                onSelectionChange={(selectedItems) => {
-                                    setSelectedResources(selectedItems);
-                                }}
+                                selectedItemsCount={
+                                    allResourcesSelected ? "All" : selectedResources.length
+                                }
+                                onSelectionChange={handleSelectionChange}
                                 promotedBulkActions={[
                                     {
                                         content: "Delete selected",
