@@ -199,3 +199,30 @@ adminRouter.patch('/email-templates/:code', async (req, res) => {
 
   res.json({ template });
 });
+
+adminRouter.delete('/requests/:id', async (req, res) => {
+    const shop = req.shop;
+
+    const record = await prisma.withdrawalRequest.findFirst({
+        where: {
+            id: req.params.id,
+            shopId: shop.id
+        }
+    });
+
+    if (!record) {
+        return res.status(404).json({
+            error: 'Request not found'
+        });
+    }
+
+    await prisma.withdrawalRequest.delete({
+        where: {
+            id: record.id
+        }
+    });
+
+    res.json({
+        success: true
+    });
+});

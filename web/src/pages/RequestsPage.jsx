@@ -245,17 +245,8 @@ export default function RequestsPage() {
                             <IndexTable
                                 resourceName={{ singular: "request", plural: "requests" }}
                                 itemCount={filteredRows.length}
-                                selectedItemsCount={
-                                    selectedResources.length === filteredRows.length
-                                        ? "All"
-                                        : selectedResources.length
-                                }
+                                selectedItemsCount={selectedResources.length}
                                 onSelectionChange={(selectionType, toggleType, selection) => {
-                                    if (selection === "All") {
-                                        setSelectedResources(filteredRows.map((row) => row.id));
-                                        return;
-                                    }
-
                                     if (!selection) {
                                         setSelectedResources([]);
                                         return;
@@ -265,7 +256,7 @@ export default function RequestsPage() {
                                         Array.isArray(selection) ? selection : [selection]
                                     );
                                 }}
-                                bulkActions={[
+                                promotedBulkActions={[
                                     {
                                         content: "Delete selected",
                                         destructive: true,
@@ -290,12 +281,6 @@ export default function RequestsPage() {
                                             id={row.id}
                                             key={row.id}
                                             position={index}
-                                            selected={selectedResources.includes(row.id)}
-                                            selectedItemsCount={
-                                                selectedResources.length === filteredRows.length
-                                                    ? "All"
-                                                    : selectedResources.length
-                                            }
                                         >
 
                                             <IndexTable.Cell>
