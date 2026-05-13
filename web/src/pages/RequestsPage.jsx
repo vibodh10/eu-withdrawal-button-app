@@ -65,11 +65,6 @@ export default function RequestsPage() {
     const [loading, setLoading] = useState(true);
     const [updatingId, setUpdatingId] = useState(null);
     const [isPro, setIsPro] = useState(false);
-    const {
-        selectedResources,
-        allResourcesSelected,
-        handleSelectionChange,
-    } = useIndexResourceState(filteredRows);
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [bulkDeleteModalOpen, setBulkDeleteModalOpen] = useState(false);
@@ -113,6 +108,12 @@ export default function RequestsPage() {
 
         return true;
     });
+
+    const {
+        selectedResources,
+        allResourcesSelected,
+        handleSelectionChange,
+    } = useIndexResourceState(filteredRows);
 
     async function load() {
         setLoading(true);
