@@ -251,7 +251,19 @@ export default function RequestsPage() {
                                         : selectedResources.length
                                 }
                                 onSelectionChange={(selectionType, toggleType, selection) => {
-                                    setSelectedResources(selection);
+                                    if (selection === "All") {
+                                        setSelectedResources(filteredRows.map((row) => row.id));
+                                        return;
+                                    }
+
+                                    if (!selection) {
+                                        setSelectedResources([]);
+                                        return;
+                                    }
+
+                                    setSelectedResources(
+                                        Array.isArray(selection) ? selection : [selection]
+                                    );
                                 }}
                                 bulkActions={[
                                     {
@@ -279,6 +291,11 @@ export default function RequestsPage() {
                                             key={row.id}
                                             position={index}
                                             selected={selectedResources.includes(row.id)}
+                                            selectedItemsCount={
+                                                selectedResources.length === filteredRows.length
+                                                    ? "All"
+                                                    : selectedResources.length
+                                            }
                                         >
 
                                             <IndexTable.Cell>
