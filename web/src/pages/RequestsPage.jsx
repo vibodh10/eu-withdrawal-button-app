@@ -12,7 +12,9 @@ import {
     Tooltip,
     TextField,
     InlineStack,
-    BlockStack, Modal, useIndexResourceState
+    BlockStack,
+    Modal,
+    useIndexResourceState
 } from "@shopify/polaris";
 import { apiGet, apiSend } from "../api";
 
