@@ -250,8 +250,8 @@ export default function RequestsPage() {
                                         ? "All"
                                         : selectedResources.length
                                 }
-                                onSelectionChange={(selected) => {
-                                    setSelectedResources(selected);
+                                onSelectionChange={(selectionType, toggleType, selection) => {
+                                    setSelectedResources(selection);
                                 }}
                                 bulkActions={[
                                     {
@@ -278,7 +278,7 @@ export default function RequestsPage() {
                                             id={row.id}
                                             key={row.id}
                                             position={index}
-                                            selectable
+                                            selected={selectedResources.includes(row.id)}
                                         >
 
                                             <IndexTable.Cell>
