@@ -156,13 +156,14 @@ app.get("/auth/callback", async (req, res) => {
   res.redirect(redirectUrl);
 });
 
-// 🔐 ENSURE SHOP IS AUTHENTICATED
-app.use(async (req, res, next) => {
+// 🔐 ENSURE SHOP IS AUTHENTICATED (ADMIN ROUTES ONLY)
+app.use('/admin', async (req, res, next) => {
   const shop = req.query.shop;
 
-  // Ignore routes that should not trigger auth
-  if (!shop || req.path.startsWith("/auth") || req.path.startsWith("/webhooks") || req.path.startsWith("/public")) {
-    return next();
+  if (!shop) {
+    return res.status(401).json({
+      redirectTo: `/auth`
+    });
   }
 
   const existing = await prisma.shop.findUnique({
