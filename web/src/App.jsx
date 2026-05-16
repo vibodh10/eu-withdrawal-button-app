@@ -50,9 +50,7 @@ export default function App() {
                 error: ""
             }));
 
-            const params = window.location.search;
-
-            const data = await apiGet(`/admin/me${params}`);
+            const data = await apiGet(`/admin/me`);
 
             setBoot({
                 loading: false,

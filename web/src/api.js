@@ -13,12 +13,23 @@ export async function getAuthHeaders() {
 }
 
 export async function apiGet(url) {
+
   const headers = await getAuthHeaders();
 
-  const res = await fetch(url, { headers });
+  const currentParams = window.location.search;
+
+  const separator = url.includes("?") ? "&" : "?";
+
+  const finalUrl =
+      currentParams
+          ? `${url}${separator}${currentParams.replace("?", "")}`
+          : url;
+
+  const res = await fetch(finalUrl, { headers });
 
   if (!res.ok) {
-    let data = null;
+
+    let data;
 
     try {
       data = await res.json();
