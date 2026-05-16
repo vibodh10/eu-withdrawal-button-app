@@ -59,18 +59,18 @@ export default function App() {
             });
 
         } catch (err) {
-            console.error("FULL AUTH ERROR", err);
+            alert("CATCH RUNNING");
 
-            if (err.status === 401 && err.data?.redirectTo) {
+            console.log(err);
+
+            if (err.status === 401) {
+                alert("401 FOUND");
+
                 window.location.href = err.data.redirectTo;
                 return;
             }
 
-            setBoot({
-                loading: false,
-                error: err.message || "Could not load app",
-                data: null
-            });
+            alert("NOT 401");
         }
     }
 
