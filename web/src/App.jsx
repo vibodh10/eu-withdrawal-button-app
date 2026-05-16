@@ -43,38 +43,32 @@ export default function App() {
     }, [tab]);
 
     async function load() {
-        const shopify = useAppBridge();
-
         try {
-            setBoot((prev) => ({ ...prev, loading: true, error: "" }));
-            let data;
+            setBoot((prev) => ({
+                ...prev,
+                loading: true,
+                error: ""
+            }));
 
-            try {
-                data = await apiGet("/admin/me");
-            } catch (err) {
-                console.error("Auth FAILED", err);
+            const data = await apiGet("/admin/me");
 
-                if (err.status === 401 && err.data?.redirectTo) {
-                    window.location.href = err.data.redirectTo;
-                    return;
-                }
-
-                throw err;
-            }
-
-            const params = new URLSearchParams(window.location.search);
-            if (params.get("billing_return") === "1") {
-                try {
-                    await syncBilling();
-                    data = await apiGet("/admin/me");
-                } catch {}
-            }
-
-            setBoot({ loading: false, error: "", data });
-        } catch (error) {
             setBoot({
                 loading: false,
-                error: error.message || "Could not load app",
+                error: "",
+                data
+            });
+
+        } catch (err) {
+            console.error("FULL AUTH ERROR", err);
+
+            if (err.status === 401 && err.data?.redirectTo) {
+                window.location.href = err.data.redirectTo;
+                return;
+            }
+
+            setBoot({
+                loading: false,
+                error: err.message || "Could not load app",
                 data: null
             });
         }
