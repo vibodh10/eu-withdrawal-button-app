@@ -162,7 +162,7 @@ app.use('/admin', async (req, res, next) => {
 
   if (!shop) {
     return res.status(401).json({
-      redirectTo: `/auth`
+      message: "Missing shop parameter"
     });
   }
 
