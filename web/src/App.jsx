@@ -61,18 +61,12 @@ export default function App() {
             });
 
         } catch (err) {
-            alert("CATCH RUNNING");
-
             console.log(err);
 
             if (err.status === 401) {
-                alert("401 FOUND");
-
-                window.location.href = err.data.redirectTo;
+                window.open(err.data.redirectTo, "_top");
                 return;
             }
-
-            alert("NOT 401");
         }
     }
 
