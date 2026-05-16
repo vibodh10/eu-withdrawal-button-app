@@ -22,6 +22,8 @@ import RequestsPage from "./pages/RequestsPage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import PlansPage from "./pages/PlansPage.jsx";
 import DpaPage from "./pages/DpaPage.jsx";
+import {useAppBridge} from "@shopify/app-bridge-react";
+import {Redirect} from "@shopify/app-bridge/actions";
 
 const tabs = [
     { key: "dashboard", label: "Dashboard", icon: HomeIcon },
@@ -41,6 +43,8 @@ export default function App() {
     }, [tab]);
 
     async function load() {
+        const shopify = useAppBridge();
+
         try {
             setBoot((prev) => ({ ...prev, loading: true, error: "" }));
             let data;
@@ -49,6 +53,18 @@ export default function App() {
                 data = await apiGet("/admin/me");
             } catch (err) {
                 console.error("Auth FAILED", err);
+
+                if (err.status === 401 && err.data?.redirectTo) {
+                    const redirect = Redirect.create(shopify);
+
+                    redirect.dispatch(
+                        Redirect.Action.REMOTE,
+                        err.data.redirectTo
+                    );
+
+                    return;
+                }
+
                 throw err;
             }
 

@@ -171,11 +171,10 @@ app.use(async (req, res, next) => {
 
   if (!existing || !existing.accessToken) {
     console.log("⚠️ No token found → redirecting to auth");
-    return res.send(`
-      <script>
-        window.top.location.href = "/auth?shop=${shop}";
-      </script>
-    `);
+
+    return res.status(401).json({
+      redirectTo: `/auth?shop=${shop}`
+    });
   }
 
   next();
