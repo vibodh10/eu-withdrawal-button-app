@@ -55,13 +55,7 @@ export default function App() {
                 console.error("Auth FAILED", err);
 
                 if (err.status === 401 && err.data?.redirectTo) {
-                    const redirect = Redirect.create(shopify);
-
-                    redirect.dispatch(
-                        Redirect.Action.REMOTE,
-                        err.data.redirectTo
-                    );
-
+                    window.location.href = err.data.redirectTo;
                     return;
                 }
 
