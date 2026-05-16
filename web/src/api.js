@@ -17,7 +17,21 @@ export async function apiGet(url) {
 
   const res = await fetch(url, { headers });
 
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) {
+    let data = null;
+
+    try {
+      data = await res.json();
+    } catch {}
+
+    const error = new Error(data?.message || "Request failed");
+
+    error.status = res.status;
+    error.data = data;
+
+    throw error;
+  }
+
   return res.json();
 }
 
