@@ -72,9 +72,11 @@ export default function RequestsPage() {
     const [bulkDeleteModalOpen, setBulkDeleteModalOpen] = useState(false);
 
     async function deleteSelected() {
+        const idsToDelete = [...selectedResources];
+
         try {
             await Promise.all(
-                selectedResources.map((id) =>
+                idsToDelete.map((id) =>
                     apiSend(`/admin/requests/${id}`, "DELETE")
                 )
             );
@@ -83,9 +85,15 @@ export default function RequestsPage() {
             return;
         }
 
-        setSelectedResources([]);
+        // ✅ instantly update UI
+        setRows((prev) =>
+            prev.filter((row) => !idsToDelete.includes(row.id))
+        );
+
+        // ✅ close modal immediately
         setBulkDeleteModalOpen(false);
 
+        // ✅ background refresh only
         try {
             await load();
         } catch (e) {
