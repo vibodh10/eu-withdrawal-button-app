@@ -12,35 +12,36 @@ export async function getAuthHeaders() {
   };
 }
 
-export async function apiGet(url) {
+function withShopifyParams(url) {
+  const params = window.location.search;
 
+  if (!params) return url;
+
+  return url.includes("?")
+      ? `${url}&${params.slice(1)}`
+      : `${url}${params}`;
+}
+
+export async function apiGet(url) {
   const headers = await getAuthHeaders();
 
-  const currentParams = window.location.search;
-
-  const separator = url.includes("?") ? "&" : "?";
-
-  const finalUrl =
-      currentParams
-          ? `${url}${separator}${currentParams.replace("?", "")}`
-          : url;
-
-  const res = await fetch(finalUrl, { headers });
+  const res = await fetch(withShopifyParams(url), {
+    headers,
+  });
 
   if (!res.ok) {
+    const text = await res.text();
 
-    let data;
-
+    let data = {};
     try {
-      data = await res.json();
+      data = JSON.parse(text);
     } catch {}
 
-    const error = new Error(data?.message || "Request failed");
+    const err = new Error(data.message || text);
+    err.status = res.status;
+    err.data = data;
 
-    error.status = res.status;
-    error.data = data;
-
-    throw error;
+    throw err;
   }
 
   return res.json();
@@ -49,13 +50,27 @@ export async function apiGet(url) {
 export async function apiSend(url, method, body) {
   const headers = await getAuthHeaders();
 
-  const res = await fetch(url, {
+  const res = await fetch(withShopifyParams(url), {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
   });
 
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) {
+    const text = await res.text();
+
+    let data = {};
+    try {
+      data = JSON.parse(text);
+    } catch {}
+
+    const err = new Error(data.message || text);
+    err.status = res.status;
+    err.data = data;
+
+    throw err;
+  }
+
   return res.json();
 }
 
