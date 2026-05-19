@@ -78,13 +78,18 @@ export default function RequestsPage() {
                     apiSend(`/admin/requests/${id}`, "DELETE")
                 )
             );
-
-            setSelectedResources([]);
-            setBulkDeleteModalOpen(false);
-
-            await load();
         } catch {
             alert("Failed to delete selected requests");
+            return;
+        }
+
+        setSelectedResources([]);
+        setBulkDeleteModalOpen(false);
+
+        try {
+            await load();
+        } catch (e) {
+            console.error("Reload failed", e);
         }
     }
 
@@ -118,15 +123,20 @@ export default function RequestsPage() {
     } = useIndexResourceState(filteredRows);
 
     async function load() {
-        setLoading(true);
-        const [requestsData, meData] = await Promise.all([
-            apiGet("/admin/requests"),
-            apiGet("/admin/me"),
-        ]);
+        try {
+            setLoading(true);
 
-        setRows(requestsData.requests || []);
-        setIsPro(meData.isPro);
-        setLoading(false);
+            const [requestsData, meData] = await Promise.all([
+                apiGet("/admin/requests"),
+                apiGet("/admin/me"),
+            ]);
+
+            setRows(requestsData.requests || []);
+            setIsPro(meData.isPro);
+
+        } finally {
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
