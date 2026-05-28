@@ -140,37 +140,18 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
       }
     });
 
-    let subject, html;
+    let subject;
+    let bodyContent;
 
     if (template) {
       subject = template.subject;
-      const processedHtml = template.bodyHtml
+
+      bodyContent = template.bodyHtml
           .replace(/{{reference}}/g, publicReference)
           .replace(/{{shopName}}/g, shop.brandingName || shop.shopDomain)
           .replace(/{{customerEmail}}/g, customerEmail || "")
           .replace(/{{customerName}}/g, customerName || "");
 
-      html = `
-        <div style="font-family: Arial, sans-serif;">
-        
-          <div
-            style="
-              background: ${shop.brandingPrimaryColor || "#111827"};
-              padding: 16px;
-              border-radius: 8px;
-            "
-          >
-            <h2 style="color: white; margin: 0;">
-              ${shop.brandingName || shop.shopDomain}
-            </h2>
-          </div>
-        
-          <div style="padding-top: 20px;">
-            ${processedHtml}
-          </div>
-        
-        </div>
-      `;
     } else {
       const fallback = buildConfirmationEmail({
         shopName: shop.brandingName || shop.shopDomain,
@@ -179,8 +160,30 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
       });
 
       subject = fallback.subject;
-      html = fallback.html;
+      bodyContent = fallback.html;
     }
+
+    const html = `
+  <div style="font-family: Arial, sans-serif;">
+
+    <div
+      style="
+        background: ${shop.brandingPrimaryColor || "#111827"};
+        padding: 16px;
+        border-radius: 8px;
+      "
+    >
+      <h2 style="color: white; margin: 0;">
+        ${shop.brandingName || shop.shopDomain}
+      </h2>
+    </div>
+
+    <div style="padding-top: 20px;">
+      ${bodyContent}
+    </div>
+
+  </div>
+`;
 
     try {
       await sendEmail({
