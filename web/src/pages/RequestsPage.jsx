@@ -286,6 +286,7 @@ export default function RequestsPage() {
                                     { title: "Customer" },
                                     { title: "Order" },
                                     { title: "Verification" },
+                                    { title: "Reason" },
                                     { title: "Status" },
                                     { title: "Submitted" },
                                     { title: "Actions" },
@@ -329,6 +330,22 @@ export default function RequestsPage() {
                                                     <Badge tone={verification.tone}>
                                                         {verification.label}
                                                     </Badge>
+                                                </Tooltip>
+                                            </IndexTable.Cell>
+
+                                            <IndexTable.Cell>
+                                                <Tooltip content={row.reason || "No reason provided"}>
+                                                    <Text
+                                                        as="span"
+                                                        variant="bodySm"
+                                                        tone="subdued"
+                                                    >
+                                                        {row.reason
+                                                            ? row.reason.length > 28
+                                                                ? row.reason.slice(0, 28) + "..."
+                                                                : row.reason
+                                                            : "—"}
+                                                    </Text>
                                                 </Tooltip>
                                             </IndexTable.Cell>
 
