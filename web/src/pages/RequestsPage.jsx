@@ -80,8 +80,13 @@ export default function RequestsPage() {
                     apiSend(`/admin/requests/${id}`, "DELETE")
                 )
             );
-        } catch {
-            alert("Failed to delete selected requests");
+        } catch (err) {
+            console.error(err);
+
+            alert(
+                "Temporary server issue. Please try again in a few moments."
+            );
+
             return;
         }
 
@@ -176,8 +181,12 @@ export default function RequestsPage() {
             a.click();
 
             window.URL.revokeObjectURL(url);
-        } catch {
-            alert("Failed to export CSV");
+        } catch (err) {
+            console.error(err);
+
+            alert(
+                "Could not export CSV right now. Please try again shortly."
+            );
         }
     }
 
@@ -193,8 +202,12 @@ export default function RequestsPage() {
             setSelectedCustomer(null);
 
             await load();
-        } catch {
-            alert("Failed to delete customer data");
+        } catch (err) {
+            console.error(err);
+
+            alert(
+                "Temporary server issue. Please try again in a few moments."
+            );
         }
     }
 

@@ -13,9 +13,12 @@ export default function DpaPage({ onAccepted }) {
         try {
             await apiSend("/admin/dpa/accept", "POST");
             onAccepted(); // reload app state
-        } catch (e) {
-            console.error(e);
-            alert("Failed to accept DPA");
+        } catch (err) {
+            console.error(err);
+
+            alert(
+                "Could not complete setup right now. Please try again in a moment."
+            );
         } finally {
             setLoading(false);
         }

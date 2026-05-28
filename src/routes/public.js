@@ -8,8 +8,21 @@ import {shopify} from "../lib/shopify.js";
 
 export const publicRouter = express.Router();
 
-publicRouter.get('/health', (_req, res) => {
-  res.json({ ok: true });
+publicRouter.get('/health', async (_req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+
+    res.json({
+      ok: true,
+      db: true
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      ok: false,
+      db: false
+    });
+  }
 });
 
 publicRouter.options('/withdrawal-request', (req, res) => {
@@ -215,8 +228,14 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
   } catch (err) {
     console.error("❌ DB ERROR:", err);
 
-    res.status(500).json({
-      error: err.message || "Could not create withdrawal request"
+    const isDatabaseError =
+        err?.name === "PrismaClientInitializationError" ||
+        err?.message?.includes("Can't reach database server");
+
+    return res.status(isDatabaseError ? 503 : 500).json({
+      error: isDatabaseError
+          ? "Temporary server issue. Please try again in a few minutes."
+          : "Could not create withdrawal request"
     });
   }
 });
