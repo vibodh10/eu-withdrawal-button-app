@@ -107,8 +107,23 @@ app.use(morgan('dev'));
 //
 // ❤️ Health check
 //
-app.get('/health', (_req, res) => {
-  res.json({ ok: true });
+app.get('/health', async (_req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+
+    res.json({
+      ok: true,
+      db: true
+    });
+
+  } catch (err) {
+    console.error("Health check DB failure:", err);
+
+    res.status(500).json({
+      ok: false,
+      db: false
+    });
+  }
 });
 
 //

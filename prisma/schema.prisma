@@ -12,6 +12,10 @@ model Shop {
   shopDomain                 String               @unique
   shopHandle                 String?
   accessToken                String?
+  accessTokenExpiresAt       DateTime?
+  refreshToken               String?
+  refreshTokenExpiresAt      DateTime?
+  tokenType                  String? @default("NON_EXPIRING_OFFLINE")
   installedAt                DateTime             @default(now())
   uninstalledAt              DateTime?
   plan                       String              @default("BASIC")
