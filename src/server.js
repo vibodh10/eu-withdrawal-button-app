@@ -18,6 +18,7 @@ import { webhookRouter } from './routes/webhooks.js';
 import { prisma } from "./lib/db.js";
 import cronRouter from "./routes/cron.js";
 import {shopify} from "./lib/shopify.js";
+import {exchangeOfflineToken} from "./lib/offlineTokens.js";
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -74,7 +75,7 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200); // 🔥 MUST respond
@@ -140,35 +141,70 @@ app.get("/auth", async (req, res) => {
 });
 
 app.get("/auth/callback", async (req, res) => {
-  const session = await shopify.auth.callback({
-    rawRequest: req,
-    rawResponse: res,
-  });
+  try {
+    const authResult = await shopify.auth.callback({
+      rawRequest: req,
+      rawResponse: res,
+    });
 
-  console.log("🔥 SESSION:", session);
-  console.log("🔥 TOKEN:", session?.accessToken);
+    console.log("🔥 AUTH RESULT:", authResult);
 
-  // ✅ THIS is your access token
-  const shop = session.session.shop;
-  const accessToken = session.session.accessToken;
+    const shop = authResult.session.shop;
+    const oldAccessToken = authResult.session.accessToken;
 
-  await prisma.shop.upsert({
-    where: { shopDomain: shop },
-    update: { accessToken },
-    create: {
-      shopDomain: shop,
-      accessToken,
-      plan: "BASIC",
-      installedAt: new Date(),
-    },
-  });
+    if (!shop) {
+      throw new Error("Missing shop from Shopify auth callback session");
+    }
 
-  const redirectUrl = await shopify.auth.getEmbeddedAppUrl({
-    rawRequest: req,
-    rawResponse: res,
-  });
+    if (!oldAccessToken) {
+      throw new Error("Missing offline access token from Shopify auth callback session");
+    }
 
-  res.redirect(redirectUrl);
+    console.log("🔥 SHOP:", shop);
+    console.log("🔥 OLD OFFLINE TOKEN RECEIVED");
+
+    const exchanged = await exchangeOfflineToken({
+      shop,
+      oldAccessToken,
+    });
+
+    console.log("✅ EXPIRING OFFLINE TOKEN CREATED");
+
+    await prisma.shop.upsert({
+      where: { shopDomain: shop },
+      update: {
+        accessToken: exchanged.accessToken,
+        accessTokenExpiresAt: exchanged.accessTokenExpiresAt,
+        refreshToken: exchanged.refreshToken,
+        refreshTokenExpiresAt: exchanged.refreshTokenExpiresAt,
+        tokenType: "EXPIRING_OFFLINE",
+      },
+      create: {
+        shopDomain: shop,
+        accessToken: exchanged.accessToken,
+        accessTokenExpiresAt: exchanged.accessTokenExpiresAt,
+        refreshToken: exchanged.refreshToken,
+        refreshTokenExpiresAt: exchanged.refreshTokenExpiresAt,
+        tokenType: "EXPIRING_OFFLINE",
+        plan: "BASIC",
+        installedAt: new Date(),
+      },
+    });
+
+    const redirectUrl = await shopify.auth.getEmbeddedAppUrl({
+      rawRequest: req,
+      rawResponse: res,
+    });
+
+    res.redirect(redirectUrl);
+  } catch (err) {
+    console.error("❌ Auth callback failed:", err);
+
+    res.status(500).send(`
+      <h1>App installation failed</h1>
+      <p>${err.message}</p>
+    `);
+  }
 });
 
 // 🔐 ENSURE SHOP IS AUTHENTICATED (ADMIN ROUTES ONLY)

@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
-import { Page, Layout, Card, Text, BlockStack, InlineStack, Badge, Grid } from "@shopify/polaris";
-import { apiGet } from "../api";
+import {
+  Page,
+  Layout,
+  Card,
+  Text,
+  BlockStack,
+  InlineStack,
+  Badge,
+  Grid,
+  Button,
+  Banner,
+} from "@shopify/polaris";
+import {apiGet, apiSend} from "../api";
 import { isPro } from "../../../src/lib/plans.js";
 
 export default function DashboardPage({ boot }) {
@@ -12,11 +23,58 @@ export default function DashboardPage({ boot }) {
     rejected: 0,
   });
 
+  const [migrationLoading, setMigrationLoading] = useState(false);
+  const [migrationResult, setMigrationResult] = useState(null);
+  const [migrationError, setMigrationError] = useState(null);
+  const [tokenTestLoading, setTokenTestLoading] = useState(false);
+  const [tokenTestResult, setTokenTestResult] = useState(null);
+  const [tokenTestError, setTokenTestError] = useState(null);
+
+  const isFreshStartTestStore =
+      boot?.shop?.shopDomain === "freshstartdevelopment.myshopify.com";
+
   useEffect(() => {
     apiGet("/admin/analytics/summary")
         .then((data) => setStats(data.summary))
         .catch(() => {});
   }, []);
+
+  async function runTokenMigration() {
+    const confirmed = window.confirm(
+        "This will migrate this shop to expiring offline tokens. This action cannot be undone. Only continue if this is the freshstartdevelopment test store."
+    );
+
+    if (!confirmed) return;
+
+    setMigrationLoading(true);
+    setMigrationResult(null);
+    setMigrationError(null);
+
+    try {
+      const data = await apiSend("/admin/migrate-expiring-token", "POST");
+
+      setMigrationResult(data);
+    } catch (error) {
+      setMigrationError(error.message);
+    } finally {
+      setMigrationLoading(false);
+    }
+  }
+
+  async function testShopifyToken() {
+    setTokenTestLoading(true);
+    setTokenTestResult(null);
+    setTokenTestError(null);
+
+    try {
+      const data = await apiGet("/admin/test-shopify-token");
+      setTokenTestResult(data);
+    } catch (error) {
+      setTokenTestError(error.message);
+    } finally {
+      setTokenTestLoading(false);
+    }
+  }
 
   return (
       <Page title="Dashboard">
@@ -47,6 +105,116 @@ export default function DashboardPage({ boot }) {
                   </Text>
                 </BlockStack>
               </InlineStack>
+            </Card>
+          </Layout.Section>
+
+          {/* TEMPORARY TOKEN MIGRATION */}
+          {isFreshStartTestStore && (
+              <Layout.Section>
+                <Card>
+                  <BlockStack gap="300">
+                    <Banner tone="warning" title="Temporary developer-only migration">
+                      <Text as="p">
+                        This button is only visible on freshstartdevelopment.myshopify.com.
+                        It will migrate this shop from the existing offline access token to expiring offline tokens.
+                        This action cannot be undone.
+                      </Text>
+                    </Banner>
+
+                    <InlineStack align="space-between" blockAlign="center">
+                      <BlockStack gap="100">
+                        <Text variant="headingMd">Migrate expiring offline token</Text>
+                        <Text as="p" tone="subdued">
+                          Use this once only for testing the irreversible token migration.
+                        </Text>
+                      </BlockStack>
+
+                      <Button
+                          variant="primary"
+                          tone="critical"
+                          loading={migrationLoading}
+                          disabled={migrationLoading}
+                          onClick={runTokenMigration}
+                      >
+                        Run token migration
+                      </Button>
+                    </InlineStack>
+
+                    {migrationResult && (
+                        <Banner tone="success" title="Migration completed">
+                          <BlockStack gap="100">
+                            <Text as="p">
+                              Shop: {migrationResult.shopDomain}
+                            </Text>
+                            <Text as="p">
+                              Token type: {migrationResult.tokenType}
+                            </Text>
+                            <Text as="p">
+                              Access token expires at: {String(migrationResult.accessTokenExpiresAt)}
+                            </Text>
+                            <Text as="p">
+                              Refresh token expires at: {String(migrationResult.refreshTokenExpiresAt)}
+                            </Text>
+                          </BlockStack>
+                        </Banner>
+                    )}
+
+                    {migrationError && (
+                        <Banner tone="critical" title="Migration failed">
+                          <Text as="p">{migrationError}</Text>
+                        </Banner>
+                    )}
+                  </BlockStack>
+                </Card>
+              </Layout.Section>
+          )}
+
+          <Layout.Section>
+            <Card>
+              <BlockStack gap="300">
+                <InlineStack align="space-between" blockAlign="center">
+                  <BlockStack gap="100">
+                    <Text variant="headingMd">Test Shopify access token</Text>
+                    <Text as="p" tone="subdued">
+                      This checks whether the saved offline access token can call Shopify Admin API.
+                    </Text>
+                  </BlockStack>
+
+                  <Button
+                      variant="primary"
+                      loading={tokenTestLoading}
+                      disabled={tokenTestLoading}
+                      onClick={testShopifyToken}
+                  >
+                    Test token
+                  </Button>
+                </InlineStack>
+
+                {tokenTestResult && (
+                    <Banner tone="success" title="Token test passed">
+                      <BlockStack gap="100">
+                        <Text as="p">
+                          Shop: {tokenTestResult?.shopifyShop?.myshopifyDomain}
+                        </Text>
+                        <Text as="p">
+                          Name: {tokenTestResult?.shopifyShop?.name}
+                        </Text>
+                        <Text as="p">
+                          Token type: {tokenTestResult?.tokenType}
+                        </Text>
+                        <Text as="p">
+                          Access token expires at: {String(tokenTestResult?.accessTokenExpiresAt)}
+                        </Text>
+                      </BlockStack>
+                    </Banner>
+                )}
+
+                {tokenTestError && (
+                    <Banner tone="critical" title="Token test failed">
+                      <Text as="p">{tokenTestError}</Text>
+                    </Banner>
+                )}
+              </BlockStack>
             </Card>
           </Layout.Section>
 

@@ -3,6 +3,7 @@ import '@shopify/shopify-api/adapters/node';
 import crypto from 'crypto';
 import {shopifyApi} from "@shopify/shopify-api";
 import {SQLiteSessionStorage} from "@shopify/shopify-app-session-storage-sqlite";
+import {getValidOfflineToken} from "./offlineTokens.js";
 
 const DEFAULT_APP_URL = process.env.APP_URL || 'http://localhost:3000';
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET || '';
@@ -57,19 +58,40 @@ export function verifyWebhookHmac(rawBody, hmacHeader) {
   return crypto.timingSafeEqual(received, generated);
 }
 
-export async function shopifyAdminGraphql(shopDomain, accessToken, query, variables = {}) {
+export async function shopifyAdminGraphql(shopOrDomain, accessTokenOrQuery, queryOrVariables = {}, maybeVariables = {}) {
+  let shopDomain;
+  let accessToken;
+  let query;
+  let variables;
+
+  // New usage: shopifyAdminGraphql(shop, query, variables)
+  if (typeof shopOrDomain === "object") {
+    const shop = shopOrDomain;
+    shopDomain = shop.shopDomain;
+    accessToken = await getValidOfflineToken(shop);
+    query = accessTokenOrQuery;
+    variables = queryOrVariables || {};
+  } else {
+    // Old usage still supported: shopifyAdminGraphql(shopDomain, accessToken, query, variables)
+    shopDomain = shopOrDomain;
+    accessToken = accessTokenOrQuery;
+    query = queryOrVariables;
+    variables = maybeVariables;
+  }
+
   const normalizedShop = normalizeShopDomain(shopDomain);
+
   if (!normalizedShop || !accessToken) {
-    throw new Error('Shop domain and access token are required for Shopify Admin API requests');
+    throw new Error("Shop domain and access token are required for Shopify Admin API requests");
   }
 
   const response = await fetch(`https://${normalizedShop}/admin/api/2026-01/graphql.json`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Access-Token': accessToken
+      "Content-Type": "application/json",
+      "X-Shopify-Access-Token": accessToken,
     },
-    body: JSON.stringify({ query, variables })
+    body: JSON.stringify({ query, variables }),
   });
 
   if (!response.ok) {
@@ -77,8 +99,9 @@ export async function shopifyAdminGraphql(shopDomain, accessToken, query, variab
   }
 
   const json = await response.json();
+
   if (json.errors?.length) {
-    throw new Error(json.errors.map((item) => item.message).join(', '));
+    throw new Error(json.errors.map((item) => item.message).join(", "));
   }
 
   return json.data;
@@ -127,7 +150,7 @@ export async function syncManagedPricingForShop(prisma, shop) {
     return { shop: updated, subscription: null, source: 'no_access_token' };
   }
 
-  const data = await shopifyAdminGraphql(shop.shopDomain, shop.accessToken, ACTIVE_SUBSCRIPTIONS_QUERY);
+  const data = await shopifyAdminGraphql(shop, ACTIVE_SUBSCRIPTIONS_QUERY);
   const activeSubscriptions = data?.appInstallation?.activeSubscriptions || [];
 
   const recurring = activeSubscriptions.find((subscription) => {

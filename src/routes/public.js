@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import { prisma } from '../lib/db.js';
 import { sendEmail, buildConfirmationEmail } from '../lib/email.js';
 import {shopify} from "../lib/shopify.js";
+import {getValidOfflineToken} from "../lib/offlineTokens.js";
 
 export const publicRouter = express.Router();
 
@@ -63,17 +64,25 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
       return res.status(404).json({ error: 'Shop is not installed' });
     }
 
+    if (shop.uninstalledAt) {
+      return res.status(404).json({ error: "Shop is not installed" });
+    }
+
     let order = null;
     let verificationStatus = "UNVERIFIED";
 
-    if (shop.plan === "PRO" && shop.accessToken && orderNumber) {
+    if (shop.plan === "PRO" && orderNumber) {
       try {
+        const accessToken = await getValidOfflineToken(shop);
+
         const client = new shopify.clients.Graphql({
           session: {
-            shop: shopDomain,
-            accessToken: shop.accessToken,
+            shop: shop.shopDomain,
+            accessToken,
           },
         });
+
+        const cleanOrderNumber = String(orderNumber).replace("#", "").trim();
 
         const response = await client.request(
             `
@@ -91,7 +100,7 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
       `,
             {
               variables: {
-                query: `name:#${orderNumber}`,
+                query: `name:#${cleanOrderNumber}`,
               },
             }
         );
@@ -102,26 +111,21 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
           order = foundOrder;
           verificationStatus = "VERIFIED";
 
-          // ✅ Only enforce withdrawal window if VERIFIED
           const orderDate = new Date(order.createdAt);
-          const diffDays = (Date.now() - orderDate) / (1000 * 60 * 60 * 24);
+          const diffDays = (Date.now() - orderDate.getTime()) / (1000 * 60 * 60 * 24);
 
           const withdrawalDays = shop.withdrawalDays || 14;
 
           if (diffDays > withdrawalDays) {
             return res.status(400).json({
-              error: `Withdrawal period expired (${withdrawalDays} days)`
+              error: `Withdrawal period expired (${withdrawalDays} days)`,
             });
           }
-
         } else {
           verificationStatus = "NOT_FOUND";
         }
-
       } catch (err) {
         console.error("Shopify API error:", err);
-
-        // 🔑 DO NOT FAIL REQUEST
         verificationStatus = "ERROR";
       }
     }

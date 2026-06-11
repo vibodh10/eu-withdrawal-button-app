@@ -16,7 +16,7 @@ import {
     Modal,
     useIndexResourceState
 } from "@shopify/polaris";
-import { apiGet, apiSend } from "../api";
+import {apiGet, apiSend, getAuthHeaders} from "../api";
 
 const statuses = ["RECEIVED", "CONFIRMED", "REVIEWED", "APPROVED", "REJECTED"];
 
