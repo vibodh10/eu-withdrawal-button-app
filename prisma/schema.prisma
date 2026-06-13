@@ -24,7 +24,7 @@ model Shop {
   currentSubscriptionStatus  String?
   billingSyncedAt            DateTime?
   locale                     String               @default("en")
-  enabledLanguages           String               @default("[\"en\",\"de\",\"fr\",\"it\"]")
+  enabledLanguages String @default("[\"en\",\"de\"]")
   brandingName               String?
   brandingPrimaryColor       String?
   merchantNotification       String?

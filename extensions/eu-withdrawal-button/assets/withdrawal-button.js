@@ -69,7 +69,7 @@
       showPoweredBy: true,
       poweredByText: "Powered by GL6",
       defaultLanguage: "en",
-      enabledLanguages: ["en", "de", "fr", "it"]
+      enabledLanguages: ["en", "de"]
     };
 
     const TRANSLATIONS = {
@@ -611,7 +611,7 @@
     function getEnabledLanguages() {
       const enabled = Array.isArray(settings.enabledLanguages)
           ? settings.enabledLanguages
-          : ["en", "de", "fr", "it"];
+          : ["en", "de"];
 
       return enabled.filter((code) => TRANSLATIONS[code]);
     }

@@ -43,7 +43,7 @@ const LANGUAGE_OPTIONS = [
   { label: "Malti", value: "mt" },
 ];
 
-const DEFAULT_LANGUAGES = ["en", "de", "fr", "it"];
+const DEFAULT_LANGUAGES = ["en", "de"];
 
 function parseEnabledLanguages(value) {
   if (Array.isArray(value)) {
@@ -119,12 +119,12 @@ export default function SettingsPage({ boot, onReload }) {
         nextLanguages = ["en", ...nextLanguages];
       }
 
-      if (nextLanguages.length > 4) {
+      if (nextLanguages.length > 2) {
         setState({
           saving: false,
           message: "",
           error:
-              "The Basic plan includes English plus up to 3 additional languages.",
+              "The Basic plan includes English plus 1 additional language.",
         });
         return;
       }
@@ -196,8 +196,7 @@ export default function SettingsPage({ boot, onReload }) {
                     {!boot.isPro && (
                         <Banner tone="info">
                           <Text as="p">
-                            The Basic plan includes English plus up to 3 additional
-                            languages. Upgrade to Pro to enable all supported languages.
+                            The Basic plan includes English plus 1 additional language. Upgrade to Pro to enable all supported languages.
                           </Text>
                         </Banner>
                     )}
@@ -211,7 +210,7 @@ export default function SettingsPage({ boot, onReload }) {
                               !boot.isPro &&
                               language.value !== "en" &&
                               !form.enabledLanguages.includes(language.value) &&
-                              form.enabledLanguages.length >= 4,
+                              form.enabledLanguages.length >= 2,
                         }))}
                         selected={form.enabledLanguages}
                         onChange={updateEnabledLanguages}

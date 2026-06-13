@@ -277,7 +277,7 @@ publicRouter.get('/settings', async (req, res) => {
 
     const isPro = shop.plan === "PRO";
 
-    const defaultFreeLanguages = ["en", "de", "fr", "it"];
+    const defaultFreeLanguages = ["en", "de"];
 
     let enabledLanguages = defaultFreeLanguages;
 

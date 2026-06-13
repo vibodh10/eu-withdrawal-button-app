@@ -137,7 +137,7 @@ const SUPPORTED_LANGUAGES = new Set([
   "mt",
 ]);
 
-const DEFAULT_ENABLED_LANGUAGES = ["en", "de", "fr", "it"];
+const DEFAULT_ENABLED_LANGUAGES = ["en", "de"];
 
 function normaliseLanguageCode(value) {
   return String(value || "")
@@ -214,10 +214,10 @@ adminRouter.patch("/settings", async (req, res) => {
       enabledLanguages = [...new Set(enabledLanguages)];
 
       // English plus a maximum of three additional languages.
-      if (enabledLanguages.length > 4) {
+      if (enabledLanguages.length > 2) {
         return res.status(400).json({
           error:
-              "The Basic plan includes English plus up to 3 additional languages.",
+              "The Basic plan includes English plus 1 additional language.",
         });
       }
     }
