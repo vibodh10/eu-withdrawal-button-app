@@ -245,24 +245,92 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
 });
 
 publicRouter.get('/settings', async (req, res) => {
-  const shopDomain = req.query.shop;
+  try {
+    const shopDomain = req.query.shop;
 
-  const shop = await prisma.shop.findUnique({
-    where: { shopDomain }
-  });
+    if (!shopDomain) {
+      return res.status(400).json({
+        error: "Missing shop parameter",
+        withdrawalDays: 14,
+        legalPageUrl: null,
+        privacyPageUrl: null,
+        supportEmail: null,
+        showPoweredBy: true,
+        poweredByText: "Powered by GL6"
+      });
+    }
 
-  if (!shop) {
+    const shop = await prisma.shop.findUnique({
+      where: { shopDomain }
+    });
+
+    if (!shop || shop.uninstalledAt) {
+      return res.json({
+        withdrawalDays: 14,
+        legalPageUrl: null,
+        privacyPageUrl: null,
+        supportEmail: null,
+        showPoweredBy: true,
+        poweredByText: "Powered by GL6"
+      });
+    }
+
+    const isPro = shop.plan === "PRO";
+
+    const defaultFreeLanguages = ["en", "de", "fr", "it"];
+
+    let enabledLanguages = defaultFreeLanguages;
+
+    try {
+      enabledLanguages = shop.enabledLanguages
+          ? JSON.parse(shop.enabledLanguages)
+          : defaultFreeLanguages;
+    } catch {
+      enabledLanguages = defaultFreeLanguages;
+    }
+
+    if (!Array.isArray(enabledLanguages) || enabledLanguages.length === 0) {
+      enabledLanguages = defaultFreeLanguages;
+    }
+
+// Free users: English + up to 3 additional languages
+    if (!isPro) {
+      if (!enabledLanguages.includes("en")) {
+        enabledLanguages = ["en", ...enabledLanguages];
+      }
+
+      enabledLanguages = [...new Set(enabledLanguages)].slice(0, 4);
+    }
+
+    let defaultLanguage = shop.locale || "en";
+
+    if (!enabledLanguages.includes(defaultLanguage)) {
+      defaultLanguage = enabledLanguages.includes("en") ? "en" : enabledLanguages[0];
+    }
+
     return res.json({
-      withdrawalDays: 14
+      withdrawalDays: isPro ? shop.withdrawalDays || 14 : 14,
+      legalPageUrl: shop.legalPageUrl || null,
+      privacyPageUrl: shop.privacyPageUrl || null,
+      supportEmail: shop.supportEmail || null,
+      showPoweredBy: !isPro,
+      poweredByText: "Powered by GL6",
+
+      defaultLanguage,
+      enabledLanguages,
+      isPro
+    });
+  } catch (err) {
+    console.error("Public settings error:", err);
+
+    return res.status(500).json({
+      error: "Could not load settings",
+      withdrawalDays: 14,
+      legalPageUrl: null,
+      privacyPageUrl: null,
+      supportEmail: null,
+      showPoweredBy: true,
+      poweredByText: "Powered by GL6"
     });
   }
-
-  const isPro = shop.plan === "PRO";
-
-  res.json({
-    withdrawalDays: isPro ? shop.withdrawalDays || 14 : 14,
-    legalPageUrl: isPro ? shop.legalPageUrl : null,
-    privacyPageUrl: isPro ? shop.privacyPageUrl : null,
-    supportEmail: isPro ? shop.supportEmail : null
-  });
 });

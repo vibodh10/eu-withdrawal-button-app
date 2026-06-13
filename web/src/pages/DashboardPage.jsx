@@ -11,8 +11,7 @@ import {
   Button,
   Banner,
 } from "@shopify/polaris";
-import {apiGet, apiSend} from "../api";
-import { isPro } from "../../../src/lib/plans.js";
+import { apiGet, apiSend } from "../api";
 
 export default function DashboardPage({ boot }) {
   const [stats, setStats] = useState({
@@ -23,15 +22,9 @@ export default function DashboardPage({ boot }) {
     rejected: 0,
   });
 
-  const [migrationLoading, setMigrationLoading] = useState(false);
-  const [migrationResult, setMigrationResult] = useState(null);
-  const [migrationError, setMigrationError] = useState(null);
-  const [tokenTestLoading, setTokenTestLoading] = useState(false);
-  const [tokenTestResult, setTokenTestResult] = useState(null);
-  const [tokenTestError, setTokenTestError] = useState(null);
-
-  const isFreshStartTestStore =
-      boot?.shop?.shopDomain === "freshstartdevelopment.myshopify.com";
+  const [setupLoading, setSetupLoading] = useState(false);
+  const [setupResult, setSetupResult] = useState(null);
+  const [setupError, setSetupError] = useState(null);
 
   useEffect(() => {
     apiGet("/admin/analytics/summary")
@@ -39,47 +32,63 @@ export default function DashboardPage({ boot }) {
         .catch(() => {});
   }, []);
 
-  async function runTokenMigration() {
-    const confirmed = window.confirm(
-        "This will migrate this shop to expiring offline tokens. This action cannot be undone. Only continue if this is the freshstartdevelopment test store."
-    );
+  const shopDomain = boot?.shop?.shopDomain;
 
-    if (!confirmed) return;
+  const SHOPIFY_API_KEY = import.meta.env.VITE_SHOPIFY_API_KEY;
 
-    setMigrationLoading(true);
-    setMigrationResult(null);
-    setMigrationError(null);
+  // This should match your app block liquid file name:
+  // blocks/withdrawal-button.liquid = "withdrawal-button"
+  const APP_BLOCK_HANDLE = "withdrawal-button";
 
-    try {
-      const data = await apiSend("/admin/migrate-expiring-token", "POST");
+  const withdrawalPageUrl = shopDomain
+      ? `https://${shopDomain}/pages/eu-withdrawal`
+      : "#";
 
-      setMigrationResult(data);
-    } catch (error) {
-      setMigrationError(error.message);
-    } finally {
-      setMigrationLoading(false);
-    }
+  // For the floating sitewide button app embed.
+  // This opens the App embeds panel.
+  const floatingEmbedUrl = shopDomain
+      ? `https://${shopDomain}/admin/themes/current/editor?context=apps`
+      : "#";
+
+  // For adding the section app block to a page.
+  const appBlockDeepLink =
+      shopDomain && SHOPIFY_API_KEY
+          ? `https://${shopDomain}/admin/themes/current/editor?template=page&addAppBlockId=${SHOPIFY_API_KEY}/${APP_BLOCK_HANDLE}&target=mainSection`
+          : "#";
+
+  const storefrontUrl = shopDomain ? `https://${shopDomain}` : "#";
+
+  const notificationsUrl = shopDomain
+      ? `https://${shopDomain}/admin/email_templates/order_confirmation/preview`
+      : "#";
+
+  function openUrl(url) {
+    if (!url || url === "#") return;
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
-  async function testShopifyToken() {
-    setTokenTestLoading(true);
-    setTokenTestResult(null);
-    setTokenTestError(null);
+  function openRequests() {
+    window.location.href = "/requests";
+  }
+
+  async function createWithdrawalPage() {
+    setSetupLoading(true);
+    setSetupResult(null);
+    setSetupError(null);
 
     try {
-      const data = await apiGet("/admin/test-shopify-token");
-      setTokenTestResult(data);
+      const data = await apiSend("/admin/setup/withdrawal-page", "POST");
+      setSetupResult(data);
     } catch (error) {
-      setTokenTestError(error.message);
+      setSetupError(error.message);
     } finally {
-      setTokenTestLoading(false);
+      setSetupLoading(false);
     }
   }
 
   return (
       <Page title="Dashboard">
         <Layout>
-
           {/* HERO */}
           <Layout.Section>
             <Card>
@@ -147,39 +156,197 @@ export default function DashboardPage({ boot }) {
             </Grid>
           </Layout.Section>
 
-          {/* NEXT STEPS */}
+          {/* SETUP CHECKLIST */}
           <Layout.Section>
             <Card>
-              <BlockStack gap="300">
-                <Text variant="headingMd">Recommended next steps</Text>
-
-                <BlockStack>
-                  <Text>
-                    <strong>Add the withdrawal button to your store</strong><br />
-                    Go to Online Store → Customize and add the EU Withdrawal Button block to your page.
+              <BlockStack gap="400">
+                <BlockStack gap="100">
+                  <Text variant="headingMd">Complete your setup</Text>
+                  <Text as="p" tone="subdued">
+                    Choose the setup that works best for your store. We recommend enabling the floating sitewide button and also creating a dedicated withdrawal page.
                   </Text>
+                </BlockStack>
 
-                  <Text>
-                    <strong>Test the customer experience</strong><br />
-                    Submit a test request to see how customers will interact with the form.
-                  </Text>
-
-                  <Text>
-                    <strong>Review requests in your dashboard</strong><br />
-                    All submissions will appear in the Requests section where you can manage them.
-                  </Text>
-
-                  {!isPro && (
-                      <Text>
-                        <strong>(Optional) Upgrade to Pro</strong><br />
-                        Unlock automation, advanced controls, and custom workflows.
+                {setupResult && (
+                    <Banner tone="success" title="Withdrawal page ready">
+                      <Text as="p">
+                        Your withdrawal page is ready. You can now add the app block to that page and link to it from your order confirmation emails.
                       </Text>
+                    </Banner>
+                )}
+
+                {setupError && (
+                    <Banner tone="critical" title="Setup action failed">
+                      <Text as="p">{setupError}</Text>
+                    </Banner>
+                )}
+
+                <BlockStack gap="300">
+                  {/* OPTION 1 */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack align="space-between" blockAlign="center">
+                      <BlockStack gap="100">
+                        <InlineStack gap="200" blockAlign="center">
+                          <Badge tone="success">Recommended</Badge>
+                          <Text variant="headingSm">Enable floating sitewide button</Text>
+                        </InlineStack>
+
+                        <Text as="p" tone="subdued">
+                          Best for visibility. This adds a floating withdrawal button across your storefront so customers can access the form from anywhere.
+                        </Text>
+                      </BlockStack>
+
+                      <Button
+                          variant="primary"
+                          onClick={() => openUrl(floatingEmbedUrl)}
+                      >
+                        Enable floating button
+                      </Button>
+                    </InlineStack>
+                  </Card>
+
+                  {/* OPTION 2 */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack align="space-between" blockAlign="center">
+                      <BlockStack gap="100">
+                        <InlineStack gap="200" blockAlign="center">
+                          <Badge tone="attention">Recommended</Badge>
+                          <Text variant="headingSm">Create a dedicated withdrawal page</Text>
+                        </InlineStack>
+
+                        <Text as="p" tone="subdued">
+                          Create a standard page at /pages/eu-withdrawal so customers have a clear place to submit withdrawal requests.
+                        </Text>
+                      </BlockStack>
+
+                      <Button
+                          loading={setupLoading}
+                          disabled={setupLoading}
+                          onClick={createWithdrawalPage}
+                      >
+                        Create page
+                      </Button>
+                    </InlineStack>
+                  </Card>
+
+                  {/* OPTION 3 */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack align="space-between" blockAlign="center">
+                      <BlockStack gap="100">
+                        <InlineStack gap="200" blockAlign="center">
+                          <Badge tone="attention">Recommended</Badge>
+                          <Text variant="headingSm">Add button block to the withdrawal page</Text>
+                        </InlineStack>
+
+                        <Text as="p" tone="subdued">
+                          Open the theme editor and add the EU Withdrawal Button block to your dedicated withdrawal page.
+                        </Text>
+                      </BlockStack>
+
+                      <Button onClick={() => openUrl(appBlockDeepLink)}>
+                        Add page block
+                      </Button>
+                    </InlineStack>
+                  </Card>
+
+                  {/* OPTION 4 */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack align="space-between" blockAlign="center">
+                      <BlockStack gap="100">
+                        <InlineStack gap="200" blockAlign="center">
+                          <Badge tone="info">Suggested</Badge>
+                          <Text variant="headingSm">Add the link to order confirmation emails</Text>
+                        </InlineStack>
+
+                        <Text as="p" tone="subdued">
+                          Add your withdrawal page link to Shopify order confirmation emails so customers can find it after purchase.
+                        </Text>
+
+                        <Text as="p">
+                          Suggested link: <strong>{withdrawalPageUrl}</strong>
+                        </Text>
+                      </BlockStack>
+
+                      <Button onClick={() => openUrl(notificationsUrl)}>
+                        Open notifications
+                      </Button>
+                    </InlineStack>
+                  </Card>
+
+                  {/* OPTION 5 */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack align="space-between" blockAlign="center">
+                      <BlockStack gap="100">
+                        <InlineStack gap="200" blockAlign="center">
+                          <Badge tone={stats.total > 0 ? "success" : "attention"}>
+                            {stats.total > 0 ? "Done" : "Test"}
+                          </Badge>
+                          <Text variant="headingSm">Submit a test withdrawal request</Text>
+                        </InlineStack>
+
+                        <Text as="p" tone="subdued">
+                          Visit your storefront or withdrawal page and submit a test request to confirm the customer experience works correctly.
+                        </Text>
+                      </BlockStack>
+
+                      <InlineStack gap="200">
+                        <Button onClick={() => openUrl(withdrawalPageUrl)}>
+                          Open withdrawal page
+                        </Button>
+
+                        <Button onClick={() => openUrl(storefrontUrl)}>
+                          Open storefront
+                        </Button>
+                      </InlineStack>
+                    </InlineStack>
+                  </Card>
+
+                  {/* OPTION 6 */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack align="space-between" blockAlign="center">
+                      <BlockStack gap="100">
+                        <InlineStack gap="200" blockAlign="center">
+                          <Badge tone={stats.total > 0 ? "success" : "attention"}>
+                            {stats.total > 0 ? "Ready" : "Next"}
+                          </Badge>
+                          <Text variant="headingSm">Review requests in your dashboard</Text>
+                        </InlineStack>
+
+                        <Text as="p" tone="subdued">
+                          Once a customer or test request is submitted, review it in the Requests section and update its status.
+                        </Text>
+                      </BlockStack>
+
+                      <Button onClick={openRequests}>
+                        Open requests
+                      </Button>
+                    </InlineStack>
+                  </Card>
+
+                  {!boot.isPro && (
+                      <Card background="bg-surface-secondary">
+                        <InlineStack align="space-between" blockAlign="center">
+                          <BlockStack gap="100">
+                            <InlineStack gap="200" blockAlign="center">
+                              <Badge tone="info">Optional</Badge>
+                              <Text variant="headingSm">Upgrade to Pro</Text>
+                            </InlineStack>
+
+                            <Text as="p" tone="subdued">
+                              Unlock order verification, advanced controls, automation, and custom workflows.
+                            </Text>
+                          </BlockStack>
+
+                          <Button url="/billing">
+                            View Pro
+                          </Button>
+                        </InlineStack>
+                      </Card>
                   )}
                 </BlockStack>
               </BlockStack>
             </Card>
           </Layout.Section>
-
         </Layout>
       </Page>
   );

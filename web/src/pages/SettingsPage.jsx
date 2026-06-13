@@ -1,6 +1,64 @@
+import {
+  Page,
+  Layout,
+  Card,
+  Text,
+  TextField,
+  Button,
+  Banner,
+  BlockStack,
+  InlineStack,
+  Box,
+  ChoiceList,
+  Select,
+  Badge,
+} from "@shopify/polaris";
 import {useEffect, useMemo, useState} from "react";
-import {Page, Layout, Card, Text, TextField, Button, Banner, BlockStack, InlineStack, Box} from "@shopify/polaris";
-import {apiGet, apiSend} from "../api";
+import {apiGet, apiSend} from "../api.js";
+
+const LANGUAGE_OPTIONS = [
+  { label: "English", value: "en" },
+  { label: "Deutsch", value: "de" },
+  { label: "Français", value: "fr" },
+  { label: "Italiano", value: "it" },
+  { label: "Español", value: "es" },
+  { label: "Português", value: "pt" },
+  { label: "Nederlands", value: "nl" },
+  { label: "Polski", value: "pl" },
+  { label: "Dansk", value: "da" },
+  { label: "Svenska", value: "sv" },
+  { label: "Suomi", value: "fi" },
+  { label: "Čeština", value: "cs" },
+  { label: "Slovenčina", value: "sk" },
+  { label: "Slovenščina", value: "sl" },
+  { label: "Hrvatski", value: "hr" },
+  { label: "Magyar", value: "hu" },
+  { label: "Română", value: "ro" },
+  { label: "Български", value: "bg" },
+  { label: "Ελληνικά", value: "el" },
+  { label: "Eesti", value: "et" },
+  { label: "Latviešu", value: "lv" },
+  { label: "Lietuvių", value: "lt" },
+  { label: "Gaeilge", value: "ga" },
+  { label: "Malti", value: "mt" },
+];
+
+const DEFAULT_LANGUAGES = ["en", "de", "fr", "it"];
+
+function parseEnabledLanguages(value) {
+  if (Array.isArray(value)) {
+    return value;
+  }
+
+  try {
+    const parsed = JSON.parse(value || "[]");
+    return Array.isArray(parsed) && parsed.length
+        ? parsed
+        : DEFAULT_LANGUAGES;
+  } catch {
+    return DEFAULT_LANGUAGES;
+  }
+}
 
 export default function SettingsPage({ boot, onReload }) {
   const shop = boot.shop;
@@ -8,6 +66,7 @@ export default function SettingsPage({ boot, onReload }) {
   const [form, setForm] = useState({
     brandingName: shop.brandingName || "",
     locale: shop.locale || "en",
+    enabledLanguages: parseEnabledLanguages(shop.enabledLanguages),
     brandingPrimaryColor: shop.brandingPrimaryColor || "#111827",
     merchantNotification: shop.merchantNotification || "",
     legalPageUrl: shop.legalPageUrl || "",
@@ -45,6 +104,60 @@ export default function SettingsPage({ boot, onReload }) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  function updateEnabledLanguages(selected) {
+    setState((prev) => ({
+      ...prev,
+      message: "",
+      error: "",
+    }));
+
+    let nextLanguages = [...new Set(selected)];
+
+    if (!boot.isPro) {
+      // English is always included on Basic.
+      if (!nextLanguages.includes("en")) {
+        nextLanguages = ["en", ...nextLanguages];
+      }
+
+      if (nextLanguages.length > 4) {
+        setState({
+          saving: false,
+          message: "",
+          error:
+              "The Basic plan includes English plus up to 3 additional languages.",
+        });
+        return;
+      }
+    }
+
+    if (nextLanguages.length === 0) {
+      setState({
+        saving: false,
+        message: "",
+        error: "Select at least one language.",
+      });
+      return;
+    }
+
+    setForm((prev) => {
+      const nextDefaultLanguage = nextLanguages.includes(prev.locale)
+          ? prev.locale
+          : nextLanguages.includes("en")
+              ? "en"
+              : nextLanguages[0];
+
+      return {
+        ...prev,
+        enabledLanguages: nextLanguages,
+        locale: nextDefaultLanguage,
+      };
+    });
+  }
+
+  const defaultLanguageOptions = LANGUAGE_OPTIONS.filter((language) =>
+      form.enabledLanguages.includes(language.value)
+  );
+
   async function save() {
     try {
       setState({ saving: true, message: "", error: "" });
@@ -64,7 +177,55 @@ export default function SettingsPage({ boot, onReload }) {
               <BlockStack gap="300">
                 <Text variant="headingMd">General settings</Text>
 
-                <TextField label="Locale" value={form.locale} onChange={(v) => updateField("locale", v)} />
+                <Card background="bg-surface-secondary">
+                  <BlockStack gap="400">
+                    <InlineStack align="space-between" blockAlign="center">
+                      <BlockStack gap="100">
+                        <Text variant="headingMd">Customer form languages</Text>
+
+                        <Text as="p" tone="subdued">
+                          Choose the languages customers can use in the withdrawal form.
+                        </Text>
+                      </BlockStack>
+
+                      <Badge tone={boot.isPro ? "success" : "info"}>
+                        {boot.isPro ? "Pro" : "Basic"}
+                      </Badge>
+                    </InlineStack>
+
+                    {!boot.isPro && (
+                        <Banner tone="info">
+                          <Text as="p">
+                            The Basic plan includes English plus up to 3 additional
+                            languages. Upgrade to Pro to enable all supported languages.
+                          </Text>
+                        </Banner>
+                    )}
+
+                    <ChoiceList
+                        title="Languages available to customers"
+                        allowMultiple
+                        choices={LANGUAGE_OPTIONS.map((language) => ({
+                          ...language,
+                          disabled:
+                              !boot.isPro &&
+                              language.value !== "en" &&
+                              !form.enabledLanguages.includes(language.value) &&
+                              form.enabledLanguages.length >= 4,
+                        }))}
+                        selected={form.enabledLanguages}
+                        onChange={updateEnabledLanguages}
+                    />
+
+                    <Select
+                        label="Default language"
+                        helpText="The form opens in this language. Customers can switch to another enabled language."
+                        options={defaultLanguageOptions}
+                        value={form.locale}
+                        onChange={(value) => updateField("locale", value)}
+                    />
+                  </BlockStack>
+                </Card>
                 <TextField label="Merchant notification email" value={form.merchantNotification} onChange={(v) => updateField("merchantNotification", v)} />
 
                 {proLocked && (
@@ -72,12 +233,12 @@ export default function SettingsPage({ boot, onReload }) {
                         tone="info"
                         title="Upgrade to Pro to unlock advanced settings"
                     >
-                      Legal settings and adjustable withdrawal periods are available on Pro.
+                      Adjustable withdrawal periods are available on Pro.
                     </Banner>
                 )}
-                <TextField label="Legal page URL" value={form.legalPageUrl} disabled={proLocked} onChange={(v) => updateField("legalPageUrl", v)} />
-                <TextField label="Privacy page URL" value={form.privacyPageUrl} disabled={proLocked} onChange={(v) => updateField("privacyPageUrl", v)} />
-                <TextField label="Support email" value={form.supportEmail} disabled={proLocked} onChange={(v) => updateField("supportEmail", v)} />
+                <TextField label="Legal page URL" value={form.legalPageUrl} onChange={(v) => updateField("legalPageUrl", v)} />
+                <TextField label="Privacy page URL" value={form.privacyPageUrl} onChange={(v) => updateField("privacyPageUrl", v)} />
+                <TextField label="Support email" value={form.supportEmail} onChange={(v) => updateField("supportEmail", v)} />
 
                 {proLocked && (
                     <Text variant="bodySm" tone="subdued">
@@ -165,7 +326,7 @@ export default function SettingsPage({ boot, onReload }) {
                 >
                   <div
                       style={{
-                        background: form.brandingPrimaryColor || "#111827",
+                        background: form.brandingPrimaryColor || "#0041c2",
                         padding: "16px",
                         borderRadius: "8px",
                         marginBottom: "16px",

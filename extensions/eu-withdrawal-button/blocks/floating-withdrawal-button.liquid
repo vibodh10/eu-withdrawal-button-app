@@ -1,0 +1,93 @@
+{% liquid
+  assign app_url = "https://promotion-marc-bush-neighborhood.trycloudflare.com"
+  assign shop_domain = shop.permanent_domain
+%}
+
+<div
+  class="eu-withdrawal-floating-root"
+  data-app-url="{{ app_url | escape }}"
+  data-shop-domain="{{ shop_domain | escape }}"
+  data-locale="{{ request.locale.iso_code | default: 'en' | escape }}"
+  data-button-label="{{ block.settings.button_label | escape }}"
+  data-heading="{{ block.settings.heading | escape }}"
+  data-position="{{ block.settings.position | escape }}"
+  data-bottom-offset="{{ block.settings.bottom_offset }}"
+  data-side-offset="{{ block.settings.side_offset }}"
+  data-button-bg="{{ block.settings.button_bg | escape }}"
+  data-button-text="{{ block.settings.button_text | escape }}"
+></div>
+
+{{ 'withdrawal-button.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Withdrawal sitewide btn",
+  "target": "body",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Withdrawal Request"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Modal heading",
+      "default": "Submit Withdrawal Request"
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Floating position",
+      "default": "bottom-right",
+      "options": [
+        {
+          "value": "bottom-right",
+          "label": "Bottom right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom center"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "bottom_offset",
+      "label": "Bottom spacing",
+      "min": 10,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "side_offset",
+      "label": "Side spacing",
+      "min": 10,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#0041c2"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text color",
+      "default": "#ffffff"
+    }
+  ]
+}
+{% endschema %}
