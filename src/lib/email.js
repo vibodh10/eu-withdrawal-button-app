@@ -18,14 +18,25 @@ export async function sendEmail({ to, subject, html }) {
   }
 }
 
-export function buildConfirmationEmail({ shopName, reference, locale = 'en' }) {
-  const subject = locale === 'de'
-    ? 'Ihre Widerrufsanfrage wurde erhalten'
-    : 'Your withdrawal request has been received';
+export function buildConfirmationEmail({ shopName, reference, locale = "en" }) {
+  const subject =
+      locale === "de"
+          ? "Ihre Widerrufsanfrage wurde erhalten"
+          : "Your withdrawal request has been received";
 
-  const html = locale === 'de'
-    ? `<p>Wir haben Ihre Anfrage erhalten.</p><p>Referenz: <strong>${reference}</strong></p>`
-    : `<p>We have received your request.</p><p>Reference: <strong>${reference}</strong></p>`;
+  const html =
+      locale === "de"
+          ? `
+          <p>Wir haben Ihre Anfrage erhalten.</p>
+          <p>Referenz: <strong>${reference}</strong></p>
+        `
+          : `
+          <p>We have received your request.</p>
+          <p>Reference: <strong>${reference}</strong></p>
+        `;
 
-  return { subject, html: `<div><h2>${shopName}</h2>${html}</div>` };
+  return {
+    subject,
+    html: `<div>${html}</div>`,
+  };
 }
