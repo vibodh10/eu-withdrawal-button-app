@@ -39,25 +39,35 @@ function getVerificationUI(status) {
             return {
                 tone: "success",
                 label: "Verified",
-                tooltip: "Order found and within withdrawal period",
+                tooltip: "Order found and within the withdrawal period",
             };
+
         case "NOT_FOUND":
             return {
                 tone: "critical",
-                label: "Invalid order",
-                tooltip: "Order not found in Shopify",
+                label: "Order not found",
+                tooltip: "No matching order was found in Shopify",
             };
+
+        case "EXPIRED":
+            return {
+                tone: "critical",
+                label: "Period expired",
+                tooltip: "Order found, but the withdrawal period has expired",
+            };
+
         case "ERROR":
             return {
                 tone: "warning",
                 label: "Unavailable",
-                tooltip: "Could not verify order (Shopify/API issue)",
+                tooltip: "Could not verify the order because of a Shopify or API issue",
             };
+
         default:
             return {
                 tone: "info",
                 label: "Not verified",
-                tooltip: "Automatic verification available on Pro",
+                tooltip: "Automatic order verification is available on Pro",
             };
     }
 }

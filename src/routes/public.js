@@ -109,17 +109,19 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
 
         if (foundOrder) {
           order = foundOrder;
-          verificationStatus = "VERIFIED";
 
           const orderDate = new Date(order.createdAt);
-          const diffDays = (Date.now() - orderDate.getTime()) / (1000 * 60 * 60 * 24);
+          const diffDays =
+              (Date.now() - orderDate.getTime()) /
+              (1000 * 60 * 60 * 24);
 
           const withdrawalDays = shop.withdrawalDays || 14;
 
           if (diffDays > withdrawalDays) {
-            return res.status(400).json({
-              error: `Withdrawal period expired (${withdrawalDays} days)`,
-            });
+            // Still accept and record the request.
+            verificationStatus = "EXPIRED";
+          } else {
+            verificationStatus = "VERIFIED";
           }
         } else {
           verificationStatus = "NOT_FOUND";
