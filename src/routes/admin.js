@@ -5,6 +5,7 @@ import { isPro, PLANS } from '../lib/plans.js';
 import verifyRequest from "../middleware/verifyRequest.js";
 import { buildManagedPricingUrl } from '../lib/shopify.js';
 import {exchangeOfflineToken, getValidOfflineToken} from "../lib/offlineTokens.js";
+import {buildConfirmationEmail} from "../lib/email.js";
 
 export const adminRouter = express.Router();
 
