@@ -11,9 +11,9 @@ import {
   Button,
   Banner,
 } from "@shopify/polaris";
-import { apiGet, apiSend } from "../api";
+import {apiGet, apiSend, syncBilling} from "../api";
 
-export default function DashboardPage({ boot }) {
+export default function DashboardPage({ boot, onReload }) {
   const [stats, setStats] = useState({
     total: 0,
     received: 0,
@@ -25,6 +25,53 @@ export default function DashboardPage({ boot }) {
   const [setupLoading, setSetupLoading] = useState(false);
   const [setupResult, setSetupResult] = useState(null);
   const [setupError, setSetupError] = useState(null);
+  const [billingSyncing, setBillingSyncing] = useState(true);
+  const [billingSyncError, setBillingSyncError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function refreshBillingStatus() {
+      try {
+        setBillingSyncing(true);
+        setBillingSyncError("");
+
+        const result = await syncBilling();
+
+        console.log("Billing sync result:", result);
+
+        const syncedPlan = result?.shop?.plan;
+        const currentPlan = boot?.shop?.plan;
+
+        // Reload boot data only when Shopify reports a different plan.
+        if (
+            !cancelled &&
+            syncedPlan &&
+            syncedPlan !== currentPlan
+        ) {
+          await onReload?.();
+        }
+      } catch (error) {
+        console.error("Billing sync failed:", error);
+
+        if (!cancelled) {
+          setBillingSyncError(
+              error.message || "Could not refresh subscription status."
+          );
+        }
+      } finally {
+        if (!cancelled) {
+          setBillingSyncing(false);
+        }
+      }
+    }
+
+    refreshBillingStatus();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     apiGet("/admin/analytics/summary")
@@ -89,6 +136,30 @@ export default function DashboardPage({ boot }) {
   return (
       <Page title="Dashboard">
         <Layout>
+          {billingSyncing && (
+              <Layout.Section>
+                <Banner
+                    tone="info"
+                    title="Refreshing subscription status"
+                >
+                  <Text as="p">
+                    Checking your Shopify subscription and activating available features.
+                  </Text>
+                </Banner>
+              </Layout.Section>
+          )}
+
+          {billingSyncError && (
+              <Layout.Section>
+                <Banner
+                    tone="warning"
+                    title="Could not refresh subscription"
+                >
+                  <Text as="p">{billingSyncError}</Text>
+                </Banner>
+              </Layout.Section>
+          )}
+
           {/* HERO */}
           <Layout.Section>
             <Card>

@@ -16,7 +16,7 @@ import {
     ProductIcon
 } from "@shopify/polaris-icons";
 
-import {apiGet, syncBilling} from "./api";
+import { apiGet } from "./api";
 import DashboardPage from "./pages/DashboardPage.jsx";
 import RequestsPage from "./pages/RequestsPage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
@@ -125,16 +125,28 @@ export default function App() {
                         ) : (
                             <>
                                 {tab === "dashboard" && (
-                                    <DashboardPage boot={boot.data} />
+                                    <DashboardPage
+                                        boot={boot.data}
+                                        onReload={load}
+                                    />
                                 )}
+
                                 {tab === "requests" && (
                                     <RequestsPage boot={boot.data} />
                                 )}
+
                                 {tab === "settings" && (
-                                    <SettingsPage boot={boot.data} onReload={load} />
+                                    <SettingsPage
+                                        boot={boot.data}
+                                        onReload={load}
+                                    />
                                 )}
+
                                 {tab === "plans" && (
-                                    <PlansPage boot={boot.data} onReload={load} />
+                                    <PlansPage
+                                        boot={boot.data}
+                                        onReload={load}
+                                    />
                                 )}
                             </>
                         )}
