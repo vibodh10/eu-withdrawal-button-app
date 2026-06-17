@@ -34,11 +34,22 @@ export function buildManagedPricingUrl(shopDomain) {
 }
 
 export function mapPlanHandleToAppPlan(planHandle) {
-  const value = String(planHandle || '').toLowerCase();
-  if (value === String(process.env.SHOPIFY_MANAGED_PRICING_PRO_HANDLE || 'pro').toLowerCase()) {
-    return 'PRO';
-  }
-  return 'BASIC';
+  const value = String(planHandle || "")
+      .trim()
+      .toLowerCase();
+
+  const liveProHandle = String(
+      process.env.SHOPIFY_MANAGED_PRICING_PRO_HANDLE || "pro"
+  )
+      .trim()
+      .toLowerCase();
+
+  const proHandles = new Set([
+    liveProHandle,
+    "pro-test",
+  ]);
+
+  return proHandles.has(value) ? "PRO" : "BASIC";
 }
 
 export function verifyWebhookHmac(rawBody, hmacHeader) {
