@@ -10,9 +10,10 @@ export default function DpaPage({ onAccepted }) {
         if (!checked) return;
 
         setLoading(true);
+
         try {
             await apiSend("/admin/dpa/accept", "POST");
-            onAccepted(); // reload app state
+            await onAccepted?.({ silent: true });
         } catch (err) {
             console.error(err);
 

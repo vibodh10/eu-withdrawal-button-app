@@ -168,9 +168,23 @@ export default function RequestsPage() {
 
     async function updateStatus(id, status) {
         setUpdatingId(id);
-        await apiSend(`/admin/requests/${id}`, "PATCH", { status });
-        await load();
-        setUpdatingId(null);
+
+        try {
+            await apiSend(`/admin/requests/${id}`, "PATCH", { status });
+
+            setRows((currentRows) =>
+                currentRows.map((row) =>
+                    row.id === id
+                        ? { ...row, status }
+                        : row
+                )
+            );
+        } catch (error) {
+            console.error(error);
+            alert("Could not update the request status.");
+        } finally {
+            setUpdatingId(null);
+        }
     }
 
     async function exportCSV() {
@@ -256,6 +270,7 @@ export default function RequestsPage() {
                                             { label: "All", value: "" },
                                             { label: "Verified", value: "VERIFIED" },
                                             { label: "Invalid order", value: "NOT_FOUND" },
+                                            { label: "Period expired", value: "EXPIRED" },
                                             { label: "Unavailable", value: "ERROR" },
                                         ]}
                                         value={filters.verification}
@@ -276,7 +291,15 @@ export default function RequestsPage() {
 
                         {/* 🔄 Loading */}
                         {loading && (
-                            <div style={{ padding: "40px", textAlign: "center" }}>
+                            <div
+                                style={{
+                                    minHeight: "420px",
+                                    padding: "40px",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "flex-start",
+                                }}
+                            >
                                 <Spinner size="large" />
                             </div>
                         )}

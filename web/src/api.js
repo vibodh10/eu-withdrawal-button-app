@@ -1,5 +1,5 @@
 import { getSessionToken } from "@shopify/app-bridge-utils";
-import { app } from "./main.jsx"; // make sure this is correct
+import { app } from "./appBridge.js"; // make sure this is correct
 
 export async function getAuthHeaders() {
   const token = await getSessionToken(app);

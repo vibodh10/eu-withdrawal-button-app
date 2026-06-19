@@ -25,31 +25,40 @@ export default function DashboardPage({ boot, onReload }) {
   const [setupLoading, setSetupLoading] = useState(false);
   const [setupResult, setSetupResult] = useState(null);
   const [setupError, setSetupError] = useState(null);
-  const [billingSyncing, setBillingSyncing] = useState(true);
   const [billingSyncError, setBillingSyncError] = useState("");
+
+  function StatCard({ label, value, helpText }) {
+    return (
+        <Card>
+          <div style={{ minHeight: "50px" }}>
+            <BlockStack gap="100">
+              <Text>{label}</Text>
+              <Text variant="headingLg">{value}</Text>
+              <Text tone="subdued">{helpText}</Text>
+            </BlockStack>
+          </div>
+        </Card>
+    );
+  }
 
   useEffect(() => {
     let cancelled = false;
 
     async function refreshBillingStatus() {
       try {
-        setBillingSyncing(true);
         setBillingSyncError("");
 
         const result = await syncBilling();
 
-        console.log("Billing sync result:", result);
-
         const syncedPlan = result?.shop?.plan;
         const currentPlan = boot?.shop?.plan;
 
-        // Reload boot data only when Shopify reports a different plan.
         if (
             !cancelled &&
             syncedPlan &&
             syncedPlan !== currentPlan
         ) {
-          await onReload?.();
+          await onReload?.({ silent: true });
         }
       } catch (error) {
         console.error("Billing sync failed:", error);
@@ -58,10 +67,6 @@ export default function DashboardPage({ boot, onReload }) {
           setBillingSyncError(
               error.message || "Could not refresh subscription status."
           );
-        }
-      } finally {
-        if (!cancelled) {
-          setBillingSyncing(false);
         }
       }
     }
@@ -136,19 +141,6 @@ export default function DashboardPage({ boot, onReload }) {
   return (
       <Page title="Dashboard">
         <Layout>
-          {billingSyncing && (
-              <Layout.Section>
-                <Banner
-                    tone="info"
-                    title="Refreshing subscription status"
-                >
-                  <Text as="p">
-                    Checking your Shopify subscription and activating available features.
-                  </Text>
-                </Banner>
-              </Layout.Section>
-          )}
-
           {billingSyncError && (
               <Layout.Section>
                 <Banner
@@ -192,37 +184,35 @@ export default function DashboardPage({ boot, onReload }) {
           <Layout.Section>
             <Grid>
               <Grid.Cell columnSpan={{ xs: 6, sm: 3 }}>
-                <Card>
-                  <Text>Total requests</Text>
-                  <Text variant="headingLg">{stats.total}</Text>
-                  <Text tone="subdued">All time across this shop</Text>
-                </Card>
+                <StatCard
+                    label="Total requests"
+                    value={stats.total}
+                    helpText="All time across this shop"
+                />
               </Grid.Cell>
 
               <Grid.Cell columnSpan={{ xs: 6, sm: 3 }}>
-                <Card>
-                  <Text>Received</Text>
-                  <Text variant="headingLg">{stats.received}</Text>
-                  <Text tone="subdued">Waiting for action</Text>
-                </Card>
+                <StatCard
+                    label="Received"
+                    value={stats.received}
+                    helpText="Waiting for action"
+                />
               </Grid.Cell>
 
               <Grid.Cell columnSpan={{ xs: 6, sm: 3 }}>
-                <Card>
-                  <Text>Reviewed</Text>
-                  <Text variant="headingLg">{stats.reviewed}</Text>
-                  <Text tone="subdued">Manually assessed</Text>
-                </Card>
+                <StatCard
+                    label="Reviewed"
+                    value={stats.reviewed}
+                    helpText="Manually assessed"
+                />
               </Grid.Cell>
 
               <Grid.Cell columnSpan={{ xs: 6, sm: 3 }}>
-                <Card>
-                  <Text>Approved / Rejected</Text>
-                  <Text variant="headingLg">
-                    {stats.approved} / {stats.rejected}
-                  </Text>
-                  <Text tone="subdued">Closed states</Text>
-                </Card>
+                <StatCard
+                    label="Approved / Rejected"
+                    value={`${stats.approved} / ${stats.rejected}`}
+                    helpText="Closed states"
+                />
               </Grid.Cell>
             </Grid>
           </Layout.Section>

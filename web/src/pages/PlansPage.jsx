@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Page, Layout, Card, Text, Button, BlockStack, InlineStack, Banner } from "@shopify/polaris";
-import { openManagedPricing, syncBilling } from "../api";
+import { Page, Layout, Card, Text, Button, BlockStack, InlineStack } from "@shopify/polaris";
+import { openManagedPricing } from "../api";
 import FeatureList from "../components/FeatureList.jsx";
 
 export default function PlansPage({ boot, onReload }) {
@@ -34,17 +34,6 @@ export default function PlansPage({ boot, onReload }) {
 
     }
 
-  }
-
-  async function refreshBilling() {
-    try {
-      setState({ working: true, error: "", message: "" });
-      const result = await syncBilling();
-      setState({ working: false, message: `Billing synced. Active plan: ${result.shop.plan}.` });
-      onReload?.();
-    } catch (e) {
-      setState({ working: false, error: e.message });
-    }
   }
 
   return (

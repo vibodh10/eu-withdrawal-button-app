@@ -7,7 +7,7 @@ import {
     Page,
     Card,
     Text,
-    Spinner
+    SkeletonBodyText, SkeletonDisplayText, Layout, Grid
 } from "@shopify/polaris";
 import {
     HomeIcon,
@@ -22,8 +22,6 @@ import RequestsPage from "./pages/RequestsPage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import PlansPage from "./pages/PlansPage.jsx";
 import DpaPage from "./pages/DpaPage.jsx";
-import {useAppBridge} from "@shopify/app-bridge-react";
-import {Redirect} from "@shopify/app-bridge/actions";
 
 const tabs = [
     { key: "dashboard", label: "Dashboard", icon: HomeIcon },
@@ -36,35 +34,61 @@ export default function App() {
     const [tab, setTab] = useState("dashboard");
     const [boot, setBoot] = useState({ loading: true, error: "", data: null });
     const [mobileNavActive, setMobileNavActive] = useState(false);
+    const [settingsDirty, setSettingsDirty] = useState(false);
 
     const title = useMemo(() => {
         const active = tabs.find((item) => item.key === tab);
         return active ? active.label : "Dashboard";
     }, [tab]);
 
-    async function load() {
-        try {
-            setBoot((prev) => ({
-                ...prev,
-                loading: true,
-                error: ""
-            }));
+    function handleTabChange(nextTab) {
+        if (nextTab === tab) {
+            return;
+        }
 
-            const data = await apiGet(`/admin/me`);
+        /*
+         * Do not let merchants leave Settings while the
+         * Contextual Save Bar represents unsaved changes.
+         *
+         * They must press Save or Discard first.
+         */
+        if (tab === "settings" && settingsDirty) {
+            return;
+        }
+
+        setTab(nextTab);
+    }
+
+    async function load({ silent = false } = {}) {
+        try {
+            if (!silent) {
+                setBoot((prev) => ({
+                    ...prev,
+                    loading: true,
+                    error: "",
+                }));
+            }
+
+            const data = await apiGet("/admin/me");
 
             setBoot({
                 loading: false,
                 error: "",
-                data
+                data,
             });
-
         } catch (err) {
-            console.log(err);
+            console.error(err);
 
             if (err.status === 401) {
                 window.open(err.data.redirectTo, "_top");
                 return;
             }
+
+            setBoot((prev) => ({
+                ...prev,
+                loading: false,
+                error: err.message || "Could not load the app.",
+            }));
         }
     }
 
@@ -79,7 +103,7 @@ export default function App() {
                     label: item.label,
                     icon: item.icon,
                     selected: item.key === tab,
-                    onClick: () => setTab(item.key)
+                    onClick: () => handleTabChange(item.key)
                 }))}
             />
 
@@ -104,9 +128,46 @@ export default function App() {
             <Frame navigation={boot.data?.shop?.dpaAcceptedAt ? navigation : null}>
                 {boot.loading && (
                     <Page title={title}>
-                        <Card>
-                            <Spinner accessibilityLabel="Loading" size="large" />
-                        </Card>
+                        <Layout>
+                            <Layout.Section>
+                                <Card>
+                                    <div style={{ minHeight: "120px" }}>
+                                        <SkeletonDisplayText size="small" />
+                                        <div style={{ marginTop: "16px" }}>
+                                            <SkeletonBodyText lines={2} />
+                                        </div>
+                                    </div>
+                                </Card>
+                            </Layout.Section>
+
+                            <Layout.Section>
+                                <Grid>
+                                    {[1, 2, 3, 4].map((item) => (
+                                        <Grid.Cell
+                                            key={item}
+                                            columnSpan={{ xs: 6, sm: 3 }}
+                                        >
+                                            <Card>
+                                                <div style={{ minHeight: "112px" }}>
+                                                    <SkeletonBodyText lines={3} />
+                                                </div>
+                                            </Card>
+                                        </Grid.Cell>
+                                    ))}
+                                </Grid>
+                            </Layout.Section>
+
+                            <Layout.Section>
+                                <Card>
+                                    <div style={{ minHeight: "480px" }}>
+                                        <SkeletonDisplayText size="small" />
+                                        <div style={{ marginTop: "20px" }}>
+                                            <SkeletonBodyText lines={10} />
+                                        </div>
+                                    </div>
+                                </Card>
+                            </Layout.Section>
+                        </Layout>
                     </Page>
                 )}
 
@@ -139,6 +200,7 @@ export default function App() {
                                     <SettingsPage
                                         boot={boot.data}
                                         onReload={load}
+                                        onDirtyChange={setSettingsDirty}
                                     />
                                 )}
 
