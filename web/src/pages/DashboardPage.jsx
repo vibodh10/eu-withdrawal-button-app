@@ -413,11 +413,11 @@ export default function DashboardPage({ boot, onReload }) {
             <Card>
               <BlockStack gap="150">
                 <Text variant="headingSm">
-                  Built by Vibodh
+                  Built by Vibodh, age 12
                 </Text>
 
                 <Text as="p" tone="subdued">
-                  Created at age 12 to make EU compliance simpler for Shopify merchants.
+                  Created to make EU compliance simpler for Shopify merchants.
                 </Text>
               </BlockStack>
             </Card>
