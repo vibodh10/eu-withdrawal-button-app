@@ -408,6 +408,20 @@ export default function DashboardPage({ boot, onReload }) {
               </BlockStack>
             </Card>
           </Layout.Section>
+
+          <Layout.Section>
+            <Card>
+              <BlockStack gap="150">
+                <Text variant="headingSm">
+                  Built by Vibodh
+                </Text>
+
+                <Text as="p" tone="subdued">
+                  Created at age 12 to make EU compliance simpler for Shopify merchants.
+                </Text>
+              </BlockStack>
+            </Card>
+          </Layout.Section>
         </Layout>
       </Page>
   );
