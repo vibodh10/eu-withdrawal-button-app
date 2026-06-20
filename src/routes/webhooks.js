@@ -134,7 +134,11 @@ webhookRouter.post('/shop/redact', async (req, res) => {
 
     if (shopDomain) {
       await prisma.withdrawalRequest.deleteMany({
-        where: { shop: shopDomain }
+        where: {
+          shop: {
+            shopDomain
+          }
+        }
       });
 
       await prisma.shop.deleteMany({
