@@ -84,6 +84,8 @@
         submitting: "Submitting...",
         success: "Request submitted. Reference:",
         invalidEmail: "Please enter a valid email address.",
+        requiredName: "Please enter your name.",
+        requiredOrderNumber: "Please enter your order number.",
         connectionIssue: "Connection issue. Please try again.",
         withdrawalNotice:
             "Withdrawal requests must typically be submitted within {days} days of receiving your order.",
@@ -105,6 +107,8 @@
         submitting: "Wird gesendet...",
         success: "Antrag eingereicht. Referenz:",
         invalidEmail: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        requiredName: "Bitte geben Sie Ihren Namen ein.",
+        requiredOrderNumber: "Bitte geben Sie Ihre Bestellnummer ein.",
         connectionIssue:
             "Verbindungsproblem. Bitte versuchen Sie es erneut.",
         withdrawalNotice:
@@ -127,6 +131,8 @@
         submitting: "Envoi en cours...",
         success: "Demande envoyée. Référence :",
         invalidEmail: "Veuillez saisir une adresse e-mail valide.",
+        requiredName: "Veuillez saisir votre nom.",
+        requiredOrderNumber: "Veuillez saisir votre numéro de commande.",
         connectionIssue:
             "Problème de connexion. Veuillez réessayer.",
         withdrawalNotice:
@@ -149,6 +155,8 @@
         submitting: "Invio in corso...",
         success: "Richiesta inviata. Riferimento:",
         invalidEmail: "Inserisci un indirizzo email valido.",
+        requiredName: "Inserisci il tuo nome.",
+        requiredOrderNumber: "Inserisci il numero dell’ordine.",
         connectionIssue:
             "Problema di connessione. Riprova.",
         withdrawalNotice:
@@ -172,6 +180,8 @@
         success: "Solicitud enviada. Referencia:",
         invalidEmail:
             "Introduce una dirección de correo electrónico válida.",
+        requiredName: "Introduce tu nombre.",
+        requiredOrderNumber: "Introduce el número de pedido.",
         connectionIssue:
             "Problema de conexión. Inténtalo de nuevo.",
         withdrawalNotice:
@@ -194,6 +204,8 @@
         submitting: "A enviar...",
         success: "Pedido enviado. Referência:",
         invalidEmail: "Introduza um endereço de email válido.",
+        requiredName: "Introduza o seu nome.",
+        requiredOrderNumber: "Introduza o número da encomenda.",
         connectionIssue:
             "Problema de ligação. Tente novamente.",
         withdrawalNotice:
@@ -216,6 +228,8 @@
         submitting: "Bezig met verzenden...",
         success: "Verzoek ingediend. Referentie:",
         invalidEmail: "Voer een geldig e-mailadres in.",
+        requiredName: "Vul uw naam in.",
+        requiredOrderNumber: "Vul uw bestelnummer in.",
         connectionIssue:
             "Verbindingsprobleem. Probeer het opnieuw.",
         withdrawalNotice:
@@ -238,6 +252,8 @@
         submitting: "Wysyłanie...",
         success: "Zgłoszenie zostało wysłane. Numer referencyjny:",
         invalidEmail: "Wprowadź prawidłowy adres e-mail.",
+        requiredName: "Wprowadź imię i nazwisko.",
+        requiredOrderNumber: "Wprowadź numer zamówienia.",
         connectionIssue:
             "Problem z połączeniem. Spróbuj ponownie.",
         withdrawalNotice:
@@ -260,6 +276,8 @@
         submitting: "Sender...",
         success: "Anmodningen er indsendt. Reference:",
         invalidEmail: "Indtast en gyldig e-mailadresse.",
+        requiredName: "Indtast dit navn.",
+        requiredOrderNumber: "Indtast dit ordrenummer.",
         connectionIssue:
             "Forbindelsesproblem. Prøv igen.",
         withdrawalNotice:
@@ -282,6 +300,8 @@
         submitting: "Skickar...",
         success: "Begäran har skickats. Referens:",
         invalidEmail: "Ange en giltig e-postadress.",
+        requiredName: "Ange ditt namn.",
+        requiredOrderNumber: "Ange ditt ordernummer.",
         connectionIssue:
             "Anslutningsproblem. Försök igen.",
         withdrawalNotice:
@@ -304,6 +324,8 @@
         submitting: "Lähetetään...",
         success: "Pyyntö lähetetty. Viite:",
         invalidEmail: "Anna kelvollinen sähköpostiosoite.",
+        requiredName: "Anna nimesi.",
+        requiredOrderNumber: "Anna tilausnumerosi.",
         connectionIssue:
             "Yhteysongelma. Yritä uudelleen.",
         withdrawalNotice:
@@ -326,6 +348,8 @@
         submitting: "Odesílání...",
         success: "Žádost byla odeslána. Referenční číslo:",
         invalidEmail: "Zadejte platnou e-mailovou adresu.",
+        requiredName: "Zadejte své jméno.",
+        requiredOrderNumber: "Zadejte číslo objednávky.",
         connectionIssue:
             "Problém s připojením. Zkuste to znovu.",
         withdrawalNotice:
@@ -348,6 +372,8 @@
         submitting: "Odosielanie...",
         success: "Žiadosť bola odoslaná. Referenčné číslo:",
         invalidEmail: "Zadajte platnú e-mailovú adresu.",
+        requiredName: "Zadajte svoje meno.",
+        requiredOrderNumber: "Zadajte číslo objednávky.",
         connectionIssue:
             "Problém s pripojením. Skúste to znova.",
         withdrawalNotice:
@@ -370,6 +396,8 @@
         submitting: "Pošiljanje...",
         success: "Zahteva je bila poslana. Referenca:",
         invalidEmail: "Vnesite veljaven e-poštni naslov.",
+        requiredName: "Vnesite svoje ime.",
+        requiredOrderNumber: "Vnesite številko naročila.",
         connectionIssue:
             "Težava s povezavo. Poskusite znova.",
         withdrawalNotice:
@@ -392,6 +420,8 @@
         submitting: "Slanje...",
         success: "Zahtjev je poslan. Referenca:",
         invalidEmail: "Unesite valjanu adresu e-pošte.",
+        requiredName: "Unesite svoje ime i prezime.",
+        requiredOrderNumber: "Unesite broj narudžbe.",
         connectionIssue:
             "Problem s vezom. Pokušajte ponovno.",
         withdrawalNotice:
@@ -414,6 +444,8 @@
         submitting: "Küldés...",
         success: "A kérelem elküldve. Hivatkozási szám:",
         invalidEmail: "Adjon meg érvényes e-mail-címet.",
+        requiredName: "Adja meg a nevét.",
+        requiredOrderNumber: "Adja meg a rendelésszámot.",
         connectionIssue:
             "Kapcsolódási probléma. Próbálja újra.",
         withdrawalNotice:
@@ -436,6 +468,8 @@
         submitting: "Se trimite...",
         success: "Cererea a fost trimisă. Referință:",
         invalidEmail: "Introduceți o adresă de e-mail validă.",
+        requiredName: "Introduceți numele.",
+        requiredOrderNumber: "Introduceți numărul comenzii.",
         connectionIssue:
             "Problemă de conexiune. Încercați din nou.",
         withdrawalNotice:
@@ -458,6 +492,8 @@
         submitting: "Изпращане...",
         success: "Искането е изпратено. Референтен номер:",
         invalidEmail: "Въведете валиден имейл адрес.",
+        requiredName: "Въведете името си.",
+        requiredOrderNumber: "Въведете номера на поръчката.",
         connectionIssue:
             "Проблем с връзката. Опитайте отново.",
         withdrawalNotice:
@@ -480,6 +516,8 @@
         submitting: "Υποβολή...",
         success: "Το αίτημα υποβλήθηκε. Αριθμός αναφοράς:",
         invalidEmail: "Εισαγάγετε μια έγκυρη διεύθυνση email.",
+        requiredName: "Εισαγάγετε το ονοματεπώνυμό σας.",
+        requiredOrderNumber: "Εισαγάγετε τον αριθμό παραγγελίας.",
         connectionIssue:
             "Πρόβλημα σύνδεσης. Δοκιμάστε ξανά.",
         withdrawalNotice:
@@ -502,6 +540,8 @@
         submitting: "Saatmine...",
         success: "Taotlus on esitatud. Viide:",
         invalidEmail: "Sisestage kehtiv e-posti aadress.",
+        requiredName: "Sisestage oma nimi.",
+        requiredOrderNumber: "Sisestage tellimuse number.",
         connectionIssue:
             "Ühenduse probleem. Proovige uuesti.",
         withdrawalNotice:
@@ -524,6 +564,8 @@
         submitting: "Notiek nosūtīšana...",
         success: "Pieprasījums iesniegts. Atsauce:",
         invalidEmail: "Ievadiet derīgu e-pasta adresi.",
+        requiredName: "Ievadiet savu vārdu.",
+        requiredOrderNumber: "Ievadiet pasūtījuma numuru.",
         connectionIssue:
             "Savienojuma problēma. Mēģiniet vēlreiz.",
         withdrawalNotice:
@@ -546,6 +588,8 @@
         submitting: "Siunčiama...",
         success: "Prašymas pateiktas. Nuorodos numeris:",
         invalidEmail: "Įveskite galiojantį el. pašto adresą.",
+        requiredName: "Įveskite savo vardą ir pavardę.",
+        requiredOrderNumber: "Įveskite užsakymo numerį.",
         connectionIssue:
             "Ryšio problema. Bandykite dar kartą.",
         withdrawalNotice:
@@ -568,6 +612,8 @@
         submitting: "Á sheoladh...",
         success: "Cuireadh an t-iarratas isteach. Tagairt:",
         invalidEmail: "Cuir seoladh ríomhphoist bailí isteach.",
+        requiredName: "Cuir d’ainm isteach.",
+        requiredOrderNumber: "Cuir uimhir an ordaithe isteach.",
         connectionIssue:
             "Fadhb cheangail. Bain triail eile as.",
         withdrawalNotice:
@@ -590,6 +636,8 @@
         submitting: "Qed tintbagħat...",
         success: "It-talba ntbagħtet. Referenza:",
         invalidEmail: "Daħħal indirizz elettroniku validu.",
+        requiredName: "Daħħal ismek.",
+        requiredOrderNumber: "Daħħal in-numru tal-ordni.",
         connectionIssue:
             "Problema fil-konnessjoni. Erġa’ pprova.",
         withdrawalNotice:
@@ -706,12 +754,6 @@
         }
 
         html += `</p>`;
-      } else {
-        html += `
-      <p style="margin:6px 0 0;">
-        ${t("fallbackTerms")}
-      </p>
-    `;
       }
 
       if (settings.supportEmail) {
@@ -793,6 +835,8 @@
         <input
           name="customerName"
           placeholder="${t("name")}"
+          required
+          autocomplete="name"
           style="padding:12px;border:1px solid #ccc;border-radius:10px;"
         />
         
@@ -807,6 +851,8 @@
         <input
           name="orderNumber"
           placeholder="${t("orderNumber")}"
+          required
+          autocomplete="off"
           style="padding:12px;border:1px solid #ccc;border-radius:10px;"
         />
         
@@ -887,13 +933,32 @@
         const formData = new FormData(form);
         const payload = Object.fromEntries(formData.entries());
 
+        payload.customerName = String(payload.customerName || "").trim();
+        payload.customerEmail = String(payload.customerEmail || "").trim();
+        payload.orderNumber = String(payload.orderNumber || "").trim();
+        payload.reason = String(payload.reason || "").trim();
+
         payload.shopDomain = shopDomain;
         payload.locale = currentLanguage;
         payload.legalCopyVersion = 'v1';
 
-        if (!payload.customerEmail.includes("@")) {
+        if (!payload.customerName) {
+          status.style.color = 'red';
+          status.textContent = t("requiredName");
+          submitBtn.disabled = false;
+          return;
+        }
+
+        if (!payload.customerEmail || !payload.customerEmail.includes("@")) {
           status.style.color = 'red';
           status.textContent = t("invalidEmail");
+          submitBtn.disabled = false;
+          return;
+        }
+
+        if (!payload.orderNumber) {
+          status.style.color = 'red';
+          status.textContent = t("requiredOrderNumber");
           submitBtn.disabled = false;
           return;
         }

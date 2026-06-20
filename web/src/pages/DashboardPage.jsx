@@ -13,7 +13,11 @@ import {
 } from "@shopify/polaris";
 import {apiGet, apiSend, syncBilling} from "../api";
 
-export default function DashboardPage({ boot, onReload }) {
+export default function DashboardPage({
+  boot,
+  onReload,
+  onOpenSettings,
+}) {
   const [stats, setStats] = useState({
     total: 0,
     received: 0,
@@ -243,6 +247,59 @@ export default function DashboardPage({ boot, onReload }) {
                 )}
 
                 <BlockStack gap="300">
+                  {/* REQUIRED FIRST STEP */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack
+                        align="space-between"
+                        blockAlign="center"
+                        gap="400"
+                    >
+                      <BlockStack gap="100">
+                        <InlineStack gap="200" blockAlign="center">
+                          <Badge
+                              tone={
+                                boot.shop.merchantNotification
+                                    ? "success"
+                                    : "attention"
+                              }
+                          >
+                            {boot.shop.merchantNotification
+                                ? "Complete"
+                                : "Required"}
+                          </Badge>
+
+                          <Text variant="headingSm">
+                            Add your notification email
+                          </Text>
+                        </InlineStack>
+
+                        <Text as="p" tone="subdued">
+                          Enter the email address where you want to receive notifications
+                          when a customer submits a withdrawal request.
+                        </Text>
+
+                        {boot.shop.merchantNotification && (
+                            <Text as="p">
+                              Notifications will be sent to{" "}
+                              <strong>{boot.shop.merchantNotification}</strong>.
+                            </Text>
+                        )}
+                      </BlockStack>
+
+                      <Button
+                          variant={
+                            boot.shop.merchantNotification
+                                ? "secondary"
+                                : "primary"
+                          }
+                          onClick={onOpenSettings}
+                      >
+                        {boot.shop.merchantNotification
+                            ? "Edit notification settings"
+                            : "Add your notification email"}
+                      </Button>
+                    </InlineStack>
+                  </Card>
                   {/* OPTION 1 */}
                   <Card background="bg-surface-secondary">
                     <InlineStack align="space-between" blockAlign="center">
