@@ -128,9 +128,7 @@ export async function sendCustomerConfirmation({
         html,
         from:
             `${merchantName} ` +
-            `<${shop.supportEmail ||
-            shop.merchantNotification ||
-            process.env.FROM_EMAIL}>`,
+            `<${process.env.FROM_EMAIL}>`,
 
         replyTo:
             shop.supportEmail ||
