@@ -127,8 +127,10 @@ export async function sendCustomerConfirmation({
         subject,
         html,
         from:
-            `${merchantName} via GL6 ` +
-            `<${process.env.FROM_EMAIL}>`,
+            `${merchantName} ` +
+            `<${shop.supportEmail ||
+            shop.merchantNotification ||
+            process.env.FROM_EMAIL}>`,
 
         replyTo:
             shop.supportEmail ||
