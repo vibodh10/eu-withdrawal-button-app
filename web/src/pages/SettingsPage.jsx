@@ -11,6 +11,7 @@ import {
   ChoiceList,
   Select,
   Badge,
+  Button,
 } from "@shopify/polaris";
 import {
   useEffect,
@@ -89,6 +90,30 @@ function createInitialForm(shop) {
         shop?.supportEmail || "",
     withdrawalDays:
         shop?.withdrawalDays || 14,
+    emailDeliveryMethod:
+        shop?.smtpEnabled
+            ? "SMTP"
+            : "GL6",
+
+    smtpHost:
+        shop?.smtpHost || "",
+
+    smtpPort:
+        String(shop?.smtpPort || 587),
+
+    smtpSecure:
+        Boolean(shop?.smtpSecure),
+
+    smtpUsername:
+        shop?.smtpUsername || "",
+
+    smtpPassword: "",
+
+    smtpFromName:
+        shop?.smtpFromName || "",
+
+    smtpFromEmail:
+        shop?.smtpFromEmail || "",
     emailSubject: "",
     emailBody: "",
   };
@@ -163,6 +188,27 @@ export default function SettingsPage({
   const [state, setState] = useState({
     saving: false,
     error: "",
+  });
+
+  const [
+    smtpStatus,
+    setSmtpStatus,
+  ] = useState({
+    hasPassword:
+        Boolean(
+            boot.shop?.smtpHasPassword
+        ),
+
+    verifiedAt:
+        boot.shop?.smtpVerifiedAt ||
+        null,
+
+    lastError:
+        boot.shop?.smtpLastError ||
+        null,
+
+    testing: false,
+    disconnecting: false,
   });
 
   const hasUnsavedChanges =
@@ -345,6 +391,25 @@ export default function SettingsPage({
     }));
   }
 
+  function updateSmtpField(key, value) {
+    clearError();
+
+    setForm((current) => ({
+      ...current,
+      [key]: value,
+    }));
+
+    /*
+     * Changing any SMTP value means the
+     * previous verification is no longer valid.
+     */
+    setSmtpStatus((current) => ({
+      ...current,
+      verifiedAt: null,
+      lastError: null,
+    }));
+  }
+
   function updateEnabledLanguages(selected) {
     clearError();
 
@@ -453,6 +518,50 @@ export default function SettingsPage({
           }
       );
 
+      let savedSmtpSettings = null;
+
+      if (boot.isPro) {
+        const smtpResponse =
+            await apiSend(
+                "/admin/smtp",
+                "PATCH",
+                {
+                  smtpEnabled:
+                      form.emailDeliveryMethod ===
+                      "SMTP",
+
+                  smtpHost:
+                  form.smtpHost,
+
+                  smtpPort:
+                      Number(form.smtpPort),
+
+                  smtpSecure:
+                  form.smtpSecure,
+
+                  smtpUsername:
+                  form.smtpUsername,
+
+                  /*
+                   * Blank means keep the existing
+                   * encrypted password.
+                   */
+                  smtpPassword:
+                      form.smtpPassword ||
+                      undefined,
+
+                  smtpFromName:
+                  form.smtpFromName,
+
+                  smtpFromEmail:
+                  form.smtpFromEmail,
+                }
+            );
+
+        savedSmtpSettings =
+            smtpResponse.settings;
+      }
+
       /*
        * Email template customization
        * is available only on Pro.
@@ -470,7 +579,39 @@ export default function SettingsPage({
         );
       }
 
-      savedFormRef.current = cloneForm(form);
+      const savedForm = cloneForm({
+        ...form,
+
+        /*
+         * Never retain the plaintext SMTP password
+         * in React state after saving.
+         */
+        smtpPassword: "",
+      });
+
+      setForm(savedForm);
+
+      savedFormRef.current =
+          cloneForm(savedForm);
+
+      if (savedSmtpSettings) {
+        setSmtpStatus((current) => ({
+          ...current,
+
+          hasPassword:
+              Boolean(
+                  savedSmtpSettings.smtpHasPassword
+              ),
+
+          verifiedAt:
+              savedSmtpSettings.smtpVerifiedAt ||
+              null,
+
+          lastError:
+              savedSmtpSettings.smtpLastError ||
+              null,
+        }));
+      }
 
       /*
        * Trigger a render. The unified CSB effect will detect
@@ -516,6 +657,125 @@ export default function SettingsPage({
     });
 
     onDirtyChange?.(false);
+  }
+
+  async function testSmtpConnection() {
+    if (hasUnsavedChanges) {
+      setState((current) => ({
+        ...current,
+        error:
+            "Save your SMTP settings before testing the connection.",
+      }));
+
+      return;
+    }
+
+    try {
+      setSmtpStatus((current) => ({
+        ...current,
+        testing: true,
+        lastError: null,
+      }));
+
+      const response =
+          await apiSend(
+              "/admin/smtp/test",
+              "POST"
+          );
+
+      setSmtpStatus((current) => ({
+        ...current,
+        testing: false,
+
+        hasPassword:
+            Boolean(
+                response.settings
+                    ?.smtpHasPassword
+            ),
+
+        verifiedAt:
+            response.settings
+                ?.smtpVerifiedAt ||
+            null,
+
+        lastError: null,
+      }));
+    } catch (error) {
+      const message =
+          error.message ||
+          "SMTP connection failed.";
+
+      setSmtpStatus((current) => ({
+        ...current,
+        testing: false,
+        verifiedAt: null,
+        lastError: message,
+      }));
+
+      setState((current) => ({
+        ...current,
+        error: message,
+      }));
+    }
+  }
+
+  async function disconnectSmtp() {
+    try {
+      setSmtpStatus((current) => ({
+        ...current,
+        disconnecting: true,
+      }));
+
+      await apiSend(
+          "/admin/smtp",
+          "DELETE"
+      );
+
+      const resetForm = cloneForm({
+        ...form,
+
+        emailDeliveryMethod: "GL6",
+        smtpHost: "",
+        smtpPort: "587",
+        smtpSecure: false,
+        smtpUsername: "",
+        smtpPassword: "",
+        smtpFromName: "",
+        smtpFromEmail: "",
+      });
+
+      setForm(resetForm);
+
+      savedFormRef.current =
+          cloneForm(resetForm);
+
+      setSmtpStatus({
+        hasPassword: false,
+        verifiedAt: null,
+        lastError: null,
+        testing: false,
+        disconnecting: false,
+      });
+
+      setState({
+        saving: false,
+        error: "",
+      });
+
+      onDirtyChange?.(false);
+    } catch (error) {
+      setSmtpStatus((current) => ({
+        ...current,
+        disconnecting: false,
+      }));
+
+      setState((current) => ({
+        ...current,
+        error:
+            error.message ||
+            "Could not disconnect SMTP.",
+      }));
+    }
   }
 
   /*
@@ -733,6 +993,288 @@ export default function SettingsPage({
                     }
                     autoComplete="off"
                 />
+              </BlockStack>
+            </Card>
+          </Layout.Section>
+
+          <Layout.Section>
+            <Card>
+              <BlockStack gap="400">
+                <InlineStack
+                    align="space-between"
+                    blockAlign="center"
+                >
+                  <BlockStack gap="100">
+                    <Text variant="headingMd">
+                      Email delivery
+                    </Text>
+
+                    <Text
+                        as="p"
+                        tone="subdued"
+                    >
+                      Choose how customer confirmation
+                      emails are sent.
+                    </Text>
+                  </BlockStack>
+
+                  {!boot.isPro ? (
+                      <Badge tone="info">
+                        Basic
+                      </Badge>
+                  ) : form.emailDeliveryMethod ===
+                  "SMTP" &&
+                  smtpStatus.verifiedAt ? (
+                      <Badge tone="success">
+                        Connected
+                      </Badge>
+                  ) : form.emailDeliveryMethod ===
+                  "SMTP" &&
+                  smtpStatus.lastError ? (
+                      <Badge tone="critical">
+                        Connection failed
+                      </Badge>
+                  ) : form.emailDeliveryMethod ===
+                  "SMTP" ? (
+                      <Badge tone="attention">
+                        Requires testing
+                      </Badge>
+                  ) : (
+                      <Badge tone="success">
+                        GL6 managed
+                      </Badge>
+                  )}
+                </InlineStack>
+
+                <ChoiceList
+                    title="Delivery method"
+                    choices={[
+                      {
+                        label:
+                            "GL6 managed delivery — Recommended",
+                        value: "GL6",
+                        helpText:
+                            "Confirmation emails are sent through GL6’s verified email delivery service. Customer replies are directed to your support email.",
+                      },
+                      {
+                        label:
+                            "Custom SMTP — Pro",
+                        value: "SMTP",
+                        helpText:
+                            "Send confirmation emails through your own email provider and from your own business email address.",
+                        disabled: !boot.isPro,
+                      },
+                    ]}
+                    selected={[
+                      form.emailDeliveryMethod,
+                    ]}
+                    onChange={(selected) =>
+                        updateSmtpField(
+                            "emailDeliveryMethod",
+                            selected[0]
+                        )
+                    }
+                />
+
+                {!boot.isPro && (
+                    <Banner
+                        tone="info"
+                        title="Custom SMTP is available on Pro"
+                    >
+                      <Text as="p">
+                        Basic stores use GL6 managed
+                        delivery. Customer replies are
+                        sent to the customer support
+                        email configured above.
+                      </Text>
+                    </Banner>
+                )}
+
+                {boot.isPro &&
+                    form.emailDeliveryMethod ===
+                    "SMTP" && (
+                        <BlockStack gap="300">
+                          <Banner tone="info">
+                            <Text as="p">
+                              Enter the SMTP details supplied
+                              by your email provider. Save the
+                              settings before testing the
+                              connection.
+                            </Text>
+                          </Banner>
+
+                          <TextField
+                              label="SMTP host"
+                              value={form.smtpHost}
+                              onChange={(value) =>
+                                  updateSmtpField(
+                                      "smtpHost",
+                                      value
+                                  )
+                              }
+                              placeholder="smtp.example.com"
+                              autoComplete="off"
+                          />
+
+                          <TextField
+                              label="SMTP port"
+                              type="number"
+                              value={form.smtpPort}
+                              onChange={(value) =>
+                                  updateSmtpField(
+                                      "smtpPort",
+                                      value
+                                  )
+                              }
+                              helpText="Use 587 for STARTTLS or 465 for SSL/TLS in most cases."
+                              autoComplete="off"
+                          />
+
+                          <Select
+                              label="Connection security"
+                              options={[
+                                {
+                                  label:
+                                      "STARTTLS — usually port 587",
+                                  value: "starttls",
+                                },
+                                {
+                                  label:
+                                      "SSL/TLS — usually port 465",
+                                  value: "ssl",
+                                },
+                              ]}
+                              value={
+                                form.smtpSecure
+                                    ? "ssl"
+                                    : "starttls"
+                              }
+                              onChange={(value) =>
+                                  updateSmtpField(
+                                      "smtpSecure",
+                                      value === "ssl"
+                                  )
+                              }
+                          />
+
+                          <TextField
+                              label="SMTP username"
+                              value={form.smtpUsername}
+                              onChange={(value) =>
+                                  updateSmtpField(
+                                      "smtpUsername",
+                                      value
+                                  )
+                              }
+                              helpText="This is often your complete email address."
+                              autoComplete="off"
+                          />
+
+                          <TextField
+                              label="SMTP password"
+                              type="password"
+                              value={form.smtpPassword}
+                              onChange={(value) =>
+                                  updateSmtpField(
+                                      "smtpPassword",
+                                      value
+                                  )
+                              }
+                              placeholder={
+                                smtpStatus.hasPassword
+                                    ? "Leave blank to keep the saved password"
+                                    : "Enter SMTP password"
+                              }
+                              helpText={
+                                smtpStatus.hasPassword
+                                    ? "A password is already stored securely. Enter a new password only when replacing it."
+                                    : "Some providers require an app password rather than your normal account password."
+                              }
+                              autoComplete="new-password"
+                          />
+
+                          <TextField
+                              label="From name"
+                              value={form.smtpFromName}
+                              onChange={(value) =>
+                                  updateSmtpField(
+                                      "smtpFromName",
+                                      value
+                                  )
+                              }
+                              placeholder="Your store name"
+                              autoComplete="organization"
+                          />
+
+                          <TextField
+                              label="From email"
+                              type="email"
+                              value={form.smtpFromEmail}
+                              onChange={(value) =>
+                                  updateSmtpField(
+                                      "smtpFromEmail",
+                                      value
+                                  )
+                              }
+                              placeholder="support@example.com"
+                              helpText="Your SMTP provider must allow this address to be used as the sender."
+                              autoComplete="email"
+                          />
+
+                          {smtpStatus.lastError && (
+                              <Banner
+                                  tone="critical"
+                                  title="SMTP connection failed"
+                              >
+                                <Text as="p">
+                                  {smtpStatus.lastError}
+                                </Text>
+                              </Banner>
+                          )}
+
+                          <InlineStack gap="300">
+                            <Button
+                                onClick={
+                                  testSmtpConnection
+                                }
+                                loading={
+                                  smtpStatus.testing
+                                }
+                                disabled={
+                                    state.saving ||
+                                    hasUnsavedChanges
+                                }
+                            >
+                              Test connection
+                            </Button>
+
+                            {smtpStatus.hasPassword && (
+                                <Button
+                                    tone="critical"
+                                    onClick={
+                                      disconnectSmtp
+                                    }
+                                    loading={
+                                      smtpStatus.disconnecting
+                                    }
+                                >
+                                  Disconnect SMTP
+                                </Button>
+                            )}
+                          </InlineStack>
+
+                          {hasUnsavedChanges && (
+                              <Text
+                                  as="p"
+                                  tone="subdued"
+                                  variant="bodySm"
+                              >
+                                Save your changes before
+                                testing the connection.
+                              </Text>
+                          )}
+                        </BlockStack>
+                    )}
               </BlockStack>
             </Card>
           </Layout.Section>

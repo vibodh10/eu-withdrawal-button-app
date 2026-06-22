@@ -2,23 +2,42 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendEmail({ to, subject, html }) {
-  try {
-    const response = await resend.emails.send({
-      from: process.env.FROM_EMAIL, // onboarding@resend.dev
-      to,
-      subject,
-      html,
-    });
+export async function sendEmail({
+                                    to,
+                                    subject,
+                                    html,
+                                    from = process.env.FROM_EMAIL,
+                                    replyTo,
+                                }) {
+    try {
+        const { data, error } = await resend.emails.send({
+            from,
+            to,
+            subject,
+            html,
+            ...(replyTo ? { replyTo } : {}),
+        });
 
-    console.log("Email sent:", response);
-  } catch (error) {
-    console.error("Email failed:", error);
-    throw error;
-  }
+        if (error) {
+            throw new Error(
+                error.message || "Email delivery failed"
+            );
+        }
+
+        console.log("Email sent:", data);
+
+        return data;
+    } catch (error) {
+        console.error("Email failed:", error);
+        throw error;
+    }
 }
 
-export function buildConfirmationEmail({ shopName, reference, locale = "en" }) {
+export function buildConfirmationEmail({
+                                         shopName,
+                                         reference,
+                                         locale = "en",
+                                       }) {
   const subject =
       locale === "de"
           ? "Ihre Widerrufsanfrage wurde erhalten"

@@ -6,6 +6,7 @@ import { prisma } from '../lib/db.js';
 import { sendEmail, buildConfirmationEmail } from '../lib/email.js';
 import {shopify} from "../lib/shopify.js";
 import {getValidOfflineToken} from "../lib/offlineTokens.js";
+import {sendCustomerConfirmation} from "../lib/merchantEmail.js";
 
 export const publicRouter = express.Router();
 
@@ -35,28 +36,52 @@ publicRouter.options('/withdrawal-request', (req, res) => {
 
 publicRouter.post('/withdrawal-request', async (req, res) => {
   try {
-    console.log("🔥 BODY:", req.body);
-
     const {
       shopDomain,
       customerEmail,
       customerName,
       orderNumber,
-      orderId,
       reason,
       locale,
       legalCopyVersion
     } = req.body;
 
-    if (!shopDomain || !customerEmail) {
-      return res.status(400).json({ error: 'shopDomain and customerEmail are required' });
+    const cleanShopDomain =
+        String(shopDomain || "").trim();
+
+    const cleanCustomerEmail =
+        String(customerEmail || "").trim();
+
+    const cleanCustomerName =
+        String(customerName || "").trim();
+
+    const cleanOrderNumber =
+        String(orderNumber || "").trim();
+
+    const cleanReason =
+        String(reason || "").trim();
+
+    if (
+        !cleanShopDomain ||
+        !cleanCustomerEmail ||
+        !cleanCustomerName ||
+        !cleanOrderNumber
+    ) {
+      return res.status(400).json({
+        error:
+            "Shop, customer name, email address and order number are required.",
+      });
     }
 
-    console.log("Incoming shopDomain:", shopDomain);
+    console.log("Incoming shopDomain:", cleanShopDomain);
 
-    const shop = await prisma.shop.findUnique({
-      where: { shopDomain }
-    });
+    const shop =
+        await prisma.shop.findUnique({
+          where: {
+            shopDomain:
+            cleanShopDomain,
+          },
+        });
 
     console.log("DB shop:", shop);
 
@@ -71,7 +96,7 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
     let order = null;
     let verificationStatus = "UNVERIFIED";
 
-    if (shop.plan === "PRO" && orderNumber) {
+    if (shop.plan === "PRO" && cleanOrderNumber) {
       try {
         const accessToken = await getValidOfflineToken(shop);
 
@@ -82,7 +107,8 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
           },
         });
 
-        const cleanOrderNumber = String(orderNumber).replace("#", "").trim();
+        const orderNumberForSearch =
+            cleanOrderNumber.replace(/^#/, "");
 
         const response = await client.request(
             `
@@ -100,7 +126,7 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
       `,
             {
               variables: {
-                query: `name:#${cleanOrderNumber}`,
+                query: `name:#${orderNumberForSearch}`,
               },
             }
         );
@@ -138,16 +164,16 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
       data: {
         shopId: shop.id,
         publicReference,
-        customerEmail,
-        customerName,
-        orderNumber,
+        customerEmail: cleanCustomerEmail,
+        customerName: cleanCustomerName,
+        orderNumber: cleanOrderNumber,
         orderId: order?.id || null,
         verificationStatus,
-        reason,
-        locale: locale || shop.locale || 'en',
+        reason: cleanReason || null,
+        locale: locale || shop.locale || "en",
         legalCopyVersion,
-        metadataJson: JSON.stringify(req.body)
-      }
+        metadataJson: JSON.stringify(req.body),
+      },
     });
 
     const template = await prisma.emailTemplate.findUnique({
@@ -168,8 +194,8 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
       bodyContent = template.bodyHtml
           .replace(/{{reference}}/g, publicReference)
           .replace(/{{shopName}}/g, shop.brandingName || shop.shopDomain)
-          .replace(/{{customerEmail}}/g, customerEmail || "")
-          .replace(/{{customerName}}/g, customerName || "");
+          .replace(/{{customerEmail}}/g, cleanCustomerEmail)
+          .replace(/{{customerName}}/g, cleanCustomerName);
 
     } else {
       const fallback = buildConfirmationEmail({
@@ -205,24 +231,37 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
 `;
 
     try {
-      await sendEmail({
-        to: customerEmail,
+      await sendCustomerConfirmation({
+        shop,
+        to: cleanCustomerEmail,
         subject,
-        html
+        html,
       });
     } catch (e) {
-      console.warn("Email failed:", e.message);
+      console.warn(
+          "Customer confirmation email failed:",
+          e.message
+      );
     }
 
     if (shop.merchantNotification) {
       try {
         await sendEmail({
-          to: shop.merchantNotification,
-          subject: `New withdrawal request ${publicReference}`,
-          html: `<p>A new withdrawal request has been submitted.</p><p>Reference: <strong>${publicReference}</strong></p>`
+          to:
+          shop.merchantNotification,
+          subject:
+              `New withdrawal request ${publicReference}`,
+          html:
+              `<p>A new withdrawal request has been submitted.</p>` +
+              `<p>Reference: <strong>${publicReference}</strong></p>`,
+          from:
+          process.env.FROM_EMAIL,
         });
       } catch (e) {
-        console.warn("Email failed:", e.message);
+        console.warn(
+            "Merchant notification email failed:",
+            e.message
+        );
       }
     }
 

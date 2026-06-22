@@ -6,23 +6,63 @@ import verifyRequest from "../middleware/verifyRequest.js";
 import { buildManagedPricingUrl } from '../lib/shopify.js';
 import {exchangeOfflineToken, getValidOfflineToken} from "../lib/offlineTokens.js";
 import {buildConfirmationEmail} from "../lib/email.js";
+import { encryptSecret } from "../lib/encryption.js";
+import { verifyMerchantSmtp } from "../lib/merchantEmail.js";
 
 export const adminRouter = express.Router();
+
+function publicSmtpSettings(shop) {
+  return {
+    smtpEnabled: Boolean(shop.smtpEnabled),
+    smtpHost: shop.smtpHost || "",
+    smtpPort: shop.smtpPort || 587,
+    smtpSecure: Boolean(shop.smtpSecure),
+    smtpUsername: shop.smtpUsername || "",
+    smtpFromName: shop.smtpFromName || "",
+    smtpFromEmail: shop.smtpFromEmail || "",
+
+    // Never return the encrypted password.
+    smtpHasPassword: Boolean(
+        shop.smtpPasswordEncrypted
+    ),
+
+    smtpVerifiedAt:
+        shop.smtpVerifiedAt || null,
+
+    smtpLastError:
+        shop.smtpLastError || null,
+  };
+}
 
 // ✅ ONE AUTH LAYER
 adminRouter.use(verifyRequest);
 
-adminRouter.get('/me', async (req, res) => {
+adminRouter.get("/me", async (req, res) => {
   const shop = req.shop;
 
+  const {
+    accessToken,
+    refreshToken,
+    smtpPasswordEncrypted,
+    ...safeShop
+  } = shop;
+
   res.json({
-    shop,
+    shop: {
+      ...safeShop,
+      ...publicSmtpSettings(shop),
+    },
+
     plans: PLANS,
     isPro: isPro(shop),
+
     managedPricing: {
       enabled: true,
-      pricingUrl: buildManagedPricingUrl(shop.shopDomain)
-    }
+      pricingUrl:
+          buildManagedPricingUrl(
+              shop.shopDomain
+          ),
+    },
   });
 });
 
@@ -579,6 +619,342 @@ adminRouter.post("/setup/withdrawal-page", async (req, res) => {
 
     return res.status(500).json({
       error: err.message || "Could not create withdrawal page",
+    });
+  }
+});
+
+adminRouter.get("/smtp", async (req, res) => {
+  try {
+    const shop = req.shop;
+
+    if (!isPro(shop)) {
+      return res.status(403).json({
+        error:
+            "Custom SMTP is available on the Pro plan.",
+      });
+    }
+
+    const latestShop =
+        await prisma.shop.findUnique({
+          where: {
+            id: shop.id,
+          },
+        });
+
+    if (!latestShop) {
+      return res.status(404).json({
+        error: "Shop not found.",
+      });
+    }
+
+    return res.json({
+      settings:
+          publicSmtpSettings(latestShop),
+    });
+  } catch (error) {
+    console.error(
+        "Load SMTP settings failed:",
+        error
+    );
+
+    return res.status(500).json({
+      error:
+          "Could not load SMTP settings.",
+    });
+  }
+});
+
+adminRouter.patch("/smtp", async (req, res) => {
+  try {
+    const shop = req.shop;
+
+    if (!isPro(shop)) {
+      return res.status(403).json({
+        error:
+            "Custom SMTP is available on the Pro plan.",
+      });
+    }
+
+    const {
+      smtpEnabled,
+      smtpHost,
+      smtpPort,
+      smtpSecure,
+      smtpUsername,
+      smtpPassword,
+      smtpFromName,
+      smtpFromEmail,
+    } = req.body;
+
+    const enabled =
+        Boolean(smtpEnabled);
+
+    const host =
+        String(smtpHost || "").trim();
+
+    const username =
+        String(smtpUsername || "").trim();
+
+    const fromName =
+        String(smtpFromName || "").trim();
+
+    const fromEmail =
+        String(smtpFromEmail || "").trim();
+
+    const password =
+        typeof smtpPassword === "string"
+            ? smtpPassword.trim()
+            : "";
+
+    const port =
+        Number.parseInt(smtpPort, 10);
+
+    if (enabled) {
+      if (!host) {
+        return res.status(400).json({
+          error: "SMTP host is required.",
+        });
+      }
+
+      if (
+          !Number.isInteger(port) ||
+          port < 1 ||
+          port > 65535
+      ) {
+        return res.status(400).json({
+          error:
+              "Enter a valid SMTP port.",
+        });
+      }
+
+      if (!username) {
+        return res.status(400).json({
+          error:
+              "SMTP username is required.",
+        });
+      }
+
+      if (!fromEmail) {
+        return res.status(400).json({
+          error:
+              "From email is required.",
+        });
+      }
+
+      const hasExistingPassword =
+          Boolean(
+              shop.smtpPasswordEncrypted
+          );
+
+      if (
+          !password &&
+          !hasExistingPassword
+      ) {
+        return res.status(400).json({
+          error:
+              "SMTP password is required.",
+        });
+      }
+    }
+
+    const patch = {
+      smtpEnabled: enabled,
+
+      smtpHost:
+          host || null,
+
+      smtpPort:
+          Number.isInteger(port)
+              ? port
+              : null,
+
+      smtpSecure:
+          Boolean(smtpSecure),
+
+      smtpUsername:
+          username || null,
+
+      smtpFromName:
+          fromName || null,
+
+      smtpFromEmail:
+          fromEmail || null,
+
+      /*
+       * Any configuration change means the
+       * connection must be tested again.
+       */
+      smtpVerifiedAt: null,
+      smtpLastError: null,
+    };
+
+    /*
+     * A blank password means:
+     * keep the currently saved password.
+     */
+    if (password) {
+      patch.smtpPasswordEncrypted =
+          encryptSecret(password);
+    }
+
+    const updated =
+        await prisma.shop.update({
+          where: {
+            id: shop.id,
+          },
+          data: patch,
+        });
+
+    return res.json({
+      ok: true,
+      settings:
+          publicSmtpSettings(updated),
+    });
+  } catch (error) {
+    console.error(
+        "Save SMTP settings failed:",
+        error
+    );
+
+    return res.status(500).json({
+      error:
+          "Could not save SMTP settings.",
+    });
+  }
+});
+
+adminRouter.post(
+    "/smtp/test",
+    async (req, res) => {
+      try {
+        const shop = req.shop;
+
+        if (!isPro(shop)) {
+          return res.status(403).json({
+            error:
+                "Custom SMTP is available on the Pro plan.",
+          });
+        }
+
+        const latestShop =
+            await prisma.shop.findUnique({
+              where: {
+                id: shop.id,
+              },
+            });
+
+        if (!latestShop) {
+          return res.status(404).json({
+            error: "Shop not found.",
+          });
+        }
+
+        if (!latestShop.smtpEnabled) {
+          return res.status(400).json({
+            error:
+                "Enable custom SMTP and save the settings first.",
+          });
+        }
+
+        await verifyMerchantSmtp(
+            latestShop
+        );
+
+        const updated =
+            await prisma.shop.update({
+              where: {
+                id: latestShop.id,
+              },
+              data: {
+                smtpVerifiedAt:
+                    new Date(),
+                smtpLastError: null,
+              },
+            });
+
+        return res.json({
+          ok: true,
+          message:
+              "SMTP connection verified successfully.",
+          settings:
+              publicSmtpSettings(updated),
+        });
+      } catch (error) {
+        console.error(
+            "SMTP verification failed:",
+            {
+              shop:
+              req.shop?.shopDomain,
+              message:
+              error.message,
+            }
+        );
+
+        if (req.shop?.id) {
+          await prisma.shop.update({
+            where: {
+              id: req.shop.id,
+            },
+            data: {
+              smtpVerifiedAt: null,
+              smtpLastError:
+                  "Connection failed. Check your SMTP settings.",
+            },
+          });
+        }
+
+        return res.status(400).json({
+          error:
+              "Could not connect to the SMTP server. Check the host, port, security option and credentials.",
+        });
+      }
+    }
+);
+
+adminRouter.delete("/smtp", async (req, res) => {
+  try {
+    const shop = req.shop;
+
+    if (!isPro(shop)) {
+      return res.status(403).json({
+        error:
+            "Custom SMTP is available on the Pro plan.",
+      });
+    }
+
+    const updated =
+        await prisma.shop.update({
+          where: {
+            id: shop.id,
+          },
+          data: {
+            smtpEnabled: false,
+            smtpHost: null,
+            smtpPort: null,
+            smtpSecure: false,
+            smtpUsername: null,
+            smtpPasswordEncrypted: null,
+            smtpFromName: null,
+            smtpFromEmail: null,
+            smtpVerifiedAt: null,
+            smtpLastError: null,
+          },
+        });
+
+    return res.json({
+      ok: true,
+      settings:
+          publicSmtpSettings(updated),
+    });
+  } catch (error) {
+    console.error(
+        "Disconnect SMTP failed:",
+        error
+    );
+
+    return res.status(500).json({
+      error:
+          "Could not disconnect SMTP.",
     });
   }
 });

@@ -38,6 +38,16 @@ model Shop {
   createdAt                  DateTime             @default(now())
   updatedAt                  DateTime             @updatedAt
   resolvedAt                 DateTime?
+  smtpEnabled            Boolean   @default(false)
+  smtpHost               String?
+  smtpPort               Int?
+  smtpSecure             Boolean   @default(false)
+  smtpUsername           String?
+  smtpPasswordEncrypted  String?
+  smtpFromEmail          String?
+  smtpFromName           String?
+  smtpVerifiedAt         DateTime?
+  smtpLastError          String?
 }
 
 model WithdrawalRequest {
