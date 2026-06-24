@@ -190,6 +190,7 @@ export default function App() {
                                         boot={boot.data}
                                         onReload={load}
                                         onOpenSettings={() => setTab("settings")}
+                                        onOpenRequests={() => setTab("requests")}
                                     />
                                 )}
 

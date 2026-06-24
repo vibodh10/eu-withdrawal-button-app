@@ -8,8 +8,13 @@ import {exchangeOfflineToken, getValidOfflineToken} from "../lib/offlineTokens.j
 import {buildConfirmationEmail} from "../lib/email.js";
 import { encryptSecret } from "../lib/encryption.js";
 import { verifyMerchantSmtp } from "../lib/merchantEmail.js";
+import { Resend } from "resend";
 
 export const adminRouter = express.Router();
+const resend =
+    new Resend(
+        process.env.RESEND_API_KEY
+    );
 
 function publicSmtpSettings(shop) {
   return {
@@ -34,6 +39,46 @@ function publicSmtpSettings(shop) {
   };
 }
 
+function publicResendDomainSettings(shop) {
+  return {
+    emailDeliveryMethod:
+        shop.emailDeliveryMethod ||
+        "GL6",
+
+    resendDomainId:
+        shop.resendDomainId ||
+        null,
+
+    resendDomainName:
+        shop.resendDomainName ||
+        "",
+
+    resendDomainStatus:
+        shop.resendDomainStatus ||
+        null,
+
+    resendFromEmail:
+        shop.resendFromEmail ||
+        "",
+
+    resendFromName:
+        shop.resendFromName ||
+        "",
+
+    resendDomainCreatedAt:
+        shop.resendDomainCreatedAt ||
+        null,
+
+    resendDomainVerifiedAt:
+        shop.resendDomainVerifiedAt ||
+        null,
+
+    resendDomainLastError:
+        shop.resendDomainLastError ||
+        null,
+  };
+}
+
 // ✅ ONE AUTH LAYER
 adminRouter.use(verifyRequest);
 
@@ -51,6 +96,7 @@ adminRouter.get("/me", async (req, res) => {
     shop: {
       ...safeShop,
       ...publicSmtpSettings(shop),
+      ...publicResendDomainSettings(shop),
     },
 
     plans: PLANS,
@@ -289,6 +335,13 @@ adminRouter.patch("/settings", async (req, res) => {
       legalPageUrl: req.body.legalPageUrl,
       privacyPageUrl: req.body.privacyPageUrl,
       supportEmail: req.body.supportEmail,
+      emailDeliveryMethod:
+          shopIsPro &&
+          ["GL6", "SMTP", "RESEND_DOMAIN"].includes(
+              req.body.emailDeliveryMethod
+          )
+              ? req.body.emailDeliveryMethod
+              : "GL6",
     };
 
     /*
@@ -958,3 +1011,455 @@ adminRouter.delete("/smtp", async (req, res) => {
     });
   }
 });
+
+adminRouter.post(
+    "/resend-domain",
+    async (req, res) => {
+      try {
+        const shop = req.shop;
+
+        if (!isPro(shop)) {
+          return res.status(403).json({
+            error:
+                "Verified sending domains are available on the Pro plan.",
+          });
+        }
+
+        if (shop.resendDomainId) {
+          return res.status(400).json({
+            error:
+                "A sending domain is already connected. Remove it before adding another.",
+          });
+        }
+
+        const domainName =
+            String(
+                req.body.domainName || ""
+            )
+                .trim()
+                .toLowerCase()
+                .replace(/^https?:\/\//, "")
+                .replace(/\/.*$/, "");
+
+        if (!domainName) {
+          return res.status(400).json({
+            error:
+                "Enter a domain or subdomain.",
+          });
+        }
+
+        const { data, error } =
+            await resend.domains.create({
+              name: domainName,
+            });
+
+        if (error) {
+          return res.status(400).json({
+            error:
+                error.message ||
+                "Could not create the sending domain.",
+          });
+        }
+
+        const updated =
+            await prisma.shop.update({
+              where: {
+                id: shop.id,
+              },
+              data: {
+                emailDeliveryMethod:
+                    "RESEND_DOMAIN",
+
+                resendDomainId:
+                data.id,
+
+                resendDomainName:
+                    data.name ||
+                    domainName,
+
+                resendDomainStatus:
+                    data.status ||
+                    "not_started",
+
+                resendDomainCreatedAt:
+                    new Date(),
+
+                resendDomainVerifiedAt:
+                    null,
+
+                resendDomainLastError:
+                    null,
+              },
+            });
+
+        return res.status(201).json({
+          ok: true,
+
+          settings:
+              publicResendDomainSettings(
+                  updated
+              ),
+
+          /*
+           * Resend returns the required
+           * DNS records in the domain response.
+           */
+          records:
+              data.records || [],
+        });
+      } catch (error) {
+        console.error(
+            "Create Resend domain failed:",
+            error
+        );
+
+        return res.status(500).json({
+          error:
+              "Could not create the sending domain.",
+        });
+      }
+    }
+);
+
+adminRouter.get(
+    "/resend-domain",
+    async (req, res) => {
+      try {
+        const shop = req.shop;
+
+        if (!isPro(shop)) {
+          return res.status(403).json({
+            error:
+                "Verified sending domains are available on the Pro plan.",
+          });
+        }
+
+        if (!shop.resendDomainId) {
+          return res.json({
+            settings:
+                publicResendDomainSettings(
+                    shop
+                ),
+            records: [],
+          });
+        }
+
+        const { data, error } =
+            await resend.domains.get(
+                shop.resendDomainId
+            );
+
+        if (error) {
+          return res.status(400).json({
+            error:
+                error.message ||
+                "Could not retrieve the sending domain.",
+          });
+        }
+
+        const status =
+            String(
+                data.status || ""
+            ).toLowerCase();
+
+        const verifiedAt =
+            status === "verified"
+                ? shop.resendDomainVerifiedAt ||
+                new Date()
+                : null;
+
+        const updated =
+            await prisma.shop.update({
+              where: {
+                id: shop.id,
+              },
+              data: {
+                resendDomainStatus:
+                    status || null,
+
+                resendDomainVerifiedAt:
+                verifiedAt,
+
+                resendDomainLastError:
+                    null,
+              },
+            });
+
+        return res.json({
+          settings:
+              publicResendDomainSettings(
+                  updated
+              ),
+
+          records:
+              data.records || [],
+        });
+      } catch (error) {
+        console.error(
+            "Retrieve Resend domain failed:",
+            error
+        );
+
+        return res.status(500).json({
+          error:
+              "Could not retrieve the sending domain.",
+        });
+      }
+    }
+);
+
+adminRouter.post(
+    "/resend-domain/verify",
+    async (req, res) => {
+      try {
+        const shop = req.shop;
+
+        if (!isPro(shop)) {
+          return res.status(403).json({
+            error:
+                "Verified sending domains are available on the Pro plan.",
+          });
+        }
+
+        if (!shop.resendDomainId) {
+          return res.status(400).json({
+            error:
+                "Add a sending domain first.",
+          });
+        }
+
+        const { data, error } =
+            await resend.domains.verify(
+                shop.resendDomainId
+            );
+
+        if (error) {
+          await prisma.shop.update({
+            where: {
+              id: shop.id,
+            },
+            data: {
+              resendDomainLastError:
+                  error.message ||
+                  "Verification could not be started.",
+            },
+          });
+
+          return res.status(400).json({
+            error:
+                error.message ||
+                "Could not start domain verification.",
+          });
+        }
+
+        const updated =
+            await prisma.shop.update({
+              where: {
+                id: shop.id,
+              },
+              data: {
+                resendDomainStatus:
+                    data?.status ||
+                    "pending",
+
+                resendDomainVerifiedAt:
+                    null,
+
+                resendDomainLastError:
+                    null,
+              },
+            });
+
+        return res.json({
+          ok: true,
+
+          message:
+              "Domain verification has started.",
+
+          settings:
+              publicResendDomainSettings(
+                  updated
+              ),
+        });
+      } catch (error) {
+        console.error(
+            "Verify Resend domain failed:",
+            error
+        );
+
+        return res.status(500).json({
+          error:
+              "Could not start domain verification.",
+        });
+      }
+    }
+);
+
+adminRouter.patch(
+    "/resend-domain/sender",
+    async (req, res) => {
+      try {
+        const shop = req.shop;
+
+        if (!isPro(shop)) {
+          return res.status(403).json({
+            error:
+                "Verified sending domains are available on the Pro plan.",
+          });
+        }
+
+        if (
+            !shop.resendDomainId ||
+            shop.resendDomainStatus !==
+            "verified"
+        ) {
+          return res.status(400).json({
+            error:
+                "Verify the sending domain before configuring the sender.",
+          });
+        }
+
+        const fromName =
+            String(
+                req.body.fromName || ""
+            ).trim();
+
+        const fromEmail =
+            String(
+                req.body.fromEmail || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        if (!fromEmail) {
+          return res.status(400).json({
+            error:
+                "Enter a sender email address.",
+          });
+        }
+
+        const domainName =
+            String(
+                shop.resendDomainName || ""
+            ).toLowerCase();
+
+        if (
+            !fromEmail.endsWith(
+                `@${domainName}`
+            )
+        ) {
+          return res.status(400).json({
+            error:
+                `The sender email must use @${domainName}.`,
+          });
+        }
+
+        const updated =
+            await prisma.shop.update({
+              where: {
+                id: shop.id,
+              },
+              data: {
+                emailDeliveryMethod:
+                    "RESEND_DOMAIN",
+
+                resendFromName:
+                    fromName || null,
+
+                resendFromEmail:
+                fromEmail,
+
+                resendDomainLastError:
+                    null,
+              },
+            });
+
+        return res.json({
+          ok: true,
+          settings:
+              publicResendDomainSettings(
+                  updated
+              ),
+        });
+      } catch (error) {
+        console.error(
+            "Save Resend sender failed:",
+            error
+        );
+
+        return res.status(500).json({
+          error:
+              "Could not save the sender address.",
+        });
+      }
+    }
+);
+
+adminRouter.delete(
+    "/resend-domain",
+    async (req, res) => {
+      try {
+        const shop = req.shop;
+
+        if (!isPro(shop)) {
+          return res.status(403).json({
+            error:
+                "Verified sending domains are available on the Pro plan.",
+          });
+        }
+
+        if (shop.resendDomainId) {
+          const { error } =
+              await resend.domains.remove(
+                  shop.resendDomainId
+              );
+
+          if (error) {
+            return res.status(400).json({
+              error:
+                  error.message ||
+                  "Could not remove the domain from Resend.",
+            });
+          }
+        }
+
+        const updated =
+            await prisma.shop.update({
+              where: {
+                id: shop.id,
+              },
+              data: {
+                emailDeliveryMethod:
+                    "GL6",
+
+                resendDomainId: null,
+                resendDomainName: null,
+                resendDomainStatus: null,
+                resendFromEmail: null,
+                resendFromName: null,
+                resendDomainCreatedAt: null,
+                resendDomainVerifiedAt: null,
+                resendDomainLastError: null,
+              },
+            });
+
+        return res.json({
+          ok: true,
+          settings:
+              publicResendDomainSettings(
+                  updated
+              ),
+        });
+      } catch (error) {
+        console.error(
+            "Remove Resend domain failed:",
+            error
+        );
+
+        return res.status(500).json({
+          error:
+              "Could not remove the sending domain.",
+        });
+      }
+    }
+);

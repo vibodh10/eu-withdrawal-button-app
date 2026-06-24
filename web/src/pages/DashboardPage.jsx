@@ -17,6 +17,7 @@ export default function DashboardPage({
   boot,
   onReload,
   onOpenSettings,
+  onOpenRequests
 }) {
   const [stats, setStats] = useState({
     total: 0,
@@ -121,10 +122,6 @@ export default function DashboardPage({
   function openUrl(url) {
     if (!url || url === "#") return;
     window.open(url, "_blank", "noopener,noreferrer");
-  }
-
-  function openRequests() {
-    window.location.href = "/requests";
   }
 
   async function createWithdrawalPage() {
@@ -435,7 +432,7 @@ export default function DashboardPage({
                         </Text>
                       </BlockStack>
 
-                      <Button onClick={openRequests}>
+                      <Button onClick={onOpenRequests}>
                         Open requests
                       </Button>
                     </InlineStack>

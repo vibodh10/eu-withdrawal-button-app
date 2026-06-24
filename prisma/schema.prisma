@@ -48,6 +48,15 @@ model Shop {
   smtpFromName           String?
   smtpVerifiedAt         DateTime?
   smtpLastError          String?
+  resendDomainId          String?
+  resendDomainName        String?
+  resendDomainStatus      String?
+  resendFromEmail         String?
+  resendFromName          String?
+  resendDomainCreatedAt   DateTime?
+  resendDomainVerifiedAt  DateTime?
+  resendDomainLastError   String?
+  emailDeliveryMethod String @default("GL6")
 }
 
 model WithdrawalRequest {

@@ -1,12 +1,10 @@
 import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-import {
-    decryptSecret,
-} from "./encryption.js";
+import { decryptSecret } from "./encryption.js";
+import { sendEmail as sendGl6Email } from "./email.js";
 
-import {
-    sendEmail as sendGl6Email,
-} from "./email.js";
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 function buildMerchantTransport(shop) {
     if (
@@ -15,9 +13,7 @@ function buildMerchantTransport(shop) {
         !shop.smtpUsername ||
         !shop.smtpPasswordEncrypted
     ) {
-        throw new Error(
-            "SMTP settings are incomplete"
-        );
+        throw new Error("SMTP settings are incomplete");
     }
 
     const port = Number(shop.smtpPort);
@@ -25,14 +21,6 @@ function buildMerchantTransport(shop) {
     return nodemailer.createTransport({
         host: shop.smtpHost,
         port,
-
-        /*
-         * true is normally used for implicit TLS
-         * on port 465.
-         *
-         * false is normally used for port 587,
-         * where STARTTLS upgrades the connection.
-         */
         secure: Boolean(shop.smtpSecure),
 
         auth: {
@@ -52,9 +40,7 @@ function buildMerchantTransport(shop) {
     });
 }
 
-export async function verifyMerchantSmtp(
-    shop
-) {
+export async function verifyMerchantSmtp(shop) {
     const transporter =
         buildMerchantTransport(shop);
 
@@ -79,12 +65,68 @@ export async function sendCustomerConfirmation({
         shop.merchantNotification ||
         process.env.FROM_EMAIL;
 
-    const shouldUseMerchantSmtp =
+    /*
+     * Option 1:
+     * Pro merchant with a verified Resend domain.
+     */
+    if (
         shop.plan === "PRO" &&
-        shop.smtpEnabled &&
-        shop.smtpVerifiedAt;
+        shop.emailDeliveryMethod ===
+        "RESEND_DOMAIN" &&
+        shop.resendDomainStatus ===
+        "verified" &&
+        shop.resendFromEmail
+    ) {
+        try {
+            const fromName =
+                shop.resendFromName ||
+                merchantName;
 
-    if (shouldUseMerchantSmtp) {
+            const { data, error } =
+                await resend.emails.send({
+                    from:
+                        `${fromName} ` +
+                        `<${shop.resendFromEmail}>`,
+                    to,
+                    subject,
+                    html,
+                    replyTo:
+                    merchantReplyTo,
+                });
+
+            if (error) {
+                throw new Error(
+                    error.message ||
+                    "Verified-domain email failed"
+                );
+            }
+
+            return data;
+        } catch (error) {
+            console.error(
+                "Verified Resend-domain delivery failed:",
+                {
+                    shop: shop.shopDomain,
+                    message: error.message,
+                }
+            );
+
+            /*
+             * Continue to GL6 fallback.
+             */
+        }
+    }
+
+    /*
+     * Option 2:
+     * Pro merchant with connected SMTP.
+     */
+    if (
+        shop.plan === "PRO" &&
+        shop.emailDeliveryMethod === "SMTP" &&
+        shop.smtpEnabled &&
+        shop.smtpVerifiedAt
+    ) {
         try {
             const transporter =
                 buildMerchantTransport(shop);
@@ -98,41 +140,42 @@ export async function sendCustomerConfirmation({
                 merchantName;
 
             return await transporter.sendMail({
-                from: `"${fromName}" <${fromEmail}>`,
+                from:
+                    `"${fromName}" <${fromEmail}>`,
                 to,
                 subject,
                 html,
-                replyTo: merchantReplyTo,
+                replyTo:
+                merchantReplyTo,
             });
         } catch (error) {
             console.error(
                 "Merchant SMTP delivery failed:",
                 {
-                    shop:
-                    shop.shopDomain,
-                    message:
-                    error.message,
+                    shop: shop.shopDomain,
+                    message: error.message,
                 }
             );
 
             /*
-             * Do not fail the withdrawal request.
              * Continue to GL6 fallback.
              */
         }
     }
 
+    /*
+     * Option 3:
+     * Basic, unconfigured Pro,
+     * or fallback after failure.
+     */
     return sendGl6Email({
         to,
         subject,
         html,
         from:
-            `${merchantName} ` +
+            `${merchantName} via GL6 ` +
             `<${process.env.FROM_EMAIL}>`,
-
         replyTo:
-            shop.supportEmail ||
-            shop.merchantNotification ||
-            process.env.FROM_EMAIL,
+        merchantReplyTo,
     });
 }
