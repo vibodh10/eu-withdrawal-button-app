@@ -102,6 +102,8 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     const dirtyBridgeReadyRef = useRef(false);
     const [templateLoaded, setTemplateLoaded] = useState(false);
     const [state, setState] = useState({ saving: false, error: "" });
+    const [formVersion, setFormVersion] =
+        useState(0);
 
     const [smtpStatus, setSmtpStatus] = useState({
         hasPassword: Boolean(boot.shop?.smtpHasPassword),
@@ -216,22 +218,43 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
 
     function commitSavedForm(nextForm) {
         const saved = cloneForm(nextForm);
+
         setForm(saved);
         savedFormRef.current = cloneForm(saved);
-        syncAutomaticSaveBarBaseline(saved);
 
-        requestAnimationFrame(() => {
-            formElementRef.current?.reset();
-        });
+        /*
+         * The new form instance must establish its
+         * own clean baseline.
+         */
+        dirtyBridgeReadyRef.current = false;
+
+        /*
+         * Remount the form instead of resetting the
+         * existing Polaris checkbox elements.
+         */
+        setFormVersion((current) => current + 1);
 
         return saved;
     }
 
-    function handleFormReset() {
-        const saved = cloneForm(savedFormRef.current);
+    function handleFormReset(event) {
+        event.preventDefault();
+
+        const saved =
+            cloneForm(savedFormRef.current);
+
         setForm(saved);
-        syncAutomaticSaveBarBaseline(saved);
-        setState({ saving: false, error: "" });
+
+        dirtyBridgeReadyRef.current = false;
+
+        setState({
+            saving: false,
+            error: "",
+        });
+
+        setFormVersion(
+            (current) => current + 1
+        );
     }
 
     function handleFormSubmit(event) {
@@ -619,6 +642,7 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     return (
         <Page title="Settings">
             <form
+                key={formVersion}
                 ref={formElementRef}
                 data-save-bar
                 onSubmit={handleFormSubmit}
