@@ -189,8 +189,8 @@ export default function App() {
                                     <DashboardPage
                                         boot={boot.data}
                                         onReload={load}
-                                        onOpenSettings={() => setTab("settings")}
-                                        onOpenRequests={() => setTab("requests")}
+                                        onOpenSettings={() => handleTabChange("settings")}
+                                        onOpenRequests={() => handleTabChange("requests")}
                                     />
                                 )}
 
