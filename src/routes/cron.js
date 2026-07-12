@@ -36,7 +36,7 @@ cronRouter.post("/refresh-shopify-tokens", async (req, res) => {
                 ],
                 refreshTokenExpiresAt: {
                     lte: new Date(
-                        Date.now() + 1200 * 24 * 60 * 60 * 1000
+                        Date.now() + 14 * 24 * 60 * 60 * 1000
                     ),
                 },
             },
