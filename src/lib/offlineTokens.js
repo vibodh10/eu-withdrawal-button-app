@@ -104,6 +104,14 @@ export async function getValidOfflineToken(shop) {
         shop.refreshTokenExpiresAt &&
         shop.refreshTokenExpiresAt.getTime() <= Date.now() + bufferMs
     ) {
+        await prisma.shop.update({
+            where: { id: shop.id },
+            data: {
+                tokenStatus: "REAUTH_REQUIRED",
+                tokenRefreshError: "Refresh token expired. Re-auth required.",
+            },
+        });
+
         throw new Error("Refresh token expired. Re-auth required.");
     }
 
@@ -121,8 +129,67 @@ export async function getValidOfflineToken(shop) {
             refreshTokenExpiresAt:
                 refreshed.refreshTokenExpiresAt || shop.refreshTokenExpiresAt,
             tokenType: "EXPIRING_OFFLINE",
+            tokenStatus: "ACTIVE",
+            lastTokenRefreshAt: new Date(),
+            tokenRefreshError: null,
         },
     });
 
     return updated.accessToken;
+}
+
+export async function refreshAndSaveOfflineToken(shop) {
+    if (!shop?.refreshToken) {
+        throw new Error("Missing refresh token. Re-auth required.");
+    }
+
+    if (
+        shop.refreshTokenExpiresAt &&
+        shop.refreshTokenExpiresAt.getTime() <= Date.now()
+    ) {
+        await prisma.shop.update({
+            where: { id: shop.id },
+            data: {
+                tokenStatus: "REAUTH_REQUIRED",
+                tokenRefreshError: "Refresh token expired. Re-auth required.",
+            },
+        });
+
+        throw new Error("Refresh token expired. Re-auth required.");
+    }
+
+    try {
+        const refreshed = await refreshOfflineToken({
+            shop: shop.shopDomain,
+            refreshToken: shop.refreshToken,
+        });
+
+        const updated = await prisma.shop.update({
+            where: { id: shop.id },
+            data: {
+                accessToken: refreshed.accessToken,
+                accessTokenExpiresAt: refreshed.accessTokenExpiresAt,
+                refreshToken: refreshed.refreshToken,
+                refreshTokenExpiresAt:
+                    refreshed.refreshTokenExpiresAt || shop.refreshTokenExpiresAt,
+                tokenType: "EXPIRING_OFFLINE",
+                tokenStatus: "ACTIVE",
+                lastTokenRefreshAt: new Date(),
+                tokenRefreshError: null,
+            },
+        });
+
+        return updated;
+    } catch (error) {
+        await prisma.shop.update({
+            where: { id: shop.id },
+            data: {
+                tokenStatus: "REAUTH_REQUIRED",
+                tokenRefreshError:
+                    error.message || "Token refresh failed.",
+            },
+        });
+
+        throw error;
+    }
 }
