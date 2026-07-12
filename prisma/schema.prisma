@@ -16,6 +16,9 @@ model Shop {
   refreshToken               String?
   refreshTokenExpiresAt      DateTime?
   tokenType                  String? @default("NON_EXPIRING_OFFLINE")
+    tokenStatus               String?   @default("ACTIVE")
+    lastTokenRefreshAt        DateTime?
+    tokenRefreshError         String?
   installedAt                DateTime             @default(now())
   uninstalledAt              DateTime?
   plan                       String              @default("BASIC")

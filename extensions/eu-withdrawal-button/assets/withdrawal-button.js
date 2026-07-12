@@ -882,8 +882,6 @@
         </button>
 
         <p data-status style="margin:0;font-size:14px;min-height:18px;"></p>
-        
-        ${buildPoweredByHtml()}
       </form>
     </div>
   `;
