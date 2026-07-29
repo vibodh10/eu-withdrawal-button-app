@@ -93,12 +93,17 @@ cronRouter.post("/cleanup", async (req, res) => {
     }
 
     try {
+        const threshold = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000);
+
         const result = await prisma.withdrawalRequest.deleteMany({
             where: {
+                status: {
+                    in: ["APPROVED", "REJECTED"], // use your exact enum values
+                },
                 resolvedAt: {
-                    lt: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000)
-                }
-            }
+                    lt: threshold,
+                },
+            },
         });
 
         console.log("Cleanup run:", result.count);
