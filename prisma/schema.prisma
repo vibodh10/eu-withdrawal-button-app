@@ -8,92 +8,99 @@ datasource db {
 }
 
 model Shop {
-  id                         String               @id @default(cuid())
-  shopDomain                 String               @unique
-  shopHandle                 String?
-  accessToken                String?
-  accessTokenExpiresAt       DateTime?
-  refreshToken               String?
-  refreshTokenExpiresAt      DateTime?
-  tokenType                  String? @default("NON_EXPIRING_OFFLINE")
-    tokenStatus               String?   @default("ACTIVE")
-    lastTokenRefreshAt        DateTime?
-    tokenRefreshError         String?
-  installedAt                DateTime             @default(now())
-  uninstalledAt              DateTime?
-  plan                       String              @default("BASIC")
-  currentPlanHandle          String?
-  currentSubscriptionId      String?
-  currentSubscriptionStatus  String?
-  billingSyncedAt            DateTime?
-  locale                     String               @default("en")
-  enabledLanguages String @default("[\"en\",\"de\"]")
-  brandingName               String?
-  brandingPrimaryColor       String?
-  merchantNotification       String?
-  withdrawalDays             Int                  @default(14)
-  legalPageUrl               String?
-  privacyPageUrl             String?
-  supportEmail               String?
-  dpaAcceptedAt              DateTime?
-  requests                   WithdrawalRequest[]
-  emailTemplates             EmailTemplate[]
-  createdAt                  DateTime             @default(now())
-  updatedAt                  DateTime             @updatedAt
-  resolvedAt                 DateTime?
-  smtpEnabled            Boolean   @default(false)
-  smtpHost               String?
-  smtpPort               Int?
-  smtpSecure             Boolean   @default(false)
-  smtpUsername           String?
-  smtpPasswordEncrypted  String?
-  smtpFromEmail          String?
-  smtpFromName           String?
-  smtpVerifiedAt         DateTime?
-  smtpLastError          String?
-  resendDomainId          String?
-  resendDomainName        String?
-  resendDomainStatus      String?
-  resendFromEmail         String?
-  resendFromName          String?
-  resendDomainCreatedAt   DateTime?
-  resendDomainVerifiedAt  DateTime?
-  resendDomainLastError   String?
-  emailDeliveryMethod String @default("GL6")
+  id                        String              @id @default(cuid())
+  shopDomain                String              @unique
+  shopHandle                String?
+  accessToken               String?
+  accessTokenExpiresAt      DateTime?
+  refreshToken              String?
+  refreshTokenExpiresAt     DateTime?
+  tokenType                 String?             @default("NON_EXPIRING_OFFLINE")
+  tokenStatus               String?             @default("ACTIVE")
+  lastTokenRefreshAt        DateTime?
+  tokenRefreshError         String?
+  installedAt               DateTime            @default(now())
+  uninstalledAt             DateTime?
+  plan                      String              @default("BASIC")
+  currentPlanHandle         String?
+  currentSubscriptionId     String?
+  currentSubscriptionStatus String?
+  billingSyncedAt           DateTime?
+  locale                    String              @default("en")
+  enabledLanguages          String              @default("[\"en\",\"de\"]")
+  brandingName              String?
+  brandingPrimaryColor      String?
+  merchantNotification      String?
+  withdrawalDays            Int                 @default(14)
+  legalPageUrl              String?
+  privacyPageUrl            String?
+  supportEmail              String?
+  dpaAcceptedAt             DateTime?
+  requests                  WithdrawalRequest[]
+  emailTemplates            EmailTemplate[]
+  createdAt                 DateTime            @default(now())
+  updatedAt                 DateTime            @updatedAt
+  resolvedAt                DateTime?
+  smtpEnabled               Boolean             @default(false)
+  smtpHost                  String?
+  smtpPort                  Int?
+  smtpSecure                Boolean             @default(false)
+  smtpUsername              String?
+  smtpPasswordEncrypted     String?
+  smtpFromEmail             String?
+  smtpFromName              String?
+  smtpVerifiedAt            DateTime?
+  smtpLastError             String?
+  resendDomainId            String?
+  resendDomainName          String?
+  resendDomainStatus        String?
+  resendFromEmail           String?
+  resendFromName            String?
+  resendDomainCreatedAt     DateTime?
+  resendDomainVerifiedAt    DateTime?
+  resendDomainLastError     String?
+  emailDeliveryMethod       String              @default("GL6")
 }
 
 model WithdrawalRequest {
-  id                      String               @id @default(cuid())
-  publicReference         String               @unique
-  shopId                  String
-  orderNumber             String?
-  orderId                 String?
-  customerEmail           String
-  customerName            String?
-  reason                  String?
-  status                  String     @default("RECEIVED")
-  source                  String        @default("STOREFRONT")
-  locale                  String               @default("en")
-  legalCopyVersion        String?
-  metadataJson            String?
-  submittedAt             DateTime             @default(now())
-  resolvedAt              DateTime?
-  createdAt               DateTime             @default(now())
-  updatedAt               DateTime             @updatedAt
-  shop                    Shop                 @relation(fields: [shopId], references: [id], onDelete: Cascade)
-  verificationStatus      String               @default("UNVERIFIED")
+  id                 String    @id @default(cuid())
+  publicReference    String    @unique
+  shopId             String
+  orderNumber        String?
+  orderId            String?
+  customerEmail      String
+  customerName       String?
+  reason             String?
+  status             String    @default("RECEIVED")
+  source             String    @default("STOREFRONT")
+  locale             String    @default("en")
+  legalCopyVersion   String?
+  metadataJson       String?
+  submittedAt        DateTime  @default(now())
+  resolvedAt         DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  shop               Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  verificationStatus String    @default("UNVERIFIED")
+  submissionKey      String?    @unique
+  confirmationSentAt DateTime?
+  emailStatus        String    @default("PENDING")
+  emailProviderId    String?
+
+  @@index([shopId, createdAt])
+  @@index([shopId, orderId])
 }
 
 model EmailTemplate {
-  id                      String               @id @default(cuid())
-  shopId                  String
-  code                    String
-  subject                 String
-  bodyHtml                String
-  isDefault               Boolean              @default(false)
-  createdAt               DateTime             @default(now())
-  updatedAt               DateTime             @updatedAt
-  shop                    Shop                 @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  id        String   @id @default(cuid())
+  shopId    String
+  code      String
+  subject   String
+  bodyHtml  String
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  shop      Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
 
   @@unique([shopId, code])
 }

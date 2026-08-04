@@ -22,6 +22,9 @@ import {exchangeOfflineToken} from "./lib/offlineTokens.js";
 import {isShopBlocked, normalizeShopDomain} from "./lib/blockedShops.js";
 
 const app = express();
+
+app.set("query parser", "simple");
+
 const port = Number(process.env.PORT || 3000);
 
 const __filename = fileURLToPath(import.meta.url);

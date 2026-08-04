@@ -702,7 +702,8 @@
         const settingsUrl = `${appUrl}/public/settings?shop=${shopDomain}`;
         console.log("EU Withdrawal settings URL:", settingsUrl);
 
-        const res = await fetch(settingsUrl);
+        const res = await fetch("/apps/eu-withdrawal/settings")
+
         const data = await res.json();
 
         settings = { ...settings, ...data };
@@ -914,7 +915,6 @@
         payload.orderNumber = String(payload.orderNumber || "").trim();
         payload.reason = String(payload.reason || "").trim();
 
-        payload.shopDomain = shopDomain;
         payload.locale = currentLanguage;
         payload.legalCopyVersion = 'v1';
 
@@ -940,10 +940,12 @@
         }
 
         try {
-          const response = await fetch(`${appUrl}/public/withdrawal-request`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+          const response = await fetch("/apps/eu-withdrawal/withdrawal-request", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
           });
 
           const data = await response.json();

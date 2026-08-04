@@ -440,90 +440,15 @@ adminRouter.get('/email-templates', async (req, res) => {
 });
 
 // PATCH /admin/email-templates/:code
-adminRouter.patch("/email-templates/:code", async (req, res) => {
-  try {
-    const shop = req.shop;
-    const code = req.params.code;
-
-    const existing = await prisma.emailTemplate.findUnique({
-      where: {
-        shopId_code: {
-          shopId: shop.id,
-          code,
-        },
-      },
-    });
-
-    const submittedSubject = req.body.subject;
-    const submittedBodyHtml = req.body.bodyHtml;
-
-    /*
-     * Existing template:
-     * update only the fields that were actually supplied.
-     */
-    if (existing) {
-      const patch = {};
-
-      if (submittedSubject !== undefined) {
-        patch.subject = String(submittedSubject);
-      }
-
-      if (submittedBodyHtml !== undefined) {
-        patch.bodyHtml = String(submittedBodyHtml);
-      }
-
-      if (Object.keys(patch).length === 0) {
-        return res.status(400).json({
-          error: "Provide a subject or email body to update.",
+adminRouter.patch(
+    "/email-templates/:code",
+    (_req, res) => {
+        return res.status(410).json({
+            error:
+                "Custom email templates are temporarily disabled.",
         });
-      }
-
-      patch.isDefault = false;
-
-      const template = await prisma.emailTemplate.update({
-        where: {
-          id: existing.id,
-        },
-        data: patch,
-      });
-
-      return res.json({ template });
     }
-
-    /*
-     * New template:
-     * both required database fields need initial values.
-     */
-    const fallback = buildConfirmationEmail({
-      reference: "{{reference}}",
-      locale: shop.locale || "en",
-    });
-
-    const template = await prisma.emailTemplate.create({
-      data: {
-        shopId: shop.id,
-        code,
-        subject:
-            submittedSubject !== undefined
-                ? String(submittedSubject)
-                : fallback.subject,
-        bodyHtml:
-            submittedBodyHtml !== undefined
-                ? String(submittedBodyHtml)
-                : fallback.html,
-        isDefault: false,
-      },
-    });
-
-    return res.json({ template });
-  } catch (error) {
-    console.error("Update email template failed:", error);
-
-    return res.status(500).json({
-      error: "Could not update email template.",
-    });
-  }
-});
+);
 
 adminRouter.delete('/requests/:id', async (req, res) => {
     const shop = req.shop;
