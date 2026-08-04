@@ -699,9 +699,6 @@
 
     async function loadSettings() {
       try {
-        const settingsUrl = `${appUrl}/public/settings?shop=${shopDomain}`;
-        console.log("EU Withdrawal settings URL:", settingsUrl);
-
         const res = await fetch("/apps/eu-withdrawal/settings")
 
         const data = await res.json();

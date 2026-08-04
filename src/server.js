@@ -20,6 +20,7 @@ import cronRouter from "./routes/cron.js";
 import {shopify} from "./lib/shopify.js";
 import {exchangeOfflineToken} from "./lib/offlineTokens.js";
 import {isShopBlocked, normalizeShopDomain} from "./lib/blockedShops.js";
+import { proxyRouter } from "./routes/proxy.js";
 
 const app = express();
 
@@ -318,6 +319,7 @@ app.use('/admin', adminRouter);
 app.use('/billing', billingRouter);
 app.use('/webhooks', webhookRouter);
 app.use('/cron', cronRouter);
+app.use("/proxy", proxyRouter);
 
 //
 // 🖥 Frontend
