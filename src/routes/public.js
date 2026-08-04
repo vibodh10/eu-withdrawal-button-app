@@ -89,10 +89,9 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
           },
         });
 
-        console.log("Shop lookup result:", {
-            found: Boolean(shop),
-            shopId: shop?.id ?? null,
-            shopDomain: cleanShopDomain,
+        console.log("Withdrawal submission", {
+            shopId: shop.id,
+            shopDomain: shop.shopDomain
         });
 
     if (!shop) {

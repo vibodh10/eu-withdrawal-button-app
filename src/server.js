@@ -19,6 +19,7 @@ import { prisma } from "./lib/db.js";
 import cronRouter from "./routes/cron.js";
 import {shopify} from "./lib/shopify.js";
 import {exchangeOfflineToken} from "./lib/offlineTokens.js";
+import {isShopBlocked, normalizeShopDomain} from "./lib/blockedShops.js";
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -110,19 +111,15 @@ app.use(morgan('dev'));
 //
 app.get('/health', async (_req, res) => {
   try {
-    await prisma.$queryRaw`SELECT 1`;
-
     res.json({
-      ok: true,
-      db: true
+      ok: true
     });
 
   } catch (err) {
-    console.error("Health check DB failure:", err);
+    console.error("Health check failure:", err);
 
     res.status(500).json({
-      ok: false,
-      db: false
+      ok: false
     });
   }
 });
@@ -131,105 +128,183 @@ app.get('/health', async (_req, res) => {
 // 🔐 OAuth start
 //
 app.get("/auth", async (req, res) => {
-  return shopify.auth.begin({
-    shop: req.query.shop,
-    callbackPath: "/auth/callback",
-    isOnline: false,
-    rawRequest: req,
-    rawResponse: res,
-  });
+    try {
+        const shop = normalizeShopDomain(req.query.shop);
+
+        if (!shop) {
+            return res.status(400).send("Invalid shop domain.");
+        }
+
+        if (isShopBlocked(shop)) {
+            console.warn("Blocked shop attempted installation:", shop);
+
+            return res.status(403).send(
+                "This store cannot install this application."
+            );
+        }
+
+        return shopify.auth.begin({
+            shop,
+            callbackPath: "/auth/callback",
+            isOnline: false,
+            rawRequest: req,
+            rawResponse: res,
+        });
+    } catch (error) {
+        console.error("OAuth start failed:", error);
+
+        return res.status(500).send(
+            "Could not start app installation."
+        );
+    }
 });
 
 app.get("/auth/callback", async (req, res) => {
-  try {
-    const authResult = await shopify.auth.callback({
-      rawRequest: req,
-      rawResponse: res,
-    });
+    try {
+        const authResult = await shopify.auth.callback({
+            rawRequest: req,
+            rawResponse: res,
+        });
 
-    console.log("🔥 AUTH RESULT:", authResult);
+        const shop = normalizeShopDomain(
+            authResult.session?.shop
+        );
 
-    const shop = authResult.session.shop;
-    const oldAccessToken = authResult.session.accessToken;
+        const oldAccessToken =
+            authResult.session?.accessToken;
 
-    if (!shop) {
-      throw new Error("Missing shop from Shopify auth callback session");
-    }
+        if (!shop) {
+            throw new Error(
+                "Missing or invalid shop from Shopify auth callback"
+            );
+        }
 
-    if (!oldAccessToken) {
-      throw new Error("Missing offline access token from Shopify auth callback session");
-    }
+        if (isShopBlocked(shop)) {
+            console.warn(
+                "Blocked shop attempted OAuth callback:",
+                shop
+            );
 
-    console.log("🔥 SHOP:", shop);
-    console.log("🔥 OLD OFFLINE TOKEN RECEIVED");
+            return res.status(403).send(
+                "This store cannot install this application."
+            );
+        }
 
-    const exchanged = await exchangeOfflineToken({
-      shop,
-      oldAccessToken,
-    });
+        if (!oldAccessToken) {
+            throw new Error(
+                "Missing offline access token from Shopify auth callback"
+            );
+        }
 
-    console.log("✅ EXPIRING OFFLINE TOKEN CREATED");
+        console.log("OAuth callback validated:", {
+            shop
+        });
 
-    await prisma.shop.upsert({
-      where: { shopDomain: shop },
-      update: {
-        accessToken: exchanged.accessToken,
-        accessTokenExpiresAt: exchanged.accessTokenExpiresAt,
-        refreshToken: exchanged.refreshToken,
-        refreshTokenExpiresAt: exchanged.refreshTokenExpiresAt,
-        tokenType: "EXPIRING_OFFLINE",
-      },
-      create: {
-        shopDomain: shop,
-        accessToken: exchanged.accessToken,
-        accessTokenExpiresAt: exchanged.accessTokenExpiresAt,
-        refreshToken: exchanged.refreshToken,
-        refreshTokenExpiresAt: exchanged.refreshTokenExpiresAt,
-        tokenType: "EXPIRING_OFFLINE",
-        plan: "BASIC",
-        installedAt: new Date(),
-      },
-    });
+        const exchanged = await exchangeOfflineToken({
+            shop,
+            oldAccessToken,
+        });
 
-    const redirectUrl = await shopify.auth.getEmbeddedAppUrl({
-      rawRequest: req,
-      rawResponse: res,
-    });
+        console.log(
+            "Expiring offline token created for:",
+            shop
+        );
 
-    res.redirect(redirectUrl);
-  } catch (err) {
-    console.error("❌ Auth callback failed:", err);
+        await prisma.shop.upsert({
+            where: {
+                shopDomain: shop
+            },
+            update: {
+                accessToken: exchanged.accessToken,
+                accessTokenExpiresAt:
+                exchanged.accessTokenExpiresAt,
+                refreshToken: exchanged.refreshToken,
+                refreshTokenExpiresAt:
+                exchanged.refreshTokenExpiresAt,
+                tokenType: "EXPIRING_OFFLINE",
+                uninstalledAt: null,
+            },
+            create: {
+                shopDomain: shop,
+                accessToken: exchanged.accessToken,
+                accessTokenExpiresAt:
+                exchanged.accessTokenExpiresAt,
+                refreshToken: exchanged.refreshToken,
+                refreshTokenExpiresAt:
+                exchanged.refreshTokenExpiresAt,
+                tokenType: "EXPIRING_OFFLINE",
+                plan: "BASIC",
+                installedAt: new Date(),
+            },
+        });
 
-    res.status(500).send(`
+        const redirectUrl =
+            await shopify.auth.getEmbeddedAppUrl({
+                rawRequest: req,
+                rawResponse: res,
+            });
+
+        return res.redirect(redirectUrl);
+    } catch (err) {
+        console.error("Auth callback failed:", err);
+
+        return res.status(500).send(`
       <h1>App installation failed</h1>
-      <p>${err.message}</p>
+      <p>Please try again or contact support.</p>
     `);
-  }
+    }
 });
 
 // 🔐 ENSURE SHOP IS AUTHENTICATED (ADMIN ROUTES ONLY)
-app.use('/admin', async (req, res, next) => {
-  const shop = req.query.shop;
+app.use("/admin", async (req, res, next) => {
+    try {
+        const shop = normalizeShopDomain(
+            req.query.shop
+        );
 
-  if (!shop) {
-    return res.status(401).json({
-      message: "Missing shop parameter"
-    });
-  }
+        if (!shop) {
+            return res.status(401).json({
+                message: "Missing or invalid shop parameter"
+            });
+        }
 
-  const existing = await prisma.shop.findUnique({
-    where: { shopDomain: shop },
-  });
+        if (isShopBlocked(shop)) {
+            return res.status(403).json({
+                message: "Access suspended"
+            });
+        }
 
-  if (!existing || !existing.accessToken) {
-    console.log("⚠️ No token found → redirecting to auth");
+        const existing =
+            await prisma.shop.findUnique({
+                where: {
+                    shopDomain: shop
+                }
+            });
 
-    return res.status(401).json({
-      redirectTo: `/auth?shop=${shop}`
-    });
-  }
+        if (existing?.uninstalledAt) {
+            return res.status(403).json({
+                message: "Access suspended"
+            });
+        }
 
-  next();
+        if (!existing?.accessToken) {
+            return res.status(401).json({
+                redirectTo:
+                    `/auth?shop=${encodeURIComponent(shop)}`
+            });
+        }
+
+        next();
+    } catch (error) {
+        console.error(
+            "Admin authentication check failed:",
+            error
+        );
+
+        return res.status(500).json({
+            message: "Authentication check failed"
+        });
+    }
 });
 
 //
