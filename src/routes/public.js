@@ -35,7 +35,13 @@ publicRouter.options('/withdrawal-request', (req, res) => {
 });
 
 publicRouter.post('/withdrawal-request', async (req, res) => {
-  try {
+    if (process.env.WITHDRAWAL_EMAILS_DISABLED === "true") {
+        return res.status(503).json({
+            error: "Withdrawal submissions are temporarily unavailable."
+        });
+    }
+
+    try {
     const {
       shopDomain,
       customerEmail,

@@ -38,7 +38,7 @@
         wrapper.style.right = `${sideOffset}px`;
       }
     } else {
-      wrapper.style.margin = '16px 0';
+      wrapper.style.margin = '0';
     }
 
     const button = document.createElement('button');
@@ -765,28 +765,6 @@
       }
 
       return html;
-    }
-
-    function buildPoweredByHtml() {
-      const shouldShowPoweredBy =
-          settings.showPoweredBy === true || settings.showPoweredBy === "true";
-
-      if (!shouldShowPoweredBy) {
-        return "";
-      }
-
-      return `
-    <div style="
-      margin-top:16px;
-      padding-top:12px;
-      border-top:1px solid #e5e7eb;
-      text-align:center;
-      font-size:12px;
-      color:#6b7280;
-    ">
-      ${settings.poweredByText || "Powered by GL6"}
-    </div>
-  `;
     }
 
     function buildModal() {

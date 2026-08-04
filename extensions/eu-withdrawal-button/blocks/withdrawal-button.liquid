@@ -3,6 +3,17 @@
   assign shop_domain = shop.permanent_domain
 %}
 
+<style>
+  .eu-withdrawal-button-root {
+    min-height: 56px;
+    margin: 16px 0;
+  }
+
+  .eu-withdrawal-button-root:empty {
+    display: block;
+  }
+</style>
+
 <div
   class="eu-withdrawal-button-root"
   data-app-url="{{ app_url | escape }}"
@@ -23,13 +34,13 @@
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Withdrawal Request"
+      "default": "EU Withdrawal Request"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Modal heading",
-      "default": "Submit Withdrawal Request"
+      "default": "Submit EU Withdrawal Request"
     }
   ]
 }
