@@ -89,7 +89,11 @@ publicRouter.post('/withdrawal-request', async (req, res) => {
           },
         });
 
-    console.log("DB shop:", shop);
+        console.log("Shop lookup result:", {
+            found: Boolean(shop),
+            shopId: shop?.id ?? null,
+            shopDomain: cleanShopDomain,
+        });
 
     if (!shop) {
       return res.status(404).json({ error: 'Shop is not installed' });
