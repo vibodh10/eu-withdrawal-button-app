@@ -31,7 +31,6 @@ out/
 # Prisma
 .prisma/
 *.db
-prisma/migrations/
 
 # Environment variables
 .env

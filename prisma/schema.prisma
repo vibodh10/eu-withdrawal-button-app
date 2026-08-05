@@ -82,7 +82,7 @@ model WithdrawalRequest {
   updatedAt          DateTime  @updatedAt
   shop               Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
   verificationStatus String    @default("UNVERIFIED")
-  submissionKey      String?    @unique
+  submissionKey      String?   @unique
   confirmationSentAt DateTime?
   emailStatus        String    @default("PENDING")
   emailProviderId    String?
