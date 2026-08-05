@@ -60,6 +60,7 @@ model Shop {
   resendDomainVerifiedAt    DateTime?
   resendDomainLastError     String?
   emailDeliveryMethod       String              @default("GL6")
+  dataAccessAudits          DataAccessAudit[]
 }
 
 model WithdrawalRequest {
@@ -103,4 +104,20 @@ model EmailTemplate {
   shop      Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
 
   @@unique([shopId, code])
+}
+
+model DataAccessAudit {
+  id          String   @id @default(cuid())
+  shopId      String?
+  action      String
+  recordId    String?
+  recordCount Int?
+  actorType   String
+  reason      String?
+  createdAt   DateTime @default(now())
+
+  shop Shop? @relation(fields: [shopId], references: [id], onDelete: SetNull)
+
+  @@index([shopId, createdAt])
+  @@index([action, createdAt])
 }

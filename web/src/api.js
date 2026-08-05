@@ -3,8 +3,6 @@ import { app } from "./appBridge.js"; // make sure this is correct
 
 export async function getAuthHeaders() {
   const token = await getSessionToken(app);
-  console.log("TOKEN TYPE:", typeof token);
-  console.log("TOKEN VALUE:", token);
 
   return {
     Authorization: `Bearer ${token}`,

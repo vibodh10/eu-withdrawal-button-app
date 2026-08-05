@@ -9,6 +9,9 @@ import {buildConfirmationEmail} from "../lib/email.js";
 import { encryptSecret } from "../lib/encryption.js";
 import { verifyMerchantSmtp } from "../lib/merchantEmail.js";
 import { Resend } from "resend";
+import {
+    recordDataAccess
+} from "../lib/dataAccessAudit.js";
 
 export const adminRouter = express.Router();
 const resend =
@@ -36,6 +39,15 @@ function publicSmtpSettings(shop) {
 
     smtpLastError:
         shop.smtpLastError || null,
+
+      merchantNotification:
+          shop.merchantNotification || null,
+
+      currentPlanHandle:
+          shop.currentPlanHandle || null,
+
+      currentSubscriptionStatus:
+          shop.currentSubscriptionStatus || null,
   };
 }
 
@@ -79,50 +91,115 @@ function publicResendDomainSettings(shop) {
   };
 }
 
+function publicShopView(shop) {
+    return {
+        id: shop.id,
+        shopDomain: shop.shopDomain,
+        plan: shop.plan,
+        locale: shop.locale,
+        enabledLanguages: parseEnabledLanguages(
+            shop.enabledLanguages
+        ),
+        brandingName: shop.brandingName,
+        brandingPrimaryColor:
+        shop.brandingPrimaryColor,
+        withdrawalDays: shop.withdrawalDays,
+        legalPageUrl: shop.legalPageUrl,
+        privacyPageUrl: shop.privacyPageUrl,
+        supportEmail: shop.supportEmail,
+        dpaAcceptedAt: shop.dpaAcceptedAt,
+    };
+}
+
+function normalizeEmail(value) {
+    return String(value || "")
+        .trim()
+        .toLowerCase();
+}
+
 // ✅ ONE AUTH LAYER
 adminRouter.use(verifyRequest);
 
 adminRouter.get("/me", async (req, res) => {
-  const shop = req.shop;
+    const shop = req.shop;
 
-  const {
-    accessToken,
-    refreshToken,
-    smtpPasswordEncrypted,
-    ...safeShop
-  } = shop;
+    return res.json({
+        shop: {
+            ...publicShopView(shop),
+            ...publicSmtpSettings(shop),
+            ...publicResendDomainSettings(shop),
+        },
 
-  res.json({
-    shop: {
-      ...safeShop,
-      ...publicSmtpSettings(shop),
-      ...publicResendDomainSettings(shop),
-    },
+        plans: PLANS,
+        isPro: isPro(shop),
 
-    plans: PLANS,
-    isPro: isPro(shop),
-
-    managedPricing: {
-      enabled: true,
-      pricingUrl:
-          buildManagedPricingUrl(
-              shop.shopDomain
-          ),
-    },
-  });
+        managedPricing: {
+            enabled: true,
+            pricingUrl:
+                buildManagedPricingUrl(
+                    shop.shopDomain
+                ),
+        },
+    });
 });
 
-adminRouter.get('/requests', async (req, res) => {
-  const shop = req.shop;
+adminRouter.get(
+    "/requests",
+    async (req, res) => {
+        try {
+            const shop = req.shop;
 
-  const requests = await prisma.withdrawalRequest.findMany({
-    where: { shopId: shop.id },
-    orderBy: { createdAt: 'desc' },
-    take: Number(req.query.limit || 100)
-  });
+            const requestedLimit =
+                Number.parseInt(
+                    req.query.limit,
+                    10
+                );
 
-  res.json({ requests });
-});
+            const limit = Math.min(
+                Math.max(
+                    Number.isInteger(requestedLimit)
+                        ? requestedLimit
+                        : 100,
+                    1
+                ),
+                100
+            );
+
+            const requests =
+                await prisma.withdrawalRequest.findMany({
+                    where: {
+                        shopId: shop.id,
+                    },
+                    orderBy: {
+                        createdAt: "desc",
+                    },
+                    take: limit,
+                });
+
+            await recordDataAccess({
+                shopId: shop.id,
+                action:
+                    "WITHDRAWAL_LIST_VIEWED",
+                recordCount: requests.length,
+                actorType: "MERCHANT_ADMIN",
+            });
+
+            return res.json({
+                requests,
+            });
+        } catch (error) {
+            console.error(
+                "Load withdrawal requests failed:",
+                error?.message
+            );
+
+            return res.status(500).json({
+                error:
+                    "Could not load withdrawal requests.",
+            });
+        }
+    }
+);
 
 adminRouter.get('/analytics/summary', async (req, res) => {
   const shop = req.shop;
@@ -142,60 +219,183 @@ adminRouter.get('/analytics/summary', async (req, res) => {
   res.json({ summary });
 });
 
-adminRouter.patch('/requests/:id', async (req, res) => {
-  const shop = req.shop;
+adminRouter.patch(
+    "/requests/:id",
+    async (req, res) => {
+        try {
+            const shop = req.shop;
 
-  const record = await prisma.withdrawalRequest.findFirst({
-    where: { id: req.params.id, shopId: shop.id }
-  });
+            const allowedStatuses = [
+                "RECEIVED",
+                "CONFIRMED",
+                "REVIEWED",
+                "APPROVED",
+                "REJECTED",
+            ];
 
-  if (!record) {
-    return res.status(404).json({ error: 'Request not found' });
-  }
+            const newStatus =
+                String(req.body.status || "")
+                    .trim()
+                    .toUpperCase();
 
-  const allowedStatuses = ['RECEIVED', 'CONFIRMED', 'REVIEWED', 'APPROVED', 'REJECTED'];
+            if (
+                !allowedStatuses.includes(
+                    newStatus
+                )
+            ) {
+                return res.status(400).json({
+                    error: "Invalid status",
+                });
+            }
 
-  if (!allowedStatuses.includes(req.body.status)) {
-    return res.status(400).json({ error: 'Invalid status' });
-  }
+            const updated =
+                await prisma.$transaction(
+                    async (tx) => {
+                        const record =
+                            await tx.withdrawalRequest
+                                .findFirst({
+                                    where: {
+                                        id: req.params.id,
+                                        shopId: shop.id,
+                                    },
+                                });
 
-  const isFinal = ['APPROVED', 'REJECTED'].includes(req.body.status);
+                        if (!record) {
+                            return null;
+                        }
 
-  const updated = await prisma.withdrawalRequest.update({
-    where: { id: record.id },
-    data: {
-      status: req.body.status,
-      resolvedAt: isFinal
-          ? record.resolvedAt || new Date() // ✅ set once
-          : null // ✅ clear if not final
+                        const isFinal = [
+                            "APPROVED",
+                            "REJECTED",
+                        ].includes(newStatus);
+
+                        const result =
+                            await tx.withdrawalRequest
+                                .update({
+                                    where: {
+                                        id: record.id,
+                                    },
+                                    data: {
+                                        status: newStatus,
+
+                                        resolvedAt: isFinal
+                                            ? record.resolvedAt ||
+                                            new Date()
+                                            : null,
+                                    },
+                                });
+
+                        await recordDataAccess({
+                            db: tx,
+                            shopId: shop.id,
+                            action:
+                                "WITHDRAWAL_UPDATED",
+                            recordId: record.id,
+                            actorType:
+                                "MERCHANT_ADMIN",
+
+                            reason:
+                                `Status changed from ${record.status} to ${newStatus}`,
+                        });
+
+                        return result;
+                    }
+                );
+
+            if (!updated) {
+                return res.status(404).json({
+                    error: "Request not found",
+                });
+            }
+
+            return res.json({
+                request: updated,
+            });
+        } catch (error) {
+            console.error(
+                "Update withdrawal request failed:",
+                error?.message
+            );
+
+            return res.status(500).json({
+                error:
+                    "Could not update withdrawal request.",
+            });
+        }
     }
-  });
+);
 
-  res.json({ request: updated });
-});
+adminRouter.get(
+    "/export.csv",
+    async (req, res) => {
+        try {
+            const shop = req.shop;
 
-adminRouter.get('/export.csv', async (req, res) => {
-  const shop = req.shop;
+            if (!isPro(shop)) {
+                return res.status(403).json({
+                    error: "Upgrade to Pro",
+                });
+            }
 
-  if (!isPro(shop)) {
-    return res.status(403).json({ error: "Upgrade to Pro" });
-  }
+            const rows =
+                await prisma.withdrawalRequest
+                    .findMany({
+                        where: {
+                            shopId: shop.id,
+                        },
+                        orderBy: {
+                            createdAt: "desc",
+                        },
+                    });
 
-  const rows = await prisma.withdrawalRequest.findMany({
-    where: { shopId: shop.id },
-    orderBy: { createdAt: 'desc' }
-  });
+            await recordDataAccess({
+                shopId: shop.id,
+                action:
+                    "WITHDRAWAL_EXPORTED",
+                recordCount: rows.length,
+                actorType: "MERCHANT_ADMIN",
+                reason:
+                    "Merchant requested CSV export",
+            });
 
-  const csv = toCsv(rows);
+            const csv = toCsv(rows);
 
-  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
-  res.setHeader(
-      'Content-Disposition',
-      'attachment; filename="withdrawal-requests.csv"'
-  );
+            res.setHeader(
+                "Content-Type",
+                "text/csv; charset=utf-8"
+            );
 
-  return res.status(200).send(csv);
-});
+            res.setHeader(
+                "Content-Disposition",
+                'attachment; filename="withdrawal-requests.csv"'
+            );
+
+            res.setHeader(
+                "Cache-Control",
+                "private, no-store, max-age=0"
+            );
+
+            res.setHeader(
+                "Pragma",
+                "no-cache"
+            );
+
+            return res
+                .status(200)
+                .send(csv);
+        } catch (error) {
+            console.error(
+                "Export withdrawal requests failed:",
+                error?.message
+            );
+
+            return res.status(500).json({
+                error:
+                    "Could not export withdrawal requests.",
+            });
+        }
+    }
+);
 
 const SUPPORTED_LANGUAGES = new Set([
   "en",
@@ -388,14 +588,9 @@ adminRouter.patch("/settings", async (req, res) => {
       data: cleaned,
     });
 
-    return res.json({
-      shop: {
-        ...updated,
-        enabledLanguages: parseEnabledLanguages(
-            updated.enabledLanguages
-        ),
-      },
-    });
+      return res.json({
+          shop: publicShopView(updated),
+      });
   } catch (error) {
     console.error("Update settings failed:", error);
 
@@ -405,15 +600,73 @@ adminRouter.patch("/settings", async (req, res) => {
   }
 });
 
-adminRouter.delete("/delete-customer", async (req, res) => {
-  const { email } = req.body;
+adminRouter.delete(
+    "/delete-customer",
+    async (req, res) => {
+        try {
+            const shop = req.shop;
 
-  await prisma.withdrawalRequest.deleteMany({
-    where: { customerEmail: email }
-  });
+            const email =
+                normalizeEmail(req.body.email);
 
-  res.json({ success: true });
-});
+            if (
+                !email ||
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+                    email
+                )
+            ) {
+                return res.status(400).json({
+                    error:
+                        "A valid email address is required.",
+                });
+            }
+
+            const result =
+                await prisma.$transaction(
+                    async (tx) => {
+                        const deleted =
+                            await tx.withdrawalRequest
+                                .deleteMany({
+                                    where: {
+                                        shopId: shop.id,
+                                        customerEmail: email,
+                                    },
+                                });
+
+                        await recordDataAccess({
+                            db: tx,
+                            shopId: shop.id,
+                            action:
+                                "CUSTOMER_DATA_DELETED",
+                            recordCount:
+                            deleted.count,
+                            actorType:
+                                "MERCHANT_ADMIN",
+                            reason:
+                                "Manual customer-data deletion",
+                        });
+
+                        return deleted;
+                    }
+                );
+
+            return res.json({
+                success: true,
+                deleted: result.count,
+            });
+        } catch (error) {
+            console.error(
+                "Customer deletion failed:",
+                error?.message
+            );
+
+            return res.status(500).json({
+                error:
+                    "Could not delete customer data.",
+            });
+        }
+    }
+);
 
 adminRouter.post('/dpa/accept', async (req, res) => {
   const shop = req.shop;
@@ -445,37 +698,79 @@ adminRouter.patch(
     (_req, res) => {
         return res.status(410).json({
             error:
-                "Custom email templates are temporarily disabled.",
+                "Custom email templates are disabled for security.",
         });
     }
 );
 
-adminRouter.delete('/requests/:id', async (req, res) => {
-    const shop = req.shop;
+adminRouter.delete(
+    "/requests/:id",
+    async (req, res) => {
+        try {
+            const shop = req.shop;
 
-    const record = await prisma.withdrawalRequest.findFirst({
-        where: {
-            id: req.params.id,
-            shopId: shop.id
+            const deleted =
+                await prisma.$transaction(
+                    async (tx) => {
+                        const record =
+                            await tx.withdrawalRequest
+                                .findFirst({
+                                    where: {
+                                        id: req.params.id,
+                                        shopId: shop.id,
+                                    },
+                                });
+
+                        if (!record) {
+                            return null;
+                        }
+
+                        await tx.withdrawalRequest
+                            .delete({
+                                where: {
+                                    id: record.id,
+                                },
+                            });
+
+                        await recordDataAccess({
+                            db: tx,
+                            shopId: shop.id,
+                            action:
+                                "WITHDRAWAL_DELETED",
+                            recordId: record.id,
+                            recordCount: 1,
+                            actorType:
+                                "MERCHANT_ADMIN",
+                            reason:
+                                "Merchant deleted withdrawal request",
+                        });
+
+                        return record.id;
+                    }
+                );
+
+            if (!deleted) {
+                return res.status(404).json({
+                    error: "Request not found",
+                });
+            }
+
+            return res.json({
+                success: true,
+            });
+        } catch (error) {
+            console.error(
+                "Delete withdrawal request failed:",
+                error?.message
+            );
+
+            return res.status(500).json({
+                error:
+                    "Could not delete withdrawal request.",
+            });
         }
-    });
-
-    if (!record) {
-        return res.status(404).json({
-            error: 'Request not found'
-        });
     }
-
-    await prisma.withdrawalRequest.delete({
-        where: {
-            id: record.id
-        }
-    });
-
-    res.json({
-        success: true
-    });
-});
+);
 
 adminRouter.post("/setup/withdrawal-page", async (req, res) => {
   try {

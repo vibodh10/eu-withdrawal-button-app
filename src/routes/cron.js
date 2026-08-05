@@ -2,13 +2,67 @@
 import express from "express";
 import { prisma } from "../lib/db.js";
 import { refreshAndSaveOfflineToken } from "../lib/offlineTokens.js";
+import crypto from "node:crypto";
+import {
+    recordDataAccess
+} from "../lib/dataAccessAudit.js";
 
 const cronRouter = express.Router();
 
-cronRouter.post("/refresh-shopify-tokens", async (req, res) => {
-    if (req.headers["x-cron-secret"] !== process.env.CRON_SECRET) {
-        return res.status(401).send("unauthorized");
+function requireCronSecret(
+    req,
+    res,
+    next
+) {
+    const expected =
+        process.env.CRON_SECRET;
+
+    const received =
+        req.get("x-cron-secret");
+
+    if (!expected) {
+        console.error(
+            "CRON_SECRET is not configured."
+        );
+
+        return res.status(503).json({
+            error:
+                "Cron authentication is unavailable.",
+        });
     }
+
+    if (!received) {
+        return res.status(401).json({
+            error: "Unauthorized",
+        });
+    }
+
+    const expectedBuffer =
+        Buffer.from(expected, "utf8");
+
+    const receivedBuffer =
+        Buffer.from(received, "utf8");
+
+    if (
+        expectedBuffer.length !==
+        receivedBuffer.length ||
+        !crypto.timingSafeEqual(
+            expectedBuffer,
+            receivedBuffer
+        )
+    ) {
+        return res.status(401).json({
+            error: "Unauthorized",
+        });
+    }
+
+    return next();
+}
+
+cronRouter.post(
+    "/refresh-shopify-tokens",
+    requireCronSecret,
+    async (req, res) => {
 
     const result = {
         success: true,
@@ -86,25 +140,49 @@ cronRouter.post("/refresh-shopify-tokens", async (req, res) => {
     }
 });
 
-cronRouter.post("/cleanup", async (req, res) => {
-    // 🔐 simple protection
-    if (req.headers["x-cron-secret"] !== process.env.CRON_SECRET) {
-        return res.status(401).send("unauthorized");
-    }
+cronRouter.post(
+    "/cleanup",
+    requireCronSecret,
+    async (req, res) => {
 
     try {
         const threshold = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000);
 
-        const result = await prisma.withdrawalRequest.deleteMany({
-            where: {
-                status: {
-                    in: ["APPROVED", "REJECTED"], // use your exact enum values
-                },
-                resolvedAt: {
-                    lt: threshold,
-                },
-            },
-        });
+        const result =
+            await prisma.$transaction(
+                async (tx) => {
+                    const deleted =
+                        await tx.withdrawalRequest
+                            .deleteMany({
+                                where: {
+                                    status: {
+                                        in: [
+                                            "APPROVED",
+                                            "REJECTED",
+                                        ],
+                                    },
+
+                                    resolvedAt: {
+                                        lt: threshold,
+                                    },
+                                },
+                            });
+
+                    await recordDataAccess({
+                        db: tx,
+                        action:
+                            "RETENTION_CLEANUP",
+                        recordCount:
+                        deleted.count,
+                        actorType:
+                            "SYSTEM_CRON",
+                        reason:
+                            "Automatic deletion of resolved requests older than 60 days",
+                    });
+
+                    return deleted;
+                }
+            );
 
         console.log("Cleanup run:", result.count);
 

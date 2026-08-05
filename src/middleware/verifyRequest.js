@@ -1,5 +1,6 @@
 import { verifySessionToken } from "../lib/verifySessionToken.js";
 import { prisma } from "../lib/db.js";
+import {isShopBlocked} from "../lib/blockedShops.js";
 
 export default async function verifyRequest(req, res, next) {
     const token = req.headers.authorization?.replace("Bearer ", "");
@@ -15,16 +16,19 @@ export default async function verifyRequest(req, res, next) {
 
         const shopDomain = decoded.dest.replace("https://", "");
 
-        // 🔥 auto-create shop
-        const shop = await prisma.shop.upsert({
+        const shop = await prisma.shop.findUnique({
             where: { shopDomain },
-            update: {},
-            create: {
-                shopDomain,
-                plan: "BASIC",
-                installedAt: new Date(),
-            },
         });
+
+        if (
+            !shop ||
+            shop.uninstalledAt ||
+            isShopBlocked(shopDomain)
+        ) {
+            return res.status(403).send(
+                "Store access unavailable"
+            );
+        }
 
         req.shop = shop;
 

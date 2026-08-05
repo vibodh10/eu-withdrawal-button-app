@@ -73,4 +73,6 @@ This is now meaningfully closer to submission quality, but there are still some 
 - verify the exact GraphQL shape returned by your store for `planHandle`
 - complete end-to-end QA for install, upgrade, downgrade, uninstall, and webhook replay cases
 
-## Now there are migrations!!!!!!!!!
+## Security documentation
+
+See [Data Loss Prevention Strategy](docs/security/data-loss-prevention.md).

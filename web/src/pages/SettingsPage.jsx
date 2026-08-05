@@ -1150,40 +1150,40 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
                         </Card>
                     </Layout.Section>
 
-                    <Layout.Section>
-                        <Card>
-                            <BlockStack gap="300">
-                                <Text variant="headingMd">Email templates</Text>
-                                {proLocked && (
-                                    <Banner tone="info" title="Upgrade to Pro to unlock custom email templates">
-                                        <Text as="p">
-                                            Customize confirmation emails sent to customers with your own
-                                            messaging and HTML templates.
-                                        </Text>
-                                    </Banner>
-                                )}
-                                <Text variant="bodySm" tone="subdued">
-                                    Customize the confirmation email sent to customers. You can use
-                                    variables such as {"{{reference}}"}, {"{{shopName}}"}, {"{{customerEmail}}"} and {"{{customerName}}"}.
-                                </Text>
-                                <TextField
-                                    label="Email subject"
-                                    value={form.emailSubject || ""}
-                                    disabled={proLocked}
-                                    onChange={(value) => updateField("emailSubject", value)}
-                                    autoComplete="off"
-                                />
-                                <TextField
-                                    label="Email HTML"
-                                    multiline={6}
-                                    value={form.emailBody || ""}
-                                    disabled={proLocked}
-                                    onChange={(value) => updateField("emailBody", value)}
-                                    autoComplete="off"
-                                />
-                            </BlockStack>
-                        </Card>
-                    </Layout.Section>
+                    {/*<Layout.Section>*/}
+                    {/*    <Card>*/}
+                    {/*        <BlockStack gap="300">*/}
+                    {/*            <Text variant="headingMd">Email templates</Text>*/}
+                    {/*            {proLocked && (*/}
+                    {/*                <Banner tone="info" title="Upgrade to Pro to unlock custom email templates">*/}
+                    {/*                    <Text as="p">*/}
+                    {/*                        Customize confirmation emails sent to customers with your own*/}
+                    {/*                        messaging and HTML templates.*/}
+                    {/*                    </Text>*/}
+                    {/*                </Banner>*/}
+                    {/*            )}*/}
+                    {/*            <Text variant="bodySm" tone="subdued">*/}
+                    {/*                Customize the confirmation email sent to customers. You can use*/}
+                    {/*                variables such as {"{{reference}}"}, {"{{shopName}}"}, {"{{customerEmail}}"} and {"{{customerName}}"}.*/}
+                    {/*            </Text>*/}
+                    {/*            <TextField*/}
+                    {/*                label="Email subject"*/}
+                    {/*                value={form.emailSubject || ""}*/}
+                    {/*                disabled={proLocked}*/}
+                    {/*                onChange={(value) => updateField("emailSubject", value)}*/}
+                    {/*                autoComplete="off"*/}
+                    {/*            />*/}
+                    {/*            <TextField*/}
+                    {/*                label="Email HTML"*/}
+                    {/*                multiline={6}*/}
+                    {/*                value={form.emailBody || ""}*/}
+                    {/*                disabled={proLocked}*/}
+                    {/*                onChange={(value) => updateField("emailBody", value)}*/}
+                    {/*                autoComplete="off"*/}
+                    {/*            />*/}
+                    {/*        </BlockStack>*/}
+                    {/*    </Card>*/}
+                    {/*</Layout.Section>*/}
                 </Layout>
             </form>
         </Page>

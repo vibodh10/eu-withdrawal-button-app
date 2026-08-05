@@ -9,11 +9,21 @@ export function toCsv(rows = []) {
     'submittedAt'
   ];
 
-  const escape = (value) => {
-    if (value === null || value === undefined) return '';
-    const str = String(value).replaceAll('"', '""');
-    return `"${str}"`;
-  };
+    const escape = (value) => {
+        if (value === null || value === undefined) {
+            return "";
+        }
+
+        let str = String(value);
+
+        if (/^[=+\-@]/.test(str)) {
+            str = `'${str}`;
+        }
+
+        str = str.replaceAll('"', '""');
+
+        return `"${str}"`;
+    };
 
   const lines = [headers.join(',')];
   for (const row of rows) {

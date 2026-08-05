@@ -24,7 +24,9 @@ export async function sendEmail({
             );
         }
 
-        console.log("Email sent:", data);
+        console.log("Email sent", {
+            providerId: data?.id ?? null,
+        });
 
         return data;
     } catch (error) {

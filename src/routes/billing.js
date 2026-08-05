@@ -8,6 +8,17 @@ import {
 
 export const billingRouter = express.Router();
 
+function publicBillingShopView(shop) {
+    return {
+        shopDomain: shop.shopDomain,
+        plan: shop.plan,
+        currentPlanHandle:
+            shop.currentPlanHandle || null,
+        currentSubscriptionStatus:
+            shop.currentSubscriptionStatus || null,
+    };
+}
+
 // 🔒 Protect ALL billing routes
 billingRouter.use(verifyRequest);
 
@@ -45,7 +56,7 @@ billingRouter.post("/sync", async (req, res) => {
     res.json({
       ok: true,
       managedPricing: true,
-      shop: result.shop,
+      shop: publicBillingShopView(result.shop),
       subscription: result.subscription,
       source: result.source
     });

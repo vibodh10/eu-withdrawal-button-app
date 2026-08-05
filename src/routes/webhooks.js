@@ -106,7 +106,15 @@ webhookRouter.post('/gdpr', async (req, res) => {
 
 // CUSTOMER DATA DELETE
 webhookRouter.post('/customers/redact', async (req, res) => {
-  try {
+    const shopDomain =
+        req.headers["x-shopify-shop-domain"];
+
+    const shop = await prisma.shop.findUnique({
+        where: { shopDomain },
+        select: { id: true },
+    });
+
+    try {
     if (!requireValidWebhook(req, res)) return;
 
     const body = parseWebhookBody(req);
@@ -114,7 +122,10 @@ webhookRouter.post('/customers/redact', async (req, res) => {
 
     if (customerEmail) {
       await prisma.withdrawalRequest.deleteMany({
-        where: { customerEmail }
+          where: {
+              shopId: shop.id,
+              customerEmail,
+          }
       });
     }
 
@@ -155,7 +166,15 @@ webhookRouter.post('/shop/redact', async (req, res) => {
 
 // CUSTOMER DATA REQUEST / EXPORT
 webhookRouter.post('/customers/data_request', async (req, res) => {
-  try {
+    const shopDomain =
+        req.headers["x-shopify-shop-domain"];
+
+    const shop = await prisma.shop.findUnique({
+        where: { shopDomain },
+        select: { id: true },
+    });
+
+    try {
     if (!requireValidWebhook(req, res)) return;
 
     const body = parseWebhookBody(req);
@@ -165,7 +184,10 @@ webhookRouter.post('/customers/data_request', async (req, res) => {
 
     if (customerEmail) {
       data = await prisma.withdrawalRequest.findMany({
-        where: { customerEmail }
+          where: {
+              shopId: shop.id,
+              customerEmail,
+          }
       });
     }
 

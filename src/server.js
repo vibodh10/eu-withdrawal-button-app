@@ -259,58 +259,6 @@ app.get("/auth/callback", async (req, res) => {
     }
 });
 
-// 🔐 ENSURE SHOP IS AUTHENTICATED (ADMIN ROUTES ONLY)
-app.use("/admin", async (req, res, next) => {
-    try {
-        const shop = normalizeShopDomain(
-            req.query.shop
-        );
-
-        if (!shop) {
-            return res.status(401).json({
-                message: "Missing or invalid shop parameter"
-            });
-        }
-
-        if (isShopBlocked(shop)) {
-            return res.status(403).json({
-                message: "Access suspended"
-            });
-        }
-
-        const existing =
-            await prisma.shop.findUnique({
-                where: {
-                    shopDomain: shop
-                }
-            });
-
-        if (existing?.uninstalledAt) {
-            return res.status(403).json({
-                message: "Access suspended"
-            });
-        }
-
-        if (!existing?.accessToken) {
-            return res.status(401).json({
-                redirectTo:
-                    `/auth?shop=${encodeURIComponent(shop)}`
-            });
-        }
-
-        next();
-    } catch (error) {
-        console.error(
-            "Admin authentication check failed:",
-            error
-        );
-
-        return res.status(500).json({
-            message: "Authentication check failed"
-        });
-    }
-});
-
 //
 // 🚀 ROUTES
 //

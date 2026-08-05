@@ -27,8 +27,6 @@ export async function exchangeOfflineToken({ shop, oldAccessToken }) {
 
     const data = await res.json();
 
-    console.log("TOKEN EXCHANGE RESPONSE", data);
-
     if (!res.ok) {
         throw new Error(
             data.error_description || data.error || "Token exchange failed"
