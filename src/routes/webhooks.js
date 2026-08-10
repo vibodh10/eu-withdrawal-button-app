@@ -5,6 +5,9 @@ import {
   verifyWebhookHmac,
   getShopHandleFromDomain
 } from '../lib/shopify.js';
+import {
+    recordDataAccess
+} from "../lib/dataAccessAudit.js";
 
 export const webhookRouter = express.Router();
 
@@ -105,95 +108,266 @@ webhookRouter.post('/gdpr', async (req, res) => {
 });
 
 // CUSTOMER DATA DELETE
-webhookRouter.post('/customers/redact', async (req, res) => {
-    const shopDomain =
-        req.headers["x-shopify-shop-domain"];
+webhookRouter.post(
+    "/customers/redact",
+    async (req, res) => {
+        try {
+            // Verify Shopify FIRST.
+            if (!requireValidWebhook(req, res)) {
+                return;
+            }
 
-    const shop = await prisma.shop.findUnique({
-        where: { shopDomain },
-        select: { id: true },
-    });
+            const shopDomain =
+                req.headers["x-shopify-shop-domain"];
 
-    try {
-    if (!requireValidWebhook(req, res)) return;
+            if (!shopDomain) {
+                return res.status(200).send("ok");
+            }
 
-    const body = parseWebhookBody(req);
-    const customerEmail = body?.customer?.email;
+            const shop =
+                await prisma.shop.findUnique({
+                    where: {
+                        shopDomain,
+                    },
+                    select: {
+                        id: true,
+                    },
+                });
 
-    if (customerEmail) {
-      await prisma.withdrawalRequest.deleteMany({
-          where: {
-              shopId: shop.id,
-              customerEmail,
-          }
-      });
+            if (!shop) {
+                return res.status(200).send("ok");
+            }
+
+            const body =
+                parseWebhookBody(req);
+
+            const customerEmail =
+                String(
+                    body?.customer?.email || ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+            await prisma.$transaction(
+                async (tx) => {
+                    let deletedCount = 0;
+
+                    if (customerEmail) {
+                        const result =
+                            await tx.withdrawalRequest
+                                .deleteMany({
+                                    where: {
+                                        shopId: shop.id,
+                                        customerEmail,
+                                    },
+                                });
+
+                        deletedCount =
+                            result.count;
+                    }
+
+                    await recordDataAccess({
+                        db: tx,
+                        shopId: shop.id,
+                        action:
+                            "CUSTOMER_DATA_REDACTED",
+                        recordCount:
+                        deletedCount,
+                        actorType:
+                            "SHOPIFY_WEBHOOK",
+                        reason:
+                            "Verified Shopify customers/redact webhook",
+                    });
+                }
+            );
+
+            return res
+                .status(200)
+                .send("ok");
+        } catch (err) {
+            logWebhookError(
+                "/customers/redact",
+                err
+            );
+
+            return res
+                .status(200)
+                .send("ok");
+        }
     }
-
-    res.status(200).send('ok');
-  } catch (err) {
-    logWebhookError('/customers/redact', err);
-    res.status(200).send('ok');
-  }
-});
+);
 
 // SHOP DATA DELETE / GDPR FULL WIPE
-webhookRouter.post('/shop/redact', async (req, res) => {
-  try {
-    if (!requireValidWebhook(req, res)) return;
+webhookRouter.post(
+    "/shop/redact",
+    async (req, res) => {
+        try {
+            if (!requireValidWebhook(req, res)) {
+                return;
+            }
 
-    const shopDomain = req.headers['x-shopify-shop-domain'];
+            const shopDomain =
+                req.headers["x-shopify-shop-domain"];
 
-    if (shopDomain) {
-      await prisma.withdrawalRequest.deleteMany({
-        where: {
-          shop: {
-            shopDomain
-          }
+            if (!shopDomain) {
+                return res
+                    .status(200)
+                    .send("ok");
+            }
+
+            await prisma.$transaction(
+                async (tx) => {
+                    const shop =
+                        await tx.shop.findUnique({
+                            where: {
+                                shopDomain,
+                            },
+                            select: {
+                                id: true,
+                            },
+                        });
+
+                    if (!shop) {
+                        return;
+                    }
+
+                    const deleted =
+                        await tx.withdrawalRequest
+                            .deleteMany({
+                                where: {
+                                    shopId: shop.id,
+                                },
+                            });
+
+                    await recordDataAccess({
+                        db: tx,
+                        shopId: shop.id,
+                        action:
+                            "SHOP_DATA_REDACTED",
+                        recordId:
+                        shop.id,
+                        recordCount:
+                        deleted.count,
+                        actorType:
+                            "SHOPIFY_WEBHOOK",
+                        reason:
+                            "Verified Shopify shop/redact webhook",
+                    });
+
+                    await tx.shop.delete({
+                        where: {
+                            id: shop.id,
+                        },
+                    });
+                }
+            );
+
+            return res
+                .status(200)
+                .send("ok");
+        } catch (err) {
+            logWebhookError(
+                "/shop/redact",
+                err
+            );
+
+            return res
+                .status(200)
+                .send("ok");
         }
-      });
-
-      await prisma.shop.deleteMany({
-        where: { shopDomain }
-      });
     }
+);
 
-    res.status(200).send('ok');
-  } catch (err) {
-    logWebhookError('/shop/redact', err);
-    res.status(200).send('ok');
-  }
-});
+// CUSTOMER DATA REQUEST
+webhookRouter.post(
+    "/customers/data_request",
+    async (req, res) => {
+        try {
+            // Verify Shopify FIRST.
+            if (!requireValidWebhook(req, res)) {
+                return;
+            }
 
-// CUSTOMER DATA REQUEST / EXPORT
-webhookRouter.post('/customers/data_request', async (req, res) => {
-    const shopDomain =
-        req.headers["x-shopify-shop-domain"];
+            const shopDomain =
+                req.headers["x-shopify-shop-domain"];
 
-    const shop = await prisma.shop.findUnique({
-        where: { shopDomain },
-        select: { id: true },
-    });
+            if (!shopDomain) {
+                return res
+                    .status(200)
+                    .json({ data: [] });
+            }
 
-    try {
-    if (!requireValidWebhook(req, res)) return;
+            const shop =
+                await prisma.shop.findUnique({
+                    where: {
+                        shopDomain,
+                    },
+                    select: {
+                        id: true,
+                    },
+                });
 
-    const body = parseWebhookBody(req);
-    const customerEmail = body?.customer?.email;
+            if (!shop) {
+                return res
+                    .status(200)
+                    .json({ data: [] });
+            }
 
-    let data = [];
+            const body =
+                parseWebhookBody(req);
 
-    if (customerEmail) {
-      data = await prisma.withdrawalRequest.findMany({
-          where: {
-              shopId: shop.id,
-              customerEmail,
-          }
-      });
+            const customerEmail =
+                String(
+                    body?.customer?.email || ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+            const data =
+                await prisma.$transaction(
+                    async (tx) => {
+                        let rows = [];
+
+                        if (customerEmail) {
+                            rows =
+                                await tx.withdrawalRequest
+                                    .findMany({
+                                        where: {
+                                            shopId: shop.id,
+                                            customerEmail,
+                                        },
+                                    });
+                        }
+
+                        await recordDataAccess({
+                            db: tx,
+                            shopId: shop.id,
+                            action:
+                                "CUSTOMER_DATA_REQUESTED",
+                            recordCount:
+                            rows.length,
+                            actorType:
+                                "SHOPIFY_WEBHOOK",
+                            reason:
+                                "Verified Shopify customers/data_request webhook",
+                        });
+
+                        return rows;
+                    }
+                );
+
+            return res
+                .status(200)
+                .json({ data });
+        } catch (err) {
+            logWebhookError(
+                "/customers/data_request",
+                err
+            );
+
+            return res
+                .status(200)
+                .json({ data: [] });
+        }
     }
-
-    res.status(200).json({ data });
-  } catch (err) {
-    logWebhookError('/customers/data_request', err);
-    res.status(200).json({ data: [] });
-  }
-});
+);

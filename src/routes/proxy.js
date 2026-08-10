@@ -141,6 +141,19 @@ proxyRouter.post(
                     }
                 );
 
+                // When retrieving customer email, add:
+                //await recordDataAccess({
+                //   shopId: shop.id,
+                //   action:
+                //     "SHOPIFY_CUSTOMER_DATA_READ",
+                //   recordId:
+                //     withdrawalRequest.id,
+                //   actorType:
+                //     "SYSTEM",
+                //   reason:
+                //     "Order ownership verification",
+                // });
+
                 const possibleOrders =
                     response?.data?.orders?.nodes ?? [];
 
