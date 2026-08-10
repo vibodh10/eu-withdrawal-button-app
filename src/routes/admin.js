@@ -9,6 +9,7 @@ import {buildConfirmationEmail} from "../lib/email.js";
 import { encryptSecret } from "../lib/encryption.js";
 import { verifyMerchantSmtp } from "../lib/merchantEmail.js";
 import { Resend } from "resend";
+import { recordDataAccess } from "../lib/dataAccessAudit.js";
 
 export const adminRouter = express.Router();
 const resend =
@@ -119,6 +120,13 @@ adminRouter.get('/requests', async (req, res) => {
     where: { shopId: shop.id },
     orderBy: { createdAt: 'desc' },
     take: Number(req.query.limit || 100)
+  });
+
+  await recordDataAccess({
+    shopId: shop.id,
+    action: "WITHDRAWAL_LIST_VIEWED",
+    recordCount: requests.length,
+    actorType: "MERCHANT_ADMIN",
   });
 
   res.json({ requests });
