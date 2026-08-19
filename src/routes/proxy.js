@@ -6,6 +6,9 @@ import { verifyAppProxy } from "../middleware/verifyAppProxy.js";
 import { getValidOfflineToken } from "../lib/offlineTokens.js";
 import { shopify } from "../lib/shopify.js";
 import { prisma } from "../lib/db.js";
+import {
+    recordDataAccess
+} from "../lib/dataAccessAudit.js";
 
 export const proxyRouter = express.Router();
 
@@ -26,6 +29,13 @@ function normalizeOrderNumber(value) {
 
 function isValidEmail(value) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function orderVerificationFailed(res) {
+    return res.status(422).json({
+        error:
+            "We could not verify the order details provided. Check the order number and email address and try again.",
+    });
 }
 
 proxyRouter.post(
@@ -120,18 +130,19 @@ proxyRouter.post(
 
                 const response = await client.request(
                     `
-            query VerifyOrder($query: String!) {
-              orders(first: 2, query: $query) {
-                nodes {
-                  id
-                  name
-                  createdAt
-                  cancelledAt
-                  test
-                }
-              }
-            }
-          `,
+                                query VerifyOrder($query: String!) {
+                                  orders(first: 2, query: $query) {
+                                    nodes {
+                                      id
+                                      name
+                                      createdAt
+                                      cancelledAt
+                                      test
+                                      email
+                                    }
+                                  }
+                                }
+                              `,
                     {
                         variables: {
                             query: `name:${JSON.stringify(
@@ -141,21 +152,13 @@ proxyRouter.post(
                     }
                 );
 
-                // When retrieving customer email, add:
-                //await recordDataAccess({
-                //   shopId: shop.id,
-                //   action:
-                //     "SHOPIFY_CUSTOMER_DATA_READ",
-                //   recordId:
-                //     withdrawalRequest.id,
-                //   actorType:
-                //     "SYSTEM",
-                //   reason:
-                //     "Order ownership verification",
-                // });
-
                 const possibleOrders =
                     response?.data?.orders?.nodes ?? [];
+
+                /*
+ * Access to Order.email is protected customer data.
+ * Record every successful retrieval before using it.
+ */
 
                 const foundOrder =
                     possibleOrders.find((candidate) => {
@@ -174,11 +177,46 @@ proxyRouter.post(
                     foundOrder.test === true ||
                     foundOrder.cancelledAt
                 ) {
-                    return res.status(422).json({
-                        error:
-                            "We could not verify the order number provided.",
-                    });
+                    return orderVerificationFailed(res);
                 }
+
+                const shopifyOrderEmail =
+                    normalizeEmail(foundOrder.email);
+
+                if (
+                    !shopifyOrderEmail ||
+                    !isValidEmail(shopifyOrderEmail)
+                ) {
+                    return orderVerificationFailed(res);
+                }
+
+                /*
+                 * The submitted email MUST exactly match
+                 * the email Shopify has for this order.
+                 *
+                 * We only normalise case and surrounding
+                 * whitespace. Do not perform Gmail-specific
+                 * '+' or '.' transformations.
+                 */
+                if (
+                    cleanCustomerEmail !==
+                    shopifyOrderEmail
+                ) {
+                    return orderVerificationFailed(res);
+                }
+
+                await recordDataAccess({
+                    shopId: shop.id,
+                    action:
+                        "SHOPIFY_CUSTOMER_DATA_READ",
+                    recordId:
+                    foundOrder.id,
+                    recordCount: 1,
+                    actorType:
+                        "SYSTEM",
+                    reason:
+                        "Withdrawal order ownership verification",
+                });
 
                 order = foundOrder;
 
@@ -200,17 +238,19 @@ proxyRouter.post(
                     86_400_000;
 
                 const withdrawalDays =
-                    shop.withdrawalDays || 14;
+                    shop.plan === "PRO"
+                        ? shop.withdrawalDays || 14
+                        : 14;
 
                 /*
-                 * The order exists, but ownership of the submitted
-                 * email cannot be verified until Shopify grants
-                 * protected access to the Order.email field.
-                 */
+ * The submitted email has been verified
+ * against Shopify Order.email before this
+ * record is created.
+ */
                 verificationStatus =
                     diffDays > withdrawalDays
                         ? "EXPIRED"
-                        : "UNVERIFIED";
+                        : "VERIFIED";
             } catch (error) {
                 console.error(
                     "Shopify order verification failed:",
@@ -288,7 +328,10 @@ proxyRouter.post(
                                         true,
 
                                     customerEmailVerified:
-                                        false,
+                                        true,
+
+                                    verificationMethod:
+                                        "SHOPIFY_ORDER_EMAIL_MATCH",
 
                                     emailDeliveryDisabled:
                                         true,
@@ -353,7 +396,7 @@ proxyRouter.post(
                 status: requestRecord.status,
 
                 message:
-                    "Your request has been recorded. The merchant will verify the details and contact you directly.",
+                    "Your withdrawal request has been verified and recorded. The merchant will review the request and contact you if necessary.",
             });
         } catch (error) {
             console.error(
