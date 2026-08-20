@@ -1,4 +1,8 @@
 import { Resend } from "resend";
+import {
+    EmailDeliveryDisabledError,
+    guardedEmailDelivery,
+} from "./emailDeliveryGuard.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -8,15 +12,20 @@ export async function sendEmail({
                                     html,
                                     from = process.env.FROM_EMAIL,
                                     replyTo,
-                                }) {
+                                }, {
+                                    resendClient = resend,
+                                } = {}) {
     try {
-        const { data, error } = await resend.emails.send({
-            from,
-            to,
-            subject,
-            html,
-            ...(replyTo ? { replyTo } : {}),
-        });
+        const { data, error } =
+            await guardedEmailDelivery(
+                () => resendClient.emails.send({
+                    from,
+                    to,
+                    subject,
+                    html,
+                    ...(replyTo ? { replyTo } : {}),
+                })
+            );
 
         if (error) {
             throw new Error(
@@ -30,6 +39,10 @@ export async function sendEmail({
 
         return data;
     } catch (error) {
+        if (error instanceof EmailDeliveryDisabledError) {
+            throw error;
+        }
+
         console.error("Email failed:", error);
         throw error;
     }

@@ -8,6 +8,11 @@ import {
     resolvePublicSmtpDestination,
     SmtpSecurityError,
 } from "./smtpSecurity.js";
+import {
+    assertEmailDeliveryEnabled,
+    EmailDeliveryDisabledError,
+    guardedEmailDelivery,
+} from "./emailDeliveryGuard.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -121,7 +126,10 @@ export async function sendCustomerConfirmation({
                                                    to,
                                                    subject,
                                                    html,
-                                               }) {
+                                               }, {
+                                                   resendClient = resend,
+                                                   smtpTransportOptions,
+                                               } = {}) {
     const merchantName =
         shop.brandingName ||
         shop.shopDomain ||
@@ -150,16 +158,18 @@ export async function sendCustomerConfirmation({
                 merchantName;
 
             const { data, error } =
-                await resend.emails.send({
-                    from:
-                        `${fromName} ` +
-                        `<${shop.resendFromEmail}>`,
-                    to,
-                    subject,
-                    html,
-                    replyTo:
-                    merchantReplyTo,
-                });
+                await guardedEmailDelivery(
+                    () => resendClient.emails.send({
+                        from:
+                            `${fromName} ` +
+                            `<${shop.resendFromEmail}>`,
+                        to,
+                        subject,
+                        html,
+                        replyTo:
+                        merchantReplyTo,
+                    })
+                );
 
             if (error) {
                 throw new Error(
@@ -170,6 +180,10 @@ export async function sendCustomerConfirmation({
 
             return data;
         } catch (error) {
+            if (error instanceof EmailDeliveryDisabledError) {
+                throw error;
+            }
+
             console.error(
                 "Verified Resend-domain delivery failed:",
                 {
@@ -195,8 +209,16 @@ export async function sendCustomerConfirmation({
         shop.smtpVerifiedAt
     ) {
         try {
+            // Avoid DNS and transport preparation while disabled. The guard
+            // is checked again immediately before sendMail because the switch
+            // can change while a queued/retried operation is preparing.
+            assertEmailDeliveryEnabled();
+
             const transporter =
-                await buildMerchantTransport(shop);
+                await buildMerchantTransport(
+                    shop,
+                    smtpTransportOptions
+                );
 
             const fromEmail =
                 shop.smtpFromEmail ||
@@ -206,16 +228,22 @@ export async function sendCustomerConfirmation({
                 shop.smtpFromName ||
                 merchantName;
 
-            return await transporter.sendMail({
-                from:
-                    `"${fromName}" <${fromEmail}>`,
-                to,
-                subject,
-                html,
-                replyTo:
-                merchantReplyTo,
-            });
+            return await guardedEmailDelivery(
+                () => transporter.sendMail({
+                    from:
+                        `"${fromName}" <${fromEmail}>`,
+                    to,
+                    subject,
+                    html,
+                    replyTo:
+                    merchantReplyTo,
+                })
+            );
         } catch (error) {
+            if (error instanceof EmailDeliveryDisabledError) {
+                throw error;
+            }
+
             console.error(
                 "Merchant SMTP delivery failed:",
                 {
