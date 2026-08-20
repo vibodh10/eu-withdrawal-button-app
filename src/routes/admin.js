@@ -12,6 +12,12 @@ import { Resend } from "resend";
 import {
     recordDataAccess
 } from "../lib/dataAccessAudit.js";
+import { isShopBlocked } from "../lib/blockedShops.js";
+import {
+    isAllowedSmtpPort,
+    smtpVerificationLimiter,
+    SmtpVerificationLimitError,
+} from "../lib/smtpSecurity.js";
 
 export const adminRouter = express.Router();
 const resend =
@@ -990,13 +996,11 @@ adminRouter.patch("/smtp", async (req, res) => {
       }
 
       if (
-          !Number.isInteger(port) ||
-          port < 1 ||
-          port > 65535
+          !isAllowedSmtpPort(port)
       ) {
         return res.status(400).json({
           error:
-              "Enter a valid SMTP port.",
+              "SMTP verification is limited to ports 465 and 587.",
         });
       }
 
@@ -1099,6 +1103,8 @@ adminRouter.patch("/smtp", async (req, res) => {
 adminRouter.post(
     "/smtp/test",
     async (req, res) => {
+      let releaseVerificationSlot = null;
+
       try {
         const shop = req.shop;
 
@@ -1122,6 +1128,22 @@ adminRouter.post(
           });
         }
 
+        if (
+            latestShop.uninstalledAt ||
+            isShopBlocked(latestShop.shopDomain)
+        ) {
+          return res.status(403).json({
+            error: "Store access unavailable.",
+          });
+        }
+
+        if (!isPro(latestShop)) {
+          return res.status(403).json({
+            error:
+                "Custom SMTP is available on the Pro plan.",
+          });
+        }
+
         if (!latestShop.smtpEnabled) {
           return res.status(400).json({
             error:
@@ -1129,19 +1151,76 @@ adminRouter.post(
           });
         }
 
+        if (!isAllowedSmtpPort(latestShop.smtpPort)) {
+          await prisma.shop.update({
+            where: {
+              id: latestShop.id,
+            },
+            data: {
+              smtpVerifiedAt: null,
+              smtpLastError:
+                  "SMTP port must be 465 or 587.",
+            },
+          });
+
+          return res.status(400).json({
+            error:
+                "SMTP verification is limited to ports 465 and 587.",
+          });
+        }
+
+        releaseVerificationSlot =
+            smtpVerificationLimiter.acquire(
+                latestShop.shopDomain
+            );
+
         await verifyMerchantSmtp(
             latestShop
         );
 
-        const updated =
-            await prisma.shop.update({
+        if (isShopBlocked(latestShop.shopDomain)) {
+          return res.status(403).json({
+            error: "Store access unavailable.",
+          });
+        }
+
+        /*
+         * Mark only the exact configuration that was tested. A concurrent
+         * settings update must not inherit verification from stale values.
+         */
+        const verified =
+            await prisma.shop.updateMany({
               where: {
                 id: latestShop.id,
+                uninstalledAt: null,
+                smtpEnabled: true,
+                smtpHost: latestShop.smtpHost,
+                smtpPort: latestShop.smtpPort,
+                smtpSecure: latestShop.smtpSecure,
+                smtpUsername: latestShop.smtpUsername,
+                smtpPasswordEncrypted:
+                    latestShop.smtpPasswordEncrypted,
+                smtpFromName: latestShop.smtpFromName,
+                smtpFromEmail: latestShop.smtpFromEmail,
               },
               data: {
                 smtpVerifiedAt:
                     new Date(),
                 smtpLastError: null,
+              },
+            });
+
+        if (verified.count !== 1) {
+          return res.status(409).json({
+            error:
+                "SMTP settings changed during verification. Test the current settings again.",
+          });
+        }
+
+        const updated =
+            await prisma.shop.findUnique({
+              where: {
+                id: latestShop.id,
               },
             });
 
@@ -1153,6 +1232,20 @@ adminRouter.post(
               publicSmtpSettings(updated),
         });
       } catch (error) {
+        if (
+            error instanceof
+            SmtpVerificationLimitError
+        ) {
+          res.setHeader(
+              "Retry-After",
+              String(error.retryAfterSeconds)
+          );
+
+          return res.status(429).json({
+            error: error.message,
+          });
+        }
+
         console.error(
             "SMTP verification failed:",
             {
@@ -1180,6 +1273,8 @@ adminRouter.post(
           error:
               "Could not connect to the SMTP server. Check the host, port, security option and credentials.",
         });
+      } finally {
+        releaseVerificationSlot?.();
       }
     }
 );

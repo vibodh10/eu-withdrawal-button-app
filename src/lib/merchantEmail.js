@@ -3,10 +3,22 @@ import { Resend } from "resend";
 
 import { decryptSecret } from "./encryption.js";
 import { sendEmail as sendGl6Email } from "./email.js";
+import {
+    isAllowedSmtpPort,
+    resolvePublicSmtpDestination,
+    SmtpSecurityError,
+} from "./smtpSecurity.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-function buildMerchantTransport(shop) {
+async function buildMerchantTransport(
+    shop,
+    {
+        lookup,
+        transportFactory = nodemailer.createTransport,
+        passwordResolver = decryptSecret,
+    } = {}
+) {
     if (
         !shop.smtpHost ||
         !shop.smtpPort ||
@@ -18,14 +30,29 @@ function buildMerchantTransport(shop) {
 
     const port = Number(shop.smtpPort);
 
-    return nodemailer.createTransport({
-        host: shop.smtpHost,
+    if (!isAllowedSmtpPort(port)) {
+        throw new SmtpSecurityError(
+            "SMTP_PORT_REJECTED",
+            "SMTP port is not allowed."
+        );
+    }
+
+    const destination =
+        await resolvePublicSmtpDestination(
+            shop.smtpHost,
+            lookup ? { lookup } : undefined
+        );
+
+    const transportOptions = {
+        // Connect to the already-resolved and validated address so a
+        // second DNS lookup cannot redirect the socket internally.
+        host: destination.address,
         port,
         secure: Boolean(shop.smtpSecure),
 
         auth: {
             user: shop.smtpUsername,
-            pass: decryptSecret(
+            pass: passwordResolver(
                 shop.smtpPasswordEncrypted
             ),
         },
@@ -34,17 +61,57 @@ function buildMerchantTransport(shop) {
             !shop.smtpSecure &&
             port === 587,
 
-        connectionTimeout: 15_000,
-        greetingTimeout: 15_000,
-        socketTimeout: 30_000,
-    });
+        connectionTimeout: 5_000,
+        greetingTimeout: 5_000,
+        socketTimeout: 10_000,
+    };
+
+    if (destination.servername) {
+        transportOptions.tls = {
+            // Preserve certificate hostname validation while connecting
+            // directly to the pinned public IP address.
+            servername: destination.servername,
+        };
+    }
+
+    return transportFactory(transportOptions);
 }
 
-export async function verifyMerchantSmtp(shop) {
+export async function verifyMerchantSmtp(
+    shop,
+    {
+        verificationTimeoutMs = 10_000,
+        ...transportOptions
+    } = {}
+) {
     const transporter =
-        buildMerchantTransport(shop);
+        await buildMerchantTransport(
+            shop,
+            transportOptions
+        );
 
-    await transporter.verify();
+    let timeout;
+
+    try {
+        await Promise.race([
+            transporter.verify(),
+            new Promise((_, reject) => {
+                timeout = setTimeout(() => {
+                    reject(
+                        new SmtpSecurityError(
+                            "SMTP_VERIFICATION_TIMEOUT",
+                            "SMTP verification timed out."
+                        )
+                    );
+                }, verificationTimeoutMs);
+
+                timeout.unref?.();
+            }),
+        ]);
+    } finally {
+        clearTimeout(timeout);
+        transporter.close?.();
+    }
 
     return true;
 }
@@ -129,7 +196,7 @@ export async function sendCustomerConfirmation({
     ) {
         try {
             const transporter =
-                buildMerchantTransport(shop);
+                await buildMerchantTransport(shop);
 
             const fromEmail =
                 shop.smtpFromEmail ||
