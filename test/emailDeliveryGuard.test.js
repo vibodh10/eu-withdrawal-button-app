@@ -7,6 +7,8 @@ import {
 } from "../src/lib/emailDeliveryGuard.js";
 
 process.env.RESEND_API_KEY ||= "re_test_email_delivery_guard";
+process.env.ABUSE_HASH_SECRET ||=
+    "test-only-abuse-hash-secret-32-characters";
 
 const { sendEmail } = await import("../src/lib/email.js");
 const { sendCustomerConfirmation } = await import(
@@ -19,6 +21,16 @@ const message = {
     subject: "Test",
     html: "<p>Test</p>",
 };
+
+function createAllowingProtection() {
+    return {
+        acquireEmail: async () => "test-lease",
+        release: async () => {},
+        recordEmailDecision: async () => {},
+    };
+}
+
+const protection = createAllowingProtection();
 
 const resendShop = {
     id: "shop-resend",
@@ -111,6 +123,7 @@ test("shared Resend delivery cannot send when the switch is missing, disabled or
             await assert.rejects(
                 sendEmail(message, {
                     resendClient,
+                    protection,
                 }),
                 isDisabledError
             );
@@ -133,6 +146,7 @@ test("merchant-domain Resend delivery is blocked at its provider boundary", asyn
                     html: message.html,
                 },
                 {
+                    protection,
                     resendClient: {
                         emails: {
                             send: async () => {
@@ -168,6 +182,7 @@ test("SMTP delivery is blocked before DNS or transport preparation when disabled
                     html: message.html,
                 },
                 {
+                    protection,
                     smtpTransportOptions: {
                         lookup: async () => {
                             lookups += 1;
@@ -207,6 +222,7 @@ test("SMTP rechecks the switch after asynchronous preparation", async () => {
                     html: message.html,
                 },
                 {
+                    protection,
                     smtpTransportOptions: {
                         lookup: async () => {
                             process.env.EMAIL_DELIVERY_ENABLED = "false";
@@ -242,6 +258,7 @@ test("a queued delivery observes the switch value at execution time", async () =
     await withEmailDeliverySwitch("true", async () => {
         const queuedDelivery = () => sendEmail(message, {
             resendClient,
+            protection,
         });
 
         process.env.EMAIL_DELIVERY_ENABLED = "false";
@@ -264,6 +281,7 @@ test("a retry is stopped when the switch changes after the first attempt", async
     await withEmailDeliverySwitch("true", async () => {
         const attempt = () => sendEmail(message, {
             resendClient,
+            protection,
         });
 
         await assert.rejects(attempt(), /provider unavailable/);
@@ -276,12 +294,49 @@ test("a retry is stopped when the switch changes after the first attempt", async
     assert.equal(sends, 1);
 });
 
+test("a resolved Resend error is recorded as failed, never sent", async () => {
+    const statuses = [];
+    const trackingProtection = {
+        acquireEmail: async () => "tracking-lease",
+        release: async () => {},
+        recordEmailDecision: async (decision) => {
+            statuses.push(decision.status);
+        },
+    };
+
+    await withEmailDeliverySwitch("true", async () => {
+        await assert.rejects(
+            sendEmail(message, {
+                protection: trackingProtection,
+                deliveryContext: {
+                    shopDomain: "resend-error.myshopify.com",
+                },
+                resendClient: {
+                    emails: {
+                        send: async () => ({
+                            data: null,
+                            error: { message: "provider rejected" },
+                        }),
+                    },
+                },
+            }),
+            /provider rejected/
+        );
+    });
+
+    assert.deepEqual(statuses, ["IN_PROGRESS", "FAILED"]);
+});
+
 test("the guard permits fake Resend and SMTP transports only when explicitly enabled", async () => {
     let resendSends = 0;
     let smtpSends = 0;
 
     await withEmailDeliverySwitch("true", async () => {
         await sendEmail(message, {
+            protection,
+            deliveryContext: {
+                shopDomain: "shared-email.myshopify.com",
+            },
             resendClient: {
                 emails: {
                     send: async () => {
@@ -300,6 +355,7 @@ test("the guard permits fake Resend and SMTP transports only when explicitly ena
                 html: message.html,
             },
             {
+                protection,
                 smtpTransportOptions: {
                     lookup: async () => [
                         { address: "93.184.216.34", family: 4 },

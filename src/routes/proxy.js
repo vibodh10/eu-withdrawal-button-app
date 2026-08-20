@@ -1,5 +1,4 @@
 import express from "express";
-import crypto from "node:crypto";
 import { nanoid } from "nanoid";
 
 import { verifyAppProxy } from "../middleware/verifyAppProxy.js";
@@ -9,6 +8,14 @@ import { prisma } from "../lib/db.js";
 import {
     recordDataAccess
 } from "../lib/dataAccessAudit.js";
+import {
+    abuseProtection,
+    isAbuseProtectionError,
+} from "../lib/abuseProtection.js";
+import {
+    buildWithdrawalSubmissionKey,
+    findExistingWithdrawalRequest,
+} from "../lib/withdrawalIdempotency.js";
 
 export const proxyRouter = express.Router();
 
@@ -41,6 +48,7 @@ function orderVerificationFailed(res) {
 proxyRouter.post(
     "/withdrawal-request",
     async (req, res) => {
+        let submissionLeaseId = null;
         try {
             const {
                 customerEmail,
@@ -91,6 +99,38 @@ proxyRouter.post(
                 });
             }
 
+            try {
+                // This durable reservation is intentionally before token
+                // refresh, shop/duplicate lookup, Shopify GraphQL, and writes.
+                // Replays consume budget too; idempotency is not a substitute
+                // for abuse control.
+                submissionLeaseId =
+                    await abuseProtection.acquireSubmission({
+                        // Set only by successful app-proxy verification.
+                        shopDomain: req.shopDomain,
+                        recipient: cleanCustomerEmail,
+                    });
+            } catch (error) {
+                if (
+                    isAbuseProtectionError(error) &&
+                    [
+                        "ABUSE_RATE_LIMITED",
+                        "ABUSE_CONCURRENCY_LIMITED",
+                    ].includes(error.code)
+                ) {
+                    res.set(
+                        "Retry-After",
+                        String(error.retryAfterSeconds)
+                    );
+                    return res.status(429).json({
+                        error:
+                            "Too many withdrawal requests. Please try again later.",
+                        code: error.code,
+                    });
+                }
+                throw error;
+            }
+
             const shop =
                 await prisma.shop.findUnique({
                     where: {
@@ -102,6 +142,29 @@ proxyRouter.post(
             if (!shop || shop.uninstalledAt) {
                 return res.status(404).json({
                     error: "Shop is not installed.",
+                });
+            }
+
+            // This shortcut requires both the order number and the email from
+            // the already verified record, so it does not expose order
+            // existence based on a guessed order number alone. The unique key
+            // below remains authoritative for concurrent races.
+            const existingRequest =
+                await findExistingWithdrawalRequest(
+                    prisma,
+                    shop.id,
+                    cleanOrderNumber,
+                    cleanCustomerEmail
+                );
+
+            if (existingRequest) {
+                return res.status(200).json({
+                    ok: true,
+                    reference: existingRequest.publicReference,
+                    status: existingRequest.status,
+                    duplicate: true,
+                    message:
+                        "A withdrawal request for this order has already been recorded.",
                 });
             }
 
@@ -270,10 +333,11 @@ proxyRouter.post(
              * Temporary duplicate protection:
              * one recorded request per shop and Shopify order.
              */
-            const submissionKey = crypto
-                .createHash("sha256")
-                .update(`${shop.id}:${order.id}`)
-                .digest("hex");
+            const submissionKey =
+                buildWithdrawalSubmissionKey(
+                    shop.shopDomain,
+                    order.id
+                );
 
             const publicReference =
                 `WD-${nanoid(10).toUpperCase()}`;
@@ -422,6 +486,17 @@ proxyRouter.post(
                         ? "Temporary server issue. Please try again in a few minutes."
                         : "Could not create withdrawal request.",
                 });
+        } finally {
+            if (submissionLeaseId) {
+                try {
+                    await abuseProtection.release(submissionLeaseId);
+                } catch (error) {
+                    console.error(
+                        "Withdrawal concurrency lease release failed:",
+                        { message: error?.message }
+                    );
+                }
+            }
         }
     }
 );

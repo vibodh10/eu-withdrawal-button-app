@@ -121,3 +121,48 @@ model DataAccessAudit {
   @@index([shopId, createdAt])
   @@index([action, createdAt])
 }
+
+// Abuse-control records intentionally have no Shop foreign key. A merchant
+// uninstall/reinstall must not erase or reset shop-domain quotas.
+model AbuseCounter {
+  id            String   @id @default(cuid())
+  category      String
+  scope         String
+  scopeKey      String
+  windowStart   DateTime
+  windowSeconds Int
+  count         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([category, scope, scopeKey, windowStart])
+  @@index([category, updatedAt])
+}
+
+model AbuseConcurrencyLease {
+  id        String   @id @default(cuid())
+  category  String
+  shopKey   String?
+  provider  String?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([category, expiresAt])
+  @@index([category, shopKey, expiresAt])
+  @@index([category, provider, expiresAt])
+}
+
+model EmailDeliveryDecision {
+  id                  String   @id @default(cuid())
+  withdrawalRequestId String?
+  shopDomain          String?
+  recipientHash       String?
+  provider            String?
+  status              String
+  reason              String?
+  createdAt           DateTime @default(now())
+
+  @@index([withdrawalRequestId, createdAt])
+  @@index([shopDomain, createdAt])
+  @@index([status, createdAt])
+}

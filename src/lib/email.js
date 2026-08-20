@@ -3,6 +3,10 @@ import {
     EmailDeliveryDisabledError,
     guardedEmailDelivery,
 } from "./emailDeliveryGuard.js";
+import {
+    abuseProtection,
+    executeProtectedEmail,
+} from "./abuseProtection.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -14,24 +18,37 @@ export async function sendEmail({
                                     replyTo,
                                 }, {
                                     resendClient = resend,
+                                    protection = abuseProtection,
+                                    deliveryContext = {},
                                 } = {}) {
     try {
-        const { data, error } =
-            await guardedEmailDelivery(
-                () => resendClient.emails.send({
-                    from,
-                    to,
-                    subject,
-                    html,
-                    ...(replyTo ? { replyTo } : {}),
-                })
-            );
-
-        if (error) {
-            throw new Error(
-                error.message || "Email delivery failed"
-            );
-        }
+        const data =
+            await executeProtectedEmail({
+                shopDomain: deliveryContext.shopDomain,
+                recipient: to,
+                provider: "GL6_RESEND",
+                withdrawalRequestId:
+                    deliveryContext.withdrawalRequestId,
+                protection,
+                deliveryOperation: async () => {
+                    const { data, error } =
+                        await guardedEmailDelivery(
+                            () => resendClient.emails.send({
+                            from,
+                            to,
+                            subject,
+                            html,
+                            ...(replyTo ? { replyTo } : {}),
+                            })
+                        );
+                    if (error) {
+                        throw new Error(
+                            error.message || "Email delivery failed"
+                        );
+                    }
+                    return data;
+                },
+            });
 
         console.log("Email sent", {
             providerId: data?.id ?? null,

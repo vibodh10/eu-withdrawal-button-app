@@ -13,6 +13,11 @@ import {
     EmailDeliveryDisabledError,
     guardedEmailDelivery,
 } from "./emailDeliveryGuard.js";
+import {
+    abuseProtection,
+    executeProtectedEmail,
+    isAbuseProtectionError,
+} from "./abuseProtection.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -126,9 +131,11 @@ export async function sendCustomerConfirmation({
                                                    to,
                                                    subject,
                                                    html,
+                                                   withdrawalRequestId,
                                                }, {
                                                    resendClient = resend,
                                                    smtpTransportOptions,
+                                                   protection = abuseProtection,
                                                } = {}) {
     const merchantName =
         shop.brandingName ||
@@ -157,30 +164,43 @@ export async function sendCustomerConfirmation({
                 shop.resendFromName ||
                 merchantName;
 
-            const { data, error } =
-                await guardedEmailDelivery(
-                    () => resendClient.emails.send({
-                        from:
-                            `${fromName} ` +
-                            `<${shop.resendFromEmail}>`,
-                        to,
-                        subject,
-                        html,
-                        replyTo:
-                        merchantReplyTo,
-                    })
-                );
-
-            if (error) {
-                throw new Error(
-                    error.message ||
-                    "Verified-domain email failed"
-                );
-            }
+            const data =
+                await executeProtectedEmail({
+                    shopDomain: shop.shopDomain,
+                    recipient: to,
+                    provider: "RESEND_DOMAIN",
+                    withdrawalRequestId,
+                    protection,
+                    deliveryOperation: async () => {
+                        const { data, error } =
+                            await guardedEmailDelivery(
+                                () => resendClient.emails.send({
+                                from:
+                                    `${fromName} ` +
+                                    `<${shop.resendFromEmail}>`,
+                                to,
+                                subject,
+                                html,
+                                replyTo:
+                                merchantReplyTo,
+                                })
+                            );
+                        if (error) {
+                            throw new Error(
+                                error.message ||
+                                "Verified-domain email failed"
+                            );
+                        }
+                        return data;
+                    },
+                });
 
             return data;
         } catch (error) {
             if (error instanceof EmailDeliveryDisabledError) {
+                throw error;
+            }
+            if (isAbuseProtectionError(error)) {
                 throw error;
             }
 
@@ -209,17 +229,6 @@ export async function sendCustomerConfirmation({
         shop.smtpVerifiedAt
     ) {
         try {
-            // Avoid DNS and transport preparation while disabled. The guard
-            // is checked again immediately before sendMail because the switch
-            // can change while a queued/retried operation is preparing.
-            assertEmailDeliveryEnabled();
-
-            const transporter =
-                await buildMerchantTransport(
-                    shop,
-                    smtpTransportOptions
-                );
-
             const fromEmail =
                 shop.smtpFromEmail ||
                 shop.smtpUsername;
@@ -228,19 +237,40 @@ export async function sendCustomerConfirmation({
                 shop.smtpFromName ||
                 merchantName;
 
-            return await guardedEmailDelivery(
-                () => transporter.sendMail({
-                    from:
-                        `"${fromName}" <${fromEmail}>`,
-                    to,
-                    subject,
-                    html,
-                    replyTo:
-                    merchantReplyTo,
-                })
-            );
+            return await executeProtectedEmail({
+                shopDomain: shop.shopDomain,
+                recipient: to,
+                provider: "SMTP",
+                withdrawalRequestId,
+                protection,
+                deliveryOperation: async () => {
+                    // The outer protection checks the kill switch and quotas
+                    // before DNS/decryption/transport setup. Recheck at the
+                    // actual send boundary in case the switch changes.
+                    assertEmailDeliveryEnabled();
+                    const transporter =
+                        await buildMerchantTransport(
+                            shop,
+                            smtpTransportOptions
+                        );
+                    return guardedEmailDelivery(
+                        () => transporter.sendMail({
+                            from:
+                                `"${fromName}" <${fromEmail}>`,
+                            to,
+                            subject,
+                            html,
+                            replyTo:
+                            merchantReplyTo,
+                        })
+                    );
+                },
+            });
         } catch (error) {
             if (error instanceof EmailDeliveryDisabledError) {
+                throw error;
+            }
+            if (isAbuseProtectionError(error)) {
                 throw error;
             }
 
@@ -273,5 +303,11 @@ export async function sendCustomerConfirmation({
             `<${process.env.FROM_EMAIL}>`,
         replyTo:
         merchantReplyTo,
+    }, {
+        protection,
+        deliveryContext: {
+            shopDomain: shop.shopDomain,
+            withdrawalRequestId,
+        },
     });
 }
