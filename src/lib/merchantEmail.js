@@ -263,18 +263,15 @@ export async function sendCustomerConfirmation({
      * Basic, unconfigured Pro,
      * or fallback after failure.
      */
-    // return sendGl6Email({
-    //     to,
-    //     subject,
-    //     html,
-    //     from:
-    //         `${merchantName} via GL6 ` +
-    //         `<${process.env.FROM_EMAIL}>`,
-    //     replyTo:
-    //     merchantReplyTo,
-    // });
 
-    throw new Error(
-        "Merchant email delivery is unavailable."
-    );
+    return sendGl6Email({
+        to,
+        subject,
+        html,
+        from:
+            `${merchantName} via GL6 ` +
+            `<${process.env.FROM_EMAIL}>`,
+        replyTo:
+        merchantReplyTo,
+    });
 }
