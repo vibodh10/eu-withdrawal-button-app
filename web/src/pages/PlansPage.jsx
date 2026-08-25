@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Page, Layout, Card, Text, Button, BlockStack, InlineStack } from "@shopify/polaris";
+import { Page, Layout, Card, Text, Button, BlockStack, InlineStack, Banner, Badge } from "@shopify/polaris";
 import { openManagedPricing } from "../api";
 import FeatureList from "../components/FeatureList.jsx";
 
 export default function PlansPage({ boot, onReload }) {
   const [state, setState] = useState({ working: false, error: "", message: "" });
   const plans = boot.plans;
+  const entitlement = boot.shop.entitlement;
 
   async function managePlan() {
 
@@ -42,13 +43,21 @@ export default function PlansPage({ boot, onReload }) {
 
           <Layout.Section>
             <InlineStack gap="400">
-              <Card>
-                <BlockStack>
-                  <Text variant="headingMd">Basic</Text>
-                  <Text>{plans.BASIC.priceLabel}</Text>
-                  <FeatureList items={plans.BASIC.features} />
-                </BlockStack>
-              </Card>
+              {entitlement?.isGrandfatheredFree && (
+                  <Card>
+                    <BlockStack gap="200">
+                      <InlineStack gap="200" blockAlign="center">
+                        <Text variant="headingMd">Grandfathered Free</Text>
+                        <Badge tone="success">Current</Badge>
+                      </InlineStack>
+                      <Text>Legacy entitlement — no charge</Text>
+                      <FeatureList items={plans.BASIC.features} />
+                      <Text tone="subdued">
+                        Upgrading permanently ends this legacy entitlement.
+                      </Text>
+                    </BlockStack>
+                  </Card>
+              )}
 
               <Card>
                 <BlockStack>
@@ -58,13 +67,23 @@ export default function PlansPage({ boot, onReload }) {
 
                   <InlineStack gap="200">
                     <Button variant="primary" onClick={managePlan} loading={state.working}>
-                      {boot.shop.plan === "PRO" ? "Manage plan" : "Upgrade to Pro"}
+                      {entitlement?.isPaid ? "Manage plan" : "Upgrade to Pro"}
                     </Button>
                   </InlineStack>
                 </BlockStack>
               </Card>
             </InlineStack>
           </Layout.Section>
+
+          {entitlement?.kind === "PAYMENT_REQUIRED" && (
+              <Layout.Section>
+                <Banner tone="warning" title="Choose a paid plan to use the app">
+                  <Text as="p">
+                    Free is no longer available to new or previously upgraded merchants.
+                  </Text>
+                </Banner>
+              </Layout.Section>
+          )}
 
         </Layout>
       </Page>

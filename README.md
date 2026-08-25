@@ -8,9 +8,12 @@ A hardened Shopify public app scaffold for an EU withdrawal button and withdrawa
 
 ## What changed in this hardening pass
 - switched billing flow from mock `appSubscriptionCreate` scaffolding to **Shopify Managed Pricing** routing
-- added managed pricing sync logic using `appInstallation.activeSubscriptions`
+- added Shopify App Pricing sync using Partner API `activeSubscription` and
+  historical events
+- added scheduled, rate-limited Partner reconciliation and a maximum age for
+  server-side paid entitlement
 - added `planHandle` support so Basic and Pro can be mapped reliably
-- added webhook signature verification for uninstall, GDPR, and `app_subscriptions/update`
+- added webhook signature verification for uninstall and GDPR
 - added session-token verification scaffolding for embedded admin requests
 - preserved dev header auth as an explicit local-only fallback
 - added billing sync endpoint and managed pricing UI actions
@@ -50,7 +53,8 @@ Copy `.env.example` to `.env` and update:
 4. Shopify handles charge approval.
 5. Shopify returns the merchant to your configured welcome link.
 6. The app calls `/billing/sync` and updates local plan access.
-7. `app_subscriptions/update` webhook keeps the database aligned when changes happen later.
+7. Partner API current state and historical events keep local entitlement state
+   aligned; redirect `plan_handle` is never trusted without confirmation.
 
 ## Dev notes
 For local testing, this scaffold still allows `x-shop-domain` auth when `ALLOW_DEV_HEADER_AUTH=true`.

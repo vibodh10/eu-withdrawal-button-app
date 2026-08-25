@@ -37,9 +37,12 @@ export default function App() {
     const [settingsDirty, setSettingsDirty] = useState(false);
 
     const title = useMemo(() => {
+        if (boot.data?.shop?.entitlement?.kind === "PAYMENT_REQUIRED") {
+            return "Plans";
+        }
         const active = tabs.find((item) => item.key === tab);
         return active ? active.label : "Dashboard";
-    }, [tab]);
+    }, [tab, boot.data]);
 
     function handleTabChange(nextTab) {
         if (nextTab === tab) {
@@ -99,7 +102,10 @@ export default function App() {
     const navigation = (
         <Navigation location="/">
             <Navigation.Section
-                items={tabs.map((item) => ({
+                items={(boot.data?.shop?.entitlement?.kind === "PAYMENT_REQUIRED"
+                    ? tabs.filter((item) => item.key === "plans")
+                    : tabs
+                ).map((item) => ({
                     label: item.label,
                     icon: item.icon,
                     selected: item.key === tab,
@@ -111,12 +117,18 @@ export default function App() {
                 title="Current plan"
                 items={[
                     {
-                        label: `Plan: ${boot.data?.shop?.plan || "BASIC"}`,
+                        label: boot.data?.shop?.entitlement?.isGrandfatheredFree
+                            ? "Plan: Grandfathered Free"
+                            : boot.data?.shop?.entitlement?.isPaid
+                                ? "Plan: Pro"
+                                : "Plan required",
                     },
                     {
-                        label: boot.data?.isPro
+                        label: boot.data?.shop?.entitlement?.isPaid
                             ? "All premium controls enabled"
-                            : "Upgrade to unlock Pro controls",
+                            : boot.data?.shop?.entitlement?.isGrandfatheredFree
+                                ? "Legacy Free access active"
+                                : "Choose a paid plan to continue",
                     }
                 ]}
             />
@@ -183,6 +195,11 @@ export default function App() {
                     <>
                         {!boot.data.shop?.dpaAcceptedAt ? (
                             <DpaPage onAccepted={load} />
+                        ) : boot.data.shop?.entitlement?.kind === "PAYMENT_REQUIRED" ? (
+                            <PlansPage
+                                boot={boot.data}
+                                onReload={load}
+                            />
                         ) : (
                             <>
                                 {tab === "dashboard" && (

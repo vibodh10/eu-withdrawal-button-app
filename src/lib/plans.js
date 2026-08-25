@@ -1,3 +1,5 @@
+import { hasPaidEntitlement } from "./entitlements.js";
+
 export const PLANS = {
   BASIC: {
     code: 'BASIC',
@@ -35,5 +37,5 @@ export function isPro(shop) {
     return true;
   }
 
-  return shop?.plan === "PRO";
+  return hasPaidEntitlement(shop);
 }

@@ -1,9 +1,7 @@
 import express from 'express';
 import { prisma } from '../lib/db.js';
 import {
-  mapPlanHandleToAppPlan,
-  verifyWebhookHmac,
-  getShopHandleFromDomain
+  verifyWebhookHmac
 } from '../lib/shopify.js';
 import {
     recordDataAccess
@@ -40,6 +38,34 @@ function logWebhookError(route, err) {
   console.error(`[Webhook error] ${route}:`, err);
 }
 
+export async function deleteShopForGdpr({ database, shopDomain }) {
+    return database.$transaction(async (tx) => {
+        const shop = await tx.shop.findUnique({
+            where: { shopDomain },
+            select: { id: true },
+        });
+
+        if (!shop) return false;
+
+        const deleted = await tx.withdrawalRequest.deleteMany({
+            where: { shopId: shop.id },
+        });
+
+        await recordDataAccess({
+            db: tx,
+            shopId: shop.id,
+            action: "SHOP_DATA_REDACTED",
+            recordId: shop.id,
+            recordCount: deleted.count,
+            actorType: "SHOPIFY_WEBHOOK",
+            reason: "Verified Shopify shop/redact webhook",
+        });
+
+        await tx.shop.delete({ where: { id: shop.id } });
+        return true;
+    });
+}
+
 webhookRouter.post('/app/uninstalled', async (req, res) => {
   try {
     if (!requireValidWebhook(req, res)) return;
@@ -56,37 +82,6 @@ webhookRouter.post('/app/uninstalled', async (req, res) => {
     res.status(200).send('ok');
   } catch (err) {
     logWebhookError('/app/uninstalled', err);
-    res.status(200).send('ok');
-  }
-});
-
-webhookRouter.post('/app/subscriptions-update', async (req, res) => {
-  try {
-    if (!requireValidWebhook(req, res)) return;
-
-    const shopDomain = req.headers['x-shopify-shop-domain'];
-    const body = parseWebhookBody(req);
-    const planHandle = body?.plan_handle || null;
-    const status = body?.status || null;
-    const adminGraphqlApiId = body?.admin_graphql_api_id || body?.id || null;
-
-    if (shopDomain) {
-      await prisma.shop.updateMany({
-        where: { shopDomain },
-        data: {
-          plan: mapPlanHandleToAppPlan(planHandle),
-          currentPlanHandle: planHandle,
-          currentSubscriptionStatus: status,
-          currentSubscriptionId: adminGraphqlApiId,
-          billingSyncedAt: new Date(),
-          shopHandle: getShopHandleFromDomain(shopDomain)
-        }
-      });
-    }
-
-    res.status(200).send('ok');
-  } catch (err) {
-    logWebhookError('/app/subscriptions-update', err);
     res.status(200).send('ok');
   }
 });
@@ -209,52 +204,10 @@ webhookRouter.post(
                     .send("ok");
             }
 
-            await prisma.$transaction(
-                async (tx) => {
-                    const shop =
-                        await tx.shop.findUnique({
-                            where: {
-                                shopDomain,
-                            },
-                            select: {
-                                id: true,
-                            },
-                        });
-
-                    if (!shop) {
-                        return;
-                    }
-
-                    const deleted =
-                        await tx.withdrawalRequest
-                            .deleteMany({
-                                where: {
-                                    shopId: shop.id,
-                                },
-                            });
-
-                    await recordDataAccess({
-                        db: tx,
-                        shopId: shop.id,
-                        action:
-                            "SHOP_DATA_REDACTED",
-                        recordId:
-                        shop.id,
-                        recordCount:
-                        deleted.count,
-                        actorType:
-                            "SHOPIFY_WEBHOOK",
-                        reason:
-                            "Verified Shopify shop/redact webhook",
-                    });
-
-                    await tx.shop.delete({
-                        where: {
-                            id: shop.id,
-                        },
-                    });
-                }
-            );
+            await deleteShopForGdpr({
+                database: prisma,
+                shopDomain,
+            });
 
             return res
                 .status(200)

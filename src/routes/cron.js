@@ -6,6 +6,9 @@ import crypto from "node:crypto";
 import {
     recordDataAccess
 } from "../lib/dataAccessAudit.js";
+import {
+    reconcileStaleManagedPricingShops,
+} from "../lib/pricingReconciliation.js";
 
 const cronRouter = express.Router();
 
@@ -139,6 +142,33 @@ cronRouter.post(
         });
     }
 });
+
+cronRouter.post(
+    "/reconcile-shopify-pricing",
+    requireCronSecret,
+    async (req, res) => {
+        try {
+            const result = await reconcileStaleManagedPricingShops({
+                prisma,
+            });
+
+            if (!result.success) {
+                console.error(
+                    "Shopify pricing reconciliation completed with failures:",
+                    result.failures
+                );
+            }
+
+            return res.status(result.success ? 200 : 503).json(result);
+        } catch (error) {
+            console.error("Shopify pricing reconciliation failed:", error);
+            return res.status(500).json({
+                success: false,
+                error: error?.message || "Pricing reconciliation failed",
+            });
+        }
+    }
+);
 
 cronRouter.post(
     "/cleanup",

@@ -8,62 +8,66 @@ datasource db {
 }
 
 model Shop {
-  id                        String              @id @default(cuid())
-  shopDomain                String              @unique
-  shopHandle                String?
-  accessToken               String?
-  accessTokenExpiresAt      DateTime?
-  refreshToken              String?
-  refreshTokenExpiresAt     DateTime?
-  tokenType                 String?             @default("NON_EXPIRING_OFFLINE")
-  tokenStatus               String?             @default("ACTIVE")
-  authVersion               Int                 @default(0)
-  tokenRefreshClaimId       String?
-  tokenRefreshClaimedAt     DateTime?
-  lastTokenRefreshAt        DateTime?
-  tokenRefreshError         String?
-  installedAt               DateTime            @default(now())
-  uninstalledAt             DateTime?
-  plan                      String              @default("BASIC")
-  currentPlanHandle         String?
-  currentSubscriptionId     String?
-  currentSubscriptionStatus String?
-  billingSyncedAt           DateTime?
-  locale                    String              @default("en")
-  enabledLanguages          String              @default("[\"en\",\"de\"]")
-  brandingName              String?
-  brandingPrimaryColor      String?
-  merchantNotification      String?
-  withdrawalDays            Int                 @default(14)
-  legalPageUrl              String?
-  privacyPageUrl            String?
-  supportEmail              String?
-  dpaAcceptedAt             DateTime?
-  requests                  WithdrawalRequest[]
-  emailTemplates            EmailTemplate[]
-  createdAt                 DateTime            @default(now())
-  updatedAt                 DateTime            @updatedAt
-  resolvedAt                DateTime?
-  smtpEnabled               Boolean             @default(false)
-  smtpHost                  String?
-  smtpPort                  Int?
-  smtpSecure                Boolean             @default(false)
-  smtpUsername              String?
-  smtpPasswordEncrypted     String?
-  smtpFromEmail             String?
-  smtpFromName              String?
-  smtpVerifiedAt            DateTime?
-  smtpLastError             String?
-  resendDomainId            String?
-  resendDomainName          String?
-  resendDomainStatus        String?
-  resendFromEmail           String?
-  resendFromName            String?
-  resendDomainCreatedAt     DateTime?
-  resendDomainVerifiedAt    DateTime?
-  resendDomainLastError     String?
-  emailDeliveryMethod       String              @default("GL6")
-  dataAccessAudits          DataAccessAudit[]
+  id                         String              @id @default(cuid())
+  shopDomain                 String              @unique
+  shopHandle                 String?
+  accessToken                String?
+  accessTokenExpiresAt       DateTime?
+  refreshToken               String?
+  refreshTokenExpiresAt      DateTime?
+  tokenType                  String?             @default("NON_EXPIRING_OFFLINE")
+  tokenStatus                String?             @default("ACTIVE")
+  authVersion                Int                 @default(0)
+  tokenRefreshClaimId        String?
+  tokenRefreshClaimedAt      DateTime?
+  lastTokenRefreshAt         DateTime?
+  tokenRefreshError          String?
+  installedAt                DateTime            @default(now())
+  uninstalledAt              DateTime?
+  plan                       String              @default("PAYMENT_REQUIRED")
+  grandfatheredFreeAt        DateTime?
+  grandfatheredFreeRevokedAt DateTime?
+  shopifyShopId              String?             @unique
+  currentPlanHandle          String?
+  currentSubscriptionId      String?
+  currentSubscriptionStatus  String?
+  billingSyncedAt            DateTime?
+  billingVersion             Int                 @default(0)
+  locale                     String              @default("en")
+  enabledLanguages           String              @default("[\"en\",\"de\"]")
+  brandingName               String?
+  brandingPrimaryColor       String?
+  merchantNotification       String?
+  withdrawalDays             Int                 @default(14)
+  legalPageUrl               String?
+  privacyPageUrl             String?
+  supportEmail               String?
+  dpaAcceptedAt              DateTime?
+  requests                   WithdrawalRequest[]
+  emailTemplates             EmailTemplate[]
+  createdAt                  DateTime            @default(now())
+  updatedAt                  DateTime            @updatedAt
+  resolvedAt                 DateTime?
+  smtpEnabled                Boolean             @default(false)
+  smtpHost                   String?
+  smtpPort                   Int?
+  smtpSecure                 Boolean             @default(false)
+  smtpUsername               String?
+  smtpPasswordEncrypted      String?
+  smtpFromEmail              String?
+  smtpFromName               String?
+  smtpVerifiedAt             DateTime?
+  smtpLastError              String?
+  resendDomainId             String?
+  resendDomainName           String?
+  resendDomainStatus         String?
+  resendFromEmail            String?
+  resendFromName             String?
+  resendDomainCreatedAt      DateTime?
+  resendDomainVerifiedAt     DateTime?
+  resendDomainLastError      String?
+  emailDeliveryMethod        String              @default("GL6")
+  dataAccessAudits           DataAccessAudit[]
 }
 
 model WithdrawalRequest {

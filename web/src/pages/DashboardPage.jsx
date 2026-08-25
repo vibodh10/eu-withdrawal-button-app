@@ -170,11 +170,15 @@ export default function DashboardPage({
 
                 <BlockStack gap="100">
                   <Text variant="headingSm">Plan</Text>
-                  <Badge tone={boot.isPro ? "success" : "info"}>
-                    {boot.shop.plan}
+                  <Badge tone={boot.shop.entitlement?.isPaid ? "success" : "info"}>
+                    {boot.shop.entitlement?.isGrandfatheredFree
+                        ? "Grandfathered Free"
+                        : "Pro"}
                   </Badge>
                   <Text as="p">
-                    {boot.isPro ? "Pro features are active." : "Free plan is active."}
+                    {boot.shop.entitlement?.isPaid
+                        ? "Pro features are active."
+                        : "Grandfathered Free access is active."}
                   </Text>
                 </BlockStack>
               </InlineStack>

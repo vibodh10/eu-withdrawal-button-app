@@ -5,6 +5,7 @@ import {
   buildManagedPricingUrl,
   syncManagedPricingForShop
 } from "../lib/shopify.js";
+import { publicEntitlementView } from "../lib/entitlements.js";
 
 export const billingRouter = express.Router();
 
@@ -16,6 +17,7 @@ function publicBillingShopView(shop) {
             shop.currentPlanHandle || null,
         currentSubscriptionStatus:
             shop.currentSubscriptionStatus || null,
+        entitlement: publicEntitlementView(shop),
     };
 }
 
@@ -28,7 +30,8 @@ billingRouter.get("/status", async (req, res) => {
 
   res.json({
     plan: shop.plan,
-    isPro: shop.plan === "PRO",
+    isPro: publicEntitlementView(shop).isPaid,
+    entitlement: publicEntitlementView(shop),
     currentPlanHandle: shop.currentPlanHandle,
     currentSubscriptionStatus: shop.currentSubscriptionStatus,
     pricingUrl: buildManagedPricingUrl(shop.shopDomain)

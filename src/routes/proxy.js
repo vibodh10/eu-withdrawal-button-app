@@ -16,6 +16,10 @@ import {
     buildWithdrawalSubmissionKey,
     findExistingWithdrawalRequest,
 } from "../lib/withdrawalIdempotency.js";
+import {
+    hasAppEntitlement,
+    hasPaidEntitlement,
+} from "../lib/entitlements.js";
 
 export const proxyRouter = express.Router();
 
@@ -142,6 +146,13 @@ proxyRouter.post(
             if (!shop || shop.uninstalledAt) {
                 return res.status(404).json({
                     error: "Shop is not installed.",
+                });
+            }
+
+            if (!hasAppEntitlement(shop)) {
+                return res.status(402).json({
+                    error: "The merchant must activate a paid app plan.",
+                    code: "PAYMENT_REQUIRED",
                 });
             }
 
@@ -301,7 +312,7 @@ proxyRouter.post(
                     86_400_000;
 
                 const withdrawalDays =
-                    shop.plan === "PRO"
+                    hasPaidEntitlement(shop)
                         ? shop.withdrawalDays || 14
                         : 14;
 
@@ -531,7 +542,7 @@ proxyRouter.get(
             }
 
             const isPro =
-                shop.plan === "PRO";
+                hasPaidEntitlement(shop);
 
             const defaultFreeLanguages = [
                 "en",

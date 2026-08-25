@@ -85,7 +85,7 @@ export async function persistCredentialPairForObservedState({
                     shopDomain,
                     ...nextAuthenticationState,
                     authVersion: 1,
-                    plan: "BASIC",
+                    plan: "PAYMENT_REQUIRED",
                     installedAt: new Date(now),
                 },
             });
@@ -194,7 +194,7 @@ export async function markShopUninstalled({
         tokenRefreshError: null,
         tokenRefreshClaimId: null,
         tokenRefreshClaimedAt: null,
-        plan: "BASIC",
+        plan: "PAYMENT_REQUIRED",
         currentPlanHandle: null,
         currentSubscriptionId: null,
         currentSubscriptionStatus: null,

@@ -17,10 +17,6 @@ api_version = "2026-04"
   uri = "/webhooks/app/uninstalled"
 
   [[webhooks.subscriptions]]
-  topics = [ "app_subscriptions/update" ]
-  uri = "/webhooks/app/subscriptions-update"
-
-  [[webhooks.subscriptions]]
   uri = "/webhooks/customers/data_request"
   compliance_topics = [ "customers/data_request" ]
 

@@ -15,7 +15,9 @@
     "start": "node src/server.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:push": "prisma db push"
+    "prisma:push": "prisma db push",
+    "pricing:reconcile": "node scripts/reconcileShopifyPricing.js",
+    "pricing:validate-config": "node scripts/validateShopifyPricingConfig.js"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

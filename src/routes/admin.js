@@ -4,6 +4,11 @@ import { toCsv } from '../lib/csv.js';
 import { isPro, PLANS } from '../lib/plans.js';
 import verifyRequest from "../middleware/verifyRequest.js";
 import { buildManagedPricingUrl } from '../lib/shopify.js';
+import { syncManagedPricingForShop } from '../lib/shopify.js';
+import {
+    hasAppEntitlement,
+    publicEntitlementView,
+} from '../lib/entitlements.js';
 import {exchangeOfflineToken, getValidOfflineToken} from "../lib/offlineTokens.js";
 import {buildConfirmationEmail} from "../lib/email.js";
 import { encryptSecret } from "../lib/encryption.js";
@@ -114,6 +119,7 @@ function publicShopView(shop) {
         privacyPageUrl: shop.privacyPageUrl,
         supportEmail: shop.supportEmail,
         dpaAcceptedAt: shop.dpaAcceptedAt,
+        entitlement: publicEntitlementView(shop),
     };
 }
 
@@ -127,7 +133,23 @@ function normalizeEmail(value) {
 adminRouter.use(verifyRequest);
 
 adminRouter.get("/me", async (req, res) => {
-    const shop = req.shop;
+    let shop;
+
+    try {
+        const result = await syncManagedPricingForShop(
+            prisma,
+            req.shop
+        );
+        shop = result.shop;
+    } catch (error) {
+        console.error(
+            "Partner API billing reconciliation failed:",
+            error.message
+        );
+        return res.status(503).json({
+            error: "Could not verify Shopify App Pricing entitlement.",
+        });
+    }
 
     return res.json({
         shop: {
@@ -146,6 +168,16 @@ adminRouter.get("/me", async (req, res) => {
                     shop.shopDomain
                 ),
         },
+    });
+});
+
+adminRouter.use((req, res, next) => {
+    if (req.path === "/dpa/accept") return next();
+    if (hasAppEntitlement(req.shop)) return next();
+
+    return res.status(402).json({
+        error: "A paid Shopify App Pricing plan is required.",
+        code: "PAYMENT_REQUIRED",
     });
 });
 

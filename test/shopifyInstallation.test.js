@@ -210,7 +210,7 @@ test("first managed install exchanges the ID token and creates an active shop", 
     assert.equal(shop.tokenType, "EXPIRING_OFFLINE");
     assert.equal(shop.tokenStatus, "ACTIVE");
     assert.equal(shop.uninstalledAt, null);
-    assert.equal(shop.plan, "BASIC");
+    assert.equal(shop.plan, "PAYMENT_REQUIRED");
 });
 
 test("verified uninstall clears the complete credential pair and marks reauth required", async () => {
