@@ -8,6 +8,7 @@ import {
 import {
     recordDataAccess
 } from "../lib/dataAccessAudit.js";
+import { markShopUninstalled } from "../lib/managedInstallation.js";
 
 export const webhookRouter = express.Router();
 
@@ -46,16 +47,9 @@ webhookRouter.post('/app/uninstalled', async (req, res) => {
     const shopDomain = req.headers['x-shopify-shop-domain'];
 
     if (shopDomain) {
-      await prisma.shop.updateMany({
-        where: { shopDomain },
-        data: {
-          uninstalledAt: new Date(),
-          accessToken: null,
-          plan: 'BASIC',
-          currentPlanHandle: null,
-          currentSubscriptionId: null,
-          currentSubscriptionStatus: null
-        }
+      await markShopUninstalled({
+        prisma,
+        shopDomain,
       });
     }
 

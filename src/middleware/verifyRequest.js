@@ -1,40 +1,96 @@
-import { verifySessionToken } from "../lib/verifySessionToken.js";
+import {
+    getShopDomainFromSessionPayload,
+    verifySessionToken,
+} from "../lib/verifySessionToken.js";
 import { prisma } from "../lib/db.js";
 import {isShopBlocked} from "../lib/blockedShops.js";
+import { ensureManagedInstallation } from "../lib/managedInstallation.js";
+import { ShopifyTokenExchangeError } from "../lib/offlineTokens.js";
+import {
+    ShopifyAuthStateChangedError,
+    ShopifyTokenRefreshInProgressError,
+} from "../lib/shopifyAuthState.js";
 
-export default async function verifyRequest(req, res, next) {
-    const token = req.headers.authorization?.replace("Bearer ", "");
+function requestFreshSessionToken(res) {
+    res.set("X-Shopify-Retry-Invalid-Session-Request", "1");
+}
 
-    if (!token) return res.status(401).send("No token");
+export function createVerifyRequest({
+    verifyToken = verifySessionToken,
+    getShopDomain = getShopDomainFromSessionPayload,
+    isBlocked = isShopBlocked,
+    ensureInstallation = ensureManagedInstallation,
+    database = prisma,
+} = {}) {
+    return async function verifyRequest(req, res, next) {
+        const authorization = req.headers.authorization || "";
+        const token = authorization.startsWith("Bearer ")
+            ? authorization.slice("Bearer ".length).trim()
+            : null;
 
-    try {
-        const decoded = await verifySessionToken(token);
-
-        if (!decoded?.dest) {
-            return res.status(401).send("Invalid token");
+        if (!token) {
+            requestFreshSessionToken(res);
+            return res.status(401).send("No token");
         }
 
-        const shopDomain = decoded.dest.replace("https://", "");
+        let decoded;
+        let shopDomain;
 
-        const shop = await prisma.shop.findUnique({
-            where: { shopDomain },
-        });
+        try {
+            decoded = await verifyToken(token);
+            shopDomain = getShopDomain(decoded);
+        } catch (err) {
+            console.error("SESSION VERIFY FAILED:", err.message);
+            requestFreshSessionToken(res);
+            return res.status(401).send("Auth failed");
+        }
 
-        if (
-            !shop ||
-            shop.uninstalledAt ||
-            isShopBlocked(shopDomain)
-        ) {
+        if (isBlocked(shopDomain)) {
             return res.status(403).send(
                 "Store access unavailable"
             );
         }
 
-        req.shop = shop;
+        try {
+            const shop = await ensureInstallation({
+                prisma: database,
+                shopDomain,
+                idToken: token,
+            });
 
-        next();
-    } catch (err) {
-        console.error("SESSION VERIFY FAILED:", err.message);
-        return res.status(401).send("Auth failed");
-    }
+            req.shop = shop;
+            req.shopifySessionToken = decoded;
+
+            return next();
+        } catch (err) {
+            console.error("SHOPIFY INSTALL AUTH FAILED:", err.message);
+
+            if (
+                err instanceof ShopifyTokenExchangeError &&
+                err.retryInvalidSession
+            ) {
+                requestFreshSessionToken(res);
+                return res.status(401).send("Auth failed");
+            }
+
+            if (err instanceof ShopifyAuthStateChangedError) {
+                return res.status(409).send(
+                    "Shopify installation state changed"
+                );
+            }
+
+            if (err instanceof ShopifyTokenRefreshInProgressError) {
+                res.set("Retry-After", "1");
+                return res.status(409).send(
+                    "Shopify token refresh is in progress"
+                );
+            }
+
+            return res.status(502).send(
+                "Could not establish Shopify access"
+            );
+        }
+    };
 }
+
+export default createVerifyRequest();

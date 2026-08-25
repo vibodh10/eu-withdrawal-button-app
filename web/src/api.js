@@ -10,6 +10,32 @@ export async function getAuthHeaders() {
   };
 }
 
+async function authenticatedFetch(url, options = {}) {
+  let response;
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const headers = await getAuthHeaders();
+
+    response = await fetch(url, {
+      ...options,
+      headers: {
+        ...headers,
+        ...(options.headers || {}),
+      },
+    });
+
+    const shouldRetry =
+      response.status === 401 &&
+      response.headers.get("X-Shopify-Retry-Invalid-Session-Request") === "1";
+
+    if (!shouldRetry || attempt === 1) {
+      return response;
+    }
+  }
+
+  return response;
+}
+
 function withShopifyParams(url) {
   const params = window.location.search;
 
@@ -21,11 +47,7 @@ function withShopifyParams(url) {
 }
 
 export async function apiGet(url) {
-  const headers = await getAuthHeaders();
-
-  const res = await fetch(withShopifyParams(url), {
-    headers,
-  });
+  const res = await authenticatedFetch(withShopifyParams(url));
 
   if (!res.ok) {
     const text = await res.text();
@@ -46,11 +68,8 @@ export async function apiGet(url) {
 }
 
 export async function apiSend(url, method, body) {
-  const headers = await getAuthHeaders();
-
-  const res = await fetch(withShopifyParams(url), {
+  const res = await authenticatedFetch(withShopifyParams(url), {
     method,
-    headers,
     body: body ? JSON.stringify(body) : undefined,
   });
 

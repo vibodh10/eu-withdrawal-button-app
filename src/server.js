@@ -19,6 +19,7 @@ import { prisma } from "./lib/db.js";
 import cronRouter from "./routes/cron.js";
 import {shopify} from "./lib/shopify.js";
 import {exchangeOfflineToken} from "./lib/offlineTokens.js";
+import {persistCredentialPairForObservedState} from "./lib/managedInstallation.js";
 import {isShopBlocked, normalizeShopDomain} from "./lib/blockedShops.js";
 import { proxyRouter } from "./routes/proxy.js";
 
@@ -204,6 +205,12 @@ app.get("/auth/callback", async (req, res) => {
             shop
         });
 
+        const observedShop = await prisma.shop.findUnique({
+            where: {
+                shopDomain: shop,
+            },
+        });
+
         const exchanged = await exchangeOfflineToken({
             shop,
             oldAccessToken,
@@ -214,32 +221,11 @@ app.get("/auth/callback", async (req, res) => {
             shop
         );
 
-        await prisma.shop.upsert({
-            where: {
-                shopDomain: shop
-            },
-            update: {
-                accessToken: exchanged.accessToken,
-                accessTokenExpiresAt:
-                exchanged.accessTokenExpiresAt,
-                refreshToken: exchanged.refreshToken,
-                refreshTokenExpiresAt:
-                exchanged.refreshTokenExpiresAt,
-                tokenType: "EXPIRING_OFFLINE",
-                uninstalledAt: null,
-            },
-            create: {
-                shopDomain: shop,
-                accessToken: exchanged.accessToken,
-                accessTokenExpiresAt:
-                exchanged.accessTokenExpiresAt,
-                refreshToken: exchanged.refreshToken,
-                refreshTokenExpiresAt:
-                exchanged.refreshTokenExpiresAt,
-                tokenType: "EXPIRING_OFFLINE",
-                plan: "BASIC",
-                installedAt: new Date(),
-            },
+        await persistCredentialPairForObservedState({
+            prisma,
+            shopDomain: shop,
+            observedShop,
+            credentials: exchanged,
         });
 
         const redirectUrl =
