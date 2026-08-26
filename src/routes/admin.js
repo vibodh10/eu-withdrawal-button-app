@@ -295,7 +295,7 @@ adminRouter.get("/setup/status", async (req, res) => {
                     where: {
                         shopId: shop.id,
                         status: {
-                            in: ["REVIEWED", "APPROVED", "REJECTED"],
+                            not: "RECEIVED",
                         },
                     },
                 }),
