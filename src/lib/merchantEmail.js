@@ -136,6 +136,7 @@ export async function sendCustomerConfirmation({
                                                    resendClient = resend,
                                                    smtpTransportOptions,
                                                    protection = abuseProtection,
+                                                   gl6Sender = sendGl6Email,
                                                } = {}) {
     const merchantName =
         shop.brandingName ||
@@ -294,7 +295,7 @@ export async function sendCustomerConfirmation({
      * or fallback after failure.
      */
 
-    return sendGl6Email({
+    return gl6Sender({
         to,
         subject,
         html,

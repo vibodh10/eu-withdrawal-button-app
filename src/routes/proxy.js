@@ -20,6 +20,9 @@ import {
     hasAppEntitlement,
     hasPaidEntitlement,
 } from "../lib/entitlements.js";
+import {
+    sendVerifiedWithdrawalConfirmation,
+} from "../lib/withdrawalConfirmation.js";
 
 export const proxyRouter = express.Router();
 
@@ -185,6 +188,7 @@ proxyRouter.post(
             });
 
             let order;
+            let verifiedOrderEmail;
             let verificationStatus = "UNVERIFIED";
 
             try {
@@ -293,6 +297,7 @@ proxyRouter.post(
                 });
 
                 order = foundOrder;
+                verifiedOrderEmail = shopifyOrderEmail;
 
                 const orderDate =
                     new Date(order.createdAt);
@@ -362,13 +367,8 @@ proxyRouter.post(
                             shopId: shop.id,
                             publicReference,
 
-                            /*
-                             * This is the email entered by the customer.
-                             * It is stored for merchant review only and
-                             * must not be treated as Shopify-verified.
-                             */
                             customerEmail:
-                            cleanCustomerEmail,
+                            verifiedOrderEmail,
 
                             customerName:
                             cleanCustomerName,
@@ -408,12 +408,12 @@ proxyRouter.post(
                                     verificationMethod:
                                         "SHOPIFY_ORDER_EMAIL_MATCH",
 
-                                    emailDeliveryDisabled:
-                                        true,
+                                    confirmationEmail:
+                                        "SERVER_CONTROLLED",
                                 }),
 
                             submissionKey,
-                            emailStatus: "DISABLED",
+                            emailStatus: "PENDING",
                         },
                     });
             } catch (error) {
@@ -457,13 +457,26 @@ proxyRouter.post(
                 throw error;
             }
 
-            /*
-             * IMPORTANT:
-             * No customer confirmation or merchant-notification
-             * email is sent in this temporary mode.
-             *
-             * Keep the Resend key revoked.
-             */
+            try {
+                await sendVerifiedWithdrawalConfirmation({
+                    shop,
+                    withdrawalRequest: requestRecord,
+                    verifiedOrderEmail,
+                });
+            } catch (error) {
+                // The withdrawal is already durably recorded. Delivery state
+                // is persisted by the guarded email path; never roll back the
+                // withdrawal because a confirmation could not be sent.
+                console.error(
+                    "Withdrawal confirmation delivery failed:",
+                    {
+                        shopDomain: shop.shopDomain,
+                        withdrawalRequestId: requestRecord.id,
+                        code: error?.code,
+                        message: error?.message,
+                    }
+                );
+            }
 
             return res.status(201).json({
                 ok: true,
