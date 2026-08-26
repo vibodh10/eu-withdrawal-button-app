@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import {
-  Page,
-  Layout,
-  Card,
-  Text,
-  BlockStack,
-  InlineStack,
-  Badge,
-  Grid,
-  Button,
-  Banner,
+    Page,
+    Layout,
+    Card,
+    Text,
+    BlockStack,
+    InlineStack,
+    Badge,
+    Grid,
+    Button,
+    Banner, Icon,
 } from "@shopify/polaris";
 import {apiGet, apiSend, syncBilling} from "../api";
+import {CheckCircleIcon} from "@shopify/polaris-icons";
 
 export default function DashboardPage({
   boot,
@@ -27,10 +28,104 @@ export default function DashboardPage({
     rejected: 0,
   });
 
+    const [setupStatus, setSetupStatus] = useState({
+        notificationEmail: false,
+        withdrawalPage: false,
+        testRequest: false,
+        reviewedRequest: false,
+        floatingEmbed: false,
+        pageBlock: false,
+    });
+
+    const [setupStatusLoading, setSetupStatusLoading] =
+        useState(true);
   const [setupLoading, setSetupLoading] = useState(false);
   const [setupResult, setSetupResult] = useState(null);
   const [setupError, setSetupError] = useState(null);
   const [billingSyncError, setBillingSyncError] = useState("");
+
+    useEffect(() => {
+        let cancelled = false;
+
+        async function loadSetupStatus() {
+            try {
+                const data =
+                    await apiGet("/admin/setup/status");
+
+                let floatingEmbed = false;
+                let pageBlock = false;
+
+                if (window.shopify?.app?.extensions) {
+                    const extensions =
+                        await window.shopify.app.extensions();
+
+                    const themeExtension =
+                        extensions.find(
+                            (extension) =>
+                                extension.type ===
+                                "theme_app_extension"
+                        );
+
+                    const activations =
+                        themeExtension?.activations || [];
+
+                    floatingEmbed =
+                        activations.some(
+                            (activation) =>
+                                activation.target === "body" &&
+                                activation.status === "active"
+                        );
+
+                    pageBlock =
+                        activations.some(
+                            (activation) =>
+                                activation.handle ===
+                                APP_BLOCK_HANDLE &&
+                                activation.target === "section" &&
+                                activation.status === "active"
+                        );
+                }
+
+                if (!cancelled) {
+                    setSetupStatus({
+                        notificationEmail:
+                            Boolean(
+                                data?.setup?.notificationEmail
+                            ),
+                        withdrawalPage:
+                            Boolean(
+                                data?.setup?.withdrawalPage
+                            ),
+                        testRequest:
+                            Boolean(
+                                data?.setup?.testRequest
+                            ),
+                        reviewedRequest:
+                            Boolean(
+                                data?.setup?.reviewedRequest
+                            ),
+                        floatingEmbed,
+                        pageBlock,
+                    });
+                }
+            } catch (error) {
+                console.error(
+                    "Could not load setup status:",
+                    error
+                );
+            } finally {
+                if (!cancelled) {
+                    setSetupStatusLoading(false);
+                }
+            }
+        }
+
+        loadSetupStatus();
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
   function StatCard({ label, value, helpText }) {
     return (
@@ -123,6 +218,32 @@ export default function DashboardPage({
     if (!url || url === "#") return;
     window.open(url, "_blank", "noopener,noreferrer");
   }
+
+    function SetupStatusIcon({complete}) {
+        if (complete) {
+            return (
+                <Icon
+                    source={CheckCircleIcon}
+                    tone="success"
+                    accessibilityLabel="Complete"
+                />
+            );
+        }
+
+        return (
+            <span
+                aria-label="Not complete"
+                style={{
+                    width: "20px",
+                    height: "20px",
+                    border: "2px dashed var(--p-color-border-secondary)",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                    boxSizing: "border-box",
+                }}
+            />
+        );
+    }
 
   async function createWithdrawalPage() {
     setSetupLoading(true);
@@ -256,23 +377,17 @@ export default function DashboardPage({
                         gap="400"
                     >
                       <BlockStack gap="100">
-                        <InlineStack gap="200" blockAlign="center">
-                          <Badge
-                              tone={
-                                boot.shop.merchantNotification
-                                    ? "success"
-                                    : "attention"
-                              }
-                          >
-                            {boot.shop.merchantNotification
-                                ? "Complete"
-                                : "Required"}
-                          </Badge>
+                          <InlineStack gap="200" blockAlign="center">
+                              <SetupStatusIcon
+                                  complete={
+                                      setupStatus.notificationEmail
+                                  }
+                              />
 
-                          <Text variant="headingSm">
-                            Add your notification email
-                          </Text>
-                        </InlineStack>
+                              <Text variant="headingSm">
+                                  Add your notification email
+                              </Text>
+                          </InlineStack>
 
                         <Text as="p" tone="subdued">
                           Enter the email address where you want to receive notifications
@@ -306,6 +421,9 @@ export default function DashboardPage({
                     <InlineStack align="space-between" blockAlign="center">
                       <BlockStack gap="100">
                         <InlineStack gap="200" blockAlign="center">
+                            <SetupStatusIcon
+                                complete={setupStatus.floatingEmbed}
+                            />
                           <Badge tone="success">Recommended</Badge>
                           <Text variant="headingSm">Enable floating sitewide button</Text>
                         </InlineStack>
@@ -329,6 +447,9 @@ export default function DashboardPage({
                     <InlineStack align="space-between" blockAlign="center">
                       <BlockStack gap="100">
                         <InlineStack gap="200" blockAlign="center">
+                            <SetupStatusIcon
+                                complete={setupStatus.withdrawalPage}
+                            />
                           <Badge tone="attention">Recommended</Badge>
                           <Text variant="headingSm">Create a dedicated withdrawal page</Text>
                         </InlineStack>
@@ -353,6 +474,9 @@ export default function DashboardPage({
                     <InlineStack align="space-between" blockAlign="center">
                       <BlockStack gap="100">
                         <InlineStack gap="200" blockAlign="center">
+                            <SetupStatusIcon
+                                complete={setupStatus.pageBlock}
+                            />
                           <Badge tone="attention">Recommended</Badge>
                           <Text variant="headingSm">Add button block to the withdrawal page</Text>
                         </InlineStack>
@@ -397,9 +521,9 @@ export default function DashboardPage({
                     <InlineStack align="space-between" blockAlign="center">
                       <BlockStack gap="100">
                         <InlineStack gap="200" blockAlign="center">
-                          <Badge tone={stats.total > 0 ? "success" : "attention"}>
-                            {stats.total > 0 ? "Done" : "Test"}
-                          </Badge>
+                            <SetupStatusIcon
+                                complete={setupStatus.testRequest}
+                            />
                           <Text variant="headingSm">Submit a test withdrawal request</Text>
                         </InlineStack>
 
@@ -425,9 +549,9 @@ export default function DashboardPage({
                     <InlineStack align="space-between" blockAlign="center">
                       <BlockStack gap="100">
                         <InlineStack gap="200" blockAlign="center">
-                          <Badge tone={stats.total > 0 ? "success" : "attention"}>
-                            {stats.total > 0 ? "Ready" : "Next"}
-                          </Badge>
+                            <SetupStatusIcon
+                                complete={setupStatus.reviewedRequest}
+                            />
                           <Text variant="headingSm">Review requests in your dashboard</Text>
                         </InlineStack>
 

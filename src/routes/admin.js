@@ -239,6 +239,95 @@ adminRouter.get(
     }
 );
 
+adminRouter.get("/setup/status", async (req, res) => {
+    try {
+        const shop = req.shop;
+
+        const [withdrawalPageResponse, totalRequests, reviewedRequests] =
+            await Promise.all([
+                (async () => {
+                    const accessToken = await getValidOfflineToken(shop);
+
+                    const query = `
+            query ExistingWithdrawalPage($query: String!) {
+              pages(first: 1, query: $query) {
+                edges {
+                  node {
+                    id
+                    handle
+                  }
+                }
+              }
+            }
+          `;
+
+                    const response = await fetch(
+                        `https://${shop.shopDomain}/admin/api/2026-04/graphql.json`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "X-Shopify-Access-Token": accessToken,
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                query,
+                                variables: {
+                                    query: "handle:eu-withdrawal",
+                                },
+                            }),
+                        }
+                    );
+
+                    const data = await response.json();
+
+                    return Boolean(
+                        data?.data?.pages?.edges?.[0]?.node
+                    );
+                })(),
+
+                prisma.withdrawalRequest.count({
+                    where: {
+                        shopId: shop.id,
+                    },
+                }),
+
+                prisma.withdrawalRequest.count({
+                    where: {
+                        shopId: shop.id,
+                        status: {
+                            in: ["REVIEWED", "APPROVED", "REJECTED"],
+                        },
+                    },
+                }),
+            ]);
+
+        return res.json({
+            setup: {
+                notificationEmail:
+                    Boolean(shop.merchantNotification),
+
+                withdrawalPage:
+                withdrawalPageResponse,
+
+                testRequest:
+                    totalRequests > 0,
+
+                reviewedRequest:
+                    reviewedRequests > 0,
+            },
+        });
+    } catch (error) {
+        console.error(
+            "Load setup status failed:",
+            error?.message
+        );
+
+        return res.status(500).json({
+            error: "Could not load setup status.",
+        });
+    }
+});
+
 adminRouter.get('/analytics/summary', async (req, res) => {
   const shop = req.shop;
 
