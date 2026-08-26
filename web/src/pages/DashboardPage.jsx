@@ -236,7 +236,7 @@ export default function DashboardPage({
                 style={{
                     width: "20px",
                     height: "20px",
-                    border: "2px dashed var(--p-color-border-secondary)",
+                    border: "2px dashed var(--p-color-border-strong)",
                     borderRadius: "50%",
                     display: "inline-block",
                     boxSizing: "border-box",
