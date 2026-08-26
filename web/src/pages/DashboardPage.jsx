@@ -84,11 +84,22 @@ export default function DashboardPage({
     function SetupStatusIcon({ complete }) {
         if (complete) {
             return (
-                <Icon
-                    source={CheckCircleIcon}
-                    tone="success"
-                    accessibilityLabel="Complete"
-                />
+                <span
+                    style={{
+                        width: "20px",
+                        height: "20px",
+                        minWidth: "20px",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+          <Icon
+              source={CheckCircleIcon}
+              tone="success"
+              accessibilityLabel="Complete"
+          />
+        </span>
             );
         }
 
