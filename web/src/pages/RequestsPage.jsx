@@ -235,6 +235,11 @@ export default function RequestsPage() {
         }
     }
 
+    function truncate(value, max = 24) {
+        if (!value) return "—";
+        return value.length > max ? value.slice(0, max) + "…" : value;
+    }
+
     return (
         <Page
             title="Withdrawal requests"
@@ -313,123 +318,141 @@ export default function RequestsPage() {
 
                         {/* ✅ Table */}
                         {!loading && filteredRows.length > 0 && (
-                            <IndexTable
-                                resourceName={{ singular: "request", plural: "requests" }}
-                                itemCount={filteredRows.length}
-                                selectedItemsCount={
-                                    allResourcesSelected ? "All" : selectedResources.length
-                                }
-                                onSelectionChange={handleSelectionChange}
-                                promotedBulkActions={[
-                                    {
-                                        content: "Delete selected",
-                                        destructive: true,
-                                        onAction: () => setBulkDeleteModalOpen(true),
-                                    },
-                                ]}
-                                headings={[
-                                    { title: "Reference" },
-                                    { title: "Customer" },
-                                    { title: "Order" },
-                                    { title: "Verification" },
-                                    { title: "Reason" },
-                                    { title: "Status" },
-                                    { title: "Submitted" },
-                                    { title: "Actions" },
-                                ]}
+                            <div
+                                style={{
+                                    overflowX: "scroll",
+                                    width: "100%",
+                                    paddingBottom: "10px",
+                                    scrollbarWidth: "auto",
+                                    scrollbarColor: "#666 #ddd",
+                                }}
                             >
-                                {filteredRows.map((row, index) => {
-                                    const verification = getVerificationUI(row.verificationStatus);
+                                <IndexTable
+                                    resourceName={{ singular: "request", plural: "requests" }}
+                                    itemCount={filteredRows.length}
+                                    selectedItemsCount={
+                                        allResourcesSelected ? "All" : selectedResources.length
+                                    }
+                                    onSelectionChange={handleSelectionChange}
+                                    promotedBulkActions={[
+                                        {
+                                            content: "Delete selected",
+                                            destructive: true,
+                                            onAction: () => setBulkDeleteModalOpen(true),
+                                        },
+                                    ]}
+                                    headings={[
+                                        { title: "Reference" },
+                                        { title: "Customer" },
+                                        { title: "Order" },
+                                        { title: "Verification" },
+                                        { title: "Reason" },
+                                        { title: "Status" },
+                                        { title: "Submitted" },
+                                        { title: "Actions" },
+                                    ]}
+                                >
+                                    {filteredRows.map((row, index) => {
+                                        const verification = getVerificationUI(row.verificationStatus);
 
-                                    return (
-                                        <IndexTable.Row
-                                            id={row.id}
-                                            key={row.id}
-                                            position={index}
-                                            selected={selectedResources.includes(row.id)}
-                                        >
+                                        return (
+                                            <IndexTable.Row
+                                                id={row.id}
+                                                key={row.id}
+                                                position={index}
+                                                selected={selectedResources.includes(row.id)}
+                                            >
 
-                                            <IndexTable.Cell>
-                                                <Text fontWeight="medium">
-                                                    {row.publicReference}
-                                                </Text>
-                                            </IndexTable.Cell>
-
-                                            <IndexTable.Cell>
-                                                <BlockStack gap="050">
+                                                <IndexTable.Cell>
                                                     <Text fontWeight="medium">
-                                                        {row.customerName || "Unknown"}
+                                                        {row.publicReference}
                                                     </Text>
+                                                </IndexTable.Cell>
 
-                                                    <Text tone="subdued" variant="bodySm">
-                                                        {row.customerEmail}
-                                                    </Text>
-                                                </BlockStack>
-                                            </IndexTable.Cell>
+                                                <IndexTable.Cell>
+                                                    <BlockStack gap="050">
+                                                        <Tooltip content={row.customerName || "Unknown"}>
+                                                            <Text fontWeight="medium">
+                                                                {truncate(row.customerName || "Unknown", 24)}
+                                                            </Text>
+                                                        </Tooltip>
 
-                                            <IndexTable.Cell>
-                                                {row.orderNumber || row.orderId || "—"}
-                                            </IndexTable.Cell>
+                                                        <Tooltip content={row.customerEmail || ""}>
+                                                            <Text tone="subdued" variant="bodySm">
+                                                                {truncate(row.customerEmail, 30)}
+                                                            </Text>
+                                                        </Tooltip>
+                                                    </BlockStack>
+                                                </IndexTable.Cell>
 
-                                            <IndexTable.Cell>
-                                                <Tooltip content={verification.tooltip}>
-                                                    <Badge tone={verification.tone}>
-                                                        {verification.label}
-                                                    </Badge>
-                                                </Tooltip>
-                                            </IndexTable.Cell>
+                                                <IndexTable.Cell>
+                                                    <Tooltip content={row.orderNumber || row.orderId || "—"}>
+                                                        <Text as="span">
+                                                            {truncate(row.orderNumber || row.orderId, 20)}
+                                                        </Text>
+                                                    </Tooltip>
+                                                </IndexTable.Cell>
 
-                                            <IndexTable.Cell>
-                                                <Tooltip content={row.reason || "No reason provided"}>
-                                                    <Text
-                                                        as="span"
-                                                        variant="bodySm"
-                                                        tone="subdued"
+                                                <IndexTable.Cell>
+                                                    <Tooltip content={verification.tooltip}>
+                                                        <Badge tone={verification.tone}>
+                                                            {verification.label}
+                                                        </Badge>
+                                                    </Tooltip>
+                                                </IndexTable.Cell>
+
+                                                <IndexTable.Cell>
+                                                    <Tooltip content={row.reason || "No reason provided"}>
+                                                        <Text
+                                                            as="span"
+                                                            variant="bodySm"
+                                                            tone="subdued"
+                                                        >
+                                                            {row.reason
+                                                                ? row.reason.length > 28
+                                                                    ? row.reason.slice(0, 28) + "..."
+                                                                    : row.reason
+                                                                : "—"}
+                                                        </Text>
+                                                    </Tooltip>
+                                                </IndexTable.Cell>
+
+                                                <IndexTable.Cell>
+                                                    <Select
+                                                        options={statuses.map((s) => ({
+                                                            label: s,
+                                                            value: s
+                                                        }))}
+                                                        value={row.status}
+                                                        onChange={(value) =>
+                                                            updateStatus(row.id, value)
+                                                        }
+                                                        disabled={updatingId === row.id}
+                                                    />
+                                                </IndexTable.Cell>
+
+                                                <IndexTable.Cell>
+                                                    {new Date(row.createdAt).toLocaleString()}
+                                                </IndexTable.Cell>
+
+                                                <IndexTable.Cell>
+                                                    <Button
+                                                        tone="critical"
+                                                        size="slim"
+                                                        onClick={() => {
+                                                            setSelectedCustomer(row);
+                                                            setDeleteModalOpen(true);
+                                                        }}
                                                     >
-                                                        {row.reason
-                                                            ? row.reason.length > 28
-                                                                ? row.reason.slice(0, 28) + "..."
-                                                                : row.reason
-                                                            : "—"}
-                                                    </Text>
-                                                </Tooltip>
-                                            </IndexTable.Cell>
+                                                        Delete Customer Data
+                                                    </Button>
+                                                </IndexTable.Cell>
 
-                                            <IndexTable.Cell>
-                                                <Select
-                                                    options={statuses.map((s) => ({
-                                                        label: s,
-                                                        value: s
-                                                    }))}
-                                                    value={row.status}
-                                                    onChange={(value) =>
-                                                        updateStatus(row.id, value)
-                                                    }
-                                                    disabled={updatingId === row.id}
-                                                />
-                                            </IndexTable.Cell>
-
-                                            <IndexTable.Cell>
-                                                {new Date(row.createdAt).toLocaleString()}
-                                            </IndexTable.Cell>
-
-                                            <IndexTable.Cell>
-                                                <Button
-                                                    tone="critical"
-                                                    size="slim"
-                                                    onClick={() => {
-                                                        setSelectedCustomer(row);
-                                                        setDeleteModalOpen(true);
-                                                    }}
-                                                >
-                                                    Delete Customer Data
-                                                </Button>
-                                            </IndexTable.Cell>
-
-                                        </IndexTable.Row>
-                                    );
-                                })}
-                            </IndexTable>
+                                            </IndexTable.Row>
+                                        );
+                                    })}
+                                </IndexTable>
+                            </div>
                         )}
                     </Card>
 
