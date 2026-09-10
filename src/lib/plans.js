@@ -22,13 +22,12 @@ export const PLANS = {
     name: 'Pro',
     priceLabel: '$1/month',
     features: [
-      'Everything in Basic',
-      'Custom email templates',
-      'Custom branding',
+      'Core withdrawal request management',
+      'All supported EU languages',
       'Custom withdrawal period with validation',
-      'Advanced compliance controls',
-      'Advanced exports and filtering'
-    ]
+      'Custom branding and brand colors',
+      'CSV export & advanced request management',
+]
   }
 };
 

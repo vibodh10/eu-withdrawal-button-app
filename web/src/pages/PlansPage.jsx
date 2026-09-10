@@ -67,7 +67,7 @@ export default function PlansPage({ boot, onReload }) {
 
                   <InlineStack gap="200">
                     <Button variant="primary" onClick={managePlan} loading={state.working}>
-                      {entitlement?.isPaid ? "Manage plan" : "Upgrade to Pro"}
+                      {entitlement?.isPaid ? "Manage subscription" : "Subscribe to Pro"}
                     </Button>
                   </InlineStack>
                 </BlockStack>
