@@ -78,9 +78,6 @@ export default function PlansPage({ boot, onReload }) {
           {entitlement?.kind === "PAYMENT_REQUIRED" && (
               <Layout.Section>
                 <Banner tone="warning" title="Choose a paid plan to use the app">
-                  <Text as="p">
-                    Free is no longer available to new or previously upgraded merchants.
-                  </Text>
                 </Banner>
               </Layout.Section>
           )}
