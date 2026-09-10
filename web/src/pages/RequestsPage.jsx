@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     Page,
     Layout,
@@ -214,6 +214,25 @@ export default function RequestsPage() {
         }
     }
 
+    const tableScrollRef = useRef(null);
+    const [scrollPos, setScrollPos] = useState(0);
+    const [scrollMax, setScrollMax] = useState(0);
+
+    useEffect(() => {
+        const el = tableScrollRef.current;
+        if (!el) return;
+
+        const update = () => {
+            setScrollMax(Math.max(0, el.scrollWidth - el.clientWidth));
+            setScrollPos(el.scrollLeft);
+        };
+
+        update();
+        window.addEventListener("resize", update);
+
+        return () => window.removeEventListener("resize", update);
+    }, [loading, filteredRows.length]);
+
     async function confirmDeleteCustomer() {
         if (!selectedCustomer) return;
 
@@ -318,15 +337,12 @@ export default function RequestsPage() {
 
                         {/* ✅ Table */}
                         {!loading && filteredRows.length > 0 && (
-                            <div
-                                style={{
-                                    overflowX: "scroll",
-                                    width: "100%",
-                                    paddingBottom: "10px",
-                                    scrollbarWidth: "auto",
-                                    scrollbarColor: "#666 #ddd",
-                                }}
-                            >
+                            <div>
+                                <div
+                                    ref={tableScrollRef}
+                                    className="requests-table-scroll"
+                                    onScroll={(e) => setScrollPos(e.currentTarget.scrollLeft)}
+                                >
                                 <IndexTable
                                     resourceName={{ singular: "request", plural: "requests" }}
                                     itemCount={filteredRows.length}
@@ -452,6 +468,25 @@ export default function RequestsPage() {
                                         );
                                     })}
                                 </IndexTable>
+                                </div>
+
+                                {scrollMax > 0 && (
+                                    <input
+                                        className="requests-big-scrollbar"
+                                        type="range"
+                                        min="0"
+                                        max={scrollMax}
+                                        value={Math.min(scrollPos, scrollMax)}
+                                        onChange={(e) => {
+                                            const value = Number(e.target.value);
+                                            if (tableScrollRef.current) {
+                                                tableScrollRef.current.scrollLeft = value;
+                                            }
+                                            setScrollPos(value);
+                                        }}
+                                        aria-label="Scroll withdrawal requests horizontally"
+                                    />
+                                )}
                             </div>
                         )}
                     </Card>
