@@ -128,7 +128,7 @@ export default function App() {
                             ? "All premium controls enabled"
                             : boot.data?.shop?.entitlement?.isGrandfatheredFree
                                 ? "Legacy Free access active"
-                                : "Choose a paid plan to continue",
+                                : "Subscribe to continue",
                     }
                 ]}
             />
