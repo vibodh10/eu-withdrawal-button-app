@@ -75,13 +75,6 @@ export default function PlansPage({ boot, onReload }) {
             </InlineStack>
           </Layout.Section>
 
-          {entitlement?.kind === "PAYMENT_REQUIRED" && (
-              <Layout.Section>
-                <Banner tone="warning" title="Choose a paid plan to use the app">
-                </Banner>
-              </Layout.Section>
-          )}
-
         </Layout>
       </Page>
   );
