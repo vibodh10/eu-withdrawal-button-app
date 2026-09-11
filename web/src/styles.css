@@ -172,63 +172,31 @@ a { color: inherit; text-decoration: none; }
   .grid-4, .grid-2, .hero, .form-grid { grid-template-columns: 1fr; }
 }
 
-.requests-table-scroll {
-    overflow-x: auto;
-    width: 100%;
-
-    /* Hide tiny native scrollbar */
-    scrollbar-width: none;
-}
-
-.requests-table-scroll::-webkit-scrollbar {
-    display: none;
-}
-
-.requests-big-scrollbar {
-    appearance: none;
-    -webkit-appearance: none;
-    width: calc(100% - 24px);
-    height: 32px;
-    margin: 6px 12px 10px;
-    background: transparent;
-    cursor: pointer;
+.requests-table-scroll,
+.requests-table-scroll * {
+    scrollbar-width: auto !important;
+    scrollbar-color: #666 #d8d8d8 !important;
 }
 
 /* Chrome / Edge / Safari */
-.requests-big-scrollbar::-webkit-slider-runnable-track {
-    height: 16px;
-    background: #d5d5d5;
-    border-radius: 999px;
+.requests-table-scroll::-webkit-scrollbar,
+.requests-table-scroll *::-webkit-scrollbar {
+    height: 20px !important;
 }
 
-.requests-big-scrollbar::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 100px;
-    height: 26px;
-    background: #555;
-    border-radius: 999px;
-    margin-top: -5px;
+.requests-table-scroll::-webkit-scrollbar-track,
+.requests-table-scroll *::-webkit-scrollbar-track {
+    background: #d8d8d8 !important;
 }
 
-.requests-big-scrollbar::-webkit-slider-thumb:hover {
-    background: #333;
+.requests-table-scroll::-webkit-scrollbar-thumb,
+.requests-table-scroll *::-webkit-scrollbar-thumb {
+    background: #666 !important;
+    border-radius: 10px !important;
+    border: 3px solid #d8d8d8 !important;
 }
 
-/* FIREFOX */
-.requests-big-scrollbar::-moz-range-track {
-    height: 16px;
-    background: #d5d5d5;
-    border-radius: 999px;
-}
-
-.requests-big-scrollbar::-moz-range-thumb {
-    width: 100px;
-    height: 26px;
-    background: #555;
-    border: none;
-    border-radius: 999px;
-}
-
-.requests-big-scrollbar::-moz-range-thumb:hover {
-    background: #333;
+.requests-table-scroll::-webkit-scrollbar-thumb:hover,
+.requests-table-scroll *::-webkit-scrollbar-thumb:hover {
+    background: #444 !important;
 }
