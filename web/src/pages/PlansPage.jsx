@@ -3,15 +3,13 @@ import { Page, Layout, Card, Text, Button, BlockStack, InlineStack, Banner, Badg
 import { openManagedPricing } from "../api";
 import FeatureList from "../components/FeatureList.jsx";
 
-export default function PlansPage({ boot, onReload }) {
+export default function PlansPage({ boot }) {
   const [state, setState] = useState({ working: false, error: "", message: "" });
   const plans = boot.plans;
   const entitlement = boot.shop.entitlement;
 
   async function managePlan() {
-
     try {
-
       setState({
         working: true,
         error: "",
@@ -20,26 +18,35 @@ export default function PlansPage({ boot, onReload }) {
 
       const result = await openManagedPricing();
 
-      if (result.confirmationUrl) {
-
+      if (result?.confirmationUrl) {
         window.top.location.href = result.confirmationUrl;
-
+        return;
       }
-
-    } catch (e) {
 
       setState({
         working: false,
-        error: e.message
+        error: "Could not open Shopify App Pricing.",
+        message: ""
       });
-
+    } catch (e) {
+      setState({
+        working: false,
+        error: e.message || "Could not open Shopify App Pricing.",
+        message: ""
+      });
     }
-
   }
 
   return (
       <Page title="Plans">
         <Layout>
+          {state.error && (
+              <Layout.Section>
+                <Banner tone="critical" title="Could not manage subscription">
+                  <Text as="p">{state.error}</Text>
+                </Banner>
+              </Layout.Section>
+          )}
 
           <Layout.Section>
             <InlineStack gap="400">
@@ -60,7 +67,7 @@ export default function PlansPage({ boot, onReload }) {
               )}
 
               <Card>
-                <BlockStack>
+                <BlockStack gap="300">
                   <Text variant="headingMd">Pro</Text>
                   <Text>{plans.PRO.priceLabel}</Text>
                   <FeatureList items={plans.PRO.features} />
@@ -74,7 +81,6 @@ export default function PlansPage({ boot, onReload }) {
               </Card>
             </InlineStack>
           </Layout.Section>
-
         </Layout>
       </Page>
   );
