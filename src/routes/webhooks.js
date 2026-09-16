@@ -38,6 +38,10 @@ function logWebhookError(route, err) {
   console.error(`[Webhook error] ${route}:`, err);
 }
 
+function retryableWebhookFailure(res) {
+  return res.status(503).send('temporary failure');
+}
+
 export async function deleteShopForGdpr({ database, shopDomain }) {
     return database.$transaction(async (tx) => {
         const shop = await tx.shop.findUnique({
@@ -79,20 +83,20 @@ webhookRouter.post('/app/uninstalled', async (req, res) => {
       });
     }
 
-    res.status(200).send('ok');
+    return res.status(200).send('ok');
   } catch (err) {
     logWebhookError('/app/uninstalled', err);
-    res.status(200).send('ok');
+    return retryableWebhookFailure(res);
   }
 });
 
 webhookRouter.post('/gdpr', async (req, res) => {
   try {
     if (!requireValidWebhook(req, res)) return;
-    res.status(200).send('ok');
+    return res.status(200).send('ok');
   } catch (err) {
     logWebhookError('/gdpr', err);
-    res.status(200).send('ok');
+    return retryableWebhookFailure(res);
   }
 });
 
@@ -101,7 +105,6 @@ webhookRouter.post(
     "/customers/redact",
     async (req, res) => {
         try {
-            // Verify Shopify FIRST.
             if (!requireValidWebhook(req, res)) {
                 return;
             }
@@ -179,9 +182,7 @@ webhookRouter.post(
                 err
             );
 
-            return res
-                .status(200)
-                .send("ok");
+            return retryableWebhookFailure(res);
         }
     }
 );
@@ -218,9 +219,7 @@ webhookRouter.post(
                 err
             );
 
-            return res
-                .status(200)
-                .send("ok");
+            return retryableWebhookFailure(res);
         }
     }
 );
@@ -230,7 +229,6 @@ webhookRouter.post(
     "/customers/data_request",
     async (req, res) => {
         try {
-            // Verify Shopify FIRST.
             if (!requireValidWebhook(req, res)) {
                 return;
             }
@@ -312,9 +310,7 @@ webhookRouter.post(
                 err
             );
 
-            return res
-                .status(200)
-                .json({ data: [] });
+            return retryableWebhookFailure(res);
         }
     }
 );
