@@ -22,8 +22,8 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Apply source fixes
-        shell: python
+      - name: Apply remaining source fixes
+        shell: python {0}
         run: |
           from pathlib import Path
           import re
@@ -40,24 +40,44 @@ jobs:
                   raise SystemExit(f"{label}: expected exactly one match, found {count}")
               return text.replace(old, new, 1)
 
-          # Settings page: remove dead custom-template dependency, make settings+SMTP
-          # a single save, and prevent side-actions from swallowing unrelated edits.
+          def regex_once(text, pattern, replacement, label):
+              updated, count = re.subn(pattern, replacement, text, count=1, flags=re.S)
+              if count != 1:
+                  raise SystemExit(f"{label}: expected exactly one match, found {count}")
+              return updated
+
+          # ------------------------------------------------------------------
+          # Settings page
+          # ------------------------------------------------------------------
           path = "web/src/pages/SettingsPage.jsx"
           s = read(path)
-          s = replace_once(s, '        emailSubject: "",\n        emailBody: "",\n', '', 'remove template fields')
-          s = replace_once(s, '        emailSubject: form.emailSubject || "",\n        emailBody: form.emailBody || "",\n', '', 'remove template normalization')
-          s = replace_once(s, '    const [templateLoaded, setTemplateLoaded] = useState(false);\n', '    const templateLoaded = true;\n', 'template loaded state')
-          s = re.sub(
+
+          s = replace_once(
+              s,
+              '        emailSubject: "",\n        emailBody: "",\n',
+              '',
+              'remove dead template fields',
+          )
+          s = replace_once(
+              s,
+              '        emailSubject: form.emailSubject || "",\n        emailBody: form.emailBody || "",\n',
+              '',
+              'remove dead template normalization',
+          )
+          s = replace_once(
+              s,
+              '    const [templateLoaded, setTemplateLoaded] = useState(false);\n',
+              '    const templateLoaded = true;\n',
+              'remove template loading state',
+          )
+          s = regex_once(
+              s,
               r'\n    useEffect\(\(\) => \{\n        let cancelled = false;\n\n        async function loadTemplate\(\) \{.*?\n    \}, \[\]\);\n',
               '\n',
-              s,
-              count=1,
-              flags=re.S,
+              'remove dead template loader',
           )
-          if 'loadTemplate' in s:
-              raise SystemExit('template loader removal failed')
 
-          old_save = '''            await apiSend("/admin/settings", "PATCH", {
+          current_save = '''            await apiSend("/admin/settings", "PATCH", {
                 brandingName: form.brandingName,
                 locale: form.locale,
                 enabledLanguages: form.enabledLanguages,
@@ -84,13 +104,9 @@ jobs:
                     smtpFromEmail: form.smtpFromEmail,
                 });
                 savedSmtp = smtpResponse.settings;
-                await apiSend("/admin/email-templates/CONFIRMATION", "PATCH", {
-                    subject: form.emailSubject || "",
-                    bodyHtml: form.emailBody || "",
-                });
             }
 '''
-          new_save = '''            const settingsResponse = await apiSend("/admin/settings", "PATCH", {
+          atomic_save = '''            const settingsResponse = await apiSend("/admin/settings", "PATCH", {
                 brandingName: form.brandingName,
                 locale: form.locale,
                 enabledLanguages: form.enabledLanguages,
@@ -115,13 +131,13 @@ jobs:
 
             const savedSmtp = boot.isPro ? settingsResponse.shop : null;
 '''
-          s = replace_once(s, old_save, new_save, 'atomic settings save')
+          s = replace_once(s, current_save, atomic_save, 'atomic settings save')
 
-          helper_anchor = '''    function clearError() {
+          clear_error = '''    function clearError() {
         setState((current) => ({ ...current, error: "" }));
     }
 '''
-          helper = helper_anchor + '''
+          dirty_helper = clear_error + '''
     function blockSideActionWhenDirty(action) {
         if (!hasUnsavedChanges) return false;
         setState((current) => ({
@@ -131,7 +147,7 @@ jobs:
         return true;
     }
 '''
-          s = replace_once(s, helper_anchor, helper, 'dirty side-action helper')
+          s = replace_once(s, clear_error, dirty_helper, 'dirty action helper')
 
           for fn, action in [
               ('disconnectSmtp', 'disconnect SMTP'),
@@ -140,38 +156,53 @@ jobs:
               ('removeDomain', 'remove the sending domain'),
           ]:
               anchor = f'    async function {fn}() {{\n'
-              repl = anchor + f'        if (blockSideActionWhenDirty("{action}")) return;\n'
-              s = replace_once(s, anchor, repl, f'{fn} dirty guard')
+              s = replace_once(
+                  s,
+                  anchor,
+                  anchor + f'        if (blockSideActionWhenDirty("{action}")) return;\n',
+                  f'{fn} dirty guard',
+              )
 
           refresh_anchor = '    async function refreshDomain() {\n'
           s = replace_once(
               s,
               refresh_anchor,
-              refresh_anchor + '        if (hasUnsavedChanges) return;\n',
+              refresh_anchor + '''        if (blockSideActionWhenDirty("check the sending domain status")) return;
+''',
               'refresh domain dirty guard',
           )
-          old_refresh_form = '''            setForm((current) => ({
+
+          old_refresh = '''            setForm((current) => ({
                 ...current,
                 resendDomainName: settings.resendDomainName || current.resendDomainName,
                 resendFromName: settings.resendFromName || current.resendFromName,
                 resendFromEmail: settings.resendFromEmail || current.resendFromEmail,
             }));
 '''
-          new_refresh_form = '''            commitSavedForm({
+          new_refresh = '''            commitSavedForm({
                 ...form,
                 resendDomainName: settings.resendDomainName || form.resendDomainName,
                 resendFromName: settings.resendFromName || form.resendFromName,
                 resendFromEmail: settings.resendFromEmail || form.resendFromEmail,
             });
 '''
-          s = replace_once(s, old_refresh_form, new_refresh_form, 'refresh domain baseline')
+          s = replace_once(s, old_refresh, new_refresh, 'refresh domain baseline')
           write(path, s)
 
-          # Admin route: allow fresh cached access during transient Partner API failures,
-          # save general+SMTP settings atomically, preserve exact SMTP passwords.
+          # ------------------------------------------------------------------
+          # Admin API
+          # ------------------------------------------------------------------
           path = "src/routes/admin.js"
           s = read(path)
-          old_catch = '''    } catch (error) {
+
+          s = replace_once(
+              s,
+              "import { buildManagedPricingUrl } from '../lib/shopify.js';\nimport { syncManagedPricingForShop } from '../lib/shopify.js';\n",
+              "import { buildManagedPricingUrl, SHOPIFY_ADMIN_API_VERSION, syncManagedPricingForShop } from '../lib/shopify.js';\n",
+              'shopify imports',
+          )
+
+          old_me_catch = '''    } catch (error) {
         console.error(
             "Partner API billing reconciliation failed:",
             error.message
@@ -181,15 +212,14 @@ jobs:
         });
     }
 '''
-          new_catch = '''    } catch (error) {
+          new_me_catch = '''    } catch (error) {
         console.error(
             "Partner API billing reconciliation failed:",
             error.message
         );
 
-        // A transient Partner API failure must not take a merchant offline while
-        // the locally cached entitlement is still valid. Paid cache freshness is
-        // enforced by hasAppEntitlement/hasPaidEntitlement.
+        // Keep a merchant online during a transient Partner API failure only
+        // while the locally cached entitlement is still valid and fresh.
         if (hasAppEntitlement(req.shop)) {
             shop = req.shop;
         } else {
@@ -199,7 +229,14 @@ jobs:
         }
     }
 '''
-          s = replace_once(s, old_catch, new_catch, 'billing cached fallback')
+          s = replace_once(s, old_me_catch, new_me_catch, 'cached billing fallback')
+
+          s = replace_once(
+              s,
+              '      // English plus a maximum of three additional languages.\n',
+              '      // English plus one additional language.\n',
+              'admin language comment',
+          )
 
           smtp_atomic = '''
     if (shopIsPro) {
@@ -274,22 +311,30 @@ jobs:
       }
     }
 '''
-          cleaned_anchor = '''    const cleaned = Object.fromEntries(
-'''
-          s = replace_once(s, cleaned_anchor, smtp_atomic + '\n' + cleaned_anchor, 'atomic SMTP patch')
-          old_settings_return = '''      return res.json({
+          s = replace_once(
+              s,
+              '    const cleaned = Object.fromEntries(\n',
+              smtp_atomic + '\n    const cleaned = Object.fromEntries(\n',
+              'atomic SMTP validation and patch',
+          )
+
+          s = replace_once(
+              s,
+              '''      return res.json({
           shop: publicShopView(updated),
       });
-'''
-          new_settings_return = '''      return res.json({
+''',
+              '''      return res.json({
           shop: {
               ...publicShopView(updated),
               ...publicSmtpSettings(updated),
               ...publicResendDomainSettings(updated),
           },
       });
-'''
-          s = replace_once(s, old_settings_return, new_settings_return, 'settings response')
+''',
+              'settings response includes email state',
+          )
+
           s = replace_once(
               s,
               '''    const password =
@@ -302,11 +347,25 @@ jobs:
             ? smtpPassword
             : "";
 ''',
-              'exact SMTP password',
+              'preserve exact SMTP password',
+          )
+
+          s = regex_once(
+              s,
+              r'\n// GET /admin/email-templates\nadminRouter\.get\(\'/email-templates\'.*?\n\);\n\nadminRouter\.delete\(',
+              '\nadminRouter.delete(',
+              'remove disabled email template routes',
+          )
+
+          s = s.replace(
+              '/admin/api/2026-04/graphql.json',
+              '/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json',
           )
           write(path, s)
 
-          # Storefront settings must match the admin limits and actual confirmation behaviour.
+          # ------------------------------------------------------------------
+          # Storefront proxy consistency
+          # ------------------------------------------------------------------
           path = "src/routes/proxy.js"
           s = read(path)
           s = replace_once(
@@ -316,31 +375,36 @@ jobs:
               'proxy language comment',
           )
           s = replace_once(s, '].slice(0, 4);', '].slice(0, 2);', 'proxy language limit')
-          old_confirmation = '''                /*
+          s = replace_once(
+              s,
+              '''                /*
                  * The form remains available, but no automatic
                  * customer confirmation is currently sent.
                  */
                 emailConfirmationsEnabled:
                     false,
-'''
-          new_confirmation = '''                // A verified withdrawal submission triggers the server-controlled
-                // confirmation flow. Delivery can fall back between providers.
+''',
+              '''                // Verified submissions trigger the server-controlled
+                // confirmation email flow.
                 emailConfirmationsEnabled:
                     true,
-'''
-          s = replace_once(s, old_confirmation, new_confirmation, 'confirmation settings flag')
+''',
+              'proxy confirmation flag',
+          )
           write(path, s)
 
-          # Shopify billing/API configuration: one paid-handle source of truth,
-          # one Admin API version, consistent scopes, and a real missing-ID check.
+          # ------------------------------------------------------------------
+          # Shopify API and pricing configuration
+          # ------------------------------------------------------------------
           path = "src/lib/shopify.js"
           s = read(path)
           s = replace_once(
               s,
               "const SHOPIFY_APP_HANDLE = process.env.SHOPIFY_APP_HANDLE || 'eu-withdrawal-button-2026';\n",
-              "const SHOPIFY_APP_HANDLE = process.env.SHOPIFY_APP_HANDLE || 'eu-withdrawal-button-2026';\nconst SHOPIFY_ADMIN_API_VERSION = process.env.SHOPIFY_ADMIN_API_VERSION || '2026-04';\n",
-              'admin API version const',
+              "const SHOPIFY_APP_HANDLE = process.env.SHOPIFY_APP_HANDLE || 'eu-withdrawal-button-2026';\nexport const SHOPIFY_ADMIN_API_VERSION = process.env.SHOPIFY_ADMIN_API_VERSION || '2026-04';\n",
+              'central admin API version',
           )
+
           old_map = '''  const liveProHandle = String(
       process.env.SHOPIFY_MANAGED_PRICING_PRO_HANDLE || "pro"
   )
@@ -358,13 +422,14 @@ jobs:
               s,
               old_map,
               '  return isPaidPlanHandle(value) ? "PRO" : "PAYMENT_REQUIRED";\n',
-              'paid handle source of truth',
+              'single paid handle source of truth',
           )
+
           s = replace_once(
               s,
               '`https://${normalizedShop}/admin/api/2026-01/graphql.json`',
               '`https://${normalizedShop}/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json`',
-              'admin GraphQL version',
+              'central GraphQL version',
           )
           s = replace_once(
               s,
@@ -373,7 +438,7 @@ jobs:
     throw new Error("Shopify billing identity mismatch: Admin Shop ID is missing");
   }
 ''',
-              'shop identity missing check',
+              'real missing shop ID check',
           )
           s = replace_once(
               s,
@@ -385,15 +450,86 @@ jobs:
   hostName: DEFAULT_APP_URL.replace(/https?:\\/\\//, ''),
   apiVersion: SHOPIFY_ADMIN_API_VERSION,
 ''',
-              'SDK scopes and version',
+              'SDK scopes and API version',
           )
           write(path, s)
 
-          # Keep documented scope source aligned with deployed TOML.
-          path = ".env.example"
+          # ------------------------------------------------------------------
+          # Confirmation email localisation for every selectable language
+          # ------------------------------------------------------------------
+          path = "src/lib/email.js"
           s = read(path)
-          if 'SHOPIFY_SCOPES=read_orders,write_online_store_pages,write_app_proxy' not in s:
-              raise SystemExit('env scopes are not aligned')
+          localized = r'''const CONFIRMATION_COPY = Object.freeze({
+  en: { subject: "Your withdrawal request has been received", received: "We have received your request.", reference: "Reference" },
+  de: { subject: "Ihre Widerrufsanfrage wurde erhalten", received: "Wir haben Ihre Anfrage erhalten.", reference: "Referenz" },
+  fr: { subject: "Votre demande de rétractation a été reçue", received: "Nous avons reçu votre demande.", reference: "Référence" },
+  it: { subject: "La tua richiesta di recesso è stata ricevuta", received: "Abbiamo ricevuto la tua richiesta.", reference: "Riferimento" },
+  es: { subject: "Hemos recibido tu solicitud de desistimiento", received: "Hemos recibido tu solicitud.", reference: "Referencia" },
+  pt: { subject: "O seu pedido de desistência foi recebido", received: "Recebemos o seu pedido.", reference: "Referência" },
+  nl: { subject: "Uw herroepingsverzoek is ontvangen", received: "We hebben uw verzoek ontvangen.", reference: "Referentie" },
+  pl: { subject: "Otrzymaliśmy Twoje żądanie odstąpienia", received: "Otrzymaliśmy Twoje żądanie.", reference: "Numer referencyjny" },
+  da: { subject: "Din anmodning om fortrydelse er modtaget", received: "Vi har modtaget din anmodning.", reference: "Reference" },
+  sv: { subject: "Din begäran om ångerrätt har tagits emot", received: "Vi har tagit emot din begäran.", reference: "Referens" },
+  fi: { subject: "Peruuttamispyyntösi on vastaanotettu", received: "Olemme vastaanottaneet pyyntösi.", reference: "Viite" },
+  cs: { subject: "Vaše žádost o odstoupení byla přijata", received: "Vaši žádost jsme přijali.", reference: "Reference" },
+  sk: { subject: "Vaša žiadosť o odstúpenie bola prijatá", received: "Vašu žiadosť sme prijali.", reference: "Referencia" },
+  sl: { subject: "Vaša zahteva za odstop je bila prejeta", received: "Prejeli smo vašo zahtevo.", reference: "Referenca" },
+  hr: { subject: "Vaš zahtjev za odustajanje je zaprimljen", received: "Zaprimili smo vaš zahtjev.", reference: "Referenca" },
+  hu: { subject: "Elállási kérelmét megkaptuk", received: "Megkaptuk a kérelmét.", reference: "Hivatkozás" },
+  ro: { subject: "Cererea dvs. de retragere a fost primită", received: "Am primit cererea dvs.", reference: "Referință" },
+  bg: { subject: "Вашето искане за отказ е получено", received: "Получихме Вашето искане.", reference: "Референция" },
+  el: { subject: "Το αίτημα υπαναχώρησής σας ελήφθη", received: "Λάβαμε το αίτημά σας.", reference: "Αναφορά" },
+  et: { subject: "Teie taganemistaotlus on vastu võetud", received: "Oleme teie taotluse kätte saanud.", reference: "Viide" },
+  lv: { subject: "Jūsu atteikuma pieprasījums ir saņemts", received: "Mēs esam saņēmuši jūsu pieprasījumu.", reference: "Atsauce" },
+  lt: { subject: "Jūsų atsisakymo prašymas gautas", received: "Gavome jūsų prašymą.", reference: "Nuoroda" },
+  ga: { subject: "Fuarthas d’iarratas aistarraingthe", received: "Fuaireamar d’iarratas.", reference: "Tagairt" },
+  mt: { subject: "It-talba tiegħek għall-irtirar waslet", received: "Irċevejna t-talba tiegħek.", reference: "Referenza" },
+});
+
+export function buildConfirmationEmail({
+                                         shopName,
+                                         reference,
+                                         locale = "en",
+                                       }) {
+  const language = String(locale || "en").trim().toLowerCase().split("-")[0];
+  const copy = CONFIRMATION_COPY[language] || CONFIRMATION_COPY.en;
+
+  return {
+    subject: copy.subject,
+    html: `<div>
+          <p>${copy.received}</p>
+          <p>${copy.reference}: <strong>${reference}</strong></p>
+        </div>`,
+  };
+}
+'''
+          s = regex_once(
+              s,
+              r'export function buildConfirmationEmail\(\{.*\Z',
+              localized,
+              'confirmation localisation',
+          )
+          write(path, s)
+
+          # Sanity checks that the old bug patterns are gone.
+          combined = "\n".join(read(p) for p in [
+              "web/src/pages/SettingsPage.jsx",
+              "src/routes/admin.js",
+              "src/routes/proxy.js",
+              "src/lib/shopify.js",
+              "src/lib/email.js",
+          ])
+          forbidden = [
+              'apiGet("/admin/email-templates")',
+              'smtpPassword.trim()',
+              '"pro-test",',
+              '/admin/api/2026-01/graphql.json',
+              'scopes: [\'read_orders\']',
+              '].slice(0, 4);',
+          ]
+          for item in forbidden:
+              if item in combined:
+                  raise SystemExit(f"old bug pattern still present: {item}")
 
       - name: Install dependencies
         run: npm ci
@@ -407,11 +543,11 @@ jobs:
       - name: Commit fixes
         run: |
           if git diff --quiet; then
-            echo "No remaining changes"
+            echo "No remaining source changes"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add web/src/pages/SettingsPage.jsx src/routes/admin.js src/routes/proxy.js src/lib/shopify.js
+          git add web/src/pages/SettingsPage.jsx src/routes/admin.js src/routes/proxy.js src/lib/shopify.js src/lib/email.js
           git commit -m "Apply remaining audited fixes"
           git push
