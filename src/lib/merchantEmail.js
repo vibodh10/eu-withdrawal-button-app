@@ -3,6 +3,7 @@ import { Resend } from "resend";
 
 import { decryptSecret } from "./encryption.js";
 import { sendEmail as sendGl6Email } from "./email.js";
+import { hasPaidEntitlement } from "./entitlements.js";
 import {
     isAllowedSmtpPort,
     resolvePublicSmtpDestination,
@@ -148,12 +149,17 @@ export async function sendCustomerConfirmation({
         shop.merchantNotification ||
         process.env.FROM_EMAIL;
 
+    // Premium delivery providers must use the same fresh Shopify billing
+    // entitlement check as the rest of the application. A stale/cancelled
+    // PRO row must not keep SMTP or verified-domain delivery enabled.
+    const paidEntitlement = hasPaidEntitlement(shop);
+
     /*
      * Option 1:
      * Pro merchant with a verified Resend domain.
      */
     if (
-        shop.plan === "PRO" &&
+        paidEntitlement &&
         shop.emailDeliveryMethod ===
         "RESEND_DOMAIN" &&
         shop.resendDomainStatus ===
@@ -224,7 +230,7 @@ export async function sendCustomerConfirmation({
      * Pro merchant with connected SMTP.
      */
     if (
-        shop.plan === "PRO" &&
+        paidEntitlement &&
         shop.emailDeliveryMethod === "SMTP" &&
         shop.smtpEnabled &&
         shop.smtpVerifiedAt
