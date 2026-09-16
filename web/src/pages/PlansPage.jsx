@@ -3,15 +3,13 @@ import { Page, Layout, Card, Text, Button, BlockStack, InlineStack, Banner, Badg
 import { openManagedPricing } from "../api";
 import FeatureList from "../components/FeatureList.jsx";
 
-export default function PlansPage({ boot, onReload }) {
+export default function PlansPage({ boot }) {
   const [state, setState] = useState({ working: false, error: "", message: "" });
   const plans = boot.plans;
   const entitlement = boot.shop.entitlement;
 
   async function managePlan() {
-
     try {
-
       setState({
         working: true,
         error: "",
@@ -21,25 +19,34 @@ export default function PlansPage({ boot, onReload }) {
       const result = await openManagedPricing();
 
       if (result.confirmationUrl) {
-
         window.top.location.href = result.confirmationUrl;
-
+        return;
       }
-
-    } catch (e) {
 
       setState({
         working: false,
-        error: e.message
+        error: "Shopify did not return a pricing URL.",
+        message: "",
       });
-
+    } catch (e) {
+      setState({
+        working: false,
+        error: e.message || "Could not open Shopify pricing.",
+        message: ""
+      });
     }
-
   }
 
   return (
       <Page title="Plans">
         <Layout>
+          {state.error && (
+              <Layout.Section>
+                <Banner tone="critical" title="Could not open Shopify pricing">
+                  <Text as="p">{state.error}</Text>
+                </Banner>
+              </Layout.Section>
+          )}
 
           <Layout.Section>
             <InlineStack gap="400">
@@ -74,7 +81,6 @@ export default function PlansPage({ boot, onReload }) {
               </Card>
             </InlineStack>
           </Layout.Section>
-
         </Layout>
       </Page>
   );
