@@ -1079,76 +1079,76 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
                         </Card>
                     </Layout.Section>
 
-                    <Layout.Section>
-                        <Card>
-                            <BlockStack gap="300">
-                                <Text variant="headingMd">Branding</Text>
-                                {proLocked && (
-                                    <Banner tone="info" title="Upgrade to Pro to unlock custom branding">
-                                        <Text as="p">
-                                            Make your branding unique by adding a custom colour to
-                                            customer emails and withdrawal communications.
-                                        </Text>
-                                    </Banner>
-                                )}
-                                <TextField
-                                    label="Brand name"
-                                    value={form.brandingName}
-                                    onChange={(value) => updateField("brandingName", value)}
-                                    helpText="Used in customer emails and withdrawal request communications."
-                                    autoComplete="organization"
-                                />
-                                <InlineStack gap="300" align="start">
-                                    <div style={{ flex: 1 }}>
-                                        <TextField
-                                            label="Primary brand color"
-                                            value={form.brandingPrimaryColor}
-                                            disabled={proLocked}
-                                            onChange={(value) => updateField("brandingPrimaryColor", value)}
-                                            autoComplete="off"
-                                            helpText="Example: #111827"
-                                        />
-                                    </div>
-                                    <div style={{ paddingTop: "28px" }}>
-                                        <input
-                                            type="color"
-                                            aria-label="Primary brand color picker"
-                                            value={form.brandingPrimaryColor}
-                                            disabled={proLocked}
-                                            onChange={(event) =>
-                                                updateField("brandingPrimaryColor", event.target.value)
-                                            }
-                                            style={{
-                                                width: 48,
-                                                height: 48,
-                                                border: "none",
-                                                background: "transparent",
-                                                cursor: proLocked ? "not-allowed" : "pointer",
-                                            }}
-                                        />
-                                    </div>
-                                </InlineStack>
-                                <Box padding="400" borderWidth="025" borderRadius="300" background="bg-surface-secondary">
-                                    <div
-                                        style={{
-                                            background: form.brandingPrimaryColor || "#0041c2",
-                                            padding: "16px",
-                                            borderRadius: "8px",
-                                            marginBottom: "16px",
-                                            opacity: proLocked ? 0.6 : 1,
-                                        }}
-                                    >
-                                        <h2 style={{ color: "#ffffff", margin: 0, fontSize: "20px" }}>
-                                            {form.brandingName || "Your Brand"}
-                                        </h2>
-                                    </div>
-                                    <Text as="p" variant="bodyMd">
-                                        This is how your email branding header will appear to customers.
-                                    </Text>
-                                </Box>
-                            </BlockStack>
-                        </Card>
-                    </Layout.Section>
+                    {/*<Layout.Section>*/}
+                    {/*    <Card>*/}
+                    {/*        <BlockStack gap="300">*/}
+                    {/*            <Text variant="headingMd">Branding</Text>*/}
+                    {/*            {proLocked && (*/}
+                    {/*                <Banner tone="info" title="Upgrade to Pro to unlock custom branding">*/}
+                    {/*                    <Text as="p">*/}
+                    {/*                        Make your branding unique by adding a custom colour to*/}
+                    {/*                        customer emails and withdrawal communications.*/}
+                    {/*                    </Text>*/}
+                    {/*                </Banner>*/}
+                    {/*            )}*/}
+                    {/*            <TextField*/}
+                    {/*                label="Brand name"*/}
+                    {/*                value={form.brandingName}*/}
+                    {/*                onChange={(value) => updateField("brandingName", value)}*/}
+                    {/*                helpText="Used in customer emails and withdrawal request communications."*/}
+                    {/*                autoComplete="organization"*/}
+                    {/*            />*/}
+                    {/*            <InlineStack gap="300" align="start">*/}
+                    {/*                <div style={{ flex: 1 }}>*/}
+                    {/*                    <TextField*/}
+                    {/*                        label="Primary brand color"*/}
+                    {/*                        value={form.brandingPrimaryColor}*/}
+                    {/*                        disabled={proLocked}*/}
+                    {/*                        onChange={(value) => updateField("brandingPrimaryColor", value)}*/}
+                    {/*                        autoComplete="off"*/}
+                    {/*                        helpText="Example: #111827"*/}
+                    {/*                    />*/}
+                    {/*                </div>*/}
+                    {/*                <div style={{ paddingTop: "28px" }}>*/}
+                    {/*                    <input*/}
+                    {/*                        type="color"*/}
+                    {/*                        aria-label="Primary brand color picker"*/}
+                    {/*                        value={form.brandingPrimaryColor}*/}
+                    {/*                        disabled={proLocked}*/}
+                    {/*                        onChange={(event) =>*/}
+                    {/*                            updateField("brandingPrimaryColor", event.target.value)*/}
+                    {/*                        }*/}
+                    {/*                        style={{*/}
+                    {/*                            width: 48,*/}
+                    {/*                            height: 48,*/}
+                    {/*                            border: "none",*/}
+                    {/*                            background: "transparent",*/}
+                    {/*                            cursor: proLocked ? "not-allowed" : "pointer",*/}
+                    {/*                        }}*/}
+                    {/*                    />*/}
+                    {/*                </div>*/}
+                    {/*            </InlineStack>*/}
+                    {/*            <Box padding="400" borderWidth="025" borderRadius="300" background="bg-surface-secondary">*/}
+                    {/*                <div*/}
+                    {/*                    style={{*/}
+                    {/*                        background: form.brandingPrimaryColor || "#0041c2",*/}
+                    {/*                        padding: "16px",*/}
+                    {/*                        borderRadius: "8px",*/}
+                    {/*                        marginBottom: "16px",*/}
+                    {/*                        opacity: proLocked ? 0.6 : 1,*/}
+                    {/*                    }}*/}
+                    {/*                >*/}
+                    {/*                    <h2 style={{ color: "#ffffff", margin: 0, fontSize: "20px" }}>*/}
+                    {/*                        {form.brandingName || "Your Brand"}*/}
+                    {/*                    </h2>*/}
+                    {/*                </div>*/}
+                    {/*                <Text as="p" variant="bodyMd">*/}
+                    {/*                    This is how your email branding header will appear to customers.*/}
+                    {/*                </Text>*/}
+                    {/*            </Box>*/}
+                    {/*        </BlockStack>*/}
+                    {/*    </Card>*/}
+                    {/*</Layout.Section>*/}
 
                     {/*<Layout.Section>*/}
                     {/*    <Card>*/}
