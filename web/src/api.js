@@ -1,5 +1,5 @@
 import { getSessionToken } from "@shopify/app-bridge-utils";
-import { app } from "./appBridge.js"; // make sure this is correct
+import { app } from "./appBridge.js";
 
 export async function getAuthHeaders() {
   const token = await getSessionToken(app);
@@ -36,60 +36,55 @@ async function authenticatedFetch(url, options = {}) {
   return response;
 }
 
-function withShopifyParams(url) {
-  const params = window.location.search;
+async function parseResponse(res) {
+  const text = await res.text();
+  if (!text) return null;
 
-  if (!params) return url;
+  try {
+    return JSON.parse(text);
+  } catch {
+    return text;
+  }
+}
 
-  return url.includes("?")
-      ? `${url}&${params.slice(1)}`
-      : `${url}${params}`;
+function requestError(res, payload) {
+  const data = payload && typeof payload === "object" ? payload : {};
+  const fallbackText = typeof payload === "string" ? payload : "";
+  const message =
+    data.error ||
+    data.message ||
+    fallbackText ||
+    `Request failed with status ${res.status}`;
+
+  const err = new Error(message);
+  err.status = res.status;
+  err.data = data;
+  return err;
 }
 
 export async function apiGet(url) {
-  const res = await authenticatedFetch(withShopifyParams(url));
+  const res = await authenticatedFetch(url);
+  const payload = await parseResponse(res);
 
   if (!res.ok) {
-    const text = await res.text();
-
-    let data = {};
-    try {
-      data = JSON.parse(text);
-    } catch {}
-
-    const err = new Error(data.message || text);
-    err.status = res.status;
-    err.data = data;
-
-    throw err;
+    throw requestError(res, payload);
   }
 
-  return res.json();
+  return payload;
 }
 
 export async function apiSend(url, method, body) {
-  const res = await authenticatedFetch(withShopifyParams(url), {
+  const res = await authenticatedFetch(url, {
     method,
     body: body ? JSON.stringify(body) : undefined,
   });
+  const payload = await parseResponse(res);
 
   if (!res.ok) {
-    const text = await res.text();
-
-    let data = {};
-    try {
-      data = JSON.parse(text);
-    } catch {}
-
-    const err = new Error(data.message || text);
-    err.status = res.status;
-    err.data = data;
-
-    throw err;
+    throw requestError(res, payload);
   }
 
-  const text = await res.text();
-  return text ? JSON.parse(text) : null;
+  return payload;
 }
 
 export async function syncBilling() {
