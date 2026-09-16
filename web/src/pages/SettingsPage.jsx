@@ -365,11 +365,6 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
                     smtpFromEmail: form.smtpFromEmail,
                 });
                 savedSmtp = smtpResponse.settings;
-
-                await apiSend("/admin/email-templates/CONFIRMATION", "PATCH", {
-                    subject: form.emailSubject || "",
-                    bodyHtml: form.emailBody || "",
-                });
             }
             const saved = commitSavedForm({
                 ...form,
