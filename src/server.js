@@ -77,9 +77,8 @@ app.use(express.urlencoded({
 // Avoid logging query strings because Shopify embedded URLs can contain
 // short-lived identity/session parameters. Log only method, path, status and
 // duration instead.
-app.use(morgan(':method :pathname :status :response-time ms', {
-  skip: () => false,
-}));
+morgan.token('path', (req) => req.path);
+app.use(morgan(':method :path :status :response-time ms'));
 
 // Readiness check: verify the database is actually reachable rather than
 // returning healthy unconditionally.
