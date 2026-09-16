@@ -18,6 +18,7 @@ import {
     executeProtectedEmail,
     isAbuseProtectionError,
 } from "./abuseProtection.js";
+import { hasPaidEntitlement } from "./entitlements.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -54,8 +55,6 @@ async function buildMerchantTransport(
         );
 
     const transportOptions = {
-        // Connect to the already-resolved and validated address so a
-        // second DNS lookup cannot redirect the socket internally.
         host: destination.address,
         port,
         secure: Boolean(shop.smtpSecure),
@@ -78,8 +77,6 @@ async function buildMerchantTransport(
 
     if (destination.servername) {
         transportOptions.tls = {
-            // Preserve certificate hostname validation while connecting
-            // directly to the pinned public IP address.
             servername: destination.servername,
         };
     }
@@ -148,12 +145,10 @@ export async function sendCustomerConfirmation({
         shop.merchantNotification ||
         process.env.FROM_EMAIL;
 
-    /*
-     * Option 1:
-     * Pro merchant with a verified Resend domain.
-     */
+    const paidEntitlement = hasPaidEntitlement(shop);
+
     if (
-        shop.plan === "PRO" &&
+        paidEntitlement &&
         shop.emailDeliveryMethod ===
         "RESEND_DOMAIN" &&
         shop.resendDomainStatus ===
@@ -212,19 +207,11 @@ export async function sendCustomerConfirmation({
                     message: error.message,
                 }
             );
-
-            /*
-             * Continue to GL6 fallback.
-             */
         }
     }
 
-    /*
-     * Option 2:
-     * Pro merchant with connected SMTP.
-     */
     if (
-        shop.plan === "PRO" &&
+        paidEntitlement &&
         shop.emailDeliveryMethod === "SMTP" &&
         shop.smtpEnabled &&
         shop.smtpVerifiedAt
@@ -245,9 +232,6 @@ export async function sendCustomerConfirmation({
                 withdrawalRequestId,
                 protection,
                 deliveryOperation: async () => {
-                    // The outer protection checks the kill switch and quotas
-                    // before DNS/decryption/transport setup. Recheck at the
-                    // actual send boundary in case the switch changes.
                     assertEmailDeliveryEnabled();
                     const transporter =
                         await buildMerchantTransport(
@@ -282,18 +266,8 @@ export async function sendCustomerConfirmation({
                     message: error.message,
                 }
             );
-
-            /*
-             * Continue to GL6 fallback.
-             */
         }
     }
-
-    /*
-     * Option 3:
-     * Basic, unconfigured Pro,
-     * or fallback after failure.
-     */
 
     return gl6Sender({
         to,
