@@ -79,29 +79,27 @@ webhookRouter.post('/app/uninstalled', async (req, res) => {
       });
     }
 
-    res.status(200).send('ok');
+    return res.status(200).send('ok');
   } catch (err) {
     logWebhookError('/app/uninstalled', err);
-    res.status(200).send('ok');
+    return res.status(503).send('temporary webhook failure');
   }
 });
 
 webhookRouter.post('/gdpr', async (req, res) => {
   try {
     if (!requireValidWebhook(req, res)) return;
-    res.status(200).send('ok');
+    return res.status(200).send('ok');
   } catch (err) {
     logWebhookError('/gdpr', err);
-    res.status(200).send('ok');
+    return res.status(503).send('temporary webhook failure');
   }
 });
 
-// CUSTOMER DATA DELETE
 webhookRouter.post(
     "/customers/redact",
     async (req, res) => {
         try {
-            // Verify Shopify FIRST.
             if (!requireValidWebhook(req, res)) {
                 return;
             }
@@ -180,13 +178,12 @@ webhookRouter.post(
             );
 
             return res
-                .status(200)
-                .send("ok");
+                .status(503)
+                .send("temporary webhook failure");
         }
     }
 );
 
-// SHOP DATA DELETE / GDPR FULL WIPE
 webhookRouter.post(
     "/shop/redact",
     async (req, res) => {
@@ -219,18 +216,16 @@ webhookRouter.post(
             );
 
             return res
-                .status(200)
-                .send("ok");
+                .status(503)
+                .send("temporary webhook failure");
         }
     }
 );
 
-// CUSTOMER DATA REQUEST
 webhookRouter.post(
     "/customers/data_request",
     async (req, res) => {
         try {
-            // Verify Shopify FIRST.
             if (!requireValidWebhook(req, res)) {
                 return;
             }
@@ -313,8 +308,8 @@ webhookRouter.post(
             );
 
             return res
-                .status(200)
-                .json({ data: [] });
+                .status(503)
+                .json({ error: "temporary webhook failure" });
         }
     }
 );
