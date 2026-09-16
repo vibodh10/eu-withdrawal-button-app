@@ -1,5 +1,5 @@
 import { getSessionToken } from "@shopify/app-bridge-utils";
-import { app } from "./appBridge.js"; // make sure this is correct
+import { app } from "./appBridge.js";
 
 export async function getAuthHeaders() {
   const token = await getSessionToken(app);
@@ -36,56 +36,44 @@ async function authenticatedFetch(url, options = {}) {
   return response;
 }
 
-function withShopifyParams(url) {
-  const params = window.location.search;
+async function parseResponseError(res) {
+  const text = await res.text();
 
-  if (!params) return url;
+  let data = {};
+  try {
+    data = JSON.parse(text);
+  } catch {}
 
-  return url.includes("?")
-      ? `${url}&${params.slice(1)}`
-      : `${url}${params}`;
+  const message =
+    data?.error ||
+    data?.message ||
+    text ||
+    `Request failed with status ${res.status}`;
+
+  const err = new Error(message);
+  err.status = res.status;
+  err.data = data;
+  return err;
 }
 
 export async function apiGet(url) {
-  const res = await authenticatedFetch(withShopifyParams(url));
+  const res = await authenticatedFetch(url);
 
   if (!res.ok) {
-    const text = await res.text();
-
-    let data = {};
-    try {
-      data = JSON.parse(text);
-    } catch {}
-
-    const err = new Error(data.message || text);
-    err.status = res.status;
-    err.data = data;
-
-    throw err;
+    throw await parseResponseError(res);
   }
 
   return res.json();
 }
 
 export async function apiSend(url, method, body) {
-  const res = await authenticatedFetch(withShopifyParams(url), {
+  const res = await authenticatedFetch(url, {
     method,
     body: body ? JSON.stringify(body) : undefined,
   });
 
   if (!res.ok) {
-    const text = await res.text();
-
-    let data = {};
-    try {
-      data = JSON.parse(text);
-    } catch {}
-
-    const err = new Error(data.message || text);
-    err.status = res.status;
-    err.data = data;
-
-    throw err;
+    throw await parseResponseError(res);
   }
 
   const text = await res.text();

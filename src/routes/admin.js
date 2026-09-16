@@ -3,8 +3,7 @@ import { prisma } from '../lib/db.js';
 import { toCsv } from '../lib/csv.js';
 import { isPro, PLANS } from '../lib/plans.js';
 import verifyRequest from "../middleware/verifyRequest.js";
-import { buildManagedPricingUrl } from '../lib/shopify.js';
-import { syncManagedPricingForShop } from '../lib/shopify.js';
+import { buildManagedPricingUrl, SHOPIFY_ADMIN_API_VERSION, syncManagedPricingForShop } from '../lib/shopify.js';
 import {
     hasAppEntitlement,
     publicEntitlementView,
@@ -146,9 +145,16 @@ adminRouter.get("/me", async (req, res) => {
             "Partner API billing reconciliation failed:",
             error.message
         );
-        return res.status(503).json({
-            error: "Could not verify Shopify App Pricing entitlement.",
-        });
+
+        // Keep a merchant online during a transient Partner API failure only
+        // while the locally cached entitlement is still valid and fresh.
+        if (hasAppEntitlement(req.shop)) {
+            shop = req.shop;
+        } else {
+            return res.status(503).json({
+                error: "Could not verify Shopify App Pricing entitlement.",
+            });
+        }
     }
 
     return res.json({
@@ -262,7 +268,7 @@ adminRouter.get("/setup/status", async (req, res) => {
           `;
 
                     const response = await fetch(
-                        `https://${shop.shopDomain}/admin/api/2026-04/graphql.json`,
+                        `https://${shop.shopDomain}/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json`,
                         {
                             method: "POST",
                             headers: {
@@ -627,7 +633,7 @@ adminRouter.patch("/settings", async (req, res) => {
 
       enabledLanguages = [...new Set(enabledLanguages)];
 
-      // English plus a maximum of three additional languages.
+      // English plus one additional language.
       if (enabledLanguages.length > 2) {
         return res.status(400).json({
           error:
@@ -702,6 +708,79 @@ adminRouter.patch("/settings", async (req, res) => {
       }
     }
 
+
+    if (shopIsPro) {
+      const smtpFieldsSubmitted = [
+        "smtpEnabled",
+        "smtpHost",
+        "smtpPort",
+        "smtpSecure",
+        "smtpUsername",
+        "smtpPassword",
+        "smtpFromName",
+        "smtpFromEmail",
+      ].some((key) => Object.hasOwn(req.body, key));
+
+      if (smtpFieldsSubmitted) {
+        const enabled = Boolean(req.body.smtpEnabled);
+        const host = String(req.body.smtpHost || "").trim();
+        const username = String(req.body.smtpUsername || "").trim();
+        const fromName = String(req.body.smtpFromName || "").trim();
+        const fromEmail = String(req.body.smtpFromEmail || "").trim();
+        const password = typeof req.body.smtpPassword === "string"
+            ? req.body.smtpPassword
+            : "";
+        const port = Number.parseInt(req.body.smtpPort, 10);
+        const secure = Boolean(req.body.smtpSecure);
+
+        if (enabled) {
+          if (!host) {
+            return res.status(400).json({ error: "SMTP host is required." });
+          }
+          if (!isAllowedSmtpPort(port)) {
+            return res.status(400).json({
+              error: "SMTP verification is limited to ports 465 and 587.",
+            });
+          }
+          if (!username) {
+            return res.status(400).json({ error: "SMTP username is required." });
+          }
+          if (!fromEmail) {
+            return res.status(400).json({ error: "From email is required." });
+          }
+          if (!password && !shop.smtpPasswordEncrypted) {
+            return res.status(400).json({ error: "SMTP password is required." });
+          }
+        }
+
+        const smtpConfigurationChanged =
+            enabled !== Boolean(shop.smtpEnabled) ||
+            host !== String(shop.smtpHost || "") ||
+            (Number.isInteger(port) ? port : null) !== (shop.smtpPort ?? null) ||
+            secure !== Boolean(shop.smtpSecure) ||
+            username !== String(shop.smtpUsername || "") ||
+            fromName !== String(shop.smtpFromName || "") ||
+            fromEmail !== String(shop.smtpFromEmail || "") ||
+            Boolean(password);
+
+        Object.assign(patch, {
+          smtpEnabled: enabled,
+          smtpHost: host || null,
+          smtpPort: Number.isInteger(port) ? port : null,
+          smtpSecure: secure,
+          smtpUsername: username || null,
+          smtpFromName: fromName || null,
+          smtpFromEmail: fromEmail || null,
+          ...(smtpConfigurationChanged
+              ? { smtpVerifiedAt: null, smtpLastError: null }
+              : {}),
+          ...(password
+              ? { smtpPasswordEncrypted: encryptSecret(password) }
+              : {}),
+        });
+      }
+    }
+
     const cleaned = Object.fromEntries(
         Object.entries(patch).filter(
             ([, value]) => value !== undefined
@@ -716,7 +795,11 @@ adminRouter.patch("/settings", async (req, res) => {
     });
 
       return res.json({
-          shop: publicShopView(updated),
+          shop: {
+              ...publicShopView(updated),
+              ...publicSmtpSettings(updated),
+              ...publicResendDomainSettings(updated),
+          },
       });
   } catch (error) {
     console.error("Update settings failed:", error);
@@ -807,28 +890,6 @@ adminRouter.post('/dpa/accept', async (req, res) => {
 
   res.json({ success: true });
 });
-
-// GET /admin/email-templates
-adminRouter.get('/email-templates', async (req, res) => {
-  const shop = req.shop;
-
-  const templates = await prisma.emailTemplate.findMany({
-    where: { shopId: shop.id }
-  });
-
-  res.json({ templates });
-});
-
-// PATCH /admin/email-templates/:code
-adminRouter.patch(
-    "/email-templates/:code",
-    (_req, res) => {
-        return res.status(410).json({
-            error:
-                "Custom email templates are disabled for security.",
-        });
-    }
-);
 
 adminRouter.delete(
     "/requests/:id",
@@ -926,7 +987,7 @@ adminRouter.post("/setup/withdrawal-page", async (req, res) => {
     `;
 
     const searchResponse = await fetch(
-        `https://${shop.shopDomain}/admin/api/2026-04/graphql.json`,
+        `https://${shop.shopDomain}/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json`,
         {
           method: "POST",
           headers: {
@@ -972,7 +1033,7 @@ adminRouter.post("/setup/withdrawal-page", async (req, res) => {
     `;
 
     const createResponse = await fetch(
-        `https://${shop.shopDomain}/admin/api/2026-04/graphql.json`,
+        `https://${shop.shopDomain}/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json`,
         {
           method: "POST",
           headers: {
@@ -1103,7 +1164,7 @@ adminRouter.patch("/smtp", async (req, res) => {
 
     const password =
         typeof smtpPassword === "string"
-            ? smtpPassword.trim()
+            ? smtpPassword
             : "";
 
     const port =
