@@ -1,0 +1,137 @@
+name: Fix settings save button
+
+on:
+  push:
+    branches:
+      - fix/settings-save-button
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: ${{ !startsWith(github.event.head_commit.message, 'Add explicit settings save controls') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Add explicit save controls
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('web/src/pages/SettingsPage.jsx')
+          text = path.read_text()
+
+          old_reset = '''    function handleFormReset(event) {
+              event.preventDefault();
+
+              const saved =
+                  cloneForm(savedFormRef.current);
+
+              setForm(saved);
+
+              dirtyBridgeReadyRef.current = false;
+
+              setState({
+                  saving: false,
+                  error: "",
+              });
+
+              setFormVersion(
+                  (current) => current + 1
+              );
+          }
+          '''
+
+          new_reset = '''    function discardChanges() {
+              const saved =
+                  cloneForm(savedFormRef.current);
+
+              setForm(saved);
+              dirtyBridgeReadyRef.current = false;
+
+              setState({
+                  saving: false,
+                  error: "",
+              });
+
+              setFormVersion(
+                  (current) => current + 1
+              );
+          }
+
+          function handleFormReset(event) {
+              event.preventDefault();
+              discardChanges();
+          }
+          '''
+
+          if old_reset not in text:
+              raise SystemExit('Could not find Settings reset block')
+          text = text.replace(old_reset, new_reset, 1)
+
+          anchor = '''                    {state.error && (
+                              <Layout.Section>
+                                  <Banner
+                                      tone="critical"
+                                      title="Settings could not be saved"
+                                      onDismiss={clearError}
+                                  >
+                                      <Text as="p">{state.error}</Text>
+                                  </Banner>
+                              </Layout.Section>
+                          )}
+          '''
+
+          controls = anchor + '''
+                          <Layout.Section>
+                              <InlineStack align="end" gap="200">
+                                  <Button
+                                      onClick={discardChanges}
+                                      disabled={!hasUnsavedChanges || state.saving}
+                                  >
+                                      Discard changes
+                                  </Button>
+                                  <Button
+                                      variant="primary"
+                                      onClick={save}
+                                      loading={state.saving}
+                                      disabled={!hasUnsavedChanges || state.saving}
+                                  >
+                                      Save settings
+                                  </Button>
+                              </InlineStack>
+                          </Layout.Section>
+          '''
+
+          if anchor not in text:
+              raise SystemExit('Could not find Settings error banner anchor')
+          text = text.replace(anchor, controls, 1)
+
+          path.write_text(text)
+          PY
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/src/pages/SettingsPage.jsx
+          git commit -m "Add explicit settings save controls"
+          git push
