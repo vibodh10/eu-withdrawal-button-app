@@ -45,6 +45,16 @@ app.use(
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
+          scriptSrc: [
+            "'self'",
+            "https://cdn.shopify.com"
+          ],
+          connectSrc: [
+            "'self'",
+            "https://cdn.shopify.com",
+            "https://admin.shopify.com",
+            "https://*.myshopify.com"
+          ],
           frameAncestors: [
             "'self'",
             "https://admin.shopify.com",
