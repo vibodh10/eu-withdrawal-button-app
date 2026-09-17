@@ -812,13 +812,6 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
                                                 "Confirmation emails are sent through GL6’s verified email delivery service. Customer replies are directed to your support email.",
                                         },
                                         {
-                                            label: "Verified sending domain — Pro",
-                                            value: "RESEND_DOMAIN",
-                                            helpText:
-                                                "Verify your domain with DNS records and send through Resend using your own business address.",
-                                            disabled: !boot.isPro,
-                                        },
-                                        {
                                             label: "Custom SMTP — Pro",
                                             value: "SMTP",
                                             helpText:
