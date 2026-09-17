@@ -2,6 +2,7 @@ import {
     Page, Layout, Card, Text, TextField, Banner, BlockStack, InlineStack,
     Box, ChoiceList, Select, Badge, Button, DataTable, SkeletonBodyText,
 } from "@shopify/polaris";
+import { SaveBar } from "@shopify/app-bridge-react";
 import {useEffect, useMemo, useRef, useState} from "react";
 import { apiGet, apiSend } from "../api.js";
 
@@ -94,8 +95,6 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     const [form, setForm] = useState(() => cloneForm(initialFormRef.current));
     const savedFormRef = useRef(cloneForm(initialFormRef.current));
     const formElementRef = useRef(null);
-    const dirtyBridgeRef = useRef(null);
-    const dirtyBridgeReadyRef = useRef(false);
     const templateLoaded = true;
     const [state, setState] = useState({ saving: false, error: "" });
     const [formVersion, setFormVersion] =
@@ -124,31 +123,6 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     const hasUnsavedChanges =
         templateLoaded && !formsAreEqual(form, savedFormRef.current);
 
-    /*
-     * Shopify's automatic save bar watches this native hidden input.
-     * Polaris fields are controlled React components, so this bridge emits
-     * a real bubbling input event whenever the React form state changes.
-     */
-    useEffect(() => {
-        if (!templateLoaded) return;
-
-        const input = dirtyBridgeRef.current;
-        if (!input) return;
-
-        const nextValue = JSON.stringify(normaliseForm(form));
-
-        if (!dirtyBridgeReadyRef.current) {
-            input.defaultValue = nextValue;
-            input.value = nextValue;
-            dirtyBridgeReadyRef.current = true;
-            return;
-        }
-
-        if (input.value !== nextValue) {
-            input.value = nextValue;
-            input.dispatchEvent(new Event("input", { bubbles: true }));
-        }
-    }, [form, templateLoaded]);
 
     useEffect(() => {
         onDirtyChange?.(hasUnsavedChanges);
@@ -167,15 +141,6 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [boot.isPro, boot.shop?.resendDomainId]);
 
-    function syncAutomaticSaveBarBaseline(nextForm) {
-        const input = dirtyBridgeRef.current;
-        if (!input) return;
-
-        const nextValue = JSON.stringify(normaliseForm(nextForm));
-        input.defaultValue = nextValue;
-        input.value = nextValue;
-        dirtyBridgeReadyRef.current = true;
-    }
 
     function commitSavedForm(nextForm) {
         const saved = cloneForm(nextForm);
@@ -187,7 +152,6 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
          * The new form instance must establish its
          * own clean baseline.
          */
-        dirtyBridgeReadyRef.current = false;
 
         /*
          * Remount the form instead of resetting the
@@ -206,7 +170,6 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
 
         setForm(saved);
 
-        dirtyBridgeReadyRef.current = false;
 
         setState({
             saving: false,
@@ -607,33 +570,30 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
 
     return (
         <Page title="Settings">
+            <SaveBar id="settings-save-bar" open={hasUnsavedChanges}>
+                <button
+                    variant="primary"
+                    onClick={save}
+                    disabled={state.saving}
+                >
+                    Save
+                </button>
+                <button
+                    onClick={() => formElementRef.current?.reset()}
+                    disabled={state.saving}
+                >
+                    Discard
+                </button>
+            </SaveBar>
+
             <form
                 key={formVersion}
                 ref={formElementRef}
-                data-save-bar
                 onSubmit={handleFormSubmit}
                 onReset={handleFormReset}
             >
-                <input
-                    ref={dirtyBridgeRef}
-                    type="hidden"
-                    name="settingsState"
-                    defaultValue=""
-                />
 
                 <Layout>
-                    <Layout.Section>
-                        <InlineStack align="end">
-                            <Button
-                                variant="primary"
-                                onClick={save}
-                                loading={state.saving}
-                                disabled={!hasUnsavedChanges || state.saving}
-                            >
-                                Save settings
-                            </Button>
-                        </InlineStack>
-                    </Layout.Section>
 
                     {state.error && (
                         <Layout.Section>
