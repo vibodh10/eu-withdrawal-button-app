@@ -1,0 +1,24 @@
+name: Revert broken SaveBar change
+
+on:
+  push:
+    branches:
+      - fix/restore-shopify-save-bar-component
+
+permissions:
+  contents: write
+
+jobs:
+  revert:
+    if: ${{ github.event.head_commit.message == 'Trigger safe rollback' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Revert broken SaveBar merge
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git revert --no-edit 389afd28acaa8a36420642bc63e745d8e0447b2a
+          git push origin HEAD:main
