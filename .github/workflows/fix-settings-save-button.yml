@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   fix:
-    if: ${{ !startsWith(github.event.head_commit.message, 'Add explicit settings save controls') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,76 +21,8 @@ jobs:
           node-version: 24
           cache: npm
 
-      - name: Add explicit save controls
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-
-          path = Path('web/src/pages/SettingsPage.jsx')
-          text = path.read_text()
-
-          reset_pattern = re.compile(
-              r'    function handleFormReset\(event\) \{.*?\n    \}\n\n    function handleFormSubmit',
-              re.S,
-          )
-          reset_replacement = '''    function discardChanges() {
-              const saved = cloneForm(savedFormRef.current);
-
-              setForm(saved);
-              dirtyBridgeReadyRef.current = false;
-
-              setState({
-                  saving: false,
-                  error: "",
-              });
-
-              setFormVersion((current) => current + 1);
-          }
-
-          function handleFormReset(event) {
-              event.preventDefault();
-              discardChanges();
-          }
-
-          function handleFormSubmit'''
-
-          text, count = reset_pattern.subn(reset_replacement, text, count=1)
-          if count != 1:
-              raise SystemExit(f'Could not patch Settings reset block: {count}')
-
-          error_pattern = re.compile(
-              r'(                    \{state\.error && \(\n.*?                    \)\}\n)',
-              re.S,
-          )
-          controls = '''
-                    <Layout.Section>
-                        <InlineStack align="end" gap="200">
-                            <Button
-                                onClick={discardChanges}
-                                disabled={!hasUnsavedChanges || state.saving}
-                            >
-                                Discard changes
-                            </Button>
-                            <Button
-                                variant="primary"
-                                onClick={save}
-                                loading={state.saving}
-                                disabled={!hasUnsavedChanges || state.saving}
-                            >
-                                Save settings
-                            </Button>
-                        </InlineStack>
-                    </Layout.Section>
-'''
-
-          match = error_pattern.search(text)
-          if not match:
-              raise SystemExit('Could not find Settings error banner block')
-          text = text[:match.end()] + controls + text[match.end():]
-
-          path.write_text(text)
-          PY
+      - name: Apply save button fix
+        run: python scripts/fixSettingsSaveButton.py
 
       - name: Install dependencies
         run: npm ci
@@ -104,8 +35,12 @@ jobs:
 
       - name: Commit fix
         run: |
+          if git diff --quiet; then
+            echo "No source changes to commit"
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add web/src/pages/SettingsPage.jsx
-          git commit -m "Add explicit settings save controls"
+          git commit -m "Add explicit settings save button"
           git push
