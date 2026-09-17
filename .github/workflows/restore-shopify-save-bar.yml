@@ -1,0 +1,47 @@
+name: Restore Shopify SaveBar
+
+on:
+  push:
+    branches:
+      - fix/restore-shopify-save-bar-component
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    if: ${{ !startsWith(github.event.head_commit.message, 'Restore Shopify SaveBar component') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Restore Shopify SaveBar component
+        run: python scripts/restoreShopifySaveBar.py
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit tested fix
+        run: |
+          if git diff --quiet; then
+            echo "No source changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/src/pages/SettingsPage.jsx
+          git commit -m "Restore Shopify SaveBar component"
+          git push
