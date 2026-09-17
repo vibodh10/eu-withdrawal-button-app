@@ -1,0 +1,51 @@
+name: Remove verified sending domain option
+
+on:
+  push:
+    branches:
+      - fix/remove-verified-sending-domain-option
+    paths:
+      - .github/workflows/remove-verified-domain-option.yml
+
+permissions:
+  contents: write
+
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/remove-verified-sending-domain-option
+      - name: Remove only the verified sending domain choice
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('web/src/pages/SettingsPage.jsx')
+          text = path.read_text()
+          target = '''                                        {
+                                              label: "Verified sending domain — Pro",
+                                              value: "RESEND_DOMAIN",
+                                              helpText:
+                                                  "Verify your domain with DNS records and send through Resend using your own business address.",
+                                              disabled: !boot.isPro,
+                                          },
+          '''
+          if target not in text:
+              print('Target already absent; no change needed.')
+          else:
+              if text.count(target) != 1:
+                  raise SystemExit(f'Expected exactly one target block, found {text.count(target)}')
+              path.write_text(text.replace(target, '', 1))
+          PY
+          git diff --check
+      - name: Commit exact UI removal
+        run: |
+          if git diff --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/src/pages/SettingsPage.jsx
+          git commit -m "Remove verified sending domain option"
+          git push origin HEAD:fix/remove-verified-sending-domain-option
