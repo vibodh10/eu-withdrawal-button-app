@@ -622,6 +622,19 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
                 />
 
                 <Layout>
+                    <Layout.Section>
+                        <InlineStack align="end">
+                            <Button
+                                variant="primary"
+                                onClick={save}
+                                loading={state.saving}
+                                disabled={!hasUnsavedChanges || state.saving}
+                            >
+                                Save settings
+                            </Button>
+                        </InlineStack>
+                    </Layout.Section>
+
                     {state.error && (
                         <Layout.Section>
                             <Banner
