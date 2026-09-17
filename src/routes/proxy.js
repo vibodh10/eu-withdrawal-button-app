@@ -587,7 +587,7 @@ proxyRouter.get(
                     defaultFreeLanguages;
             }
 
-            // Free users: English plus up to three additional languages.
+            // Free users: English plus one additional language.
             if (!isPro) {
                 if (
                     !enabledLanguages.includes(
@@ -604,7 +604,7 @@ proxyRouter.get(
                     ...new Set(
                         enabledLanguages
                     ),
-                ].slice(0, 4);
+                ].slice(0, 2);
             }
 
             let defaultLanguage =
@@ -647,12 +647,10 @@ proxyRouter.get(
                 enabledLanguages,
                 isPro,
 
-                /*
-                 * The form remains available, but no automatic
-                 * customer confirmation is currently sent.
-                 */
+                // Verified submissions trigger the server-controlled
+                // confirmation email flow.
                 emailConfirmationsEnabled:
-                    false,
+                    true,
             });
         } catch (error) {
             console.error(

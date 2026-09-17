@@ -3,7 +3,6 @@ import {
     AppProvider,
     Frame,
     Navigation,
-    TopBar,
     Page,
     Card,
     Text,
@@ -33,7 +32,6 @@ const tabs = [
 export default function App() {
     const [tab, setTab] = useState("dashboard");
     const [boot, setBoot] = useState({ loading: true, error: "", data: null });
-    const [mobileNavActive, setMobileNavActive] = useState(false);
     const [settingsDirty, setSettingsDirty] = useState(false);
 
     const title = useMemo(() => {
@@ -49,12 +47,6 @@ export default function App() {
             return;
         }
 
-        /*
-         * Do not let merchants leave Settings while the
-         * Contextual Save Bar represents unsaved changes.
-         *
-         * They must press Save or Discard first.
-         */
         if (tab === "settings" && settingsDirty) {
             return;
         }
@@ -82,7 +74,7 @@ export default function App() {
         } catch (err) {
             console.error(err);
 
-            if (err.status === 401) {
+            if (err.status === 401 && err.data?.redirectTo) {
                 window.open(err.data.redirectTo, "_top");
                 return;
             }

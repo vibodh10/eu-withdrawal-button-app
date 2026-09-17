@@ -5,7 +5,6 @@ import path from 'path';
 import express from 'express';
 import helmet from 'helmet';
 import compression from 'compression';
-import cors from 'cors';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
@@ -38,9 +37,6 @@ console.log("🚀 CORRECT SERVER FILE LOADED");
 app.disable('x-powered-by');
 app.set('trust proxy', true);
 
-//
-// 🔒 Helmet (Shopify embedded fix)
-//
 app.use(
     helmet({
       frameguard: false,
@@ -49,6 +45,16 @@ app.use(
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
+          scriptSrc: [
+            "'self'",
+            "https://cdn.shopify.com"
+          ],
+          connectSrc: [
+            "'self'",
+            "https://cdn.shopify.com",
+            "https://admin.shopify.com",
+            "https://*.myshopify.com"
+          ],
           frameAncestors: [
             "'self'",
             "https://admin.shopify.com",
@@ -59,40 +65,14 @@ app.use(
     })
 );
 
-//
-// 🔥 FORCE headers (important for Shopify iframe)
-//
 app.use((req, res, next) => {
   res.removeHeader("X-Frame-Options");
   res.removeHeader("Cross-Origin-Opener-Policy");
   res.removeHeader("Cross-Origin-Resource-Policy");
-
-  res.setHeader(
-      "Content-Security-Policy",
-      "frame-ancestors https://admin.shopify.com https://*.myshopify.com;"
-  );
-
-  next();
-});
-
-//
-// ⚡ GLOBAL CORS FIX (CRITICAL)
-//
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200); // 🔥 MUST respond
-  }
-
   next();
 });
 
 app.use(compression());
-app.use(cors()); // keep this too (safe)
-
 app.use(cookieParser());
 
 app.use(express.json({
@@ -111,27 +91,16 @@ app.use(express.urlencoded({
 
 app.use(morgan('dev'));
 
-//
-// ❤️ Health check
-//
 app.get('/health', async (_req, res) => {
   try {
-    res.json({
-      ok: true
-    });
-
+    await prisma.$queryRaw`SELECT 1`;
+    return res.json({ ok: true });
   } catch (err) {
     console.error("Health check failure:", err);
-
-    res.status(500).json({
-      ok: false
-    });
+    return res.status(503).json({ ok: false });
   }
 });
 
-//
-// 🔐 OAuth start
-//
 app.get("/auth", async (req, res) => {
     try {
         const shop = normalizeShopDomain(req.query.shop);
@@ -245,9 +214,6 @@ app.get("/auth/callback", async (req, res) => {
     }
 });
 
-//
-// 🚀 ROUTES
-//
 app.use('/public', publicRouter);
 app.use('/admin', adminRouter);
 app.use('/billing', billingRouter);
@@ -255,9 +221,6 @@ app.use('/webhooks', webhookRouter);
 app.use('/cron', cronRouter);
 app.use("/proxy", proxyRouter);
 
-//
-// 🖥 Frontend
-//
 if (fs.existsSync(webDistPath)) {
   app.use(express.static(webDistPath));
 
@@ -270,9 +233,6 @@ if (fs.existsSync(webDistPath)) {
   });
 }
 
-//
-// 🚀 START
-//
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });

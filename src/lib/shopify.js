@@ -8,6 +8,7 @@ import {getValidOfflineToken} from "./offlineTokens.js";
 const DEFAULT_APP_URL = process.env.APP_URL || 'http://localhost:3000';
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET || '';
 const SHOPIFY_APP_HANDLE = process.env.SHOPIFY_APP_HANDLE || 'eu-withdrawal-button-2026';
+export const SHOPIFY_ADMIN_API_VERSION = process.env.SHOPIFY_ADMIN_API_VERSION || '2026-04';
 
 function normalizeShopDomain(value) {
   if (!value) return null;
@@ -38,18 +39,7 @@ export function mapPlanHandleToAppPlan(planHandle) {
       .trim()
       .toLowerCase();
 
-  const liveProHandle = String(
-      process.env.SHOPIFY_MANAGED_PRICING_PRO_HANDLE || "pro"
-  )
-      .trim()
-      .toLowerCase();
-
-  const proHandles = new Set([
-    liveProHandle,
-    "pro-test",
-  ]);
-
-  return proHandles.has(value) ? "PRO" : "PAYMENT_REQUIRED";
+  return isPaidPlanHandle(value) ? "PRO" : "PAYMENT_REQUIRED";
 }
 
 function normalizedPlanHandle(value) {
@@ -160,7 +150,7 @@ export async function shopifyAdminGraphql(shopOrDomain, accessTokenOrQuery, quer
     throw new Error("Shop domain and access token are required for Shopify Admin API requests");
   }
 
-  const response = await fetch(`https://${normalizedShop}/admin/api/2026-01/graphql.json`, {
+  const response = await fetch(`https://${normalizedShop}/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -320,7 +310,9 @@ function validatedLocalBillingIdentity(shop, identity, appId) {
   const returnedDomain = normalizeShopDomain(localShop?.myshopifyDomain);
   const expectedApiKey = String(process.env.SHOPIFY_API_KEY || "").trim();
 
-  assertIdentityValue(localShop?.id, localShop?.id, "Admin Shop ID is missing");
+  if (!localShop?.id) {
+    throw new Error("Shopify billing identity mismatch: Admin Shop ID is missing");
+  }
   assertIdentityValue(returnedDomain, expectedDomain, "Admin shop domain");
   if (shop?.shopifyShopId) {
     assertIdentityValue(localShop.id, shop.shopifyShopId, "stored Shopify Shop GID");
@@ -583,9 +575,12 @@ export function getPostPlanReturnUrl(shopDomain) {
 export const shopify = shopifyApi({
   apiKey: process.env.SHOPIFY_API_KEY,
   apiSecretKey: process.env.SHOPIFY_API_SECRET,
-  scopes: ['read_orders'], // match your toml
-  hostName: process.env.APP_URL.replace(/https?:\/\//, ''),
-  apiVersion: "2024-10",
+  scopes: String(
+      process.env.SHOPIFY_SCOPES ||
+      "read_orders,write_online_store_pages,write_app_proxy"
+  ).split(",").map((scope) => scope.trim()).filter(Boolean),
+  hostName: DEFAULT_APP_URL.replace(/https?:\/\//, ''),
+  apiVersion: SHOPIFY_ADMIN_API_VERSION,
   isEmbeddedApp: true,
 
   // 🔥 THIS IS CRITICAL

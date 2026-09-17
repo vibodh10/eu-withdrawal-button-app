@@ -26,6 +26,8 @@ function baseShop(overrides = {}) {
         brandingName: "Confirmation Shop",
         supportEmail: "support@merchant.example",
         plan: "BASIC",
+        currentSubscriptionStatus: "ACTIVE",
+        billingSyncedAt: new Date(),
         emailDeliveryMethod: "GL6",
         ...overrides,
     };

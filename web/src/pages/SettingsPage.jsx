@@ -51,8 +51,6 @@ function createInitialForm(shop) {
         resendDomainName: shop?.resendDomainName || "",
         resendFromName: shop?.resendFromName || "",
         resendFromEmail: shop?.resendFromEmail || "",
-        emailSubject: "",
-        emailBody: "",
     };
 }
 
@@ -66,8 +64,6 @@ function normaliseForm(form) {
         enabledLanguages: [...(form.enabledLanguages || [])].sort(),
         withdrawalDays: String(form.withdrawalDays ?? ""),
         smtpPort: String(form.smtpPort ?? ""),
-        emailSubject: form.emailSubject || "",
-        emailBody: form.emailBody || "",
     };
 }
 
@@ -100,7 +96,7 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     const formElementRef = useRef(null);
     const dirtyBridgeRef = useRef(null);
     const dirtyBridgeReadyRef = useRef(false);
-    const [templateLoaded, setTemplateLoaded] = useState(false);
+    const templateLoaded = true;
     const [state, setState] = useState({ saving: false, error: "" });
     const [formVersion, setFormVersion] =
         useState(0);
@@ -164,41 +160,6 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
         };
     }, [onDirtyChange]);
 
-    useEffect(() => {
-        let cancelled = false;
-
-        async function loadTemplate() {
-            try {
-                const response = await apiGet("/admin/email-templates");
-                const template = response.templates?.find(
-                    (item) => item.code === "CONFIRMATION"
-                );
-                if (cancelled) return;
-
-                const loaded = cloneForm({
-                    ...initialFormRef.current,
-                    emailSubject: template?.subject || "",
-                    emailBody: template?.bodyHtml || "",
-                });
-                setForm(loaded);
-                savedFormRef.current = cloneForm(loaded);
-            } catch (error) {
-                if (!cancelled) {
-                    setState({
-                        saving: false,
-                        error: "Could not load the email template.",
-                    });
-                }
-            } finally {
-                if (!cancelled) setTemplateLoaded(true);
-            }
-        }
-
-        loadTemplate();
-        return () => {
-            cancelled = true;
-        };
-    }, []);
 
     useEffect(() => {
         if (!boot.isPro || !boot.shop?.resendDomainId) return;
@@ -264,6 +225,15 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
 
     function clearError() {
         setState((current) => ({ ...current, error: "" }));
+    }
+
+    function blockSideActionWhenDirty(action) {
+        if (!hasUnsavedChanges) return false;
+        setState((current) => ({
+            ...current,
+            error: `Save or discard your other settings before you ${action}.`,
+        }));
+        return true;
     }
 
     function updateField(key, value) {
@@ -338,7 +308,7 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
         try {
             setState({ saving: true, error: "" });
 
-            await apiSend("/admin/settings", "PATCH", {
+            const settingsResponse = await apiSend("/admin/settings", "PATCH", {
                 brandingName: form.brandingName,
                 locale: form.locale,
                 enabledLanguages: form.enabledLanguages,
@@ -349,12 +319,7 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
                 supportEmail: form.supportEmail,
                 withdrawalDays: form.withdrawalDays,
                 emailDeliveryMethod: form.emailDeliveryMethod,
-            });
-
-            let savedSmtp = null;
-
-            if (boot.isPro) {
-                const smtpResponse = await apiSend("/admin/smtp", "PATCH", {
+                ...(boot.isPro ? {
                     smtpEnabled: form.emailDeliveryMethod === "SMTP",
                     smtpHost: form.smtpHost,
                     smtpPort: Number(form.smtpPort),
@@ -363,9 +328,10 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
                     smtpPassword: form.smtpPassword || undefined,
                     smtpFromName: form.smtpFromName,
                     smtpFromEmail: form.smtpFromEmail,
-                });
-                savedSmtp = smtpResponse.settings;
-            }
+                } : {}),
+            });
+
+            const savedSmtp = boot.isPro ? settingsResponse.shop : null;
             const saved = commitSavedForm({
                 ...form,
                 smtpPassword: "",
@@ -423,6 +389,7 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     }
 
     async function disconnectSmtp() {
+        if (blockSideActionWhenDirty("disconnect SMTP")) return;
         try {
             setSmtpStatus((current) => ({ ...current, disconnecting: true }));
             await apiSend("/admin/smtp", "DELETE");
@@ -459,6 +426,7 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     }
 
     async function createDomain() {
+        if (blockSideActionWhenDirty("create a sending domain")) return;
         const domainName = String(form.resendDomainName || "").trim();
         if (!domainName) {
             setState((current) => ({
@@ -496,6 +464,7 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     }
 
     async function refreshDomain() {
+        if (blockSideActionWhenDirty("check the sending domain status")) return;
         try {
             setDomainState((current) => ({ ...current, loading: true, lastError: null }));
             const response = await apiGet("/admin/resend-domain");
@@ -508,12 +477,12 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
                 loading: false,
                 lastError: settings.resendDomainLastError || null,
             }));
-            setForm((current) => ({
-                ...current,
-                resendDomainName: settings.resendDomainName || current.resendDomainName,
-                resendFromName: settings.resendFromName || current.resendFromName,
-                resendFromEmail: settings.resendFromEmail || current.resendFromEmail,
-            }));
+            commitSavedForm({
+                ...form,
+                resendDomainName: settings.resendDomainName || form.resendDomainName,
+                resendFromName: settings.resendFromName || form.resendFromName,
+                resendFromEmail: settings.resendFromEmail || form.resendFromEmail,
+            });
         } catch (error) {
             const message = error.message || "Could not refresh the sending domain.";
             setDomainState((current) => ({ ...current, loading: false, lastError: message }));
@@ -539,6 +508,7 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     }
 
     async function saveDomainSender() {
+        if (blockSideActionWhenDirty("save the sender address")) return;
         if (String(domainState.status || "").toLowerCase() !== "verified") {
             setState((current) => ({
                 ...current,
@@ -572,6 +542,7 @@ export default function SettingsPage({ boot, onReload, onDirtyChange }) {
     }
 
     async function removeDomain() {
+        if (blockSideActionWhenDirty("remove the sending domain")) return;
         try {
             setDomainState((current) => ({ ...current, removing: true, lastError: null }));
             await apiSend("/admin/resend-domain", "DELETE");
