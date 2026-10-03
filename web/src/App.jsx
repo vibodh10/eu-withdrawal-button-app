@@ -35,14 +35,6 @@ const tabs = [
 export default function App() {
     const [tab, setTab] = useState("dashboard");
 
-    useEffect(() => {
-        const path = window.location.pathname;
-
-        if (path === "/help") {
-            setTab("help");
-        }
-    }, []);
-
     const [boot, setBoot] = useState({ loading: true, error: "", data: null });
     const [settingsDirty, setSettingsDirty] = useState(false);
 
@@ -64,13 +56,6 @@ export default function App() {
         }
 
         setTab(nextTab);
-
-        const path =
-            nextTab === "help"
-                ? "/help"
-                : "/";
-
-        window.history.pushState({}, "", path);
     }
 
     async function load({ silent = false } = {}) {
