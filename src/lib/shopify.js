@@ -8,7 +8,7 @@ import {getValidOfflineToken} from "./offlineTokens.js";
 const DEFAULT_APP_URL = process.env.APP_URL || 'http://localhost:3000';
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET || '';
 const SHOPIFY_APP_HANDLE = process.env.SHOPIFY_APP_HANDLE || 'eu-withdrawal-button-2026';
-export const SHOPIFY_ADMIN_API_VERSION = process.env.SHOPIFY_ADMIN_API_VERSION || '2026-04';
+export const SHOPIFY_ADMIN_API_VERSION = process.env.SHOPIFY_ADMIN_API_VERSION || '2026-07';
 
 function normalizeShopDomain(value) {
   if (!value) return null;
