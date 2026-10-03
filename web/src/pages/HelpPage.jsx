@@ -144,19 +144,10 @@ export default function HelpPage() {
 
                             <Text as="p">
                                 If the answers above do not solve the issue,
-                                contact support and include your Shopify store
-                                domain and a short description of the problem.
+                                use Shopify's Get support action from the app
+                                menu in the top right. Shopify will open its
+                                native support form and relay your message to us.
                             </Text>
-
-                            <div>
-                                <Button
-                                    variant="primary"
-                                    url={`mailto:${email}?subject=EU Withdrawal Button support request`}
-                                    external
-                                >
-                                    Contact support
-                                </Button>
-                            </div>
 
                             <Text as="p" tone="subdued">
                                 Support requests are usually answered within one
