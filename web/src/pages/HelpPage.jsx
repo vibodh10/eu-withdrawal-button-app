@@ -104,9 +104,7 @@ function FaqItem({ question, answer }) {
     );
 }
 
-export default function HelpPage({ supportEmail }) {
-    const email = supportEmail || "hello@gl6.com";
-
+export default function HelpPage() {
     return (
         <Page title="Help">
             <Layout>
