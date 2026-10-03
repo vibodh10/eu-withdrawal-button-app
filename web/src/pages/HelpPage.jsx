@@ -143,10 +143,7 @@ export default function HelpPage() {
                             </Text>
 
                             <Text as="p">
-                                If the answers above do not solve the issue,
-                                use Shopify's Get support action from the app
-                                menu in the top right. Shopify will open its
-                                native support form and relay your message to us.
+                                If the answers above do not solve the issue, select Get support from the ⋯ menu in the top right to contact us through Shopify.
                             </Text>
 
                             <Text as="p" tone="subdued">
