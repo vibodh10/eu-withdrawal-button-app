@@ -20,6 +20,7 @@ export default function DashboardPage({
                                           onReload,
                                           onOpenSettings,
                                           onOpenRequests,
+    onOpenPlans,
                                       }) {
     const [stats, setStats] = useState({
         total: 0,
@@ -517,7 +518,7 @@ export default function DashboardPage({
                                         badgeTone="info"
                                         title="Upgrade to Pro"
                                         description="Unlock order verification, advanced controls, automation, and custom workflows."
-                                        actions={<Button url="/billing">View Pro</Button>}
+                                        actions={<Button onClick={onOpenPlans}>View Pro</Button>}
                                     />
                                 )}
                             </BlockStack>

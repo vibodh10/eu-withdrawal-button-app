@@ -212,6 +212,7 @@ export default function App() {
                                         onReload={load}
                                         onOpenSettings={() => handleTabChange("settings")}
                                         onOpenRequests={() => handleTabChange("requests")}
+                                        onOpenPlans={() => handleTabChange("plans")}
                                     />
                                 )}
 
