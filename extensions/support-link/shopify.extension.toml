@@ -1,0 +1,15 @@
+[[extensions]]
+name = "Support Extension"
+handle = "support-link"
+type = "admin_link"
+uid = "b2d65ba8-7075-82c8-3905-e552772f66269bdc9d91"
+
+# For embedded apps URIs are defined relative to the domain of the configured application_url in your shopify.app.toml
+# If you enter an empty path the link will resolve to the configured application_url in your shopify.app.toml
+# For example, app:// or / will resolve to the application_url https://my-app-domain.com/home
+# All other paths will be resolved relative to the domain of the application_url
+# For example, app://path or /path with configured application_url https://my-app-domain.com/home will resolve to https://my-app-domain.com/path
+#   url = "app://path"
+[[extensions.targeting]]
+target = "admin.app.support.link"
+url = "app://help"

@@ -8,66 +8,59 @@ datasource db {
 }
 
 model Shop {
-  id                         String              @id @default(cuid())
-  shopDomain                 String              @unique
-  shopHandle                 String?
-  accessToken                String?
-  accessTokenExpiresAt       DateTime?
-  refreshToken               String?
-  refreshTokenExpiresAt      DateTime?
-  tokenType                  String?             @default("NON_EXPIRING_OFFLINE")
-  tokenStatus                String?             @default("ACTIVE")
-  authVersion                Int                 @default(0)
-  tokenRefreshClaimId        String?
-  tokenRefreshClaimedAt      DateTime?
-  lastTokenRefreshAt         DateTime?
-  tokenRefreshError          String?
-  installedAt                DateTime            @default(now())
-  uninstalledAt              DateTime?
-  plan                       String              @default("PAYMENT_REQUIRED")
-  grandfatheredFreeAt        DateTime?
-  grandfatheredFreeRevokedAt DateTime?
-  shopifyShopId              String?             @unique
-  currentPlanHandle          String?
-  currentSubscriptionId      String?
-  currentSubscriptionStatus  String?
-  billingSyncedAt            DateTime?
-  billingVersion             Int                 @default(0)
-  locale                     String              @default("en")
-  enabledLanguages           String              @default("[\"en\",\"de\"]")
-  brandingName               String?
-  brandingPrimaryColor       String?
-  merchantNotification       String?
-  withdrawalDays             Int                 @default(14)
-  legalPageUrl               String?
-  privacyPageUrl             String?
-  supportEmail               String?
-  dpaAcceptedAt              DateTime?
-  requests                   WithdrawalRequest[]
-  emailTemplates             EmailTemplate[]
-  createdAt                  DateTime            @default(now())
-  updatedAt                  DateTime            @updatedAt
-  resolvedAt                 DateTime?
-  smtpEnabled                Boolean             @default(false)
-  smtpHost                   String?
-  smtpPort                   Int?
-  smtpSecure                 Boolean             @default(false)
-  smtpUsername               String?
-  smtpPasswordEncrypted      String?
-  smtpFromEmail              String?
-  smtpFromName               String?
-  smtpVerifiedAt             DateTime?
-  smtpLastError              String?
-  resendDomainId             String?
-  resendDomainName           String?
-  resendDomainStatus         String?
-  resendFromEmail            String?
-  resendFromName             String?
-  resendDomainCreatedAt      DateTime?
-  resendDomainVerifiedAt     DateTime?
-  resendDomainLastError      String?
-  emailDeliveryMethod        String              @default("GL6")
-  dataAccessAudits           DataAccessAudit[]
+  id                        String              @id @default(cuid())
+  shopDomain                String              @unique
+  shopHandle                String?
+  accessToken               String?
+  installedAt               DateTime            @default(now())
+  uninstalledAt             DateTime?
+  plan                      String              @default("BASIC")
+  currentPlanHandle         String?
+  currentSubscriptionId     String?
+  currentSubscriptionStatus String?
+  billingSyncedAt           DateTime?
+  locale                    String              @default("en")
+  brandingName              String?
+  brandingPrimaryColor      String?
+  merchantNotification      String?
+  withdrawalDays            Int                 @default(14)
+  legalPageUrl              String?
+  privacyPageUrl            String?
+  supportEmail              String?
+  dpaAcceptedAt             DateTime?
+  createdAt                 DateTime            @default(now())
+  updatedAt                 DateTime            @updatedAt
+  resolvedAt                DateTime?
+  accessTokenExpiresAt      DateTime?
+  refreshToken              String?
+  refreshTokenExpiresAt     DateTime?
+  tokenType                 String?             @default("NON_EXPIRING_OFFLINE")
+  enabledLanguages          String              @default("[\"en\",\"de\"]")
+  smtpEnabled               Boolean             @default(false)
+  smtpFromEmail             String?
+  smtpFromName              String?
+  smtpHost                  String?
+  smtpLastError             String?
+  smtpPasswordEncrypted     String?
+  smtpPort                  Int?
+  smtpSecure                Boolean             @default(false)
+  smtpUsername              String?
+  smtpVerifiedAt            DateTime?
+  emailDeliveryMethod       String              @default("GL6")
+  resendDomainCreatedAt     DateTime?
+  resendDomainId            String?
+  resendDomainLastError     String?
+  resendDomainName          String?
+  resendDomainStatus        String?
+  resendDomainVerifiedAt    DateTime?
+  resendFromEmail           String?
+  resendFromName            String?
+  lastTokenRefreshAt        DateTime?
+  tokenRefreshError         String?
+  tokenStatus               String?             @default("ACTIVE")
+  dataAccessAudits          DataAccessAudit[]
+  emailTemplates            EmailTemplate[]
+  requests                  WithdrawalRequest[]
 }
 
 model WithdrawalRequest {
@@ -88,12 +81,12 @@ model WithdrawalRequest {
   resolvedAt         DateTime?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
-  shop               Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
   verificationStatus String    @default("UNVERIFIED")
-  submissionKey      String?   @unique
   confirmationSentAt DateTime?
-  emailStatus        String    @default("PENDING")
   emailProviderId    String?
+  emailStatus        String    @default("PENDING")
+  submissionKey      String?   @unique
+  shop               Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
 
   @@index([shopId, createdAt])
   @@index([shopId, orderId])
@@ -122,15 +115,12 @@ model DataAccessAudit {
   actorType   String
   reason      String?
   createdAt   DateTime @default(now())
-
-  shop Shop? @relation(fields: [shopId], references: [id], onDelete: SetNull)
+  shop        Shop?    @relation(fields: [shopId], references: [id])
 
   @@index([shopId, createdAt])
   @@index([action, createdAt])
 }
 
-// Abuse-control records intentionally have no Shop foreign key. A merchant
-// uninstall/reinstall must not erase or reset shop-domain quotas.
 model AbuseCounter {
   id            String   @id @default(cuid())
   category      String

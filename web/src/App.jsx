@@ -12,7 +12,8 @@ import {
     HomeIcon,
     OrderIcon,
     SettingsIcon,
-    ProductIcon
+    ProductIcon,
+    QuestionCircleIcon
 } from "@shopify/polaris-icons";
 
 import { apiGet } from "./api";
@@ -21,16 +22,27 @@ import RequestsPage from "./pages/RequestsPage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import PlansPage from "./pages/PlansPage.jsx";
 import DpaPage from "./pages/DpaPage.jsx";
+import HelpPage from "./pages/HelpPage.jsx";
 
 const tabs = [
     { key: "dashboard", label: "Dashboard", icon: HomeIcon },
     { key: "requests", label: "Requests", icon: OrderIcon },
     { key: "settings", label: "Settings", icon: SettingsIcon },
-    { key: "plans", label: "Plans", icon: ProductIcon }
+    { key: "plans", label: "Plans", icon: ProductIcon },
+    { key: "help", label: "Help", icon: QuestionCircleIcon }
 ];
 
 export default function App() {
     const [tab, setTab] = useState("dashboard");
+
+    useEffect(() => {
+        const path = window.location.pathname;
+
+        if (path === "/help") {
+            setTab("help");
+        }
+    }, []);
+
     const [boot, setBoot] = useState({ loading: true, error: "", data: null });
     const [settingsDirty, setSettingsDirty] = useState(false);
 
@@ -52,6 +64,13 @@ export default function App() {
         }
 
         setTab(nextTab);
+
+        const path =
+            nextTab === "help"
+                ? "/help"
+                : "/";
+
+        window.history.pushState({}, "", path);
     }
 
     async function load({ silent = false } = {}) {
@@ -95,8 +114,12 @@ export default function App() {
         <Navigation location="/">
             <Navigation.Section
                 items={(boot.data?.shop?.entitlement?.kind === "PAYMENT_REQUIRED"
-                    ? tabs.filter((item) => item.key === "plans")
-                    : tabs
+                        ? tabs.filter(
+                            (item) =>
+                                item.key === "plans" ||
+                                item.key === "help"
+                        )
+                        : tabs
                 ).map((item) => ({
                     label: item.label,
                     icon: item.icon,
@@ -188,10 +211,14 @@ export default function App() {
                         {!boot.data.shop?.dpaAcceptedAt ? (
                             <DpaPage onAccepted={load} />
                         ) : boot.data.shop?.entitlement?.kind === "PAYMENT_REQUIRED" ? (
-                            <PlansPage
-                                boot={boot.data}
-                                onReload={load}
-                            />
+                            tab === "help" ? (
+                                <HelpPage />
+                            ) : (
+                                <PlansPage
+                                    boot={boot.data}
+                                    onReload={load}
+                                />
+                            )
                         ) : (
                             <>
                                 {tab === "dashboard" && (
@@ -220,6 +247,10 @@ export default function App() {
                                         boot={boot.data}
                                         onReload={load}
                                     />
+                                )}
+
+                                {tab === "help" && (
+                                    <HelpPage />
                                 )}
                             </>
                         )}
