@@ -1,3 +1,4 @@
+import { EU_LANGUAGE_CODES } from "../../shared/euLanguages.js";
 import express from 'express';
 import { prisma } from '../lib/db.js';
 import { toCsv } from '../lib/csv.js';
@@ -889,7 +890,7 @@ adminRouter.post("/dpa/accept", async (req, res) => {
         const shop = req.shop;
         const adminLocale = req.body?.adminLocale;
 
-        if (!["en", "de"].includes(adminLocale)) {
+        if (!EU_LANGUAGE_CODES.includes(adminLocale)) {
             return res.status(400).json({
                 error: "Please select a supported language.",
             });
@@ -920,7 +921,7 @@ adminRouter.patch("/admin-locale", async (req, res) => {
     try {
         const adminLocale = req.body?.adminLocale;
 
-        if (!["en", "de"].includes(adminLocale)) {
+        if (!EU_LANGUAGE_CODES.includes(adminLocale)) {
             return res.status(400).json({
                 error: "Unsupported admin language.",
             });

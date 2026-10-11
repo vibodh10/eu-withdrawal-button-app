@@ -1,0 +1,451 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Jezik",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Nastavi",
+    "save": "Spremi",
+    "cancel": "Odustani",
+    "loading": "Učitavanje..."
+  },
+  "onboarding": {
+    "welcome": "Dobro došli u EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Odaberite jezik",
+    "languageDescription": "Odaberite jezik koji želite koristiti u aplikaciji.",
+    "languageLabel": "Jezik aplikacije",
+    "dpaTitle": "2. Ugovor o obradi osobnih podataka",
+    "dpaDescription": "Za korištenje aplikacije morate prihvatiti naš ugovor o obradi osobnih podataka. Objašnjava kako se podaci kupaca obrađuju u vaše ime.",
+    "viewDpa": "Prikaži ugovor o obradi osobnih podataka",
+    "agree": "Pročitao/la sam i prihvaćam ugovor o obradi osobnih podataka",
+    "acceptContinue": "Prihvati i nastavi",
+    "error": "Postavljanje nije moguće dovršiti. Pokušajte ponovno.",
+    "step1": "Korak 1 od 2",
+    "step2": "Korak 2 od 2",
+    "next": "Dalje",
+    "back": "Natrag"
+  },
+  "navigation": {
+    "dashboard": "Nadzorna ploča",
+    "requests": "Zahtjevi",
+    "settings": "Postavke",
+    "plans": "Paketi",
+    "help": "Pomoć",
+    "currentPlan": "Trenutačni paket",
+    "planGrandfathered": "Paket: Raniji besplatni",
+    "planPro": "Paket: Pro",
+    "planRequired": "Potreban je paket",
+    "premiumActive": "Sve premium značajke su omogućene",
+    "grandfatheredActive": "Raniji besplatni pristup je aktivan",
+    "subscribeToContinue": "Pretplatite se za nastavak"
+  },
+  "appLanguage": {
+    "title": "Jezik aplikacije",
+    "description": "Odaberite jezik nadzorne ploče. To ne mijenja jezike dostupne kupcima.",
+    "label": "Jezik prikaza",
+    "saveError": "Jezik aplikacije nije moguće ažurirati.",
+    "settingsTitle": "Postavke"
+  },
+  "dashboard": {
+    "title": "Nadzorna ploča",
+    "subscriptionError": "Pretplatu nije moguće osvježiti",
+    "description": "U nekoliko minuta dodajte gumb za jednostrani raskid ugovora u skladu s pravilima EU-a. Prikupljajte zahtjeve kupaca i upravljajte njima na jednom mjestu bez složenog postavljanja.",
+    "plan": "Paket",
+    "grandfatheredFree": "Raniji besplatni",
+    "planPro": "Pro",
+    "proActive": "Značajke Pro su aktivne.",
+    "freeActive": "Raniji besplatni pristup je aktivan.",
+    "stats": {
+      "total": "Ukupno zahtjeva",
+      "totalHelp": "Za cijelo razdoblje ove trgovine",
+      "received": "Primljeni",
+      "receivedHelp": "Čekaju na radnju",
+      "reviewed": "Pregledani",
+      "reviewedHelp": "Ručno procijenjeni",
+      "closed": "Odobreni / Odbijeni",
+      "closedHelp": "Zatvoreni statusi"
+    },
+    "status": {
+      "complete": "Dovršeno",
+      "incomplete": "Nije dovršeno"
+    },
+    "setup": {
+      "title": "Dovršite postavljanje",
+      "description": "Odaberite postavljanje koje odgovara trgovini. Preporučujemo plutajući gumb na cijelom web-mjestu i posebnu stranicu za jednostrani raskid.",
+      "recommended": "Preporučeno",
+      "suggested": "Predloženo",
+      "optional": "Neobavezno",
+      "pageReady": {
+        "title": "Stranica za jednostrani raskid je spremna",
+        "description": "Stranica je spremna. Dodajte blok aplikacije i poveznicu u poruke potvrde narudžbe."
+      },
+      "actionFailed": "Radnja postavljanja nije uspjela",
+      "notification": {
+        "title": "Dodajte adresu za obavijesti",
+        "description": "Unesite adresu na koju želite obavijesti o zahtjevima kupaca za jednostrani raskid ugovora.",
+        "edit": "Uredi postavke obavijesti",
+        "add": "Dodajte adresu za obavijesti",
+        "destination": "Obavijesti će biti poslane na {{email}}."
+      },
+      "floating": {
+        "title": "Omogući plutajući gumb na cijelom web-mjestu",
+        "description": "Najbolja vidljivost. Plutajući gumb u cijeloj trgovini omogućuje pristup obrascu sa svake stranice.",
+        "button": "Omogući plutajući gumb"
+      },
+      "withdrawalPage": {
+        "title": "Izradi posebnu stranicu za jednostrani raskid",
+        "description": "Izradite standardnu stranicu na /pages/eu-withdrawal kako bi kupci imali jasno mjesto za podnošenje zahtjeva.",
+        "button": "Izradi stranicu"
+      },
+      "pageBlock": {
+        "title": "Dodaj blok gumba na stranicu za jednostrani raskid",
+        "description": "Otvorite uređivač teme i dodajte blok EU Withdrawal Button na posebnu stranicu za jednostrani raskid.",
+        "button": "Dodaj blok stranice"
+      },
+      "orderEmail": {
+        "title": "Dodaj poveznicu u potvrde narudžbe",
+        "description": "Dodajte poveznicu na stranicu za jednostrani raskid u potvrde Shopify kako bi je kupci pronašli nakon kupnje.",
+        "button": "Otvori obavijesti",
+        "suggestedLink": "Predložena poveznica:"
+      },
+      "testRequest": {
+        "title": "Pošalji probni zahtjev za jednostrani raskid",
+        "description": "Posjetite trgovinu ili stranicu za jednostrani raskid i pošaljite probni zahtjev za provjeru iskustva kupca.",
+        "openPage": "Otvori stranicu za jednostrani raskid",
+        "openStorefront": "Otvori trgovinu"
+      },
+      "review": {
+        "title": "Pregledajte zahtjeve na nadzornoj ploči",
+        "description": "Nakon podnošenja stvarnog ili probnog zahtjeva pregledajte ga u odjeljku Zahtjevi i ažurirajte status.",
+        "button": "Otvori zahtjeve"
+      },
+      "upgrade": {
+        "title": "Nadogradi na Pro",
+        "description": "Otključajte provjeru narudžbi, napredne postavke, automatizaciju i prilagođene postupke.",
+        "button": "Prikaži Pro"
+      }
+    },
+    "billingSyncFailed": "Status naplate nije moguće sinkronizirati",
+    "subscriptionStatusError": "Status pretplate nije moguće osvježiti."
+  },
+  "requests": {
+    "title": "Zahtjevi za jednostrani raskid",
+    "exportCSV": "Izvezi CSV",
+    "status": "Status",
+    "verification": "Provjera",
+    "search": "Pretraži",
+    "searchPlaceholder": "E-pošta, narudžba, referenca...",
+    "all": "Svi",
+    "empty": "Nema pronađenih zahtjeva.",
+    "unknown": "Nepoznato",
+    "noReason": "Razlog nije naveden",
+    "filterPro": "Napredno filtriranje i izvoz CSV dostupni su u paketu Pro.",
+    "resourceSingular": "zahtjev",
+    "resourcePlural": "zahtjevi",
+    "selectedAll": "Svi",
+    "columns": {
+      "reference": "Referenca",
+      "customer": "Kupac",
+      "order": "Narudžba",
+      "verification": "Provjera",
+      "reason": "Razlog",
+      "status": "Status",
+      "submitted": "Podneseno",
+      "actions": "Radnje"
+    },
+    "statuses": {
+      "RECEIVED": "Primljen",
+      "CONFIRMED": "Potvrđen",
+      "REVIEWED": "Pregledan",
+      "APPROVED": "Odobren",
+      "REJECTED": "Odbijen"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Provjereno",
+        "tooltip": "Narudžba pronađena unutar roka za jednostrani raskid"
+      },
+      "NOT_FOUND": {
+        "label": "Narudžba nije pronađena",
+        "tooltip": "U Shopifyju nije pronađena odgovarajuća narudžba"
+      },
+      "EXPIRED": {
+        "label": "Rok je istekao",
+        "tooltip": "Narudžba je pronađena, ali je rok za jednostrani raskid istekao"
+      },
+      "ERROR": {
+        "label": "Nedostupno",
+        "tooltip": "Narudžbu nije moguće provjeriti zbog problema sa Shopifyjem ili API-jem"
+      },
+      "UNVERIFIED": {
+        "label": "Nije provjereno",
+        "tooltip": "Automatska provjera narudžbi dostupna je u paketu Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Nevaljana narudžba"
+    },
+    "deleteCustomer": {
+      "button": "Izbriši podatke kupca",
+      "title": "Izbriši podatke kupca",
+      "description": "Svi pohranjeni podaci o jednostranom raskidu za {{email}} bit će trajno izbrisani."
+    },
+    "bulkDelete": {
+      "button": "Izbriši odabrane",
+      "title": "Izbriši odabrane zahtjeve",
+      "confirm": "Izbriši zahtjeve",
+      "description_one": "Trajno će se izbrisati {{count}} odabrani zahtjev za jednostrani raskid.",
+      "description_other": "Trajno će se izbrisati {{count}} odabranih zahtjeva za jednostrani raskid.",
+      "description_few": "Trajno će se izbrisati {{count}} odabrana zahtjeva za jednostrani raskid."
+    },
+    "delete": "Izbriši",
+    "cancel": "Odustani",
+    "scrollLabel": "Vodoravno pomicanje zahtjeva za jednostrani raskid",
+    "errors": {
+      "temporary": "Privremeni problem s poslužiteljem. Pokušajte ponovno za nekoliko trenutaka.",
+      "update": "Status zahtjeva nije moguće ažurirati.",
+      "export": "CSV trenutačno nije moguće izvesti. Pokušajte ponovno uskoro."
+    }
+  },
+  "settings": {
+    "title": "Postavke",
+    "loading": "Učitavanje postavki",
+    "saveFailed": "Postavke nije moguće spremiti",
+    "general": {
+      "title": "Opće postavke",
+      "customerLanguages": "Jezici obrasca za kupce",
+      "customerLanguagesDescription": "Odaberite jezike koje kupci mogu koristiti u obrascu za jednostrani raskid.",
+      "availableLanguages": "Jezici dostupni kupcima",
+      "defaultLanguage": "Zadani jezik",
+      "defaultLanguageHelp": "Obrazac se otvara na ovom jeziku. Kupci mogu odabrati drugi omogućeni jezik.",
+      "basicLanguagesHelp": "Raniji besplatni paket uključuje engleski i još jedan jezik. Nadogradite na Pro za sve podržane jezike.",
+      "notificationEmail": "E-pošta za obavijesti o jednostranom raskidu",
+      "notificationEmailHelp": "Ovdje se šalju interne obavijesti o novim zahtjevima za jednostrani raskid.",
+      "upgradeTitle": "Nadogradite na Pro za napredne postavke",
+      "upgradeDescription": "Prilagodljivi rokovi za jednostrani raskid dostupni su u paketu Pro.",
+      "legalPage": "URL pravne stranice",
+      "privacyPage": "URL stranice privatnosti",
+      "supportEmail": "E-pošta korisničke podrške",
+      "supportEmailHelp": "Prikazuje se kupcima i koristi kao adresa za odgovore pri upravljanoj dostavi.",
+      "basicPeriod": "Raniji besplatni paket koristi okvirni rok od 14 dana. Automatska provjera se ne primjenjuje.",
+      "withdrawalPeriod": "Rok za jednostrani raskid (dani)",
+      "periodBasicHelp": "Kupcima se prikazuje okvirni rok od 14 dana. Nadogradite na Pro za prilagodbu i automatsku provjeru.",
+      "periodProHelp": "Postavite rok za jednostrani raskid. Zahtjevi se provjeravaju prema njemu kada je moguće."
+    },
+    "errors": {
+      "basicLanguageLimit": "Raniji besplatni paket uključuje engleski i još jedan jezik.",
+      "selectLanguage": "Odaberite barem jedan jezik.",
+      "save": "Postavke nije moguće spremiti.",
+      "saveFirst": "Prije sljedeće radnje spremite ili odbacite ostale promjene: {{action}}."
+    },
+    "plans": {
+      "basic": "Raniji besplatni",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Dostava e-pošte",
+      "description": "Odaberite način slanja potvrda kupcima.",
+      "deliveryMethod": "Način dostave",
+      "managed": "Upravlja GL6",
+      "managedOption": "Upravljana dostava GL6 — Preporučeno",
+      "managedHelp": "Potvrde se šalju putem provjerene usluge GL6. Odgovori kupaca upućuju se na adresu podrške.",
+      "smtpOption": "Vlastiti SMTP — Pro",
+      "smtpOptionHelp": "Povežite pružatelja e-pošte pomoću vjerodajnica SMTP.",
+      "proTitle": "E-pošta s vlastitom markom dostupna je u paketu Pro",
+      "proDescription": "Trgovine s ranijim besplatnim paketom koriste GL6. Odgovori se šalju na gore postavljenu adresu podrške.",
+      "connected": "Povezano",
+      "connectionFailed": "Povezivanje nije uspjelo",
+      "requiresTesting": "Potrebno je testiranje",
+      "statuses": {
+        "notConfigured": "Nije postavljeno",
+        "verified": "Provjereno",
+        "pending": "Na čekanju",
+        "notStarted": "Nije započeto",
+        "failed": "Neuspjelo",
+        "failure": "Neuspjelo",
+        "temporaryFailure": "Privremena pogreška"
+      },
+      "domain": {
+        "intro": "Preporučujemo posebnu poddomenu, primjerice withdrawals.example.com. Dodajte donje zapise DNS i provjerite domenu.",
+        "label": "Domena ili poddomena za slanje",
+        "help": "Ne uključujte https:// ni putanju.",
+        "add": "Dodaj domenu za slanje",
+        "recordsHelp": "Dodajte sve potrebne zapise DNS prije početka provjere.",
+        "columns": {
+          "type": "Vrsta",
+          "name": "Naziv",
+          "value": "Vrijednost",
+          "priority": "Prioritet",
+          "status": "Status"
+        },
+        "issue": "Problem domene za slanje",
+        "check": "Provjeri status",
+        "verify": "Provjeri domenu",
+        "remove": "Ukloni domenu",
+        "verifiedTitle": "Domena za slanje je provjerena",
+        "verifiedDescription": "Sada možete odabrati ime i adresu e-pošte pošiljatelja potvrda za kupce.",
+        "fromName": "Ime pošiljatelja",
+        "fromEmail": "E-pošta pošiljatelja",
+        "storePlaceholder": "Naziv trgovine",
+        "emailHelp": "Adresa mora završavati s @{{domain}}.",
+        "saveSender": "Spremi podatke pošiljatelja"
+      },
+      "smtp": {
+        "intro": "Unesite podatke SMTP pružatelja e-pošte. Spremite postavke prije testiranja veze.",
+        "host": "Poslužitelj SMTP",
+        "port": "Port SMTP",
+        "portHelp": "Obično koristite 587 za STARTTLS ili 465 za SSL/TLS.",
+        "security": "Sigurnost veze",
+        "starttls": "STARTTLS — obično port 587",
+        "ssl": "SSL/TLS — obično port 465",
+        "username": "Korisničko ime SMTP",
+        "usernameHelp": "To je često vaša puna adresa e-pošte.",
+        "password": "Lozinka SMTP",
+        "savedPasswordPlaceholder": "Ostavite prazno za zadržavanje spremljene lozinke",
+        "newPasswordPlaceholder": "Unesite lozinku SMTP",
+        "savedPasswordHelp": "Lozinka je već sigurno spremljena. Novu unesite samo za zamjenu.",
+        "newPasswordHelp": "Neki pružatelji zahtijevaju lozinku aplikacije umjesto uobičajene lozinke računa.",
+        "fromName": "Ime pošiljatelja",
+        "fromEmail": "E-pošta pošiljatelja",
+        "storePlaceholder": "Naziv trgovine",
+        "fromEmailHelp": "Pružatelj SMTP mora dopustiti ovu adresu kao pošiljatelja.",
+        "connectionFailed": "Veza SMTP nije uspjela",
+        "test": "Testiraj vezu",
+        "disconnect": "Odspoji SMTP",
+        "saveBeforeTest": "Spremite promjene prije testiranja veze."
+      },
+      "errors": {
+        "saveSmtpFirst": "Spremite postavke SMTP prije testiranja veze.",
+        "smtpFailed": "Veza SMTP nije uspjela.",
+        "disconnectSmtp": "SMTP nije moguće odspojiti.",
+        "domainRequired": "Prvo unesite domenu ili poddomenu.",
+        "createDomain": "Domenu za slanje nije moguće izraditi.",
+        "refreshDomain": "Domenu za slanje nije moguće osvježiti.",
+        "verifyDomain": "Provjeru domene nije moguće započeti.",
+        "verifyBeforeSender": "Provjerite domenu za slanje prije spremanja adrese pošiljatelja.",
+        "saveSender": "Adresu pošiljatelja nije moguće spremiti.",
+        "removeDomain": "Domenu za slanje nije moguće ukloniti.",
+        "dirtyActions": {
+          "disconnectSmtp": "odspajanje SMTP-a",
+          "createDomain": "izrada domene za slanje",
+          "checkDomain": "provjera statusa domene za slanje",
+          "saveSender": "spremanje adrese pošiljatelja",
+          "removeDomain": "uklanjanje domene za slanje"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Paketi",
+    "grandfatheredFree": "Raniji besplatni",
+    "pro": "Pro",
+    "current": "Trenutačni",
+    "legacyDescription": "Ranije pravo — bez naknade",
+    "legacyWarning": "Nadogradnja trajno ukida ovo ranije pravo.",
+    "manageSubscription": "Upravljaj pretplatom",
+    "subscribePro": "Pretplati se na Pro",
+    "errors": {
+      "title": "Cjenik Shopify nije moguće otvoriti",
+      "missingUrl": "Shopify nije vratio URL cjenika.",
+      "openFailed": "Cjenik Shopify nije moguće otvoriti."
+    },
+    "features": {
+      "withdrawalFlow": "Postupak jednostranog raskida u skladu s pravilima EU-a",
+      "unlimitedRequests": "Neograničeni zahtjevi za jednostrani raskid",
+      "confirmationEmails": "Automatske potvrde e-poštom",
+      "themeBlock": "Podrška blokovima aplikacije u temi",
+      "requestDashboard": "Nadzorna ploča zahtjeva",
+      "merchantNotifications": "Obavijesti trgovcu",
+      "basicCompliance": "Osnovna usklađenost uključena",
+      "coreManagement": "Osnovno upravljanje zahtjevima za jednostrani raskid",
+      "euLanguages": "Svi podržani jezici EU-a",
+      "customPeriod": "Prilagođeni rok za jednostrani raskid s provjerom",
+      "customBranding": "Vlastita marka i boje",
+      "advancedManagement": "Izvoz CSV i napredno upravljanje zahtjevima"
+    }
+  },
+  "help": {
+    "title": "Pomoć",
+    "commonQuestions": "Česta pitanja",
+    "introduction": "Brzi odgovori na pitanja o postavljanju i rješavanju problema.",
+    "supportTitle": "Trebate li dodatnu pomoć?",
+    "supportDescription": "Ako odgovori ne riješe problem, odaberite Zatraži podršku u izborniku ⋯ gore desno kako biste nas kontaktirali putem Shopifyja.",
+    "supportResponse": "Na zahtjeve za podršku obično odgovaramo unutar jednog radnog dana.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Zašto aplikacija ne radi sa Shopify Canvasom?",
+        "answer": "Shopify Canvas je u ranom pristupu i još ne podržava blokove ili ugradnje aplikacija potrebne za gumb za jednostrani raskid. To je trenutačno ograničenje Canvasa. Koristite kompatibilnu temu u standardnom uređivaču Shopifyja."
+      },
+      "buttonNotShowing": {
+        "question": "Zašto se gumb za jednostrani raskid ne prikazuje u trgovini?",
+        "answer": "Provjerite je li ugradnja ili blok EU Withdrawal Button omogućen u trenutačnoj temi. Nakon promjene ili objave teme možda ga treba ponovno omogućiti."
+      },
+      "buttonPosition": {
+        "question": "Mogu li promijeniti položaj gumba za jednostrani raskid?",
+        "answer": "Da. Otvorite Postavke i prilagodite položaj plutajućeg gumba na računalu i mobitelu."
+      },
+      "buttonAppearance": {
+        "question": "Mogu li promijeniti izgled gumba?",
+        "answer": "Da. Prilagodite dostupne mogućnosti izgleda u Postavkama aplikacije."
+      },
+      "requestSubmitted": {
+        "question": "Što se događa kada kupac pošalje zahtjev za jednostrani raskid?",
+        "answer": "Zahtjev se bilježi u odjeljku Zahtjevi, gdje ga možete pregledati i ažurirati status."
+      },
+      "notificationEmail": {
+        "question": "Hoću li primiti e-poštu kada kupac pošalje zahtjev?",
+        "answer": "Da, ako ste postavili adresu za obavijesti. Provjerite Postavke ako obavijesti ne stižu."
+      },
+      "withdrawalPeriod": {
+        "question": "Mogu li promijeniti rok za jednostrani raskid?",
+        "answer": "Da. Rok možete postaviti u Postavkama aplikacije."
+      },
+      "automaticRefund": {
+        "question": "Vraća li aplikacija automatski novac ili otkazuje narudžbu?",
+        "answer": "Ne. Zahtjev za jednostrani raskid ne vraća novac niti automatski otkazuje narudžbu Shopify. Vi upravljate pregledom i obradom zahtjeva."
+      },
+      "previousRequests": {
+        "question": "Mogu li vidjeti ranije zahtjeve za jednostrani raskid?",
+        "answer": "Da. Otvorite Zahtjeve za pregled poslanih zahtjeva."
+      },
+      "multipleLanguages": {
+        "question": "Podržava li aplikacija više jezika?",
+        "answer": "Jezici se mogu postaviti. Dostupnim mogućnostima upravljate u Postavkama."
+      },
+      "themeChanged": {
+        "question": "Promijenio/la sam temu Shopify i gumb je nestao. Što učiniti?",
+        "answer": "Otvorite uređivač nove teme i omogućite ugradnju ili blok EU Withdrawal Button."
+      },
+      "hideButton": {
+        "question": "Mogu li privremeno sakriti gumb za jednostrani raskid?",
+        "answer": "Da. Gumb trgovine možete onemogućiti bez deinstalacije aplikacije."
+      },
+      "missingEmails": {
+        "question": "Zašto ne primam obavijesti e-poštom?",
+        "answer": "Provjerite adresu za obavijesti i postavke dostave u Postavkama. Provjerite i neželjenu poštu."
+      },
+      "legalCompliance": {
+        "question": "Jamči li aplikacija pravnu usklađenost trgovine?",
+        "answer": "Ne. Aplikacija pruža alate za zaprimanje i upravljanje zahtjevima za jednostrani raskid. Vi ostajete odgovorni za usklađenost pravila i postupaka trgovine sa zakonima koji vrijede za vaše poslovanje."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Trgovina nije pronađena.",
+    "entitlementUnavailable": "Pravo Shopify App Pricing nije moguće provjeriti.",
+    "planRequired": "Potreban je plaćeni paket Shopify.",
+    "languagesInvalid": "Odabrani jezici nisu valjani.",
+    "basicLanguageLimit": "Raniji besplatni paket uključuje engleski i još jedan jezik.",
+    "withdrawalPeriod": "Rok za jednostrani raskid mora biti između 1 i 365 dana.",
+    "smtpHost": "Poslužitelj SMTP je obvezan.",
+    "smtpPort": "Provjera SMTP ograničena je na portove 465 i 587.",
+    "smtpUsername": "Korisničko ime SMTP je obvezno.",
+    "smtpFromEmail": "Adresa e-pošte pošiljatelja je obvezna.",
+    "smtpPassword": "Lozinka SMTP je obvezna.",
+    "settingsUpdate": "Postavke nije moguće ažurirati.",
+    "requestNotFound": "Zahtjev nije pronađen.",
+    "invalidStatus": "Nevaljan status zahtjeva.",
+    "setupStatus": "Status postavljanja nije moguće učitati.",
+    "upgradeRequired": "Za ovu značajku nadogradite na Pro."
+  }
+}

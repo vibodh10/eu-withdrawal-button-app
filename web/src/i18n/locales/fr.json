@@ -1,0 +1,451 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Langue",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Continuer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "loading": "Chargement..."
+  },
+  "onboarding": {
+    "welcome": "Bienvenue dans EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Choisissez votre langue",
+    "languageDescription": "Sélectionnez la langue à utiliser dans l’application.",
+    "languageLabel": "Langue de l’application",
+    "dpaTitle": "2. Accord de traitement des données",
+    "dpaDescription": "Pour utiliser cette application, vous devez accepter notre accord de traitement des données. Il explique comment les données clients sont traitées pour votre compte.",
+    "viewDpa": "Consulter l’accord de traitement des données",
+    "agree": "J’ai lu et j’accepte l’accord de traitement des données",
+    "acceptContinue": "Accepter et continuer",
+    "error": "Impossible de terminer la configuration. Veuillez réessayer.",
+    "step1": "Étape 1 sur 2",
+    "step2": "Étape 2 sur 2",
+    "next": "Suivant",
+    "back": "Retour"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "requests": "Demandes",
+    "settings": "Paramètres",
+    "plans": "Offres",
+    "help": "Aide",
+    "currentPlan": "Offre actuelle",
+    "planGrandfathered": "Offre : Gratuit historique",
+    "planPro": "Offre : Pro",
+    "planRequired": "Offre requise",
+    "premiumActive": "Toutes les fonctions premium sont activées",
+    "grandfatheredActive": "Accès Gratuit historique actif",
+    "subscribeToContinue": "Souscrivez pour continuer"
+  },
+  "appLanguage": {
+    "title": "Langue de l’application",
+    "description": "Choisissez la langue du tableau de bord. Cela ne change pas les langues proposées aux clients.",
+    "label": "Langue d’affichage",
+    "saveError": "Impossible de modifier la langue de l’application.",
+    "settingsTitle": "Paramètres"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "subscriptionError": "Impossible d’actualiser l’abonnement",
+    "description": "Ajoutez en quelques minutes un bouton de rétractation conforme aux règles de l’UE à votre boutique. Recueillez les demandes clients et gérez-les au même endroit, sans configuration complexe.",
+    "plan": "Offre",
+    "grandfatheredFree": "Gratuit historique",
+    "planPro": "Pro",
+    "proActive": "Les fonctions Pro sont actives.",
+    "freeActive": "L’accès Gratuit historique est actif.",
+    "stats": {
+      "total": "Total des demandes",
+      "totalHelp": "Depuis la création de cette boutique",
+      "received": "Reçues",
+      "receivedHelp": "En attente d’action",
+      "reviewed": "Examinées",
+      "reviewedHelp": "Évaluées manuellement",
+      "closed": "Approuvées / Refusées",
+      "closedHelp": "Statuts clôturés"
+    },
+    "status": {
+      "complete": "Terminé",
+      "incomplete": "Non terminé"
+    },
+    "setup": {
+      "title": "Terminez votre configuration",
+      "description": "Choisissez la configuration adaptée à votre boutique. Nous recommandons le bouton flottant sur tout le site et une page dédiée à la rétractation.",
+      "recommended": "Recommandé",
+      "suggested": "Suggéré",
+      "optional": "Facultatif",
+      "pageReady": {
+        "title": "Page de rétractation prête",
+        "description": "Votre page de rétractation est prête. Ajoutez-y le bloc de l’application et un lien dans vos e-mails de confirmation de commande."
+      },
+      "actionFailed": "Échec de la configuration",
+      "notification": {
+        "title": "Ajoutez votre adresse de notification",
+        "description": "Saisissez l’adresse e-mail où recevoir les notifications lorsqu’un client soumet une demande de rétractation.",
+        "edit": "Modifier les paramètres de notification",
+        "add": "Ajoutez votre adresse de notification",
+        "destination": "Les notifications seront envoyées à {{email}}."
+      },
+      "floating": {
+        "title": "Activer le bouton flottant sur tout le site",
+        "description": "Pour une visibilité optimale. Le bouton flottant apparaît dans toute la boutique pour permettre l’accès au formulaire depuis chaque page.",
+        "button": "Activer le bouton flottant"
+      },
+      "withdrawalPage": {
+        "title": "Créer une page de rétractation dédiée",
+        "description": "Créez une page standard à l’adresse /pages/eu-withdrawal pour faciliter l’envoi des demandes de rétractation.",
+        "button": "Créer la page"
+      },
+      "pageBlock": {
+        "title": "Ajouter le bloc du bouton à la page de rétractation",
+        "description": "Ouvrez l’éditeur de thème et ajoutez le bloc EU Withdrawal Button à votre page de rétractation dédiée.",
+        "button": "Ajouter le bloc de page"
+      },
+      "orderEmail": {
+        "title": "Ajouter le lien aux e-mails de confirmation de commande",
+        "description": "Ajoutez le lien de votre page de rétractation aux e-mails de confirmation Shopify pour que les clients le retrouvent après l’achat.",
+        "button": "Ouvrir les notifications",
+        "suggestedLink": "Lien suggéré :"
+      },
+      "testRequest": {
+        "title": "Envoyer une demande de rétractation de test",
+        "description": "Ouvrez votre boutique ou votre page de rétractation et envoyez une demande de test pour vérifier le parcours client.",
+        "openPage": "Ouvrir la page de rétractation",
+        "openStorefront": "Ouvrir la boutique"
+      },
+      "review": {
+        "title": "Examiner les demandes dans votre tableau de bord",
+        "description": "Après l’envoi d’une demande client ou de test, examinez-la dans la section Demandes et actualisez son statut.",
+        "button": "Ouvrir les demandes"
+      },
+      "upgrade": {
+        "title": "Passer à Pro",
+        "description": "Accédez à la vérification des commandes, aux réglages avancés, à l’automatisation et aux processus personnalisés.",
+        "button": "Voir Pro"
+      }
+    },
+    "billingSyncFailed": "Impossible de synchroniser l’état de facturation",
+    "subscriptionStatusError": "Impossible d’actualiser le statut de l’abonnement."
+  },
+  "requests": {
+    "title": "Demandes de rétractation",
+    "exportCSV": "Exporter au format CSV",
+    "status": "Statut",
+    "verification": "Vérification",
+    "search": "Rechercher",
+    "searchPlaceholder": "E-mail, commande, référence...",
+    "all": "Tous",
+    "empty": "Aucune demande trouvée.",
+    "unknown": "Inconnu",
+    "noReason": "Aucun motif indiqué",
+    "filterPro": "Le filtrage avancé et l’export CSV sont disponibles avec Pro.",
+    "resourceSingular": "demande",
+    "resourcePlural": "demandes",
+    "selectedAll": "Tous",
+    "columns": {
+      "reference": "Référence",
+      "customer": "Client",
+      "order": "Commande",
+      "verification": "Vérification",
+      "reason": "Motif",
+      "status": "Statut",
+      "submitted": "Date d’envoi",
+      "actions": "Actions"
+    },
+    "statuses": {
+      "RECEIVED": "Reçue",
+      "CONFIRMED": "Confirmée",
+      "REVIEWED": "Examinée",
+      "APPROVED": "Approuvée",
+      "REJECTED": "Refusée"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Vérifiée",
+        "tooltip": "Commande trouvée et dans le délai de rétractation"
+      },
+      "NOT_FOUND": {
+        "label": "Commande introuvable",
+        "tooltip": "Aucune commande correspondante trouvée dans Shopify"
+      },
+      "EXPIRED": {
+        "label": "Délai expiré",
+        "tooltip": "Commande trouvée, mais délai de rétractation expiré"
+      },
+      "ERROR": {
+        "label": "Indisponible",
+        "tooltip": "Vérification impossible en raison d’un problème Shopify ou d’API"
+      },
+      "UNVERIFIED": {
+        "label": "Non vérifiée",
+        "tooltip": "La vérification automatique des commandes est disponible avec Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Commande non valide"
+    },
+    "deleteCustomer": {
+      "button": "Supprimer les données du client",
+      "title": "Supprimer les données du client",
+      "description": "Toutes les données de rétractation enregistrées pour {{email}} seront définitivement supprimées."
+    },
+    "bulkDelete": {
+      "button": "Supprimer la sélection",
+      "title": "Supprimer les demandes sélectionnées",
+      "confirm": "Supprimer les demandes",
+      "description_one": "Cette action supprimera définitivement {{count}} demande de rétractation sélectionnée.",
+      "description_other": "Cette action supprimera définitivement {{count}} demandes de rétractation sélectionnées.",
+      "description_many": "Cette action supprimera définitivement {{count}} demandes de rétractation sélectionnées."
+    },
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "scrollLabel": "Faire défiler les demandes de rétractation horizontalement",
+    "errors": {
+      "temporary": "Problème temporaire du serveur. Veuillez réessayer dans quelques instants.",
+      "update": "Impossible de modifier le statut de la demande.",
+      "export": "Impossible d’exporter le CSV pour le moment. Veuillez réessayer bientôt."
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "loading": "Chargement des paramètres",
+    "saveFailed": "Impossible d’enregistrer les paramètres",
+    "general": {
+      "title": "Paramètres généraux",
+      "customerLanguages": "Langues du formulaire client",
+      "customerLanguagesDescription": "Choisissez les langues proposées aux clients dans le formulaire de rétractation.",
+      "availableLanguages": "Langues disponibles pour les clients",
+      "defaultLanguage": "Langue par défaut",
+      "defaultLanguageHelp": "Le formulaire s’ouvre dans cette langue. Les clients peuvent choisir une autre langue activée.",
+      "basicLanguagesHelp": "L’offre Gratuit historique comprend l’anglais et une langue supplémentaire. Passez à Pro pour activer toutes les langues prises en charge.",
+      "notificationEmail": "E-mail de notification des rétractations",
+      "notificationEmailHelp": "Les alertes internes concernant les nouvelles demandes de rétractation sont envoyées ici.",
+      "upgradeTitle": "Passez à Pro pour accéder aux paramètres avancés",
+      "upgradeDescription": "Les délais de rétractation personnalisables sont disponibles avec Pro.",
+      "legalPage": "URL de la page juridique",
+      "privacyPage": "URL de la page de confidentialité",
+      "supportEmail": "E-mail du service client",
+      "supportEmailHelp": "Visible par les clients et utilisé comme adresse de réponse pour l’envoi géré.",
+      "basicPeriod": "L’offre Gratuit historique utilise un délai indicatif de 14 jours. La validation automatique n’est pas appliquée.",
+      "withdrawalPeriod": "Délai de rétractation (jours)",
+      "periodBasicHelp": "Un délai indicatif de 14 jours est présenté aux clients. Passez à Pro pour le personnaliser et activer la validation automatique.",
+      "periodProHelp": "Définissez votre délai de rétractation. Les demandes seront vérifiées selon ce délai lorsque cela est possible."
+    },
+    "errors": {
+      "basicLanguageLimit": "L’offre Gratuit historique comprend l’anglais et une langue supplémentaire.",
+      "selectLanguage": "Sélectionnez au moins une langue.",
+      "save": "Impossible d’enregistrer les paramètres.",
+      "saveFirst": "Enregistrez ou annulez vos autres modifications avant de {{action}}."
+    },
+    "plans": {
+      "basic": "Gratuit historique",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Envoi des e-mails",
+      "description": "Choisissez le mode d’envoi des e-mails de confirmation aux clients.",
+      "deliveryMethod": "Mode d’envoi",
+      "managed": "Géré par GL6",
+      "managedOption": "Envoi géré par GL6 — Recommandé",
+      "managedHelp": "Les e-mails de confirmation sont envoyés via le service d’envoi vérifié de GL6. Les réponses des clients sont dirigées vers votre adresse de service client.",
+      "smtpOption": "SMTP personnalisé — Pro",
+      "smtpOptionHelp": "Connectez votre fournisseur de messagerie avec ses identifiants SMTP.",
+      "proTitle": "L’envoi d’e-mails à votre marque est disponible avec Pro",
+      "proDescription": "Les boutiques Gratuit historique utilisent l’envoi géré par GL6. Les réponses sont dirigées vers l’adresse de service client définie ci-dessus.",
+      "connected": "Connecté",
+      "connectionFailed": "Échec de la connexion",
+      "requiresTesting": "Test nécessaire",
+      "statuses": {
+        "notConfigured": "Non configuré",
+        "verified": "Vérifié",
+        "pending": "En attente",
+        "notStarted": "Non démarré",
+        "failed": "Échec",
+        "failure": "Échec",
+        "temporaryFailure": "Échec temporaire"
+      },
+      "domain": {
+        "intro": "Nous recommandons un sous-domaine dédié comme withdrawals.example.com. Ajoutez les enregistrements DNS ci-dessous, puis vérifiez le domaine.",
+        "label": "Domaine ou sous-domaine d’envoi",
+        "help": "N’incluez ni https:// ni chemin d’accès.",
+        "add": "Ajouter un domaine d’envoi",
+        "recordsHelp": "Ajoutez tous les enregistrements DNS requis avant de lancer la vérification.",
+        "columns": {
+          "type": "Type",
+          "name": "Nom",
+          "value": "Valeur",
+          "priority": "Priorité",
+          "status": "Statut"
+        },
+        "issue": "Problème de domaine d’envoi",
+        "check": "Vérifier le statut",
+        "verify": "Vérifier le domaine",
+        "remove": "Supprimer le domaine",
+        "verifiedTitle": "Domaine d’envoi vérifié",
+        "verifiedDescription": "Vous pouvez désormais choisir le nom et l’adresse e-mail d’expéditeur pour les confirmations aux clients.",
+        "fromName": "Nom de l’expéditeur",
+        "fromEmail": "E-mail de l’expéditeur",
+        "storePlaceholder": "Nom de votre boutique",
+        "emailHelp": "Cette adresse doit se terminer par @{{domain}}.",
+        "saveSender": "Enregistrer l’expéditeur"
+      },
+      "smtp": {
+        "intro": "Saisissez les paramètres SMTP fournis par votre service de messagerie. Enregistrez-les avant de tester la connexion.",
+        "host": "Hôte SMTP",
+        "port": "Port SMTP",
+        "portHelp": "Utilisez généralement 587 pour STARTTLS ou 465 pour SSL/TLS.",
+        "security": "Sécurité de la connexion",
+        "starttls": "STARTTLS — généralement port 587",
+        "ssl": "SSL/TLS — généralement port 465",
+        "username": "Identifiant SMTP",
+        "usernameHelp": "Il s’agit souvent de votre adresse e-mail complète.",
+        "password": "Mot de passe SMTP",
+        "savedPasswordPlaceholder": "Laissez vide pour conserver le mot de passe enregistré",
+        "newPasswordPlaceholder": "Saisissez le mot de passe SMTP",
+        "savedPasswordHelp": "Un mot de passe est déjà enregistré de manière sécurisée. N’en saisissez un nouveau que pour le remplacer.",
+        "newPasswordHelp": "Certains fournisseurs exigent un mot de passe d’application plutôt que celui de votre compte.",
+        "fromName": "Nom de l’expéditeur",
+        "fromEmail": "E-mail de l’expéditeur",
+        "storePlaceholder": "Nom de votre boutique",
+        "fromEmailHelp": "Votre fournisseur SMTP doit autoriser cette adresse comme expéditeur.",
+        "connectionFailed": "Échec de la connexion SMTP",
+        "test": "Tester la connexion",
+        "disconnect": "Déconnecter SMTP",
+        "saveBeforeTest": "Enregistrez vos modifications avant de tester la connexion."
+      },
+      "errors": {
+        "saveSmtpFirst": "Enregistrez vos paramètres SMTP avant de tester la connexion.",
+        "smtpFailed": "Échec de la connexion SMTP.",
+        "disconnectSmtp": "Impossible de déconnecter SMTP.",
+        "domainRequired": "Saisissez d’abord un domaine ou sous-domaine.",
+        "createDomain": "Impossible de créer le domaine d’envoi.",
+        "refreshDomain": "Impossible d’actualiser le domaine d’envoi.",
+        "verifyDomain": "Impossible de lancer la vérification du domaine.",
+        "verifyBeforeSender": "Vérifiez le domaine d’envoi avant d’enregistrer l’adresse d’expéditeur.",
+        "saveSender": "Impossible d’enregistrer l’adresse d’expéditeur.",
+        "removeDomain": "Impossible de supprimer le domaine d’envoi.",
+        "dirtyActions": {
+          "disconnectSmtp": "déconnecter SMTP",
+          "createDomain": "créer un domaine d’envoi",
+          "checkDomain": "vérifier le statut du domaine d’envoi",
+          "saveSender": "enregistrer l’adresse d’expéditeur",
+          "removeDomain": "supprimer le domaine d’envoi"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Offres",
+    "grandfatheredFree": "Gratuit historique",
+    "pro": "Pro",
+    "current": "Actuelle",
+    "legacyDescription": "Droit historique — sans frais",
+    "legacyWarning": "Le passage à une offre supérieure met définitivement fin à ce droit historique.",
+    "manageSubscription": "Gérer l’abonnement",
+    "subscribePro": "Souscrire à Pro",
+    "errors": {
+      "title": "Impossible d’ouvrir la tarification Shopify",
+      "missingUrl": "Shopify n’a pas renvoyé d’URL de tarification.",
+      "openFailed": "Impossible d’ouvrir la tarification Shopify."
+    },
+    "features": {
+      "withdrawalFlow": "Processus de rétractation conforme aux règles de l’UE",
+      "unlimitedRequests": "Demandes de rétractation illimitées",
+      "confirmationEmails": "E-mails de confirmation automatiques",
+      "themeBlock": "Prise en charge des blocs d’application du thème",
+      "requestDashboard": "Tableau de bord des demandes",
+      "merchantNotifications": "Notifications au marchand",
+      "basicCompliance": "Conformité de base incluse",
+      "coreManagement": "Gestion essentielle des demandes de rétractation",
+      "euLanguages": "Toutes les langues de l’UE prises en charge",
+      "customPeriod": "Délai de rétractation personnalisé avec validation",
+      "customBranding": "Identité visuelle et couleurs personnalisées",
+      "advancedManagement": "Export CSV et gestion avancée des demandes"
+    }
+  },
+  "help": {
+    "title": "Aide",
+    "commonQuestions": "Questions fréquentes",
+    "introduction": "Trouvez des réponses rapides aux questions de configuration et de dépannage.",
+    "supportTitle": "Besoin d’aide supplémentaire ?",
+    "supportDescription": "Si ces réponses ne résolvent pas le problème, sélectionnez Obtenir de l’aide dans le menu ⋯ en haut à droite pour nous contacter via Shopify.",
+    "supportResponse": "Nous répondons généralement aux demandes d’assistance sous un jour ouvré.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Pourquoi l’application ne fonctionne-t-elle pas avec Shopify Canvas ?",
+        "answer": "Shopify Canvas est en accès anticipé et ne prend pas encore en charge les blocs ni les intégrations d’application utilisés pour afficher et configurer le bouton de rétractation. Vous pouvez utiliser l’application avec un thème compatible dans l’éditeur de thème standard de Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "Pourquoi le bouton de rétractation n’apparaît-il pas dans ma boutique ?",
+        "answer": "Vérifiez que l’intégration ou le bloc EU Withdrawal Button est activé dans votre thème Shopify actuel. Après un changement ou une publication de thème, une réactivation peut être nécessaire."
+      },
+      "buttonPosition": {
+        "question": "Puis-je modifier la position du bouton de rétractation ?",
+        "answer": "Oui. Ouvrez les Paramètres pour ajuster la position du bouton flottant sur ordinateur et mobile."
+      },
+      "buttonAppearance": {
+        "question": "Puis-je modifier l’apparence du bouton ?",
+        "answer": "Oui. Personnalisez les réglages d’apparence disponibles dans les Paramètres de l’application."
+      },
+      "requestSubmitted": {
+        "question": "Que se passe-t-il lorsqu’un client soumet une demande de rétractation ?",
+        "answer": "La demande est enregistrée et apparaît dans la section Demandes, où vous pouvez l’examiner et actualiser son statut."
+      },
+      "notificationEmail": {
+        "question": "Recevrai-je un e-mail lorsqu’un client soumet une demande ?",
+        "answer": "Oui, si une adresse de notification est configurée. Consultez les Paramètres si les notifications n’arrivent pas."
+      },
+      "withdrawalPeriod": {
+        "question": "Puis-je modifier le délai de rétractation ?",
+        "answer": "Oui. Le délai de rétractation se règle dans les Paramètres de l’application."
+      },
+      "automaticRefund": {
+        "question": "L’application rembourse-t-elle ou annule-t-elle automatiquement une commande ?",
+        "answer": "Non. Une demande de rétractation ne rembourse ni n’annule automatiquement la commande Shopify. Vous restez responsable de son examen et de son traitement."
+      },
+      "previousRequests": {
+        "question": "Puis-je consulter les demandes de rétractation précédentes ?",
+        "answer": "Oui. Ouvrez la section Demandes pour consulter les demandes soumises via l’application."
+      },
+      "multipleLanguages": {
+        "question": "L’application prend-elle en charge plusieurs langues ?",
+        "answer": "Les langues sont configurables. Gérez les langues disponibles dans les Paramètres."
+      },
+      "themeChanged": {
+        "question": "J’ai changé de thème Shopify et le bouton a disparu. Que faire ?",
+        "answer": "Ouvrez l’éditeur de votre nouveau thème et activez l’intégration ou le bloc EU Withdrawal Button."
+      },
+      "hideButton": {
+        "question": "Puis-je masquer temporairement le bouton de rétractation ?",
+        "answer": "Oui. Vous pouvez désactiver le bouton de la boutique sans désinstaller l’application."
+      },
+      "missingEmails": {
+        "question": "Pourquoi ne reçois-je pas les e-mails de notification ?",
+        "answer": "Vérifiez l’adresse de notification et les réglages d’envoi dans les Paramètres. Consultez aussi votre dossier de courrier indésirable."
+      },
+      "legalCompliance": {
+        "question": "Cette application garantit-elle la conformité juridique de ma boutique ?",
+        "answer": "Non. L’application vous aide à proposer et gérer les demandes de rétractation. Vous restez responsable de la conformité de vos politiques et procédures aux lois applicables à votre activité."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Boutique introuvable.",
+    "entitlementUnavailable": "Impossible de vérifier les droits Shopify App Pricing.",
+    "planRequired": "Une offre Shopify payante est requise.",
+    "languagesInvalid": "Les langues sélectionnées ne sont pas valides.",
+    "basicLanguageLimit": "L’offre Gratuit historique comprend l’anglais et une langue supplémentaire.",
+    "withdrawalPeriod": "Le délai de rétractation doit être compris entre 1 et 365 jours.",
+    "smtpHost": "L’hôte SMTP est obligatoire.",
+    "smtpPort": "La vérification SMTP est limitée aux ports 465 et 587.",
+    "smtpUsername": "L’identifiant SMTP est obligatoire.",
+    "smtpFromEmail": "L’adresse e-mail d’expéditeur est obligatoire.",
+    "smtpPassword": "Le mot de passe SMTP est obligatoire.",
+    "settingsUpdate": "Impossible de modifier les paramètres.",
+    "requestNotFound": "Demande introuvable.",
+    "invalidStatus": "Statut de demande non valide.",
+    "setupStatus": "Impossible de charger l’état de configuration.",
+    "upgradeRequired": "Passez à Pro pour utiliser cette fonction."
+  }
+}

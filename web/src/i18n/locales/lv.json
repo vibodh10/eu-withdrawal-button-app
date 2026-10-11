@@ -1,0 +1,451 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Valoda",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Turpināt",
+    "save": "Saglabāt",
+    "cancel": "Atcelt",
+    "loading": "Ielāde..."
+  },
+  "onboarding": {
+    "welcome": "Laipni lūdzam EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Izvēlieties valodu",
+    "languageDescription": "Izvēlieties lietotnē izmantojamo valodu.",
+    "languageLabel": "Lietotnes valoda",
+    "dpaTitle": "2. Datu apstrādes līgums",
+    "dpaDescription": "Lai izmantotu lietotni, jāpiekrīt mūsu datu apstrādes līgumam. Tas izskaidro klientu datu apstrādi jūsu vārdā.",
+    "viewDpa": "Skatīt datu apstrādes līgumu",
+    "agree": "Esmu izlasījis/-usi datu apstrādes līgumu un piekrītu tam",
+    "acceptContinue": "Pieņemt un turpināt",
+    "error": "Iestatīšanu neizdevās pabeigt. Mēģiniet vēlreiz.",
+    "step1": "1. solis no 2",
+    "step2": "2. solis no 2",
+    "next": "Tālāk",
+    "back": "Atpakaļ"
+  },
+  "navigation": {
+    "dashboard": "Pārskats",
+    "requests": "Pieprasījumi",
+    "settings": "Iestatījumi",
+    "plans": "Plāni",
+    "help": "Palīdzība",
+    "currentPlan": "Pašreizējais plāns",
+    "planGrandfathered": "Plāns: Iepriekšējais bezmaksas",
+    "planPro": "Plāns: Pro",
+    "planRequired": "Nepieciešams plāns",
+    "premiumActive": "Visas premium funkcijas ir iespējotas",
+    "grandfatheredActive": "Iepriekšējā bezmaksas piekļuve ir aktīva",
+    "subscribeToContinue": "Abonējiet, lai turpinātu"
+  },
+  "appLanguage": {
+    "title": "Lietotnes valoda",
+    "description": "Izvēlieties pārskata valodu. Tas nemaina klientiem pieejamās valodas.",
+    "label": "Attēlojuma valoda",
+    "saveError": "Lietotnes valodu neizdevās atjaunināt.",
+    "settingsTitle": "Iestatījumi"
+  },
+  "dashboard": {
+    "title": "Pārskats",
+    "subscriptionError": "Abonementu neizdevās atsvaidzināt",
+    "description": "Dažu minūšu laikā pievienojiet veikalam ES noteikumiem atbilstošu atteikuma pogu. Apkopojiet un pārvaldiet klientu pieprasījumus vienuviet bez sarežģītas iestatīšanas.",
+    "plan": "Plāns",
+    "grandfatheredFree": "Iepriekšējais bezmaksas",
+    "planPro": "Pro",
+    "proActive": "Pro funkcijas ir aktīvas.",
+    "freeActive": "Iepriekšējā bezmaksas piekļuve ir aktīva.",
+    "stats": {
+      "total": "Pieprasījumi kopā",
+      "totalHelp": "Visā veikala darbības laikā",
+      "received": "Saņemti",
+      "receivedHelp": "Gaida darbību",
+      "reviewed": "Izskatīti",
+      "reviewedHelp": "Manuāli izvērtēti",
+      "closed": "Apstiprināti / Noraidīti",
+      "closedHelp": "Slēgtie statusi"
+    },
+    "status": {
+      "complete": "Pabeigts",
+      "incomplete": "Nav pabeigts"
+    },
+    "setup": {
+      "title": "Pabeidziet iestatīšanu",
+      "description": "Izvēlieties veikalam piemērotu risinājumu. Iesakām peldošu pogu visā vietnē un atsevišķu atteikuma lapu.",
+      "recommended": "Ieteicams",
+      "suggested": "Ierosināts",
+      "optional": "Nav obligāti",
+      "pageReady": {
+        "title": "Atteikuma lapa ir gatava",
+        "description": "Atteikuma lapa ir gatava. Pievienojiet lietotnes bloku un saiti pasūtījumu apstiprinājuma e-pastos."
+      },
+      "actionFailed": "Iestatīšanas darbība neizdevās",
+      "notification": {
+        "title": "Pievienojiet paziņojumu e-pastu",
+        "description": "Ievadiet adresi, uz kuru vēlaties paziņojumus par klientu atteikuma pieprasījumiem.",
+        "edit": "Rediģēt paziņojumu iestatījumus",
+        "add": "Pievienojiet paziņojumu e-pastu",
+        "destination": "Paziņojumi tiks nosūtīti uz {{email}}."
+      },
+      "floating": {
+        "title": "Iespējot peldošo pogu visā vietnē",
+        "description": "Vislabākā redzamība. Peldoša atteikuma poga visā veikalā nodrošina piekļuvi veidlapai no jebkuras lapas.",
+        "button": "Iespējot peldošo pogu"
+      },
+      "withdrawalPage": {
+        "title": "Izveidot atsevišķu atteikuma lapu",
+        "description": "Izveidojiet standarta lapu /pages/eu-withdrawal, lai klientiem būtu skaidra vieta pieprasījumu iesniegšanai.",
+        "button": "Izveidot lapu"
+      },
+      "pageBlock": {
+        "title": "Pievienot pogas bloku atteikuma lapai",
+        "description": "Atveriet dizaina redaktoru un pievienojiet EU Withdrawal Button bloku atteikuma lapai.",
+        "button": "Pievienot lapas bloku"
+      },
+      "orderEmail": {
+        "title": "Pievienot saiti pasūtījumu apstiprinājumiem",
+        "description": "Pievienojiet atteikuma lapas saiti Shopify apstiprinājuma e-pastiem, lai klienti to atrastu pēc pirkuma.",
+        "button": "Atvērt paziņojumus",
+        "suggestedLink": "Ieteiktā saite:"
+      },
+      "testRequest": {
+        "title": "Iesniegt izmēģinājuma atteikuma pieprasījumu",
+        "description": "Atveriet veikalu vai atteikuma lapu un iesniedziet izmēģinājuma pieprasījumu klienta pieredzes pārbaudei.",
+        "openPage": "Atvērt atteikuma lapu",
+        "openStorefront": "Atvērt veikalu"
+      },
+      "review": {
+        "title": "Izskatiet pieprasījumus pārskatā",
+        "description": "Pēc īsta vai izmēģinājuma pieprasījuma iesniegšanas izskatiet to sadaļā Pieprasījumi un atjauniniet statusu.",
+        "button": "Atvērt pieprasījumus"
+      },
+      "upgrade": {
+        "title": "Pāriet uz Pro",
+        "description": "Atbloķējiet pasūtījumu pārbaudi, papildu iestatījumus, automatizāciju un pielāgotas darbplūsmas.",
+        "button": "Skatīt Pro"
+      }
+    },
+    "billingSyncFailed": "Norēķinu statusu neizdevās sinhronizēt",
+    "subscriptionStatusError": "Abonementa statusu neizdevās atsvaidzināt."
+  },
+  "requests": {
+    "title": "Atteikuma pieprasījumi",
+    "exportCSV": "Eksportēt CSV",
+    "status": "Statuss",
+    "verification": "Pārbaude",
+    "search": "Meklēt",
+    "searchPlaceholder": "E-pasts, pasūtījums, atsauce...",
+    "all": "Visi",
+    "empty": "Pieprasījumi nav atrasti.",
+    "unknown": "Nezināms",
+    "noReason": "Iemesls nav norādīts",
+    "filterPro": "Papildu filtrēšana un CSV eksports pieejami Pro plānā.",
+    "resourceSingular": "pieprasījums",
+    "resourcePlural": "pieprasījumi",
+    "selectedAll": "Visi",
+    "columns": {
+      "reference": "Atsauce",
+      "customer": "Klients",
+      "order": "Pasūtījums",
+      "verification": "Pārbaude",
+      "reason": "Iemesls",
+      "status": "Statuss",
+      "submitted": "Iesniegts",
+      "actions": "Darbības"
+    },
+    "statuses": {
+      "RECEIVED": "Saņemts",
+      "CONFIRMED": "Apstiprināts",
+      "REVIEWED": "Izskatīts",
+      "APPROVED": "Pieņemts",
+      "REJECTED": "Noraidīts"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Pārbaudīts",
+        "tooltip": "Pasūtījums atrasts atteikuma termiņā"
+      },
+      "NOT_FOUND": {
+        "label": "Pasūtījums nav atrasts",
+        "tooltip": "Shopify nav atrasts atbilstošs pasūtījums"
+      },
+      "EXPIRED": {
+        "label": "Termiņš beidzies",
+        "tooltip": "Pasūtījums atrasts, taču atteikuma termiņš ir beidzies"
+      },
+      "ERROR": {
+        "label": "Nav pieejams",
+        "tooltip": "Pasūtījumu neizdevās pārbaudīt Shopify vai API problēmas dēļ"
+      },
+      "UNVERIFIED": {
+        "label": "Nav pārbaudīts",
+        "tooltip": "Automātiska pasūtījumu pārbaude pieejama Pro plānā"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Nederīgs pasūtījums"
+    },
+    "deleteCustomer": {
+      "button": "Dzēst klienta datus",
+      "title": "Dzēst klienta datus",
+      "description": "Visi saglabātie atteikuma dati par {{email}} tiks neatgriezeniski dzēsti."
+    },
+    "bulkDelete": {
+      "button": "Dzēst atlasītos",
+      "title": "Dzēst atlasītos pieprasījumus",
+      "confirm": "Dzēst pieprasījumus",
+      "description_one": "Tiks neatgriezeniski dzēsts {{count}} atlasīts atteikuma pieprasījums.",
+      "description_other": "Tiks neatgriezeniski dzēsti {{count}} atlasīti atteikuma pieprasījumi.",
+      "description_zero": "Atlasītie atteikuma pieprasījumi tiks neatgriezeniski dzēsti. Skaits: {{count}}."
+    },
+    "delete": "Dzēst",
+    "cancel": "Atcelt",
+    "scrollLabel": "Ritināt atteikuma pieprasījumus horizontāli",
+    "errors": {
+      "temporary": "Īslaicīga servera problēma. Mēģiniet vēlreiz pēc brīža.",
+      "update": "Pieprasījuma statusu neizdevās atjaunināt.",
+      "export": "CSV šobrīd nevar eksportēt. Drīz mēģiniet vēlreiz."
+    }
+  },
+  "settings": {
+    "title": "Iestatījumi",
+    "loading": "Iestatījumu ielāde",
+    "saveFailed": "Iestatījumus neizdevās saglabāt",
+    "general": {
+      "title": "Vispārīgie iestatījumi",
+      "customerLanguages": "Klientu veidlapas valodas",
+      "customerLanguagesDescription": "Izvēlieties valodas, ko klienti var izmantot atteikuma veidlapā.",
+      "availableLanguages": "Klientiem pieejamās valodas",
+      "defaultLanguage": "Noklusējuma valoda",
+      "defaultLanguageHelp": "Veidlapa atveras šajā valodā. Klienti var izvēlēties citu iespējotu valodu.",
+      "basicLanguagesHelp": "Iepriekšējais bezmaksas plāns ietver angļu un vēl vienu valodu. Pārejiet uz Pro visām atbalstītajām valodām.",
+      "notificationEmail": "Atteikuma paziņojumu e-pasts",
+      "notificationEmailHelp": "Uz šo adresi nosūta iekšējos paziņojumus par jauniem atteikuma pieprasījumiem.",
+      "upgradeTitle": "Pārejiet uz Pro papildu iestatījumiem",
+      "upgradeDescription": "Pielāgojami atteikuma termiņi pieejami Pro plānā.",
+      "legalPage": "Juridiskās lapas URL",
+      "privacyPage": "Privātuma lapas URL",
+      "supportEmail": "Klientu atbalsta e-pasts",
+      "supportEmailHelp": "Redzams klientiem un izmantots kā atbildes adrese pārvaldītajā piegādē.",
+      "basicPeriod": "Iepriekšējais bezmaksas plāns izmanto orientējošu 14 dienu termiņu. Automātiska pārbaude netiek piemērota.",
+      "withdrawalPeriod": "Atteikuma termiņš (dienas)",
+      "periodBasicHelp": "Klientiem norāda orientējošu 14 dienu termiņu. Pārejiet uz Pro pielāgošanai un automātiskai pārbaudei.",
+      "periodProHelp": "Iestatiet atteikuma termiņu. Pieprasījumus pārbaudīs, ņemot to vērā, kad tas būs iespējams."
+    },
+    "errors": {
+      "basicLanguageLimit": "Iepriekšējais bezmaksas plāns ietver angļu un vēl vienu valodu.",
+      "selectLanguage": "Izvēlieties vismaz vienu valodu.",
+      "save": "Iestatījumus neizdevās saglabāt.",
+      "saveFirst": "Pirms nākamās darbības saglabājiet vai atmetiet citas izmaiņas: {{action}}."
+    },
+    "plans": {
+      "basic": "Iepriekšējais bezmaksas",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "E-pasta piegāde",
+      "description": "Izvēlieties klientu apstiprinājuma e-pastu nosūtīšanas veidu.",
+      "deliveryMethod": "Piegādes metode",
+      "managed": "Pārvalda GL6",
+      "managedOption": "GL6 pārvaldīta piegāde — Ieteicams",
+      "managedHelp": "Apstiprinājumus sūta GL6 pārbaudītais e-pasta pakalpojums. Klientu atbildes nosūta uz atbalsta adresi.",
+      "smtpOption": "Savs SMTP — Pro",
+      "smtpOptionHelp": "Savienojiet e-pasta pakalpojumu ar SMTP piekļuves datiem.",
+      "proTitle": "E-pasti ar jūsu zīmolu pieejami Pro plānā",
+      "proDescription": "Iepriekšējā bezmaksas plāna veikali izmanto GL6 piegādi. Atbildes nosūta uz iepriekš norādīto klientu atbalsta adresi.",
+      "connected": "Savienots",
+      "connectionFailed": "Savienojums neizdevās",
+      "requiresTesting": "Nepieciešama pārbaude",
+      "statuses": {
+        "notConfigured": "Nav konfigurēts",
+        "verified": "Pārbaudīts",
+        "pending": "Gaida",
+        "notStarted": "Nav sākts",
+        "failed": "Neizdevās",
+        "failure": "Neizdevās",
+        "temporaryFailure": "Īslaicīga kļūda"
+      },
+      "domain": {
+        "intro": "Iesakām atsevišķu apakšdomēnu, piemēram, withdrawals.example.com. Pievienojiet zemāk norādītos DNS ierakstus un pārbaudiet domēnu.",
+        "label": "Sūtīšanas domēns vai apakšdomēns",
+        "help": "Neiekļaujiet https:// vai ceļu.",
+        "add": "Pievienot sūtīšanas domēnu",
+        "recordsHelp": "Pirms pārbaudes pievienojiet visus nepieciešamos DNS ierakstus.",
+        "columns": {
+          "type": "Veids",
+          "name": "Nosaukums",
+          "value": "Vērtība",
+          "priority": "Prioritāte",
+          "status": "Statuss"
+        },
+        "issue": "Sūtīšanas domēna problēma",
+        "check": "Pārbaudīt statusu",
+        "verify": "Pārbaudīt domēnu",
+        "remove": "Noņemt domēnu",
+        "verifiedTitle": "Sūtīšanas domēns pārbaudīts",
+        "verifiedDescription": "Tagad varat izvēlēties klientu apstiprinājumu sūtītāja vārdu un e-pasta adresi.",
+        "fromName": "Sūtītāja vārds",
+        "fromEmail": "Sūtītāja e-pasts",
+        "storePlaceholder": "Jūsu veikala nosaukums",
+        "emailHelp": "Adresei jābeidzas ar @{{domain}}.",
+        "saveSender": "Saglabāt sūtītāja datus"
+      },
+      "smtp": {
+        "intro": "Ievadiet e-pasta pakalpojuma SMTP datus. Saglabājiet iestatījumus pirms savienojuma pārbaudes.",
+        "host": "SMTP serveris",
+        "port": "SMTP ports",
+        "portHelp": "Parasti izmantojiet 587 STARTTLS vai 465 SSL/TLS.",
+        "security": "Savienojuma drošība",
+        "starttls": "STARTTLS — parasti ports 587",
+        "ssl": "SSL/TLS — parasti ports 465",
+        "username": "SMTP lietotājvārds",
+        "usernameHelp": "Tas bieži ir pilns e-pasta adreses pieraksts.",
+        "password": "SMTP parole",
+        "savedPasswordPlaceholder": "Atstājiet tukšu, lai paturētu saglabāto paroli",
+        "newPasswordPlaceholder": "Ievadiet SMTP paroli",
+        "savedPasswordHelp": "Parole jau ir droši saglabāta. Jaunu ievadiet tikai tās nomaiņai.",
+        "newPasswordHelp": "Daži pakalpojumi pieprasa lietotnes paroli, nevis ierasto konta paroli.",
+        "fromName": "Sūtītāja vārds",
+        "fromEmail": "Sūtītāja e-pasts",
+        "storePlaceholder": "Jūsu veikala nosaukums",
+        "fromEmailHelp": "SMTP pakalpojumam jāatļauj šī adrese kā sūtītājs.",
+        "connectionFailed": "SMTP savienojums neizdevās",
+        "test": "Pārbaudīt savienojumu",
+        "disconnect": "Atvienot SMTP",
+        "saveBeforeTest": "Saglabājiet izmaiņas pirms savienojuma pārbaudes."
+      },
+      "errors": {
+        "saveSmtpFirst": "Saglabājiet SMTP iestatījumus pirms savienojuma pārbaudes.",
+        "smtpFailed": "SMTP savienojums neizdevās.",
+        "disconnectSmtp": "SMTP neizdevās atvienot.",
+        "domainRequired": "Vispirms ievadiet domēnu vai apakšdomēnu.",
+        "createDomain": "Sūtīšanas domēnu neizdevās izveidot.",
+        "refreshDomain": "Sūtīšanas domēnu neizdevās atsvaidzināt.",
+        "verifyDomain": "Domēna pārbaudi neizdevās sākt.",
+        "verifyBeforeSender": "Pārbaudiet sūtīšanas domēnu pirms sūtītāja adreses saglabāšanas.",
+        "saveSender": "Sūtītāja adresi neizdevās saglabāt.",
+        "removeDomain": "Sūtīšanas domēnu neizdevās noņemt.",
+        "dirtyActions": {
+          "disconnectSmtp": "SMTP atvienošana",
+          "createDomain": "sūtīšanas domēna izveide",
+          "checkDomain": "sūtīšanas domēna statusa pārbaude",
+          "saveSender": "sūtītāja adreses saglabāšana",
+          "removeDomain": "sūtīšanas domēna noņemšana"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Plāni",
+    "grandfatheredFree": "Iepriekšējais bezmaksas",
+    "pro": "Pro",
+    "current": "Pašreizējais",
+    "legacyDescription": "Iepriekšējās tiesības — bez maksas",
+    "legacyWarning": "Pāreja uz augstāku plānu neatgriezeniski izbeidz šīs iepriekšējās tiesības.",
+    "manageSubscription": "Pārvaldīt abonementu",
+    "subscribePro": "Abonēt Pro",
+    "errors": {
+      "title": "Shopify cenu lapu neizdevās atvērt",
+      "missingUrl": "Shopify neatgrieza cenu lapas URL.",
+      "openFailed": "Shopify cenu lapu neizdevās atvērt."
+    },
+    "features": {
+      "withdrawalFlow": "ES noteikumiem atbilstošs atteikuma process",
+      "unlimitedRequests": "Neierobežoti atteikuma pieprasījumi",
+      "confirmationEmails": "Automātiski apstiprinājuma e-pasti",
+      "themeBlock": "Dizaina lietotnes bloku atbalsts",
+      "requestDashboard": "Pieprasījumu pārskats",
+      "merchantNotifications": "Paziņojumi tirgotājam",
+      "basicCompliance": "Pamatprasību ievērošana iekļauta",
+      "coreManagement": "Atteikuma pieprasījumu pamata pārvaldība",
+      "euLanguages": "Visas atbalstītās ES valodas",
+      "customPeriod": "Pielāgots atteikuma termiņš ar pārbaudi",
+      "customBranding": "Savs zīmols un krāsas",
+      "advancedManagement": "CSV eksports un papildu pieprasījumu pārvaldība"
+    }
+  },
+  "help": {
+    "title": "Palīdzība",
+    "commonQuestions": "Bieži uzdotie jautājumi",
+    "introduction": "Ātras atbildes par iestatīšanu un problēmu novēršanu.",
+    "supportTitle": "Vajadzīga papildu palīdzība?",
+    "supportDescription": "Ja atbildes neatrisina problēmu, izvēlieties Saņemt atbalstu izvēlnē ⋯ augšējā labajā stūrī, lai sazinātos ar mums caur Shopify.",
+    "supportResponse": "Uz atbalsta pieprasījumiem parasti atbild vienas darbdienas laikā.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Kāpēc lietotne nedarbojas ar Shopify Canvas?",
+        "answer": "Shopify Canvas ir agrīnās piekļuves stadijā un vēl neatbalsta atteikuma pogai vajadzīgos lietotnes blokus vai iegulumus. Tas ir pašreizējs Canvas ierobežojums. Izmantojiet saderīgu dizainu Shopify standarta redaktorā."
+      },
+      "buttonNotShowing": {
+        "question": "Kāpēc atteikuma poga nav redzama veikalā?",
+        "answer": "Pārbaudiet, vai EU Withdrawal Button iegulums vai bloks ir iespējots pašreizējā dizainā. Pēc dizaina maiņas vai publicēšanas, iespējams, tas jāiespējo vēlreiz."
+      },
+      "buttonPosition": {
+        "question": "Vai varu mainīt atteikuma pogas atrašanās vietu?",
+        "answer": "Jā. Atveriet Iestatījumus un mainiet peldošās pogas vietu datorā un mobilajā ierīcē."
+      },
+      "buttonAppearance": {
+        "question": "Vai varu mainīt pogas izskatu?",
+        "answer": "Jā. Pielāgojiet pieejamās izskata iespējas lietotnes Iestatījumos."
+      },
+      "requestSubmitted": {
+        "question": "Kas notiek, kad klients iesniedz atteikuma pieprasījumu?",
+        "answer": "Pieprasījums tiek saglabāts sadaļā Pieprasījumi, kur to var izskatīt un atjaunināt statusu."
+      },
+      "notificationEmail": {
+        "question": "Vai saņemšu e-pastu, kad klients iesniedz pieprasījumu?",
+        "answer": "Jā, ja ir iestatīta paziņojumu adrese. Pārbaudiet Iestatījumus, ja paziņojumi nepienāk."
+      },
+      "withdrawalPeriod": {
+        "question": "Vai varu mainīt atteikuma termiņu?",
+        "answer": "Jā. Termiņu var iestatīt lietotnes Iestatījumos."
+      },
+      "automaticRefund": {
+        "question": "Vai lietotne automātiski atmaksā vai atceļ pasūtījumu?",
+        "answer": "Nē. Atteikuma pieprasījums automātiski neatmaksā un neatceļ Shopify pasūtījumu. Jūs pārvaldāt pieprasījuma izskatīšanu un apstrādi."
+      },
+      "previousRequests": {
+        "question": "Vai varu skatīt agrākos atteikuma pieprasījumus?",
+        "answer": "Jā. Atveriet Pieprasījumus, lai skatītu iesniegtos pieprasījumus."
+      },
+      "multipleLanguages": {
+        "question": "Vai lietotne atbalsta vairākas valodas?",
+        "answer": "Valodas ir konfigurējamas. Pieejamās iespējas pārvaldāt Iestatījumos."
+      },
+      "themeChanged": {
+        "question": "Mainīju Shopify dizainu, un poga pazuda. Ko darīt?",
+        "answer": "Atveriet jaunā dizaina redaktoru un iespējojiet EU Withdrawal Button iegulumu vai bloku."
+      },
+      "hideButton": {
+        "question": "Vai varu īslaicīgi paslēpt atteikuma pogu?",
+        "answer": "Jā. Veikala pogu var atspējot, neatinstalējot lietotni."
+      },
+      "missingEmails": {
+        "question": "Kāpēc nesaņemu paziņojumu e-pastus?",
+        "answer": "Pārbaudiet paziņojumu adresi un piegādes iestatījumus Iestatījumos. Pārbaudiet arī surogātpasta mapi."
+      },
+      "legalCompliance": {
+        "question": "Vai lietotne garantē veikala atbilstību likumam?",
+        "answer": "Nē. Lietotne nodrošina rīkus atteikuma pieprasījumu piedāvāšanai un pārvaldībai. Jūs joprojām atbildat par veikala politiku un procesu atbilstību jūsu uzņēmumam piemērojamajiem likumiem."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Veikals nav atrasts.",
+    "entitlementUnavailable": "Shopify App Pricing tiesības neizdevās pārbaudīt.",
+    "planRequired": "Nepieciešams maksas Shopify plāns.",
+    "languagesInvalid": "Izvēlētās valodas nav derīgas.",
+    "basicLanguageLimit": "Iepriekšējais bezmaksas plāns ietver angļu un vēl vienu valodu.",
+    "withdrawalPeriod": "Atteikuma termiņam jābūt no 1 līdz 365 dienām.",
+    "smtpHost": "Nepieciešams SMTP serveris.",
+    "smtpPort": "SMTP pārbaude ir ierobežota ar portiem 465 un 587.",
+    "smtpUsername": "Nepieciešams SMTP lietotājvārds.",
+    "smtpFromEmail": "Nepieciešama sūtītāja e-pasta adrese.",
+    "smtpPassword": "Nepieciešama SMTP parole.",
+    "settingsUpdate": "Iestatījumus neizdevās atjaunināt.",
+    "requestNotFound": "Pieprasījums nav atrasts.",
+    "invalidStatus": "Nederīgs pieprasījuma statuss.",
+    "setupStatus": "Iestatīšanas statusu neizdevās ielādēt.",
+    "upgradeRequired": "Šai funkcijai pārejiet uz Pro."
+  }
+}

@@ -18,10 +18,7 @@ import {
 import { apiSend } from "../api";
 import { normalizeAdminLanguage } from "../i18n";
 
-const LANGUAGE_OPTIONS = [
-    { label: "English", value: "en" },
-    { label: "Deutsch", value: "de" },
-];
+import { EU_LANGUAGE_OPTIONS as LANGUAGE_OPTIONS } from "../../../shared/euLanguages.js";
 
 export default function DpaPage({ onAccepted }) {
     const { i18n } = useTranslation();

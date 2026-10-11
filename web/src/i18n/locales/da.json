@@ -1,0 +1,450 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Sprog",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Fortsæt",
+    "save": "Gem",
+    "cancel": "Annuller",
+    "loading": "Indlæser..."
+  },
+  "onboarding": {
+    "welcome": "Velkommen til EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Vælg dit sprog",
+    "languageDescription": "Vælg det sprog, du vil bruge i appen.",
+    "languageLabel": "Appens sprog",
+    "dpaTitle": "2. Databehandleraftale",
+    "dpaDescription": "Du skal acceptere vores databehandleraftale for at bruge appen. Den forklarer, hvordan kundedata behandles på dine vegne.",
+    "viewDpa": "Se databehandleraftalen",
+    "agree": "Jeg har læst og accepterer databehandleraftalen",
+    "acceptContinue": "Acceptér og fortsæt",
+    "error": "Opsætningen kunne ikke gennemføres. Prøv igen.",
+    "step1": "Trin 1 af 2",
+    "step2": "Trin 2 af 2",
+    "next": "Næste",
+    "back": "Tilbage"
+  },
+  "navigation": {
+    "dashboard": "Oversigt",
+    "requests": "Anmodninger",
+    "settings": "Indstillinger",
+    "plans": "Abonnementer",
+    "help": "Hjælp",
+    "currentPlan": "Nuværende abonnement",
+    "planGrandfathered": "Abonnement: Eksisterende gratis",
+    "planPro": "Abonnement: Pro",
+    "planRequired": "Abonnement påkrævet",
+    "premiumActive": "Alle premiumfunktioner er aktiveret",
+    "grandfatheredActive": "Eksisterende gratis adgang er aktiv",
+    "subscribeToContinue": "Tegn abonnement for at fortsætte"
+  },
+  "appLanguage": {
+    "title": "Appens sprog",
+    "description": "Vælg sproget i appens oversigt. Det ændrer ikke de sprog, kunderne kan vælge.",
+    "label": "Visningssprog",
+    "saveError": "Appens sprog kunne ikke opdateres.",
+    "settingsTitle": "Indstillinger"
+  },
+  "dashboard": {
+    "title": "Oversigt",
+    "subscriptionError": "Abonnementet kunne ikke opdateres",
+    "description": "Tilføj en fortrydelsesknap i overensstemmelse med EU-reglerne på få minutter. Indsaml og administrer kundernes anmodninger ét sted uden kompliceret opsætning.",
+    "plan": "Abonnement",
+    "grandfatheredFree": "Eksisterende gratis",
+    "planPro": "Pro",
+    "proActive": "Pro-funktioner er aktive.",
+    "freeActive": "Eksisterende gratis adgang er aktiv.",
+    "stats": {
+      "total": "Anmodninger i alt",
+      "totalHelp": "Hele butikkens levetid",
+      "received": "Modtaget",
+      "receivedHelp": "Afventer handling",
+      "reviewed": "Gennemgået",
+      "reviewedHelp": "Vurderet manuelt",
+      "closed": "Godkendt / Afvist",
+      "closedHelp": "Afsluttede statusser"
+    },
+    "status": {
+      "complete": "Fuldført",
+      "incomplete": "Ikke fuldført"
+    },
+    "setup": {
+      "title": "Gennemfør opsætningen",
+      "description": "Vælg den opsætning, der passer til din butik. Vi anbefaler en flydende knap på hele hjemmesiden og en særlig side til fortrydelse.",
+      "recommended": "Anbefalet",
+      "suggested": "Foreslået",
+      "optional": "Valgfrit",
+      "pageReady": {
+        "title": "Fortrydelsessiden er klar",
+        "description": "Din fortrydelsesside er klar. Tilføj appblokken og et link til siden i dine ordrebekræftelser."
+      },
+      "actionFailed": "Opsætningen mislykkedes",
+      "notification": {
+        "title": "Tilføj din notifikationsmail",
+        "description": "Angiv den e-mailadresse, hvor du vil modtage beskeder, når en kunde indsender en anmodning om fortrydelse.",
+        "edit": "Rediger notifikationsindstillinger",
+        "add": "Tilføj din notifikationsmail",
+        "destination": "Notifikationer sendes til {{email}}."
+      },
+      "floating": {
+        "title": "Aktivér flydende knap på hele hjemmesiden",
+        "description": "Bedst for synlighed. En flydende fortrydelsesknap på hele hjemmesiden giver adgang til formularen fra alle sider.",
+        "button": "Aktivér flydende knap"
+      },
+      "withdrawalPage": {
+        "title": "Opret en særlig fortrydelsesside",
+        "description": "Opret en standardside på /pages/eu-withdrawal, så kunderne har et tydeligt sted at indsende anmodninger.",
+        "button": "Opret side"
+      },
+      "pageBlock": {
+        "title": "Tilføj knapblok til fortrydelsessiden",
+        "description": "Åbn temaeditoren, og tilføj EU Withdrawal Button-blokken til fortrydelsessiden.",
+        "button": "Tilføj sideblok"
+      },
+      "orderEmail": {
+        "title": "Tilføj linket til ordrebekræftelser",
+        "description": "Tilføj linket til fortrydelsessiden i Shopifys ordrebekræftelser, så kunderne kan finde den efter købet.",
+        "button": "Åbn notifikationer",
+        "suggestedLink": "Foreslået link:"
+      },
+      "testRequest": {
+        "title": "Indsend en testanmodning om fortrydelse",
+        "description": "Besøg butikken eller fortrydelsessiden, og indsend en testanmodning for at kontrollere kundeoplevelsen.",
+        "openPage": "Åbn fortrydelsesside",
+        "openStorefront": "Åbn butik"
+      },
+      "review": {
+        "title": "Gennemgå anmodninger i oversigten",
+        "description": "Gennemgå en kunde- eller testanmodning under Anmodninger, og opdater dens status.",
+        "button": "Åbn anmodninger"
+      },
+      "upgrade": {
+        "title": "Opgrader til Pro",
+        "description": "Få adgang til ordrebekræftelse, avancerede indstillinger, automatisering og tilpassede arbejdsgange.",
+        "button": "Se Pro"
+      }
+    },
+    "billingSyncFailed": "Faktureringsstatus kunne ikke synkroniseres",
+    "subscriptionStatusError": "Abonnementsstatus kunne ikke opdateres."
+  },
+  "requests": {
+    "title": "Anmodninger om fortrydelse",
+    "exportCSV": "Eksportér CSV",
+    "status": "Status",
+    "verification": "Kontrol",
+    "search": "Søg",
+    "searchPlaceholder": "E-mail, ordre, reference...",
+    "all": "Alle",
+    "empty": "Ingen anmodninger fundet.",
+    "unknown": "Ukendt",
+    "noReason": "Ingen årsag angivet",
+    "filterPro": "Avanceret filtrering og CSV-eksport er tilgængelige med Pro.",
+    "resourceSingular": "anmodning",
+    "resourcePlural": "anmodninger",
+    "selectedAll": "Alle",
+    "columns": {
+      "reference": "Reference",
+      "customer": "Kunde",
+      "order": "Ordre",
+      "verification": "Kontrol",
+      "reason": "Årsag",
+      "status": "Status",
+      "submitted": "Indsendt",
+      "actions": "Handlinger"
+    },
+    "statuses": {
+      "RECEIVED": "Modtaget",
+      "CONFIRMED": "Bekræftet",
+      "REVIEWED": "Gennemgået",
+      "APPROVED": "Godkendt",
+      "REJECTED": "Afvist"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Kontrolleret",
+        "tooltip": "Ordre fundet inden for fortrydelsesfristen"
+      },
+      "NOT_FOUND": {
+        "label": "Ordre ikke fundet",
+        "tooltip": "Ingen tilsvarende ordre fundet i Shopify"
+      },
+      "EXPIRED": {
+        "label": "Frist udløbet",
+        "tooltip": "Ordre fundet, men fortrydelsesfristen er udløbet"
+      },
+      "ERROR": {
+        "label": "Ikke tilgængelig",
+        "tooltip": "Ordren kunne ikke kontrolleres på grund af en Shopify- eller API-fejl"
+      },
+      "UNVERIFIED": {
+        "label": "Ikke kontrolleret",
+        "tooltip": "Automatisk ordrekontrol er tilgængelig med Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Ugyldig ordre"
+    },
+    "deleteCustomer": {
+      "button": "Slet kundedata",
+      "title": "Slet kundedata",
+      "description": "Alle gemte fortrydelsesdata for {{email}} slettes permanent."
+    },
+    "bulkDelete": {
+      "button": "Slet valgte",
+      "title": "Slet valgte anmodninger",
+      "confirm": "Slet anmodninger",
+      "description_one": "Dette sletter permanent {{count}} valgt anmodning om fortrydelse.",
+      "description_other": "Dette sletter permanent {{count}} valgte anmodninger om fortrydelse."
+    },
+    "delete": "Slet",
+    "cancel": "Annuller",
+    "scrollLabel": "Rul anmodninger om fortrydelse vandret",
+    "errors": {
+      "temporary": "Midlertidigt serverproblem. Prøv igen om lidt.",
+      "update": "Anmodningens status kunne ikke opdateres.",
+      "export": "CSV kan ikke eksporteres lige nu. Prøv igen om lidt."
+    }
+  },
+  "settings": {
+    "title": "Indstillinger",
+    "loading": "Indlæser indstillinger",
+    "saveFailed": "Indstillingerne kunne ikke gemmes",
+    "general": {
+      "title": "Generelle indstillinger",
+      "customerLanguages": "Sprog i kundeformularen",
+      "customerLanguagesDescription": "Vælg de sprog, kunderne kan bruge i fortrydelsesformularen.",
+      "availableLanguages": "Sprog tilgængelige for kunder",
+      "defaultLanguage": "Standardsprog",
+      "defaultLanguageHelp": "Formularen åbnes på dette sprog. Kunder kan vælge et andet aktiveret sprog.",
+      "basicLanguagesHelp": "Eksisterende gratis omfatter engelsk og ét ekstra sprog. Opgrader til Pro for alle understøttede sprog.",
+      "notificationEmail": "E-mail til fortrydelsesnotifikationer",
+      "notificationEmailHelp": "Interne beskeder om nye anmodninger om fortrydelse sendes hertil.",
+      "upgradeTitle": "Opgrader til Pro for avancerede indstillinger",
+      "upgradeDescription": "Justerbare fortrydelsesfrister er tilgængelige med Pro.",
+      "legalPage": "URL til juridisk side",
+      "privacyPage": "URL til privatlivsside",
+      "supportEmail": "E-mail til kundesupport",
+      "supportEmailHelp": "Vises til kunder og bruges som svaradresse ved administreret levering.",
+      "basicPeriod": "Eksisterende gratis bruger en vejledende standardfrist på 14 dage. Automatisk validering anvendes ikke.",
+      "withdrawalPeriod": "Fortrydelsesfrist (dage)",
+      "periodBasicHelp": "Kunder vejledes ud fra en frist på 14 dage. Opgrader til Pro for tilpasning og automatisk validering.",
+      "periodProHelp": "Angiv fortrydelsesfristen. Anmodninger kontrolleres i forhold til denne, når det er muligt."
+    },
+    "errors": {
+      "basicLanguageLimit": "Eksisterende gratis omfatter engelsk og ét ekstra sprog.",
+      "selectLanguage": "Vælg mindst ét sprog.",
+      "save": "Indstillingerne kunne ikke gemmes.",
+      "saveFirst": "Gem eller kassér dine andre ændringer, før du udfører følgende: {{action}}."
+    },
+    "plans": {
+      "basic": "Eksisterende gratis",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "E-maillevering",
+      "description": "Vælg, hvordan bekræftelsesmails til kunder sendes.",
+      "deliveryMethod": "Leveringsmetode",
+      "managed": "Administreret af GL6",
+      "managedOption": "GL6-administreret levering — Anbefalet",
+      "managedHelp": "Bekræftelsesmails sendes gennem GL6’s verificerede e-mailtjeneste. Kundesvar sendes til din supportadresse.",
+      "smtpOption": "Egen SMTP — Pro",
+      "smtpOptionHelp": "Tilslut din e-mailudbyder med SMTP-loginoplysninger.",
+      "proTitle": "E-mails med dit eget brand er tilgængelige med Pro",
+      "proDescription": "Eksisterende gratis-butikker bruger GL6-administreret levering. Kundesvar sendes til supportadressen angivet ovenfor.",
+      "connected": "Tilsluttet",
+      "connectionFailed": "Forbindelse mislykkedes",
+      "requiresTesting": "Skal testes",
+      "statuses": {
+        "notConfigured": "Ikke konfigureret",
+        "verified": "Verificeret",
+        "pending": "Afventer",
+        "notStarted": "Ikke startet",
+        "failed": "Mislykkedes",
+        "failure": "Mislykkedes",
+        "temporaryFailure": "Midlertidig fejl"
+      },
+      "domain": {
+        "intro": "Vi anbefaler et særligt underdomæne, f.eks. withdrawals.example.com. Tilføj DNS-posterne nedenfor, og verificér domænet.",
+        "label": "Afsenderdomæne eller underdomæne",
+        "help": "Medtag ikke https:// eller en sti.",
+        "add": "Tilføj afsenderdomæne",
+        "recordsHelp": "Tilføj alle nødvendige DNS-poster, før du starter verificeringen.",
+        "columns": {
+          "type": "Type",
+          "name": "Navn",
+          "value": "Værdi",
+          "priority": "Prioritet",
+          "status": "Status"
+        },
+        "issue": "Problem med afsenderdomænet",
+        "check": "Kontrollér status",
+        "verify": "Verificér domæne",
+        "remove": "Fjern domæne",
+        "verifiedTitle": "Afsenderdomæne verificeret",
+        "verifiedDescription": "Du kan nu vælge afsendernavn og e-mailadresse til kundernes bekræftelsesmails.",
+        "fromName": "Afsendernavn",
+        "fromEmail": "Afsenderadresse",
+        "storePlaceholder": "Din butiks navn",
+        "emailHelp": "Adressen skal slutte med @{{domain}}.",
+        "saveSender": "Gem afsenderoplysninger"
+      },
+      "smtp": {
+        "intro": "Angiv SMTP-oplysningerne fra din e-mailudbyder. Gem indstillingerne, før du tester forbindelsen.",
+        "host": "SMTP-vært",
+        "port": "SMTP-port",
+        "portHelp": "Brug normalt 587 til STARTTLS eller 465 til SSL/TLS.",
+        "security": "Forbindelsessikkerhed",
+        "starttls": "STARTTLS — normalt port 587",
+        "ssl": "SSL/TLS — normalt port 465",
+        "username": "SMTP-brugernavn",
+        "usernameHelp": "Dette er ofte din fulde e-mailadresse.",
+        "password": "SMTP-adgangskode",
+        "savedPasswordPlaceholder": "Lad stå tomt for at beholde den gemte adgangskode",
+        "newPasswordPlaceholder": "Angiv SMTP-adgangskode",
+        "savedPasswordHelp": "En adgangskode er allerede gemt sikkert. Angiv kun en ny for at erstatte den.",
+        "newPasswordHelp": "Nogle udbydere kræver en appadgangskode i stedet for kontoens normale adgangskode.",
+        "fromName": "Afsendernavn",
+        "fromEmail": "Afsenderadresse",
+        "storePlaceholder": "Din butiks navn",
+        "fromEmailHelp": "Din SMTP-udbyder skal tillade denne adresse som afsender.",
+        "connectionFailed": "SMTP-forbindelse mislykkedes",
+        "test": "Test forbindelse",
+        "disconnect": "Afbryd SMTP",
+        "saveBeforeTest": "Gem ændringerne, før du tester forbindelsen."
+      },
+      "errors": {
+        "saveSmtpFirst": "Gem SMTP-indstillingerne, før du tester forbindelsen.",
+        "smtpFailed": "SMTP-forbindelse mislykkedes.",
+        "disconnectSmtp": "SMTP kunne ikke afbrydes.",
+        "domainRequired": "Angiv først et domæne eller underdomæne.",
+        "createDomain": "Afsenderdomænet kunne ikke oprettes.",
+        "refreshDomain": "Afsenderdomænet kunne ikke opdateres.",
+        "verifyDomain": "Domæneverificering kunne ikke startes.",
+        "verifyBeforeSender": "Verificér afsenderdomænet, før du gemmer afsenderadressen.",
+        "saveSender": "Afsenderadressen kunne ikke gemmes.",
+        "removeDomain": "Afsenderdomænet kunne ikke fjernes.",
+        "dirtyActions": {
+          "disconnectSmtp": "afbryde SMTP",
+          "createDomain": "oprette et afsenderdomæne",
+          "checkDomain": "kontrollere afsenderdomænets status",
+          "saveSender": "gemme afsenderadressen",
+          "removeDomain": "fjerne afsenderdomænet"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Abonnementer",
+    "grandfatheredFree": "Eksisterende gratis",
+    "pro": "Pro",
+    "current": "Nuværende",
+    "legacyDescription": "Tidligere rettighed — uden betaling",
+    "legacyWarning": "En opgradering afslutter denne tidligere rettighed permanent.",
+    "manageSubscription": "Administrer abonnement",
+    "subscribePro": "Abonner på Pro",
+    "errors": {
+      "title": "Shopifys priser kunne ikke åbnes",
+      "missingUrl": "Shopify returnerede ikke en pris-URL.",
+      "openFailed": "Shopifys priser kunne ikke åbnes."
+    },
+    "features": {
+      "withdrawalFlow": "Fortrydelsesproces i overensstemmelse med EU-reglerne",
+      "unlimitedRequests": "Ubegrænsede anmodninger om fortrydelse",
+      "confirmationEmails": "Automatiske bekræftelsesmails",
+      "themeBlock": "Understøttelse af tema-appblokke",
+      "requestDashboard": "Oversigt over anmodninger",
+      "merchantNotifications": "Notifikationer til forhandleren",
+      "basicCompliance": "Grundlæggende overholdelse inkluderet",
+      "coreManagement": "Grundlæggende håndtering af fortrydelsesanmodninger",
+      "euLanguages": "Alle understøttede EU-sprog",
+      "customPeriod": "Tilpasset fortrydelsesfrist med validering",
+      "customBranding": "Eget brand og egne farver",
+      "advancedManagement": "CSV-eksport og avanceret anmodningshåndtering"
+    }
+  },
+  "help": {
+    "title": "Hjælp",
+    "commonQuestions": "Ofte stillede spørgsmål",
+    "introduction": "Find hurtige svar om opsætning og fejlfinding.",
+    "supportTitle": "Har du stadig brug for hjælp?",
+    "supportDescription": "Hvis svarene ikke løser problemet, vælg Få support i menuen ⋯ øverst til højre for at kontakte os gennem Shopify.",
+    "supportResponse": "Supporthenvendelser besvares normalt inden for én arbejdsdag.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Hvorfor virker appen ikke med Shopify Canvas?",
+        "answer": "Shopify Canvas er i tidlig adgang og understøtter endnu ikke appblokke eller appindlejringer, som bruges til fortrydelsesknappen. Dette er en nuværende Canvas-begrænsning. Brug et kompatibelt tema i Shopifys almindelige temaeditor."
+      },
+      "buttonNotShowing": {
+        "question": "Hvorfor vises fortrydelsesknappen ikke i min butik?",
+        "answer": "Kontrollér, at EU Withdrawal Button-appen er aktiveret som indlejring eller blok i dit tema. Efter et temaskift eller en udgivelse kan det kræve genaktivering."
+      },
+      "buttonPosition": {
+        "question": "Kan jeg ændre fortrydelsesknappens placering?",
+        "answer": "Ja. Åbn Indstillinger for at justere den flydende knap på computer og mobil."
+      },
+      "buttonAppearance": {
+        "question": "Kan jeg ændre knappens udseende?",
+        "answer": "Ja. Tilpas de tilgængelige udseendeindstillinger under Indstillinger."
+      },
+      "requestSubmitted": {
+        "question": "Hvad sker der, når en kunde indsender en fortrydelsesanmodning?",
+        "answer": "Anmodningen gemmes og vises under Anmodninger, hvor du kan gennemgå den og opdatere status."
+      },
+      "notificationEmail": {
+        "question": "Får jeg en e-mail, når en kunde indsender en anmodning?",
+        "answer": "Ja, hvis en notifikationsadresse er konfigureret. Kontrollér Indstillinger, hvis beskeder ikke modtages."
+      },
+      "withdrawalPeriod": {
+        "question": "Kan jeg ændre fortrydelsesfristen?",
+        "answer": "Ja. Fristen kan ændres under appens Indstillinger."
+      },
+      "automaticRefund": {
+        "question": "Refunderer eller annullerer appen automatisk en ordre?",
+        "answer": "Nej. En fortrydelsesanmodning refunderer eller annullerer ikke automatisk Shopify-ordren. Du styrer selv vurdering og behandling."
+      },
+      "previousRequests": {
+        "question": "Kan jeg se tidligere anmodninger om fortrydelse?",
+        "answer": "Ja. Åbn Anmodninger for at se indsendte anmodninger."
+      },
+      "multipleLanguages": {
+        "question": "Understøtter appen flere sprog?",
+        "answer": "Appen understøtter konfigurerbare sprog. Administrer sprogene under Indstillinger."
+      },
+      "themeChanged": {
+        "question": "Jeg skiftede Shopify-tema, og knappen forsvandt. Hvad gør jeg?",
+        "answer": "Åbn den nye temaeditor, og aktivér EU Withdrawal Button som indlejring eller appblok."
+      },
+      "hideButton": {
+        "question": "Kan jeg midlertidigt skjule fortrydelsesknappen?",
+        "answer": "Ja. Deaktivér butiksknappen uden at afinstallere appen."
+      },
+      "missingEmails": {
+        "question": "Hvorfor modtager jeg ikke notifikationsmails?",
+        "answer": "Kontrollér notifikationsadressen og leveringsindstillingerne under Indstillinger. Se også spamfilteret."
+      },
+      "legalCompliance": {
+        "question": "Garanterer appen, at min butik overholder loven?",
+        "answer": "Nej. Appen hjælper med at tilbyde og håndtere fortrydelsesanmodninger. Du er ansvarlig for, at butikkens politikker og processer overholder de love, der gælder for din virksomhed."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Butik ikke fundet.",
+    "entitlementUnavailable": "Shopify App Pricing-rettighed kunne ikke verificeres.",
+    "planRequired": "Et betalt Shopify-abonnement er påkrævet.",
+    "languagesInvalid": "De valgte sprog er ugyldige.",
+    "basicLanguageLimit": "Eksisterende gratis omfatter engelsk og ét ekstra sprog.",
+    "withdrawalPeriod": "Fortrydelsesfristen skal være mellem 1 og 365 dage.",
+    "smtpHost": "SMTP-vært er påkrævet.",
+    "smtpPort": "SMTP-verificering er begrænset til port 465 og 587.",
+    "smtpUsername": "SMTP-brugernavn er påkrævet.",
+    "smtpFromEmail": "Afsenderadresse er påkrævet.",
+    "smtpPassword": "SMTP-adgangskode er påkrævet.",
+    "settingsUpdate": "Indstillingerne kunne ikke opdateres.",
+    "requestNotFound": "Anmodning ikke fundet.",
+    "invalidStatus": "Ugyldig anmodningsstatus.",
+    "setupStatus": "Opsætningsstatus kunne ikke indlæses.",
+    "upgradeRequired": "Opgrader til Pro for at bruge denne funktion."
+  }
+}

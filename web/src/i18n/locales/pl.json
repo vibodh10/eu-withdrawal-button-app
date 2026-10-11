@@ -1,0 +1,452 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Język",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Kontynuuj",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "loading": "Ładowanie..."
+  },
+  "onboarding": {
+    "welcome": "Witamy w EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Wybierz język",
+    "languageDescription": "Wybierz język używany w aplikacji.",
+    "languageLabel": "Język aplikacji",
+    "dpaTitle": "2. Umowa powierzenia przetwarzania danych",
+    "dpaDescription": "Aby korzystać z aplikacji, musisz zaakceptować naszą umowę powierzenia przetwarzania danych. Wyjaśnia ona, jak dane klientów są przetwarzane w Twoim imieniu.",
+    "viewDpa": "Wyświetl umowę powierzenia przetwarzania danych",
+    "agree": "Przeczytałem/am i akceptuję umowę powierzenia przetwarzania danych",
+    "acceptContinue": "Akceptuj i kontynuuj",
+    "error": "Nie udało się ukończyć konfiguracji. Spróbuj ponownie.",
+    "step1": "Krok 1 z 2",
+    "step2": "Krok 2 z 2",
+    "next": "Dalej",
+    "back": "Wstecz"
+  },
+  "navigation": {
+    "dashboard": "Panel",
+    "requests": "Zgłoszenia",
+    "settings": "Ustawienia",
+    "plans": "Plany",
+    "help": "Pomoc",
+    "currentPlan": "Obecny plan",
+    "planGrandfathered": "Plan: Dotychczasowy bezpłatny",
+    "planPro": "Plan: Pro",
+    "planRequired": "Wymagany plan",
+    "premiumActive": "Wszystkie funkcje premium są włączone",
+    "grandfatheredActive": "Dotychczasowy bezpłatny dostęp jest aktywny",
+    "subscribeToContinue": "Wykup subskrypcję, aby kontynuować"
+  },
+  "appLanguage": {
+    "title": "Język aplikacji",
+    "description": "Wybierz język panelu aplikacji. Nie zmienia to języków dostępnych klientom.",
+    "label": "Język wyświetlania",
+    "saveError": "Nie udało się zmienić języka aplikacji.",
+    "settingsTitle": "Ustawienia"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "subscriptionError": "Nie udało się odświeżyć subskrypcji",
+    "description": "Dodaj w kilka minut przycisk odstąpienia zgodny z przepisami UE. Zbieraj zgłoszenia klientów i zarządzaj nimi w jednym miejscu, bez skomplikowanej konfiguracji.",
+    "plan": "Plan",
+    "grandfatheredFree": "Dotychczasowy bezpłatny",
+    "planPro": "Pro",
+    "proActive": "Funkcje Pro są aktywne.",
+    "freeActive": "Dotychczasowy bezpłatny dostęp jest aktywny.",
+    "stats": {
+      "total": "Łącznie zgłoszeń",
+      "totalHelp": "W całym okresie działania sklepu",
+      "received": "Otrzymane",
+      "receivedHelp": "Oczekują na działanie",
+      "reviewed": "Rozpatrzone",
+      "reviewedHelp": "Ocenione ręcznie",
+      "closed": "Zatwierdzone / Odrzucone",
+      "closedHelp": "Statusy zamknięte"
+    },
+    "status": {
+      "complete": "Ukończono",
+      "incomplete": "Nie ukończono"
+    },
+    "setup": {
+      "title": "Dokończ konfigurację",
+      "description": "Wybierz konfigurację odpowiednią dla sklepu. Zalecamy pływający przycisk na całej stronie i osobną stronę odstąpienia.",
+      "recommended": "Zalecane",
+      "suggested": "Sugerowane",
+      "optional": "Opcjonalne",
+      "pageReady": {
+        "title": "Strona odstąpienia jest gotowa",
+        "description": "Strona jest gotowa. Dodaj do niej blok aplikacji i odnośnik w wiadomościach potwierdzających zamówienie."
+      },
+      "actionFailed": "Konfiguracja nie powiodła się",
+      "notification": {
+        "title": "Dodaj adres e-mail powiadomień",
+        "description": "Podaj adres, na który chcesz otrzymywać powiadomienia o zgłoszeniach odstąpienia od klientów.",
+        "edit": "Edytuj ustawienia powiadomień",
+        "add": "Dodaj adres e-mail powiadomień",
+        "destination": "Powiadomienia będą wysyłane na {{email}}."
+      },
+      "floating": {
+        "title": "Włącz pływający przycisk na całej stronie",
+        "description": "Najlepsza widoczność. Pływający przycisk odstąpienia w całym sklepie zapewnia dostęp do formularza z każdej strony.",
+        "button": "Włącz pływający przycisk"
+      },
+      "withdrawalPage": {
+        "title": "Utwórz osobną stronę odstąpienia",
+        "description": "Utwórz standardową stronę pod /pages/eu-withdrawal, aby klienci mieli jasne miejsce do wysyłania zgłoszeń.",
+        "button": "Utwórz stronę"
+      },
+      "pageBlock": {
+        "title": "Dodaj blok przycisku do strony odstąpienia",
+        "description": "Otwórz edytor motywu i dodaj blok EU Withdrawal Button do osobnej strony odstąpienia.",
+        "button": "Dodaj blok strony"
+      },
+      "orderEmail": {
+        "title": "Dodaj odnośnik do potwierdzeń zamówienia",
+        "description": "Dodaj odnośnik strony odstąpienia do wiadomości potwierdzających zamówienia Shopify, aby klienci znaleźli ją po zakupie.",
+        "button": "Otwórz powiadomienia",
+        "suggestedLink": "Sugerowany odnośnik:"
+      },
+      "testRequest": {
+        "title": "Wyślij testowe zgłoszenie odstąpienia",
+        "description": "Otwórz sklep lub stronę odstąpienia i wyślij testowe zgłoszenie, aby sprawdzić obsługę klienta.",
+        "openPage": "Otwórz stronę odstąpienia",
+        "openStorefront": "Otwórz sklep"
+      },
+      "review": {
+        "title": "Rozpatrz zgłoszenia w panelu",
+        "description": "Po otrzymaniu prawdziwego lub testowego zgłoszenia przejrzyj je w sekcji Zgłoszenia i zmień status.",
+        "button": "Otwórz zgłoszenia"
+      },
+      "upgrade": {
+        "title": "Przejdź na Pro",
+        "description": "Odblokuj weryfikację zamówień, zaawansowane ustawienia, automatyzację i własne procesy.",
+        "button": "Zobacz Pro"
+      }
+    },
+    "billingSyncFailed": "Nie udało się zsynchronizować stanu rozliczeń",
+    "subscriptionStatusError": "Nie udało się odświeżyć statusu subskrypcji."
+  },
+  "requests": {
+    "title": "Zgłoszenia odstąpienia",
+    "exportCSV": "Eksportuj CSV",
+    "status": "Status",
+    "verification": "Weryfikacja",
+    "search": "Szukaj",
+    "searchPlaceholder": "E-mail, zamówienie, numer referencyjny...",
+    "all": "Wszystkie",
+    "empty": "Nie znaleziono zgłoszeń.",
+    "unknown": "Nieznany",
+    "noReason": "Nie podano powodu",
+    "filterPro": "Zaawansowane filtrowanie i eksport CSV są dostępne w Pro.",
+    "resourceSingular": "zgłoszenie",
+    "resourcePlural": "zgłoszenia",
+    "selectedAll": "Wszystkie",
+    "columns": {
+      "reference": "Numer referencyjny",
+      "customer": "Klient",
+      "order": "Zamówienie",
+      "verification": "Weryfikacja",
+      "reason": "Powód",
+      "status": "Status",
+      "submitted": "Wysłano",
+      "actions": "Działania"
+    },
+    "statuses": {
+      "RECEIVED": "Otrzymane",
+      "CONFIRMED": "Potwierdzone",
+      "REVIEWED": "Rozpatrzone",
+      "APPROVED": "Zatwierdzone",
+      "REJECTED": "Odrzucone"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Zweryfikowane",
+        "tooltip": "Zamówienie znalezione w terminie odstąpienia"
+      },
+      "NOT_FOUND": {
+        "label": "Nie znaleziono zamówienia",
+        "tooltip": "Nie znaleziono pasującego zamówienia w Shopify"
+      },
+      "EXPIRED": {
+        "label": "Termin upłynął",
+        "tooltip": "Zamówienie znalezione, ale termin odstąpienia upłynął"
+      },
+      "ERROR": {
+        "label": "Niedostępne",
+        "tooltip": "Nie udało się zweryfikować zamówienia z powodu problemu Shopify lub API"
+      },
+      "UNVERIFIED": {
+        "label": "Niezweryfikowane",
+        "tooltip": "Automatyczna weryfikacja zamówień jest dostępna w Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Nieprawidłowe zamówienie"
+    },
+    "deleteCustomer": {
+      "button": "Usuń dane klienta",
+      "title": "Usuń dane klienta",
+      "description": "Wszystkie zapisane dane odstąpienia dla {{email}} zostaną trwale usunięte."
+    },
+    "bulkDelete": {
+      "button": "Usuń wybrane",
+      "title": "Usuń wybrane zgłoszenia",
+      "confirm": "Usuń zgłoszenia",
+      "description_one": "Trwale usuniemy {{count}} wybrane zgłoszenie odstąpienia.",
+      "description_other": "Wybrane zgłoszenia odstąpienia zostaną trwale usunięte. Liczba: {{count}}.",
+      "description_few": "Trwale usuniemy {{count}} wybrane zgłoszenia odstąpienia.",
+      "description_many": "Trwale usuniemy {{count}} wybranych zgłoszeń odstąpienia."
+    },
+    "delete": "Usuń",
+    "cancel": "Anuluj",
+    "scrollLabel": "Przewijaj zgłoszenia odstąpienia w poziomie",
+    "errors": {
+      "temporary": "Tymczasowy problem z serwerem. Spróbuj ponownie za chwilę.",
+      "update": "Nie udało się zmienić statusu zgłoszenia.",
+      "export": "Eksport CSV jest teraz niedostępny. Spróbuj ponownie wkrótce."
+    }
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "loading": "Ładowanie ustawień",
+    "saveFailed": "Nie udało się zapisać ustawień",
+    "general": {
+      "title": "Ustawienia ogólne",
+      "customerLanguages": "Języki formularza klienta",
+      "customerLanguagesDescription": "Wybierz języki, których klienci mogą używać w formularzu odstąpienia.",
+      "availableLanguages": "Języki dostępne klientom",
+      "defaultLanguage": "Domyślny język",
+      "defaultLanguageHelp": "Formularz otwiera się w tym języku. Klienci mogą wybrać inny włączony język.",
+      "basicLanguagesHelp": "Dotychczasowy bezpłatny plan obejmuje angielski i jeden dodatkowy język. Przejdź na Pro, aby włączyć wszystkie obsługiwane języki.",
+      "notificationEmail": "E-mail powiadomień o odstąpieniu",
+      "notificationEmailHelp": "Tu wysyłane są wewnętrzne powiadomienia o nowych zgłoszeniach odstąpienia.",
+      "upgradeTitle": "Przejdź na Pro, aby odblokować zaawansowane ustawienia",
+      "upgradeDescription": "Konfigurowalne terminy odstąpienia są dostępne w Pro.",
+      "legalPage": "URL strony prawnej",
+      "privacyPage": "URL strony prywatności",
+      "supportEmail": "E-mail obsługi klienta",
+      "supportEmailHelp": "Widoczny dla klientów i używany jako adres odpowiedzi przy zarządzanej wysyłce.",
+      "basicPeriod": "Dotychczasowy bezpłatny plan używa orientacyjnego terminu 14 dni. Automatyczna weryfikacja nie jest stosowana.",
+      "withdrawalPeriod": "Termin odstąpienia (dni)",
+      "periodBasicHelp": "Klientom wskazywany jest orientacyjny termin 14 dni. Przejdź na Pro, aby go dostosować i włączyć automatyczną weryfikację.",
+      "periodProHelp": "Ustaw termin odstąpienia. Zgłoszenia będą weryfikowane względem niego, gdy będzie to możliwe."
+    },
+    "errors": {
+      "basicLanguageLimit": "Dotychczasowy bezpłatny plan obejmuje angielski i jeden dodatkowy język.",
+      "selectLanguage": "Wybierz co najmniej jeden język.",
+      "save": "Nie udało się zapisać ustawień.",
+      "saveFirst": "Przed następującym działaniem zapisz lub odrzuć inne zmiany: {{action}}."
+    },
+    "plans": {
+      "basic": "Dotychczasowy bezpłatny",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Dostarczanie e-maili",
+      "description": "Wybierz sposób wysyłania potwierdzeń do klientów.",
+      "deliveryMethod": "Metoda dostarczania",
+      "managed": "Zarządzane przez GL6",
+      "managedOption": "Wysyłka zarządzana przez GL6 — Zalecana",
+      "managedHelp": "Potwierdzenia są wysyłane przez zweryfikowaną usługę GL6. Odpowiedzi klientów trafiają na adres obsługi klienta.",
+      "smtpOption": "Własny SMTP — Pro",
+      "smtpOptionHelp": "Połącz dostawcę poczty za pomocą danych logowania SMTP.",
+      "proTitle": "Wysyłka e-maili z własną marką jest dostępna w Pro",
+      "proDescription": "Sklepy na dotychczasowym bezpłatnym planie używają GL6. Odpowiedzi trafiają na adres obsługi klienta podany wyżej.",
+      "connected": "Połączono",
+      "connectionFailed": "Połączenie nie powiodło się",
+      "requiresTesting": "Wymaga testu",
+      "statuses": {
+        "notConfigured": "Nie skonfigurowano",
+        "verified": "Zweryfikowano",
+        "pending": "Oczekuje",
+        "notStarted": "Nie rozpoczęto",
+        "failed": "Niepowodzenie",
+        "failure": "Niepowodzenie",
+        "temporaryFailure": "Tymczasowy błąd"
+      },
+      "domain": {
+        "intro": "Zalecamy osobną subdomenę, np. withdrawals.example.com. Dodaj poniższe rekordy DNS i zweryfikuj domenę.",
+        "label": "Domena lub subdomena wysyłkowa",
+        "help": "Nie dodawaj https:// ani ścieżki.",
+        "add": "Dodaj domenę wysyłkową",
+        "recordsHelp": "Dodaj wszystkie wymagane rekordy DNS przed rozpoczęciem weryfikacji.",
+        "columns": {
+          "type": "Typ",
+          "name": "Nazwa",
+          "value": "Wartość",
+          "priority": "Priorytet",
+          "status": "Status"
+        },
+        "issue": "Problem z domeną wysyłkową",
+        "check": "Sprawdź status",
+        "verify": "Zweryfikuj domenę",
+        "remove": "Usuń domenę",
+        "verifiedTitle": "Domena wysyłkowa zweryfikowana",
+        "verifiedDescription": "Możesz wybrać nazwę i adres e-mail nadawcy potwierdzeń dla klientów.",
+        "fromName": "Nazwa nadawcy",
+        "fromEmail": "E-mail nadawcy",
+        "storePlaceholder": "Nazwa sklepu",
+        "emailHelp": "Adres musi kończyć się na @{{domain}}.",
+        "saveSender": "Zapisz dane nadawcy"
+      },
+      "smtp": {
+        "intro": "Podaj dane SMTP otrzymane od dostawcy poczty. Zapisz ustawienia przed testem połączenia.",
+        "host": "Serwer SMTP",
+        "port": "Port SMTP",
+        "portHelp": "Zwykle używaj 587 dla STARTTLS lub 465 dla SSL/TLS.",
+        "security": "Bezpieczeństwo połączenia",
+        "starttls": "STARTTLS — zwykle port 587",
+        "ssl": "SSL/TLS — zwykle port 465",
+        "username": "Nazwa użytkownika SMTP",
+        "usernameHelp": "Często jest to pełny adres e-mail.",
+        "password": "Hasło SMTP",
+        "savedPasswordPlaceholder": "Pozostaw puste, aby zachować zapisane hasło",
+        "newPasswordPlaceholder": "Podaj hasło SMTP",
+        "savedPasswordHelp": "Hasło jest już bezpiecznie zapisane. Podaj nowe tylko wtedy, gdy chcesz je zastąpić.",
+        "newPasswordHelp": "Niektórzy dostawcy wymagają hasła aplikacji zamiast zwykłego hasła konta.",
+        "fromName": "Nazwa nadawcy",
+        "fromEmail": "E-mail nadawcy",
+        "storePlaceholder": "Nazwa sklepu",
+        "fromEmailHelp": "Dostawca SMTP musi dopuszczać ten adres jako nadawcę.",
+        "connectionFailed": "Połączenie SMTP nie powiodło się",
+        "test": "Przetestuj połączenie",
+        "disconnect": "Odłącz SMTP",
+        "saveBeforeTest": "Zapisz zmiany przed testem połączenia."
+      },
+      "errors": {
+        "saveSmtpFirst": "Zapisz ustawienia SMTP przed testem połączenia.",
+        "smtpFailed": "Połączenie SMTP nie powiodło się.",
+        "disconnectSmtp": "Nie udało się odłączyć SMTP.",
+        "domainRequired": "Najpierw podaj domenę lub subdomenę.",
+        "createDomain": "Nie udało się utworzyć domeny wysyłkowej.",
+        "refreshDomain": "Nie udało się odświeżyć domeny wysyłkowej.",
+        "verifyDomain": "Nie udało się rozpocząć weryfikacji domeny.",
+        "verifyBeforeSender": "Zweryfikuj domenę wysyłkową przed zapisaniem adresu nadawcy.",
+        "saveSender": "Nie udało się zapisać adresu nadawcy.",
+        "removeDomain": "Nie udało się usunąć domeny wysyłkowej.",
+        "dirtyActions": {
+          "disconnectSmtp": "odłączenie SMTP",
+          "createDomain": "utworzenie domeny wysyłkowej",
+          "checkDomain": "sprawdzenie statusu domeny wysyłkowej",
+          "saveSender": "zapisanie adresu nadawcy",
+          "removeDomain": "usunięcie domeny wysyłkowej"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Plany",
+    "grandfatheredFree": "Dotychczasowy bezpłatny",
+    "pro": "Pro",
+    "current": "Obecny",
+    "legacyDescription": "Dotychczasowe uprawnienie — bez opłat",
+    "legacyWarning": "Zmiana planu trwale kończy to dotychczasowe uprawnienie.",
+    "manageSubscription": "Zarządzaj subskrypcją",
+    "subscribePro": "Subskrybuj Pro",
+    "errors": {
+      "title": "Nie udało się otworzyć cennika Shopify",
+      "missingUrl": "Shopify nie zwrócił adresu URL cennika.",
+      "openFailed": "Nie udało się otworzyć cennika Shopify."
+    },
+    "features": {
+      "withdrawalFlow": "Proces odstąpienia zgodny z przepisami UE",
+      "unlimitedRequests": "Nieograniczone zgłoszenia odstąpienia",
+      "confirmationEmails": "Automatyczne e-maile potwierdzające",
+      "themeBlock": "Obsługa bloków aplikacji w motywie",
+      "requestDashboard": "Panel zgłoszeń",
+      "merchantNotifications": "Powiadomienia dla sprzedawcy",
+      "basicCompliance": "Podstawowa zgodność w pakiecie",
+      "coreManagement": "Podstawowe zarządzanie zgłoszeniami odstąpienia",
+      "euLanguages": "Wszystkie obsługiwane języki UE",
+      "customPeriod": "Własny termin odstąpienia z weryfikacją",
+      "customBranding": "Własna marka i kolory",
+      "advancedManagement": "Eksport CSV i zaawansowane zarządzanie zgłoszeniami"
+    }
+  },
+  "help": {
+    "title": "Pomoc",
+    "commonQuestions": "Częste pytania",
+    "introduction": "Szybkie odpowiedzi na pytania o konfigurację i rozwiązywanie problemów.",
+    "supportTitle": "Potrzebujesz dodatkowej pomocy?",
+    "supportDescription": "Jeśli odpowiedzi nie pomogły, wybierz Uzyskaj pomoc w menu ⋯ w prawym górnym rogu, aby skontaktować się z nami przez Shopify.",
+    "supportResponse": "Na zgłoszenia pomocy zwykle odpowiadamy w jeden dzień roboczy.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Dlaczego aplikacja nie działa z Shopify Canvas?",
+        "answer": "Shopify Canvas jest dostępny we wczesnej wersji i nie obsługuje jeszcze bloków ani osadzeń aplikacji używanych do przycisku odstąpienia. To obecne ograniczenie Canvas. Użyj zgodnego motywu w standardowym edytorze Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "Dlaczego przycisk odstąpienia nie pojawia się w sklepie?",
+        "answer": "Sprawdź, czy osadzenie lub blok EU Withdrawal Button jest włączony w obecnym motywie. Po zmianie lub publikacji motywu może wymagać ponownego włączenia."
+      },
+      "buttonPosition": {
+        "question": "Czy mogę zmienić położenie przycisku odstąpienia?",
+        "answer": "Tak. Otwórz Ustawienia, aby zmienić położenie pływającego przycisku na komputerach i telefonach."
+      },
+      "buttonAppearance": {
+        "question": "Czy mogę zmienić wygląd przycisku?",
+        "answer": "Tak. Dostosuj dostępne opcje wyglądu w Ustawieniach aplikacji."
+      },
+      "requestSubmitted": {
+        "question": "Co się dzieje, gdy klient wysyła zgłoszenie odstąpienia?",
+        "answer": "Zgłoszenie jest zapisywane w sekcji Zgłoszenia, gdzie możesz je rozpatrzyć i zmienić status."
+      },
+      "notificationEmail": {
+        "question": "Czy otrzymam e-mail, gdy klient wysyła zgłoszenie?",
+        "answer": "Tak, jeśli skonfigurowano adres powiadomień. Sprawdź Ustawienia, jeśli powiadomienia nie docierają."
+      },
+      "withdrawalPeriod": {
+        "question": "Czy mogę zmienić termin odstąpienia?",
+        "answer": "Tak. Termin odstąpienia możesz skonfigurować w Ustawieniach."
+      },
+      "automaticRefund": {
+        "question": "Czy aplikacja automatycznie zwraca płatność lub anuluje zamówienie?",
+        "answer": "Nie. Zgłoszenie odstąpienia nie zwraca płatności ani nie anuluje automatycznie zamówienia Shopify. Ty decydujesz o ocenie i obsłudze zgłoszenia."
+      },
+      "previousRequests": {
+        "question": "Czy mogę zobaczyć wcześniejsze zgłoszenia odstąpienia?",
+        "answer": "Tak. Otwórz Zgłoszenia, aby zobaczyć zgłoszenia wysłane przez aplikację."
+      },
+      "multipleLanguages": {
+        "question": "Czy aplikacja obsługuje wiele języków?",
+        "answer": "Języki można konfigurować. Dostępne opcje wybierzesz w Ustawieniach."
+      },
+      "themeChanged": {
+        "question": "Zmieniłem/am motyw Shopify i przycisk zniknął. Co zrobić?",
+        "answer": "Otwórz edytor nowego motywu i włącz osadzenie lub blok EU Withdrawal Button."
+      },
+      "hideButton": {
+        "question": "Czy mogę tymczasowo ukryć przycisk odstąpienia?",
+        "answer": "Tak. Możesz wyłączyć przycisk sklepu bez odinstalowania aplikacji."
+      },
+      "missingEmails": {
+        "question": "Dlaczego nie otrzymuję e-maili z powiadomieniami?",
+        "answer": "Sprawdź adres powiadomień i ustawienia wysyłki w Ustawieniach. Sprawdź też folder spam."
+      },
+      "legalCompliance": {
+        "question": "Czy aplikacja gwarantuje zgodność prawną sklepu?",
+        "answer": "Nie. Aplikacja dostarcza narzędzia do obsługi zgłoszeń odstąpienia. Nadal odpowiadasz za zgodność zasad i procesów sklepu z przepisami właściwymi dla Twojej działalności."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Nie znaleziono sklepu.",
+    "entitlementUnavailable": "Nie udało się zweryfikować uprawnienia Shopify App Pricing.",
+    "planRequired": "Wymagany jest płatny plan Shopify.",
+    "languagesInvalid": "Wybrane języki są nieprawidłowe.",
+    "basicLanguageLimit": "Dotychczasowy bezpłatny plan obejmuje angielski i jeden dodatkowy język.",
+    "withdrawalPeriod": "Termin odstąpienia musi wynosić od 1 do 365 dni.",
+    "smtpHost": "Serwer SMTP jest wymagany.",
+    "smtpPort": "Weryfikacja SMTP jest ograniczona do portów 465 i 587.",
+    "smtpUsername": "Nazwa użytkownika SMTP jest wymagana.",
+    "smtpFromEmail": "Adres e-mail nadawcy jest wymagany.",
+    "smtpPassword": "Hasło SMTP jest wymagane.",
+    "settingsUpdate": "Nie udało się zaktualizować ustawień.",
+    "requestNotFound": "Nie znaleziono zgłoszenia.",
+    "invalidStatus": "Nieprawidłowy status zgłoszenia.",
+    "setupStatus": "Nie udało się wczytać stanu konfiguracji.",
+    "upgradeRequired": "Przejdź na Pro, aby użyć tej funkcji."
+  }
+}

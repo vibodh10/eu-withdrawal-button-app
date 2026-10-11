@@ -1,0 +1,450 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Nyelv",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Folytatás",
+    "save": "Mentés",
+    "cancel": "Mégse",
+    "loading": "Betöltés..."
+  },
+  "onboarding": {
+    "welcome": "Üdvözöljük az EU Withdrawal Button Made Easy alkalmazásban",
+    "languageTitle": "1. Válasszon nyelvet",
+    "languageDescription": "Válassza ki az alkalmazásban használni kívánt nyelvet.",
+    "languageLabel": "Az alkalmazás nyelve",
+    "dpaTitle": "2. Adatfeldolgozási megállapodás",
+    "dpaDescription": "Az alkalmazás használatához el kell fogadnia az adatfeldolgozási megállapodásunkat. Ez ismerteti, hogyan dolgozzuk fel az ügyféladatokat az Ön nevében.",
+    "viewDpa": "Adatfeldolgozási megállapodás megtekintése",
+    "agree": "Elolvastam és elfogadom az adatfeldolgozási megállapodást",
+    "acceptContinue": "Elfogadás és folytatás",
+    "error": "A beállítás nem fejezhető be. Próbálja újra.",
+    "step1": "1. lépés a 2-ből",
+    "step2": "2. lépés a 2-ből",
+    "next": "Tovább",
+    "back": "Vissza"
+  },
+  "navigation": {
+    "dashboard": "Áttekintés",
+    "requests": "Kérelmek",
+    "settings": "Beállítások",
+    "plans": "Csomagok",
+    "help": "Súgó",
+    "currentPlan": "Jelenlegi csomag",
+    "planGrandfathered": "Csomag: Korábbi ingyenes",
+    "planPro": "Csomag: Pro",
+    "planRequired": "Csomag szükséges",
+    "premiumActive": "Minden prémium funkció engedélyezve",
+    "grandfatheredActive": "Korábbi ingyenes hozzáférés aktív",
+    "subscribeToContinue": "A folytatáshoz fizessen elő"
+  },
+  "appLanguage": {
+    "title": "Az alkalmazás nyelve",
+    "description": "Válassza ki az áttekintés nyelvét. Ez nem módosítja az ügyfeleknek elérhető nyelveket.",
+    "label": "Megjelenítési nyelv",
+    "saveError": "Az alkalmazás nyelve nem frissíthető.",
+    "settingsTitle": "Beállítások"
+  },
+  "dashboard": {
+    "title": "Áttekintés",
+    "subscriptionError": "Az előfizetés nem frissíthető",
+    "description": "Adjon néhány perc alatt uniós szabályoknak megfelelő elállási gombot áruházához. Gyűjtse és kezelje az ügyfelek kérelmeit egy helyen, bonyolult beállítás nélkül.",
+    "plan": "Csomag",
+    "grandfatheredFree": "Korábbi ingyenes",
+    "planPro": "Pro",
+    "proActive": "A Pro funkciók aktívak.",
+    "freeActive": "A korábbi ingyenes hozzáférés aktív.",
+    "stats": {
+      "total": "Összes kérelem",
+      "totalHelp": "Az áruház teljes működési ideje alatt",
+      "received": "Beérkezett",
+      "receivedHelp": "Intézkedésre vár",
+      "reviewed": "Áttekintett",
+      "reviewedHelp": "Kézzel értékelt",
+      "closed": "Jóváhagyott / Elutasított",
+      "closedHelp": "Lezárt állapotok"
+    },
+    "status": {
+      "complete": "Kész",
+      "incomplete": "Nincs kész"
+    },
+    "setup": {
+      "title": "Fejezze be a beállítást",
+      "description": "Válassza az áruháznak megfelelő megoldást. Lebegő gombot javasolunk az egész oldalon és külön elállási oldalt.",
+      "recommended": "Ajánlott",
+      "suggested": "Javasolt",
+      "optional": "Választható",
+      "pageReady": {
+        "title": "Az elállási oldal kész",
+        "description": "Az elállási oldal kész. Adja hozzá az alkalmazásblokkot, és hivatkozzon rá a rendelés-visszaigazoló e-mailekből."
+      },
+      "actionFailed": "A beállítási művelet sikertelen",
+      "notification": {
+        "title": "Adjon meg értesítési e-mail-címet",
+        "description": "Adja meg, hová kéri az értesítéseket az ügyfelek elállási kérelmeiről.",
+        "edit": "Értesítési beállítások módosítása",
+        "add": "Adjon meg értesítési e-mail-címet",
+        "destination": "Az értesítéseket ide küldjük: {{email}}."
+      },
+      "floating": {
+        "title": "Lebegő gomb engedélyezése az egész oldalon",
+        "description": "A legjobb láthatóságért. Az áruház egészén megjelenő lebegő elállási gomb bármely oldalról elérhetővé teszi az űrlapot.",
+        "button": "Lebegő gomb engedélyezése"
+      },
+      "withdrawalPage": {
+        "title": "Külön elállási oldal létrehozása",
+        "description": "Hozzon létre hagyományos oldalt a /pages/eu-withdrawal címen, ahol az ügyfelek egyértelműen benyújthatják kérelmüket.",
+        "button": "Oldal létrehozása"
+      },
+      "pageBlock": {
+        "title": "Gombblokk hozzáadása az elállási oldalhoz",
+        "description": "Nyissa meg a témaszerkesztőt, és adja hozzá az EU Withdrawal Button blokkot a külön elállási oldalhoz.",
+        "button": "Oldalblokk hozzáadása"
+      },
+      "orderEmail": {
+        "title": "Hivatkozás hozzáadása a rendelés-visszaigazolásokhoz",
+        "description": "Adja az elállási oldal hivatkozását a Shopify visszaigazoló e-mailjeihez, hogy vásárlás után is megtalálható legyen.",
+        "button": "Értesítések megnyitása",
+        "suggestedLink": "Javasolt hivatkozás:"
+      },
+      "testRequest": {
+        "title": "Elállási tesztkérelem beküldése",
+        "description": "Nyissa meg az áruházat vagy az elállási oldalt, és küldjön tesztkérelmet az ügyfélélmény ellenőrzéséhez.",
+        "openPage": "Elállási oldal megnyitása",
+        "openStorefront": "Áruház megnyitása"
+      },
+      "review": {
+        "title": "Kérelmek áttekintése az áttekintésben",
+        "description": "Ügyfél- vagy tesztkérelem beküldése után tekintse át azt a Kérelmek részben, és frissítse az állapotát.",
+        "button": "Kérelmek megnyitása"
+      },
+      "upgrade": {
+        "title": "Váltás Pro csomagra",
+        "description": "Rendelésellenőrzés, speciális beállítások, automatizálás és egyéni munkafolyamatok feloldása.",
+        "button": "Pro megtekintése"
+      }
+    },
+    "billingSyncFailed": "A számlázási állapot nem szinkronizálható",
+    "subscriptionStatusError": "Az előfizetési állapot nem frissíthető."
+  },
+  "requests": {
+    "title": "Elállási kérelmek",
+    "exportCSV": "CSV-exportálás",
+    "status": "Állapot",
+    "verification": "Ellenőrzés",
+    "search": "Keresés",
+    "searchPlaceholder": "E-mail, rendelés, hivatkozás...",
+    "all": "Összes",
+    "empty": "Nem található kérelem.",
+    "unknown": "Ismeretlen",
+    "noReason": "Nincs megadott indok",
+    "filterPro": "A speciális szűrés és a CSV-exportálás a Pro csomagban érhető el.",
+    "resourceSingular": "kérelem",
+    "resourcePlural": "kérelmek",
+    "selectedAll": "Összes",
+    "columns": {
+      "reference": "Hivatkozás",
+      "customer": "Ügyfél",
+      "order": "Rendelés",
+      "verification": "Ellenőrzés",
+      "reason": "Indok",
+      "status": "Állapot",
+      "submitted": "Beküldve",
+      "actions": "Műveletek"
+    },
+    "statuses": {
+      "RECEIVED": "Beérkezett",
+      "CONFIRMED": "Megerősített",
+      "REVIEWED": "Áttekintett",
+      "APPROVED": "Jóváhagyott",
+      "REJECTED": "Elutasított"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Ellenőrzött",
+        "tooltip": "A rendelés megvan, és az elállási határidőn belül van"
+      },
+      "NOT_FOUND": {
+        "label": "A rendelés nem található",
+        "tooltip": "Nem található megfelelő rendelés a Shopifyban"
+      },
+      "EXPIRED": {
+        "label": "A határidő lejárt",
+        "tooltip": "A rendelés megvan, de az elállási határidő lejárt"
+      },
+      "ERROR": {
+        "label": "Nem elérhető",
+        "tooltip": "A rendelés Shopify- vagy API-hiba miatt nem ellenőrizhető"
+      },
+      "UNVERIFIED": {
+        "label": "Nem ellenőrzött",
+        "tooltip": "Az automatikus rendelésellenőrzés a Pro csomagban érhető el"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Érvénytelen rendelés"
+    },
+    "deleteCustomer": {
+      "button": "Ügyféladatok törlése",
+      "title": "Ügyféladatok törlése",
+      "description": "A(z) {{email}} címhez tárolt összes elállási adat véglegesen törlődik."
+    },
+    "bulkDelete": {
+      "button": "Kijelöltek törlése",
+      "title": "Kijelölt kérelmek törlése",
+      "confirm": "Kérelmek törlése",
+      "description_one": "Ez véglegesen töröl {{count}} kijelölt elállási kérelmet.",
+      "description_other": "Ez véglegesen töröl {{count}} kijelölt elállási kérelmet."
+    },
+    "delete": "Törlés",
+    "cancel": "Mégse",
+    "scrollLabel": "Elállási kérelmek vízszintes görgetése",
+    "errors": {
+      "temporary": "Átmeneti szerverhiba. Próbálja újra néhány pillanat múlva.",
+      "update": "A kérelem állapota nem frissíthető.",
+      "export": "A CSV most nem exportálható. Próbálja újra hamarosan."
+    }
+  },
+  "settings": {
+    "title": "Beállítások",
+    "loading": "Beállítások betöltése",
+    "saveFailed": "A beállítások nem menthetők",
+    "general": {
+      "title": "Általános beállítások",
+      "customerLanguages": "Az ügyfélűrlap nyelvei",
+      "customerLanguagesDescription": "Válassza ki az ügyfeleknek elérhető nyelveket az elállási űrlapon.",
+      "availableLanguages": "Az ügyfelek számára elérhető nyelvek",
+      "defaultLanguage": "Alapértelmezett nyelv",
+      "defaultLanguageHelp": "Az űrlap ezen a nyelven nyílik meg. Az ügyfelek más engedélyezett nyelvre válthatnak.",
+      "basicLanguagesHelp": "A Korábbi ingyenes csomag angolt és egy további nyelvet tartalmaz. Váltson Pro csomagra az összes támogatott nyelvhez.",
+      "notificationEmail": "Elállási értesítések e-mail-címe",
+      "notificationEmailHelp": "Ide érkeznek a belső értesítések az új elállási kérelmekről.",
+      "upgradeTitle": "Váltson Pro csomagra a speciális beállításokhoz",
+      "upgradeDescription": "A módosítható elállási határidő a Pro csomagban érhető el.",
+      "legalPage": "Jogi oldal URL-je",
+      "privacyPage": "Adatvédelmi oldal URL-je",
+      "supportEmail": "Ügyfélszolgálati e-mail",
+      "supportEmailHelp": "Megjelenik az ügyfeleknek, és válaszcímként szolgál a kezelt küldésnél.",
+      "basicPeriod": "A Korábbi ingyenes csomag 14 napos tájékoztató határidőt használ. Automatikus ellenőrzés nem történik.",
+      "withdrawalPeriod": "Elállási határidő (nap)",
+      "periodBasicHelp": "Az ügyfelek tájékoztatása 14 napos határidőn alapul. Váltson Pro csomagra a testreszabáshoz és az automatikus ellenőrzéshez.",
+      "periodProHelp": "Állítsa be az elállási határidőt. A kérelmeket lehetőség szerint ehhez ellenőrizzük."
+    },
+    "errors": {
+      "basicLanguageLimit": "A Korábbi ingyenes csomag angolt és egy további nyelvet tartalmaz.",
+      "selectLanguage": "Válasszon legalább egy nyelvet.",
+      "save": "A beállítások nem menthetők.",
+      "saveFirst": "A következő művelet előtt mentse vagy vesse el a többi módosítást: {{action}}."
+    },
+    "plans": {
+      "basic": "Korábbi ingyenes",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "E-mail-küldés",
+      "description": "Válassza ki az ügyfelek visszaigazoló e-mailjeinek küldési módját.",
+      "deliveryMethod": "Küldési mód",
+      "managed": "GL6 által kezelt",
+      "managedOption": "GL6 által kezelt küldés — Ajánlott",
+      "managedHelp": "A visszaigazoló e-maileket a GL6 ellenőrzött szolgáltatása küldi. Az ügyfelek válaszai az ügyfélszolgálati címre érkeznek.",
+      "smtpOption": "Saját SMTP — Pro",
+      "smtpOptionHelp": "Csatlakoztassa e-mail-szolgáltatóját SMTP-hitelesítő adatokkal.",
+      "proTitle": "A saját márkás e-mail-küldés a Pro csomagban érhető el",
+      "proDescription": "A Korábbi ingyenes áruházak GL6-küldést használnak. A válaszok a fent megadott ügyfélszolgálati címre érkeznek.",
+      "connected": "Csatlakoztatva",
+      "connectionFailed": "Sikertelen kapcsolódás",
+      "requiresTesting": "Tesztelés szükséges",
+      "statuses": {
+        "notConfigured": "Nincs beállítva",
+        "verified": "Ellenőrzött",
+        "pending": "Függőben",
+        "notStarted": "Nem indult el",
+        "failed": "Sikertelen",
+        "failure": "Sikertelen",
+        "temporaryFailure": "Átmeneti hiba"
+      },
+      "domain": {
+        "intro": "Külön aldomaint javasolunk, például withdrawals.example.com. Adja hozzá az alábbi DNS-rekordokat, majd ellenőrizze a domaint.",
+        "label": "Küldő domain vagy aldomain",
+        "help": "Ne szerepeljen https:// vagy elérési út.",
+        "add": "Küldő domain hozzáadása",
+        "recordsHelp": "Az ellenőrzés indítása előtt adja hozzá az összes szükséges DNS-rekordot.",
+        "columns": {
+          "type": "Típus",
+          "name": "Név",
+          "value": "Érték",
+          "priority": "Prioritás",
+          "status": "Állapot"
+        },
+        "issue": "Küldő domain hibája",
+        "check": "Állapot ellenőrzése",
+        "verify": "Domain ellenőrzése",
+        "remove": "Domain eltávolítása",
+        "verifiedTitle": "Küldő domain ellenőrizve",
+        "verifiedDescription": "Most megadhatja az ügyfelek visszaigazolásaihoz használt feladónevet és e-mail-címet.",
+        "fromName": "Feladó neve",
+        "fromEmail": "Feladó e-mail-címe",
+        "storePlaceholder": "Áruháza neve",
+        "emailHelp": "A cím végződése @{{domain}} kell legyen.",
+        "saveSender": "Feladóadatok mentése"
+      },
+      "smtp": {
+        "intro": "Adja meg az e-mail-szolgáltatótól kapott SMTP-adatokat. Tesztelés előtt mentse a beállításokat.",
+        "host": "SMTP-kiszolgáló",
+        "port": "SMTP-port",
+        "portHelp": "Általában STARTTLS-hez 587, SSL/TLS-hez 465 használható.",
+        "security": "Kapcsolat biztonsága",
+        "starttls": "STARTTLS — általában 587-es port",
+        "ssl": "SSL/TLS — általában 465-ös port",
+        "username": "SMTP-felhasználónév",
+        "usernameHelp": "Ez gyakran a teljes e-mail-cím.",
+        "password": "SMTP-jelszó",
+        "savedPasswordPlaceholder": "Hagyja üresen a mentett jelszó megtartásához",
+        "newPasswordPlaceholder": "Adja meg az SMTP-jelszót",
+        "savedPasswordHelp": "Egy jelszó már biztonságosan tárolva van. Csak a cseréhez adjon meg újat.",
+        "newPasswordHelp": "Egyes szolgáltatók a szokásos fiókjelszó helyett alkalmazásjelszót kérnek.",
+        "fromName": "Feladó neve",
+        "fromEmail": "Feladó e-mail-címe",
+        "storePlaceholder": "Áruháza neve",
+        "fromEmailHelp": "SMTP-szolgáltatójának engedélyeznie kell ezt a címet feladóként.",
+        "connectionFailed": "Sikertelen SMTP-kapcsolódás",
+        "test": "Kapcsolat tesztelése",
+        "disconnect": "SMTP leválasztása",
+        "saveBeforeTest": "Tesztelés előtt mentse a módosításokat."
+      },
+      "errors": {
+        "saveSmtpFirst": "Tesztelés előtt mentse az SMTP-beállításokat.",
+        "smtpFailed": "Sikertelen SMTP-kapcsolódás.",
+        "disconnectSmtp": "Az SMTP nem választható le.",
+        "domainRequired": "Először adjon meg domaint vagy aldomaint.",
+        "createDomain": "A küldő domain nem hozható létre.",
+        "refreshDomain": "A küldő domain nem frissíthető.",
+        "verifyDomain": "A domain ellenőrzése nem indítható el.",
+        "verifyBeforeSender": "A feladó címének mentése előtt ellenőrizze a küldő domaint.",
+        "saveSender": "A feladó címe nem menthető.",
+        "removeDomain": "A küldő domain nem távolítható el.",
+        "dirtyActions": {
+          "disconnectSmtp": "SMTP leválasztása",
+          "createDomain": "küldő domain létrehozása",
+          "checkDomain": "küldő domain állapotának ellenőrzése",
+          "saveSender": "feladó címének mentése",
+          "removeDomain": "küldő domain eltávolítása"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Csomagok",
+    "grandfatheredFree": "Korábbi ingyenes",
+    "pro": "Pro",
+    "current": "Jelenlegi",
+    "legacyDescription": "Korábbi jogosultság — díjmentes",
+    "legacyWarning": "A csomagváltás véglegesen megszünteti ezt a korábbi jogosultságot.",
+    "manageSubscription": "Előfizetés kezelése",
+    "subscribePro": "Előfizetés a Pro csomagra",
+    "errors": {
+      "title": "A Shopify díjszabása nem nyitható meg",
+      "missingUrl": "A Shopify nem adott vissza díjszabási URL-t.",
+      "openFailed": "A Shopify díjszabása nem nyitható meg."
+    },
+    "features": {
+      "withdrawalFlow": "Uniós szabályoknak megfelelő elállási folyamat",
+      "unlimitedRequests": "Korlátlan elállási kérelmek",
+      "confirmationEmails": "Automatikus visszaigazoló e-mailek",
+      "themeBlock": "Téma-alkalmazásblokkok támogatása",
+      "requestDashboard": "Kérelmek áttekintése",
+      "merchantNotifications": "Értesítések a kereskedőnek",
+      "basicCompliance": "Alapvető megfelelőség",
+      "coreManagement": "Elállási kérelmek alapkezelése",
+      "euLanguages": "Minden támogatott uniós nyelv",
+      "customPeriod": "Egyéni elállási határidő ellenőrzéssel",
+      "customBranding": "Egyéni márka és színek",
+      "advancedManagement": "CSV-exportálás és speciális kérelemkezelés"
+    }
+  },
+  "help": {
+    "title": "Súgó",
+    "commonQuestions": "Gyakori kérdések",
+    "introduction": "Gyors válaszok a beállítással és hibaelhárítással kapcsolatos kérdésekre.",
+    "supportTitle": "További segítségre van szüksége?",
+    "supportDescription": "Ha a válaszok nem oldják meg a problémát, válassza a Segítség kérése lehetőséget a jobb felső ⋯ menüből, hogy a Shopifyn keresztül kapcsolatba lépjen velünk.",
+    "supportResponse": "A támogatási kérésekre általában egy munkanapon belül válaszolunk.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Miért nem működik az alkalmazás a Shopify Canvasban?",
+        "answer": "A Shopify Canvas korai hozzáférésben van, és még nem támogatja az elállási gombhoz használt alkalmazásblokkokat és beágyazásokat. Ez a Canvas jelenlegi korlátja. Használjon kompatibilis témát a Shopify szokásos témaszerkesztőjében."
+      },
+      "buttonNotShowing": {
+        "question": "Miért nem jelenik meg az elállási gomb az áruházban?",
+        "answer": "Ellenőrizze, hogy az EU Withdrawal Button beágyazás vagy blokk engedélyezve van a jelenlegi témában. Témaváltás vagy közzététel után újra engedélyezni kellhet."
+      },
+      "buttonPosition": {
+        "question": "Módosíthatom az elállási gomb helyét?",
+        "answer": "Igen. A Beállításokban módosítsa a lebegő gomb helyét számítógépen és mobilon."
+      },
+      "buttonAppearance": {
+        "question": "Módosíthatom a gomb megjelenését?",
+        "answer": "Igen. A Beállításokban testreszabhatja az elérhető megjelenési beállításokat."
+      },
+      "requestSubmitted": {
+        "question": "Mi történik, amikor az ügyfél elállási kérelmet küld?",
+        "answer": "A kérelem rögzül és megjelenik a Kérelmek részben, ahol áttekintheti és módosíthatja az állapotát."
+      },
+      "notificationEmail": {
+        "question": "Kapok e-mailt, ha az ügyfél kérelmet küld?",
+        "answer": "Igen, ha megadta az értesítési e-mail-címet. Ellenőrizze a Beállításokat, ha az értesítések nem érkeznek meg."
+      },
+      "withdrawalPeriod": {
+        "question": "Módosíthatom az elállási határidőt?",
+        "answer": "Igen. Az elállási határidő az alkalmazás Beállításaiban módosítható."
+      },
+      "automaticRefund": {
+        "question": "Az alkalmazás automatikusan visszatéríti vagy törli a rendelést?",
+        "answer": "Nem. Az elállási kérelem nem eredményez automatikus visszatérítést vagy rendeléstörlést a Shopifyban. Ön irányítja a kérelem vizsgálatát és feldolgozását."
+      },
+      "previousRequests": {
+        "question": "Megnézhetem a korábbi elállási kérelmeket?",
+        "answer": "Igen. A Kérelmek részben megnézheti a beküldött kérelmeket."
+      },
+      "multipleLanguages": {
+        "question": "Támogat az alkalmazás több nyelvet?",
+        "answer": "A nyelvek beállíthatók. Az elérhető nyelveket a Beállításokban kezelheti."
+      },
+      "themeChanged": {
+        "question": "Shopify-témát váltottam, és a gomb eltűnt. Mit tegyek?",
+        "answer": "Nyissa meg az új téma szerkesztőjét, és engedélyezze az EU Withdrawal Button beágyazást vagy blokkot."
+      },
+      "hideButton": {
+        "question": "Ideiglenesen elrejthetem az elállási gombot?",
+        "answer": "Igen. Az áruház gombját az alkalmazás eltávolítása nélkül kikapcsolhatja."
+      },
+      "missingEmails": {
+        "question": "Miért nem kapok értesítő e-maileket?",
+        "answer": "Ellenőrizze az értesítési címet és a küldési beállításokat a Beállításokban. Nézze meg a levélszemétmappát is."
+      },
+      "legalCompliance": {
+        "question": "Garantálja az alkalmazás az áruház jogi megfelelőségét?",
+        "answer": "Nem. Az alkalmazás az elállási kérelmek kezeléséhez ad eszközöket. Ön felel azért, hogy az áruház szabályzatai és folyamatai megfeleljenek a vállalkozására vonatkozó jogszabályoknak."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Az áruház nem található.",
+    "entitlementUnavailable": "A Shopify App Pricing jogosultság nem ellenőrizhető.",
+    "planRequired": "Fizetős Shopify-csomag szükséges.",
+    "languagesInvalid": "A kiválasztott nyelvek érvénytelenek.",
+    "basicLanguageLimit": "A Korábbi ingyenes csomag angolt és egy további nyelvet tartalmaz.",
+    "withdrawalPeriod": "Az elállási határidőnek 1 és 365 nap között kell lennie.",
+    "smtpHost": "SMTP-kiszolgáló szükséges.",
+    "smtpPort": "Az SMTP-ellenőrzés a 465-ös és 587-es portra korlátozódik.",
+    "smtpUsername": "SMTP-felhasználónév szükséges.",
+    "smtpFromEmail": "Feladói e-mail-cím szükséges.",
+    "smtpPassword": "SMTP-jelszó szükséges.",
+    "settingsUpdate": "A beállítások nem frissíthetők.",
+    "requestNotFound": "A kérelem nem található.",
+    "invalidStatus": "Érvénytelen kérelemállapot.",
+    "setupStatus": "A beállítás állapota nem tölthető be.",
+    "upgradeRequired": "A funkció használatához váltson Pro csomagra."
+  }
+}

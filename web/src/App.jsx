@@ -32,9 +32,20 @@ import {
 import polarisEn from "@shopify/polaris/locales/en.json";
 import polarisDe from "@shopify/polaris/locales/de.json";
 
-const POLARIS_TRANSLATIONS = {
-    en: polarisEn,
-    de: polarisDe,
+// Keep English/German bundled. Other Shopify-provided component resources
+// load locally only when selected; unsupported Polaris languages use English.
+const POLARIS_TRANSLATIONS = { en: polarisEn, de: polarisDe };
+const POLARIS_LOADERS = {
+    fr: () => import("@shopify/polaris/locales/fr.json"),
+    it: () => import("@shopify/polaris/locales/it.json"),
+    es: () => import("@shopify/polaris/locales/es.json"),
+    pt: () => import("@shopify/polaris/locales/pt-PT.json"),
+    nl: () => import("@shopify/polaris/locales/nl.json"),
+    pl: () => import("@shopify/polaris/locales/pl.json"),
+    da: () => import("@shopify/polaris/locales/da.json"),
+    sv: () => import("@shopify/polaris/locales/sv.json"),
+    fi: () => import("@shopify/polaris/locales/fi.json"),
+    cs: () => import("@shopify/polaris/locales/cs.json"),
 };
 
 const tabs = [
@@ -51,6 +62,25 @@ export default function App() {
     const adminLanguage = normalizeAdminLanguage(
         i18n.resolvedLanguage || i18n.language
     );
+    const [polarisTranslations, setPolarisTranslations] = useState(
+        POLARIS_TRANSLATIONS[adminLanguage] || polarisEn
+    );
+
+    useEffect(() => {
+        let active = true;
+        setPolarisTranslations(POLARIS_TRANSLATIONS[adminLanguage] || polarisEn);
+        const load = POLARIS_LOADERS[adminLanguage];
+        if (load && !POLARIS_TRANSLATIONS[adminLanguage]) {
+            load().then(({ default: resource }) => {
+                POLARIS_TRANSLATIONS[adminLanguage] = resource;
+                if (active) setPolarisTranslations(resource);
+            }).catch(() => {
+                // A chunk failure retains the supported English component fallback.
+            });
+        }
+        return () => { active = false; };
+    }, [adminLanguage]);
+
     const [tab, setTab] = useState("dashboard");
 
     const [boot, setBoot] = useState({ loading: true, error: "", data: null });
@@ -179,7 +209,7 @@ export default function App() {
 
     return (
         <AppProvider
-            i18n={POLARIS_TRANSLATIONS[adminLanguage]}
+            i18n={polarisTranslations}
         >
             <Frame navigation={boot.data?.shop?.dpaAcceptedAt ? navigation : null}>
                 {boot.loading && (

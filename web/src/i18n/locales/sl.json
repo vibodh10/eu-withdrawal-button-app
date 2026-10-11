@@ -1,0 +1,452 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Jezik",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Nadaljuj",
+    "save": "Shrani",
+    "cancel": "Prekliči",
+    "loading": "Nalaganje..."
+  },
+  "onboarding": {
+    "welcome": "Dobrodošli v EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Izberite jezik",
+    "languageDescription": "Izberite jezik, ki ga želite uporabljati v aplikaciji.",
+    "languageLabel": "Jezik aplikacije",
+    "dpaTitle": "2. Pogodba o obdelavi osebnih podatkov",
+    "dpaDescription": "Za uporabo aplikacije morate sprejeti našo pogodbo o obdelavi osebnih podatkov. Pojasnjuje obdelavo podatkov strank v vašem imenu.",
+    "viewDpa": "Ogled pogodbe o obdelavi osebnih podatkov",
+    "agree": "Prebral/-a sem pogodbo o obdelavi osebnih podatkov in jo sprejemam",
+    "acceptContinue": "Sprejmi in nadaljuj",
+    "error": "Nastavitve ni bilo mogoče dokončati. Poskusite znova.",
+    "step1": "Korak 1 od 2",
+    "step2": "Korak 2 od 2",
+    "next": "Naprej",
+    "back": "Nazaj"
+  },
+  "navigation": {
+    "dashboard": "Nadzorna plošča",
+    "requests": "Zahteve",
+    "settings": "Nastavitve",
+    "plans": "Paketi",
+    "help": "Pomoč",
+    "currentPlan": "Trenutni paket",
+    "planGrandfathered": "Paket: Prejšnji brezplačni",
+    "planPro": "Paket: Pro",
+    "planRequired": "Potreben je paket",
+    "premiumActive": "Vse napredne funkcije so omogočene",
+    "grandfatheredActive": "Prejšnji brezplačni dostop je aktiven",
+    "subscribeToContinue": "Za nadaljevanje se naročite"
+  },
+  "appLanguage": {
+    "title": "Jezik aplikacije",
+    "description": "Izberite jezik nadzorne plošče. To ne spremeni jezikov, ki so na voljo strankam.",
+    "label": "Jezik prikaza",
+    "saveError": "Jezika aplikacije ni bilo mogoče posodobiti.",
+    "settingsTitle": "Nastavitve"
+  },
+  "dashboard": {
+    "title": "Nadzorna plošča",
+    "subscriptionError": "Naročnine ni bilo mogoče osvežiti",
+    "description": "V nekaj minutah dodajte gumb za odstop od pogodbe v skladu s pravili EU. Zbirajte in upravljajte zahteve strank na enem mestu brez zapletene nastavitve.",
+    "plan": "Paket",
+    "grandfatheredFree": "Prejšnji brezplačni",
+    "planPro": "Pro",
+    "proActive": "Funkcije Pro so aktivne.",
+    "freeActive": "Prejšnji brezplačni dostop je aktiven.",
+    "stats": {
+      "total": "Skupaj zahtev",
+      "totalHelp": "V celotnem obdobju trgovine",
+      "received": "Prejete",
+      "receivedHelp": "Čakajo na ukrepanje",
+      "reviewed": "Pregledane",
+      "reviewedHelp": "Ročno ocenjene",
+      "closed": "Odobrene / Zavrnjene",
+      "closedHelp": "Zaključena stanja"
+    },
+    "status": {
+      "complete": "Dokončano",
+      "incomplete": "Ni dokončano"
+    },
+    "setup": {
+      "title": "Dokončajte nastavitev",
+      "description": "Izberite ustrezno nastavitev trgovine. Priporočamo plavajoči gumb na celotnem spletišču in posebno stran za odstop od pogodbe.",
+      "recommended": "Priporočeno",
+      "suggested": "Predlagano",
+      "optional": "Neobvezno",
+      "pageReady": {
+        "title": "Stran za odstop od pogodbe je pripravljena",
+        "description": "Stran je pripravljena. Dodajte blok aplikacije in povezavo v e-poštna potrdila naročil."
+      },
+      "actionFailed": "Nastavitev ni uspela",
+      "notification": {
+        "title": "Dodajte e-poštni naslov za obvestila",
+        "description": "Vnesite naslov, na katerega želite prejemati obvestila o zahtevah strank za odstop od pogodbe.",
+        "edit": "Uredi nastavitve obvestil",
+        "add": "Dodajte e-poštni naslov za obvestila",
+        "destination": "Obvestila bodo poslana na {{email}}."
+      },
+      "floating": {
+        "title": "Omogoči plavajoči gumb na celotnem spletišču",
+        "description": "Za najboljšo vidnost. Plavajoči gumb v celotni trgovini omogoča dostop do obrazca z vsake strani.",
+        "button": "Omogoči plavajoči gumb"
+      },
+      "withdrawalPage": {
+        "title": "Ustvari posebno stran za odstop od pogodbe",
+        "description": "Ustvarite običajno stran na /pages/eu-withdrawal za jasno mesto za oddajo zahtev.",
+        "button": "Ustvari stran"
+      },
+      "pageBlock": {
+        "title": "Dodaj blok gumba na stran za odstop od pogodbe",
+        "description": "Odprite urejevalnik teme in dodajte blok EU Withdrawal Button na posebno stran za odstop od pogodbe.",
+        "button": "Dodaj blok strani"
+      },
+      "orderEmail": {
+        "title": "Dodaj povezavo v potrdila naročil",
+        "description": "Dodajte povezavo do strani za odstop od pogodbe v potrdila Shopify, da jo stranke najdejo po nakupu.",
+        "button": "Odpri obvestila",
+        "suggestedLink": "Predlagana povezava:"
+      },
+      "testRequest": {
+        "title": "Oddaj poskusno zahtevo za odstop od pogodbe",
+        "description": "Obiščite trgovino ali stran za odstop od pogodbe in oddajte poskusno zahtevo za preverjanje izkušnje stranke.",
+        "openPage": "Odpri stran za odstop od pogodbe",
+        "openStorefront": "Odpri trgovino"
+      },
+      "review": {
+        "title": "Preglejte zahteve na nadzorni plošči",
+        "description": "Po oddaji dejanske ali poskusne zahteve jo preglejte v razdelku Zahteve in posodobite stanje.",
+        "button": "Odpri zahteve"
+      },
+      "upgrade": {
+        "title": "Nadgradi na Pro",
+        "description": "Odklenite preverjanje naročil, napredne nastavitve, avtomatizacijo in prilagojene postopke.",
+        "button": "Ogled Pro"
+      }
+    },
+    "billingSyncFailed": "Stanja obračunavanja ni bilo mogoče uskladiti",
+    "subscriptionStatusError": "Stanja naročnine ni bilo mogoče osvežiti."
+  },
+  "requests": {
+    "title": "Zahteve za odstop od pogodbe",
+    "exportCSV": "Izvozi CSV",
+    "status": "Stanje",
+    "verification": "Preverjanje",
+    "search": "Iskanje",
+    "searchPlaceholder": "E-pošta, naročilo, referenca...",
+    "all": "Vse",
+    "empty": "Ni najdenih zahtev.",
+    "unknown": "Neznano",
+    "noReason": "Razlog ni naveden",
+    "filterPro": "Napredno filtriranje in izvoz CSV sta na voljo v Pro.",
+    "resourceSingular": "zahteva",
+    "resourcePlural": "zahteve",
+    "selectedAll": "Vse",
+    "columns": {
+      "reference": "Referenca",
+      "customer": "Stranka",
+      "order": "Naročilo",
+      "verification": "Preverjanje",
+      "reason": "Razlog",
+      "status": "Stanje",
+      "submitted": "Oddano",
+      "actions": "Dejanja"
+    },
+    "statuses": {
+      "RECEIVED": "Prejeta",
+      "CONFIRMED": "Potrjena",
+      "REVIEWED": "Pregledana",
+      "APPROVED": "Odobrena",
+      "REJECTED": "Zavrnjena"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Preverjeno",
+        "tooltip": "Naročilo najdeno v roku za odstop od pogodbe"
+      },
+      "NOT_FOUND": {
+        "label": "Naročilo ni najdeno",
+        "tooltip": "V Shopify ni najdenega ustreznega naročila"
+      },
+      "EXPIRED": {
+        "label": "Rok je potekel",
+        "tooltip": "Naročilo najdeno, vendar je rok za odstop od pogodbe potekel"
+      },
+      "ERROR": {
+        "label": "Ni na voljo",
+        "tooltip": "Naročila ni mogoče preveriti zaradi težave Shopify ali API"
+      },
+      "UNVERIFIED": {
+        "label": "Ni preverjeno",
+        "tooltip": "Samodejno preverjanje naročil je na voljo v Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Neveljavno naročilo"
+    },
+    "deleteCustomer": {
+      "button": "Izbriši podatke stranke",
+      "title": "Izbriši podatke stranke",
+      "description": "Vsi shranjeni podatki o odstopu od pogodbe za {{email}} bodo trajno izbrisani."
+    },
+    "bulkDelete": {
+      "button": "Izbriši izbrane",
+      "title": "Izbriši izbrane zahteve",
+      "confirm": "Izbriši zahteve",
+      "description_one": "Trajno bo izbrisana {{count}} izbrana zahteva za odstop od pogodbe.",
+      "description_other": "Trajno bo izbrisanih {{count}} izbranih zahtev za odstop od pogodbe.",
+      "description_two": "Trajno bosta izbrisani {{count}} izbrani zahtevi za odstop od pogodbe.",
+      "description_few": "Trajno bodo izbrisane {{count}} izbrane zahteve za odstop od pogodbe."
+    },
+    "delete": "Izbriši",
+    "cancel": "Prekliči",
+    "scrollLabel": "Vodoravno pomikanje zahtev za odstop od pogodbe",
+    "errors": {
+      "temporary": "Začasna težava strežnika. Poskusite znova čez nekaj trenutkov.",
+      "update": "Stanja zahteve ni bilo mogoče posodobiti.",
+      "export": "CSV trenutno ni mogoče izvoziti. Poskusite znova kmalu."
+    }
+  },
+  "settings": {
+    "title": "Nastavitve",
+    "loading": "Nalaganje nastavitev",
+    "saveFailed": "Nastavitev ni bilo mogoče shraniti",
+    "general": {
+      "title": "Splošne nastavitve",
+      "customerLanguages": "Jeziki obrazca za stranke",
+      "customerLanguagesDescription": "Izberite jezike, ki jih stranke lahko uporabljajo v obrazcu za odstop od pogodbe.",
+      "availableLanguages": "Jeziki, ki so na voljo strankam",
+      "defaultLanguage": "Privzeti jezik",
+      "defaultLanguageHelp": "Obrazec se odpre v tem jeziku. Stranke lahko izberejo drug omogočen jezik.",
+      "basicLanguagesHelp": "Prejšnji brezplačni paket vključuje angleščino in en dodaten jezik. Nadgradite na Pro za vse podprte jezike.",
+      "notificationEmail": "E-pošta za obvestila o odstopu od pogodbe",
+      "notificationEmailHelp": "Sem se pošiljajo interna obvestila o novih zahtevah za odstop od pogodbe.",
+      "upgradeTitle": "Nadgradite na Pro za napredne nastavitve",
+      "upgradeDescription": "Prilagodljivi roki za odstop od pogodbe so na voljo v Pro.",
+      "legalPage": "URL pravne strani",
+      "privacyPage": "URL strani o zasebnosti",
+      "supportEmail": "E-pošta podpore strankam",
+      "supportEmailHelp": "Prikazana strankam in uporabljena kot naslov za odgovore pri upravljanem pošiljanju.",
+      "basicPeriod": "Prejšnji brezplačni paket uporablja okvirni rok 14 dni. Samodejno preverjanje se ne uporablja.",
+      "withdrawalPeriod": "Rok za odstop od pogodbe (dnevi)",
+      "periodBasicHelp": "Strankam je prikazan okvirni rok 14 dni. Nadgradite na Pro za prilagoditev in samodejno preverjanje.",
+      "periodProHelp": "Nastavite rok za odstop od pogodbe. Zahteve bodo glede na ta rok preverjene, ko bo to mogoče."
+    },
+    "errors": {
+      "basicLanguageLimit": "Prejšnji brezplačni paket vključuje angleščino in en dodaten jezik.",
+      "selectLanguage": "Izberite vsaj en jezik.",
+      "save": "Nastavitev ni bilo mogoče shraniti.",
+      "saveFirst": "Pred naslednjim dejanjem shranite ali zavrzite druge spremembe: {{action}}."
+    },
+    "plans": {
+      "basic": "Prejšnji brezplačni",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Dostava e-pošte",
+      "description": "Izberite način pošiljanja potrditvenih e-sporočil strankam.",
+      "deliveryMethod": "Način dostave",
+      "managed": "Upravlja GL6",
+      "managedOption": "Upravljano pošiljanje GL6 — Priporočeno",
+      "managedHelp": "Potrditvena sporočila pošilja preverjena storitev GL6. Odgovori strank so usmerjeni na naslov podpore.",
+      "smtpOption": "Lastni SMTP — Pro",
+      "smtpOptionHelp": "Povežite ponudnika e-pošte s prijavnimi podatki SMTP.",
+      "proTitle": "E-pošta z vašo znamko je na voljo v Pro",
+      "proDescription": "Trgovine s prejšnjim brezplačnim paketom uporabljajo GL6. Odgovori se pošiljajo na zgoraj nastavljen naslov podpore.",
+      "connected": "Povezano",
+      "connectionFailed": "Povezava ni uspela",
+      "requiresTesting": "Potreben je preizkus",
+      "statuses": {
+        "notConfigured": "Ni nastavljeno",
+        "verified": "Preverjeno",
+        "pending": "V čakanju",
+        "notStarted": "Ni začeto",
+        "failed": "Ni uspelo",
+        "failure": "Ni uspelo",
+        "temporaryFailure": "Začasna napaka"
+      },
+      "domain": {
+        "intro": "Priporočamo posebno poddomeno, kot je withdrawals.example.com. Dodajte spodnje zapise DNS in preverite domeno.",
+        "label": "Domena ali poddomena za pošiljanje",
+        "help": "Ne vključite https:// ali poti.",
+        "add": "Dodaj domeno za pošiljanje",
+        "recordsHelp": "Pred začetkom preverjanja dodajte vse zahtevane zapise DNS.",
+        "columns": {
+          "type": "Vrsta",
+          "name": "Ime",
+          "value": "Vrednost",
+          "priority": "Prednost",
+          "status": "Stanje"
+        },
+        "issue": "Težava domene za pošiljanje",
+        "check": "Preveri stanje",
+        "verify": "Preveri domeno",
+        "remove": "Odstrani domeno",
+        "verifiedTitle": "Domena za pošiljanje je preverjena",
+        "verifiedDescription": "Zdaj lahko izberete ime in e-poštni naslov pošiljatelja za potrdila strankam.",
+        "fromName": "Ime pošiljatelja",
+        "fromEmail": "E-pošta pošiljatelja",
+        "storePlaceholder": "Ime trgovine",
+        "emailHelp": "Naslov se mora končati z @{{domain}}.",
+        "saveSender": "Shrani podatke pošiljatelja"
+      },
+      "smtp": {
+        "intro": "Vnesite podatke SMTP ponudnika e-pošte. Pred preizkusom povezave shranite nastavitve.",
+        "host": "Gostitelj SMTP",
+        "port": "Vrata SMTP",
+        "portHelp": "Običajno uporabite 587 za STARTTLS ali 465 za SSL/TLS.",
+        "security": "Varnost povezave",
+        "starttls": "STARTTLS — običajno vrata 587",
+        "ssl": "SSL/TLS — običajno vrata 465",
+        "username": "Uporabniško ime SMTP",
+        "usernameHelp": "To je pogosto vaš celoten e-poštni naslov.",
+        "password": "Geslo SMTP",
+        "savedPasswordPlaceholder": "Pustite prazno, da obdržite shranjeno geslo",
+        "newPasswordPlaceholder": "Vnesite geslo SMTP",
+        "savedPasswordHelp": "Geslo je že varno shranjeno. Novo vnesite samo za zamenjavo.",
+        "newPasswordHelp": "Nekateri ponudniki zahtevajo geslo aplikacije namesto običajnega gesla računa.",
+        "fromName": "Ime pošiljatelja",
+        "fromEmail": "E-pošta pošiljatelja",
+        "storePlaceholder": "Ime trgovine",
+        "fromEmailHelp": "Ponudnik SMTP mora dovoliti uporabo tega naslova za pošiljanje.",
+        "connectionFailed": "Povezava SMTP ni uspela",
+        "test": "Preizkusi povezavo",
+        "disconnect": "Prekini povezavo SMTP",
+        "saveBeforeTest": "Pred preizkusom povezave shranite spremembe."
+      },
+      "errors": {
+        "saveSmtpFirst": "Pred preizkusom povezave shranite nastavitve SMTP.",
+        "smtpFailed": "Povezava SMTP ni uspela.",
+        "disconnectSmtp": "Povezave SMTP ni bilo mogoče prekiniti.",
+        "domainRequired": "Najprej vnesite domeno ali poddomeno.",
+        "createDomain": "Domene za pošiljanje ni bilo mogoče ustvariti.",
+        "refreshDomain": "Domene za pošiljanje ni bilo mogoče osvežiti.",
+        "verifyDomain": "Preverjanja domene ni bilo mogoče začeti.",
+        "verifyBeforeSender": "Pred shranjevanjem naslova pošiljatelja preverite domeno za pošiljanje.",
+        "saveSender": "Naslova pošiljatelja ni bilo mogoče shraniti.",
+        "removeDomain": "Domene za pošiljanje ni bilo mogoče odstraniti.",
+        "dirtyActions": {
+          "disconnectSmtp": "prekinitev povezave SMTP",
+          "createDomain": "ustvarjanje domene za pošiljanje",
+          "checkDomain": "preverjanje stanja domene za pošiljanje",
+          "saveSender": "shranjevanje naslova pošiljatelja",
+          "removeDomain": "odstranitev domene za pošiljanje"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Paketi",
+    "grandfatheredFree": "Prejšnji brezplačni",
+    "pro": "Pro",
+    "current": "Trenutni",
+    "legacyDescription": "Prejšnja pravica — brezplačno",
+    "legacyWarning": "Nadgradnja trajno ukine to prejšnjo pravico.",
+    "manageSubscription": "Upravljaj naročnino",
+    "subscribePro": "Naroči se na Pro",
+    "errors": {
+      "title": "Cenika Shopify ni bilo mogoče odpreti",
+      "missingUrl": "Shopify ni vrnil URL-ja cenika.",
+      "openFailed": "Cenika Shopify ni bilo mogoče odpreti."
+    },
+    "features": {
+      "withdrawalFlow": "Postopek odstopa od pogodbe v skladu s pravili EU",
+      "unlimitedRequests": "Neomejene zahteve za odstop od pogodbe",
+      "confirmationEmails": "Samodejna potrditvena e-pošta",
+      "themeBlock": "Podpora blokom aplikacije v temi",
+      "requestDashboard": "Nadzorna plošča zahtev",
+      "merchantNotifications": "Obvestila trgovcu",
+      "basicCompliance": "Osnovna skladnost vključena",
+      "coreManagement": "Osnovno upravljanje zahtev za odstop od pogodbe",
+      "euLanguages": "Vsi podprti jeziki EU",
+      "customPeriod": "Prilagojen rok za odstop od pogodbe s preverjanjem",
+      "customBranding": "Lastna znamka in barve",
+      "advancedManagement": "Izvoz CSV in napredno upravljanje zahtev"
+    }
+  },
+  "help": {
+    "title": "Pomoč",
+    "commonQuestions": "Pogosta vprašanja",
+    "introduction": "Hitri odgovori na vprašanja o nastavitvi in odpravljanju težav.",
+    "supportTitle": "Potrebujete dodatno pomoč?",
+    "supportDescription": "Če odgovori ne rešijo težave, izberite Pridobi podporo v meniju ⋯ zgoraj desno in nas kontaktirajte prek Shopify.",
+    "supportResponse": "Na zahtevke za podporo običajno odgovorimo v enem delovnem dnevu.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Zakaj aplikacija ne deluje s Shopify Canvas?",
+        "answer": "Shopify Canvas je v zgodnjem dostopu in še ne podpira blokov ali vdelav aplikacij za gumb za odstop od pogodbe. To je trenutna omejitev Canvas. Uporabite združljivo temo v običajnem urejevalniku Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "Zakaj gumb za odstop od pogodbe ni prikazan v trgovini?",
+        "answer": "Preverite, ali je vdelava ali blok EU Withdrawal Button omogočen v trenutni temi. Po spremembi ali objavi teme bo morda potrebna ponovna aktivacija."
+      },
+      "buttonPosition": {
+        "question": "Ali lahko spremenim položaj gumba za odstop od pogodbe?",
+        "answer": "Da. Odprite Nastavitve in prilagodite plavajoči gumb za računalnik in mobilne naprave."
+      },
+      "buttonAppearance": {
+        "question": "Ali lahko spremenim videz gumba?",
+        "answer": "Da. V Nastavitvah prilagodite razpoložljive možnosti videza."
+      },
+      "requestSubmitted": {
+        "question": "Kaj se zgodi, ko stranka odda zahtevo za odstop od pogodbe?",
+        "answer": "Zahteva se shrani v razdelek Zahteve, kjer jo lahko pregledate in posodobite stanje."
+      },
+      "notificationEmail": {
+        "question": "Ali prejmem e-pošto, ko stranka odda zahtevo?",
+        "answer": "Da, če ste nastavili naslov za obvestila. Preverite Nastavitve, če obvestila ne prispejo."
+      },
+      "withdrawalPeriod": {
+        "question": "Ali lahko spremenim rok za odstop od pogodbe?",
+        "answer": "Da. Rok nastavite v Nastavitvah aplikacije."
+      },
+      "automaticRefund": {
+        "question": "Ali aplikacija samodejno vrne denar ali prekliče naročilo?",
+        "answer": "Ne. Zahteva za odstop ne vrne denarja ali samodejno prekliče naročila Shopify. Sami nadzirate pregled in obdelavo zahteve."
+      },
+      "previousRequests": {
+        "question": "Ali lahko vidim prejšnje zahteve za odstop od pogodbe?",
+        "answer": "Da. Odprite Zahteve za ogled oddanih zahtev."
+      },
+      "multipleLanguages": {
+        "question": "Ali aplikacija podpira več jezikov?",
+        "answer": "Jezike je mogoče nastaviti. Razpoložljive možnosti upravljate v Nastavitvah."
+      },
+      "themeChanged": {
+        "question": "Spremenil/-a sem temo Shopify in gumb je izginil. Kaj storim?",
+        "answer": "Odprite urejevalnik nove teme in omogočite vdelavo ali blok EU Withdrawal Button."
+      },
+      "hideButton": {
+        "question": "Ali lahko začasno skrijem gumb za odstop od pogodbe?",
+        "answer": "Da. Gumb trgovine lahko onemogočite brez odstranitve aplikacije."
+      },
+      "missingEmails": {
+        "question": "Zakaj ne prejemam e-poštnih obvestil?",
+        "answer": "Preverite naslov za obvestila in nastavitve dostave v Nastavitvah. Preverite tudi neželeno pošto."
+      },
+      "legalCompliance": {
+        "question": "Ali aplikacija zagotavlja pravno skladnost trgovine?",
+        "answer": "Ne. Aplikacija ponuja orodja za sprejemanje in upravljanje zahtev za odstop od pogodbe. Odgovorni ste, da pravila in postopki trgovine ustrezajo zakonom, ki veljajo za vaše poslovanje."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Trgovina ni najdena.",
+    "entitlementUnavailable": "Pravice Shopify App Pricing ni bilo mogoče preveriti.",
+    "planRequired": "Potreben je plačljiv paket Shopify.",
+    "languagesInvalid": "Izbrani jeziki niso veljavni.",
+    "basicLanguageLimit": "Prejšnji brezplačni paket vključuje angleščino in en dodaten jezik.",
+    "withdrawalPeriod": "Rok za odstop od pogodbe mora biti od 1 do 365 dni.",
+    "smtpHost": "Gostitelj SMTP je obvezen.",
+    "smtpPort": "Preverjanje SMTP je omejeno na vrata 465 in 587.",
+    "smtpUsername": "Uporabniško ime SMTP je obvezno.",
+    "smtpFromEmail": "E-poštni naslov pošiljatelja je obvezen.",
+    "smtpPassword": "Geslo SMTP je obvezno.",
+    "settingsUpdate": "Nastavitev ni bilo mogoče posodobiti.",
+    "requestNotFound": "Zahteva ni najdena.",
+    "invalidStatus": "Neveljavno stanje zahteve.",
+    "setupStatus": "Stanja nastavitve ni bilo mogoče naložiti.",
+    "upgradeRequired": "Za to funkcijo nadgradite na Pro."
+  }
+}

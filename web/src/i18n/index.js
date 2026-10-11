@@ -4,24 +4,30 @@ import { initReactI18next } from "react-i18next";
 import en from "./locales/en.json";
 import de from "./locales/de.json";
 
-export const SUPPORTED_ADMIN_LANGUAGES = ["en", "de"];
+import { EU_LANGUAGE_CODES, normalizeEuLanguage } from "../../../shared/euLanguages.js";
 
-export function normalizeAdminLanguage(value) {
-    const language = String(value || "en")
-        .trim()
-        .toLowerCase()
-        .split("-")[0];
+export const SUPPORTED_ADMIN_LANGUAGES = EU_LANGUAGE_CODES;
 
-    return SUPPORTED_ADMIN_LANGUAGES.includes(language)
-        ? language
-        : "en";
-}
+export const normalizeAdminLanguage = normalizeEuLanguage;
 
-i18n.use(initReactI18next).init({
+// Vite builds local language chunks; only the selected additional locale loads.
+// English and German stay bundled exactly as before.
+const localeModules = import.meta.glob("./locales/*.json", { import: "default" });
+const localBackend = {
+    type: "backend",
+    read(language, namespace, callback) {
+        const load = localeModules[`./locales/${language}.json`];
+        if (!load) return callback(new Error(`Unsupported app language: ${language}`), false);
+        load().then((resource) => callback(null, resource), (error) => callback(error, false));
+    },
+};
+
+i18n.use(localBackend).use(initReactI18next).init({
     resources: {
         en: { translation: en },
         de: { translation: de },
     },
+    partialBundledLanguages: true,
 
     lng: "en",
     fallbackLng: "en",

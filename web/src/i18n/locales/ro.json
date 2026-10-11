@@ -1,0 +1,451 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Limbă",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Continuați",
+    "save": "Salvați",
+    "cancel": "Anulați",
+    "loading": "Se încarcă..."
+  },
+  "onboarding": {
+    "welcome": "Bun venit la EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Alegeți limba",
+    "languageDescription": "Selectați limba pe care doriți să o folosiți în aplicație.",
+    "languageLabel": "Limba aplicației",
+    "dpaTitle": "2. Acord privind prelucrarea datelor",
+    "dpaDescription": "Pentru a utiliza aplicația, trebuie să acceptați acordul nostru privind prelucrarea datelor. Acesta explică modul în care datele clienților sunt prelucrate în numele dumneavoastră.",
+    "viewDpa": "Consultați acordul privind prelucrarea datelor",
+    "agree": "Am citit și accept acordul privind prelucrarea datelor",
+    "acceptContinue": "Acceptați și continuați",
+    "error": "Configurarea nu a putut fi finalizată. Încercați din nou.",
+    "step1": "Pasul 1 din 2",
+    "step2": "Pasul 2 din 2",
+    "next": "Următorul",
+    "back": "Înapoi"
+  },
+  "navigation": {
+    "dashboard": "Panou de control",
+    "requests": "Cereri",
+    "settings": "Setări",
+    "plans": "Abonamente",
+    "help": "Ajutor",
+    "currentPlan": "Abonamentul curent",
+    "planGrandfathered": "Abonament: Gratuit anterior",
+    "planPro": "Abonament: Pro",
+    "planRequired": "Este necesar un abonament",
+    "premiumActive": "Toate funcțiile premium sunt activate",
+    "grandfatheredActive": "Accesul Gratuit anterior este activ",
+    "subscribeToContinue": "Abonați-vă pentru a continua"
+  },
+  "appLanguage": {
+    "title": "Limba aplicației",
+    "description": "Alegeți limba panoului de control. Aceasta nu schimbă limbile disponibile clienților.",
+    "label": "Limba de afișare",
+    "saveError": "Limba aplicației nu a putut fi actualizată.",
+    "settingsTitle": "Setări"
+  },
+  "dashboard": {
+    "title": "Panou de control",
+    "subscriptionError": "Abonamentul nu a putut fi reîmprospătat",
+    "description": "Adăugați în câteva minute un buton de retragere conform normelor UE. Colectați și gestionați cererile clienților într-un singur loc, fără configurare complicată.",
+    "plan": "Abonament",
+    "grandfatheredFree": "Gratuit anterior",
+    "planPro": "Pro",
+    "proActive": "Funcțiile Pro sunt active.",
+    "freeActive": "Accesul Gratuit anterior este activ.",
+    "stats": {
+      "total": "Total cereri",
+      "totalHelp": "Din întreaga perioadă de activitate a magazinului",
+      "received": "Primite",
+      "receivedHelp": "În așteptarea unei acțiuni",
+      "reviewed": "Analizate",
+      "reviewedHelp": "Evaluate manual",
+      "closed": "Aprobate / Respinse",
+      "closedHelp": "Stări închise"
+    },
+    "status": {
+      "complete": "Finalizat",
+      "incomplete": "Nefinalizat"
+    },
+    "setup": {
+      "title": "Finalizați configurarea",
+      "description": "Alegeți configurarea potrivită magazinului. Recomandăm butonul flotant pe întregul site și o pagină dedicată retragerii.",
+      "recommended": "Recomandat",
+      "suggested": "Sugerat",
+      "optional": "Opțional",
+      "pageReady": {
+        "title": "Pagina de retragere este pregătită",
+        "description": "Pagina de retragere este pregătită. Adăugați blocul aplicației și un link în e-mailurile de confirmare a comenzii."
+      },
+      "actionFailed": "Acțiunea de configurare a eșuat",
+      "notification": {
+        "title": "Adăugați adresa pentru notificări",
+        "description": "Introduceți adresa la care doriți notificări când un client trimite o cerere de retragere.",
+        "edit": "Editați setările notificărilor",
+        "add": "Adăugați adresa pentru notificări",
+        "destination": "Notificările vor fi trimise la {{email}}."
+      },
+      "floating": {
+        "title": "Activați butonul flotant pe întregul site",
+        "description": "Vizibilitate optimă. Butonul flotant de retragere apare în întregul magazin, oferind acces la formular de pe orice pagină.",
+        "button": "Activați butonul flotant"
+      },
+      "withdrawalPage": {
+        "title": "Creați o pagină dedicată retragerii",
+        "description": "Creați o pagină standard la /pages/eu-withdrawal pentru a oferi clienților un loc clar unde să trimită cererile.",
+        "button": "Creați pagina"
+      },
+      "pageBlock": {
+        "title": "Adăugați blocul butonului pe pagina de retragere",
+        "description": "Deschideți editorul temei și adăugați blocul EU Withdrawal Button pe pagina de retragere.",
+        "button": "Adăugați blocul paginii"
+      },
+      "orderEmail": {
+        "title": "Adăugați linkul în confirmările de comandă",
+        "description": "Adăugați linkul paginii de retragere în e-mailurile de confirmare Shopify, pentru a fi găsit după cumpărare.",
+        "button": "Deschideți notificările",
+        "suggestedLink": "Link sugerat:"
+      },
+      "testRequest": {
+        "title": "Trimiteți o cerere de retragere de test",
+        "description": "Vizitați magazinul sau pagina de retragere și trimiteți o cerere de test pentru a verifica experiența clientului.",
+        "openPage": "Deschideți pagina de retragere",
+        "openStorefront": "Deschideți magazinul"
+      },
+      "review": {
+        "title": "Analizați cererile în panoul de control",
+        "description": "După trimiterea unei cereri reale sau de test, analizați-o în secțiunea Cereri și actualizați starea.",
+        "button": "Deschideți cererile"
+      },
+      "upgrade": {
+        "title": "Treceți la Pro",
+        "description": "Deblocați verificarea comenzilor, setările avansate, automatizarea și procesele personalizate.",
+        "button": "Vedeți Pro"
+      }
+    },
+    "billingSyncFailed": "Starea facturării nu a putut fi sincronizată",
+    "subscriptionStatusError": "Starea abonamentului nu a putut fi reîmprospătată."
+  },
+  "requests": {
+    "title": "Cereri de retragere",
+    "exportCSV": "Exportați CSV",
+    "status": "Stare",
+    "verification": "Verificare",
+    "search": "Căutare",
+    "searchPlaceholder": "E-mail, comandă, referință...",
+    "all": "Toate",
+    "empty": "Nu au fost găsite cereri.",
+    "unknown": "Necunoscut",
+    "noReason": "Nu a fost indicat un motiv",
+    "filterPro": "Filtrarea avansată și exportul CSV sunt disponibile în Pro.",
+    "resourceSingular": "cerere",
+    "resourcePlural": "cereri",
+    "selectedAll": "Toate",
+    "columns": {
+      "reference": "Referință",
+      "customer": "Client",
+      "order": "Comandă",
+      "verification": "Verificare",
+      "reason": "Motiv",
+      "status": "Stare",
+      "submitted": "Trimisă",
+      "actions": "Acțiuni"
+    },
+    "statuses": {
+      "RECEIVED": "Primită",
+      "CONFIRMED": "Confirmată",
+      "REVIEWED": "Analizată",
+      "APPROVED": "Aprobată",
+      "REJECTED": "Respinsă"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Verificată",
+        "tooltip": "Comandă găsită în termenul de retragere"
+      },
+      "NOT_FOUND": {
+        "label": "Comanda nu a fost găsită",
+        "tooltip": "Nu a fost găsită o comandă corespunzătoare în Shopify"
+      },
+      "EXPIRED": {
+        "label": "Termen expirat",
+        "tooltip": "Comandă găsită, dar termenul de retragere a expirat"
+      },
+      "ERROR": {
+        "label": "Indisponibilă",
+        "tooltip": "Comanda nu a putut fi verificată din cauza unei probleme Shopify sau API"
+      },
+      "UNVERIFIED": {
+        "label": "Neverificată",
+        "tooltip": "Verificarea automată a comenzilor este disponibilă în Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Comandă nevalidă"
+    },
+    "deleteCustomer": {
+      "button": "Ștergeți datele clientului",
+      "title": "Ștergeți datele clientului",
+      "description": "Toate datele de retragere stocate pentru {{email}} vor fi șterse definitiv."
+    },
+    "bulkDelete": {
+      "button": "Ștergeți selecția",
+      "title": "Ștergeți cererile selectate",
+      "confirm": "Ștergeți cererile",
+      "description_one": "Va fi ștearsă definitiv {{count}} cerere de retragere selectată.",
+      "description_other": "Vor fi șterse definitiv {{count}} de cereri de retragere selectate.",
+      "description_few": "Vor fi șterse definitiv {{count}} cereri de retragere selectate."
+    },
+    "delete": "Ștergeți",
+    "cancel": "Anulați",
+    "scrollLabel": "Derulați cererile de retragere pe orizontală",
+    "errors": {
+      "temporary": "Problemă temporară a serverului. Încercați din nou în câteva momente.",
+      "update": "Starea cererii nu a putut fi actualizată.",
+      "export": "CSV nu poate fi exportat acum. Încercați din nou în curând."
+    }
+  },
+  "settings": {
+    "title": "Setări",
+    "loading": "Se încarcă setările",
+    "saveFailed": "Setările nu au putut fi salvate",
+    "general": {
+      "title": "Setări generale",
+      "customerLanguages": "Limbile formularului pentru clienți",
+      "customerLanguagesDescription": "Alegeți limbile pe care clienții le pot folosi în formularul de retragere.",
+      "availableLanguages": "Limbi disponibile clienților",
+      "defaultLanguage": "Limba implicită",
+      "defaultLanguageHelp": "Formularul se deschide în această limbă. Clienții pot alege o altă limbă activată.",
+      "basicLanguagesHelp": "Abonamentul Gratuit anterior include engleza și încă o limbă. Treceți la Pro pentru toate limbile acceptate.",
+      "notificationEmail": "E-mail pentru notificările de retragere",
+      "notificationEmailHelp": "Alertele interne despre cererile noi de retragere sunt trimise aici.",
+      "upgradeTitle": "Treceți la Pro pentru setările avansate",
+      "upgradeDescription": "Termenele de retragere ajustabile sunt disponibile în Pro.",
+      "legalPage": "URL-ul paginii juridice",
+      "privacyPage": "URL-ul paginii de confidențialitate",
+      "supportEmail": "E-mail pentru asistența clienților",
+      "supportEmailHelp": "Afișat clienților și folosit ca adresă de răspuns pentru livrarea gestionată.",
+      "basicPeriod": "Abonamentul Gratuit anterior folosește un termen orientativ de 14 zile. Validarea automată nu este aplicată.",
+      "withdrawalPeriod": "Termen de retragere (zile)",
+      "periodBasicHelp": "Clienții primesc un termen orientativ de 14 zile. Treceți la Pro pentru personalizare și validare automată.",
+      "periodProHelp": "Stabiliți termenul de retragere. Cererile vor fi validate în raport cu acesta când este posibil."
+    },
+    "errors": {
+      "basicLanguageLimit": "Abonamentul Gratuit anterior include engleza și încă o limbă.",
+      "selectLanguage": "Selectați cel puțin o limbă.",
+      "save": "Setările nu au putut fi salvate.",
+      "saveFirst": "Salvați sau renunțați la celelalte modificări înainte de următoarea acțiune: {{action}}."
+    },
+    "plans": {
+      "basic": "Gratuit anterior",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Livrarea e-mailurilor",
+      "description": "Alegeți cum sunt trimise e-mailurile de confirmare către clienți.",
+      "deliveryMethod": "Metoda de livrare",
+      "managed": "Gestionată de GL6",
+      "managedOption": "Livrare gestionată de GL6 — Recomandată",
+      "managedHelp": "E-mailurile de confirmare sunt trimise prin serviciul verificat GL6. Răspunsurile clienților sunt direcționate către adresa de asistență.",
+      "smtpOption": "SMTP personalizat — Pro",
+      "smtpOptionHelp": "Conectați furnizorul de e-mail cu datele de autentificare SMTP.",
+      "proTitle": "Livrarea e-mailurilor cu marca proprie este disponibilă în Pro",
+      "proDescription": "Magazinele Gratuit anterior folosesc livrarea GL6. Răspunsurile sunt trimise către adresa de asistență configurată mai sus.",
+      "connected": "Conectat",
+      "connectionFailed": "Conectarea a eșuat",
+      "requiresTesting": "Necesită testare",
+      "statuses": {
+        "notConfigured": "Neconfigurat",
+        "verified": "Verificat",
+        "pending": "În așteptare",
+        "notStarted": "Neînceput",
+        "failed": "Eșuat",
+        "failure": "Eșuat",
+        "temporaryFailure": "Eroare temporară"
+      },
+      "domain": {
+        "intro": "Recomandăm un subdomeniu dedicat, precum withdrawals.example.com. Adăugați înregistrările DNS de mai jos, apoi verificați domeniul.",
+        "label": "Domeniu sau subdomeniu de trimitere",
+        "help": "Nu includeți https:// sau o cale.",
+        "add": "Adăugați domeniul de trimitere",
+        "recordsHelp": "Adăugați toate înregistrările DNS necesare înainte de verificare.",
+        "columns": {
+          "type": "Tip",
+          "name": "Nume",
+          "value": "Valoare",
+          "priority": "Prioritate",
+          "status": "Stare"
+        },
+        "issue": "Problemă cu domeniul de trimitere",
+        "check": "Verificați starea",
+        "verify": "Verificați domeniul",
+        "remove": "Eliminați domeniul",
+        "verifiedTitle": "Domeniul de trimitere este verificat",
+        "verifiedDescription": "Puteți alege numele și adresa de e-mail a expeditorului pentru confirmările clienților.",
+        "fromName": "Numele expeditorului",
+        "fromEmail": "E-mailul expeditorului",
+        "storePlaceholder": "Numele magazinului",
+        "emailHelp": "Adresa trebuie să se termine cu @{{domain}}.",
+        "saveSender": "Salvați datele expeditorului"
+      },
+      "smtp": {
+        "intro": "Introduceți datele SMTP ale furnizorului de e-mail. Salvați setările înainte de testarea conexiunii.",
+        "host": "Gazdă SMTP",
+        "port": "Port SMTP",
+        "portHelp": "Folosiți de obicei 587 pentru STARTTLS sau 465 pentru SSL/TLS.",
+        "security": "Securitatea conexiunii",
+        "starttls": "STARTTLS — de obicei portul 587",
+        "ssl": "SSL/TLS — de obicei portul 465",
+        "username": "Utilizator SMTP",
+        "usernameHelp": "Acesta este adesea adresa completă de e-mail.",
+        "password": "Parolă SMTP",
+        "savedPasswordPlaceholder": "Lăsați necompletat pentru a păstra parola salvată",
+        "newPasswordPlaceholder": "Introduceți parola SMTP",
+        "savedPasswordHelp": "O parolă este deja stocată în siguranță. Introduceți alta numai pentru a o înlocui.",
+        "newPasswordHelp": "Unii furnizori cer o parolă de aplicație în locul parolei obișnuite a contului.",
+        "fromName": "Numele expeditorului",
+        "fromEmail": "E-mailul expeditorului",
+        "storePlaceholder": "Numele magazinului",
+        "fromEmailHelp": "Furnizorul SMTP trebuie să permită această adresă ca expeditor.",
+        "connectionFailed": "Conexiunea SMTP a eșuat",
+        "test": "Testați conexiunea",
+        "disconnect": "Deconectați SMTP",
+        "saveBeforeTest": "Salvați modificările înainte de testarea conexiunii."
+      },
+      "errors": {
+        "saveSmtpFirst": "Salvați setările SMTP înainte de testarea conexiunii.",
+        "smtpFailed": "Conexiunea SMTP a eșuat.",
+        "disconnectSmtp": "SMTP nu a putut fi deconectat.",
+        "domainRequired": "Introduceți mai întâi un domeniu sau subdomeniu.",
+        "createDomain": "Domeniul de trimitere nu a putut fi creat.",
+        "refreshDomain": "Domeniul de trimitere nu a putut fi reîmprospătat.",
+        "verifyDomain": "Verificarea domeniului nu a putut fi pornită.",
+        "verifyBeforeSender": "Verificați domeniul de trimitere înainte de salvarea adresei expeditorului.",
+        "saveSender": "Adresa expeditorului nu a putut fi salvată.",
+        "removeDomain": "Domeniul de trimitere nu a putut fi eliminat.",
+        "dirtyActions": {
+          "disconnectSmtp": "deconectarea SMTP",
+          "createDomain": "crearea unui domeniu de trimitere",
+          "checkDomain": "verificarea stării domeniului de trimitere",
+          "saveSender": "salvarea adresei expeditorului",
+          "removeDomain": "eliminarea domeniului de trimitere"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Abonamente",
+    "grandfatheredFree": "Gratuit anterior",
+    "pro": "Pro",
+    "current": "Curent",
+    "legacyDescription": "Drept anterior — fără costuri",
+    "legacyWarning": "Trecerea la un abonament superior încheie definitiv acest drept anterior.",
+    "manageSubscription": "Gestionați abonamentul",
+    "subscribePro": "Abonați-vă la Pro",
+    "errors": {
+      "title": "Pagina de prețuri Shopify nu a putut fi deschisă",
+      "missingUrl": "Shopify nu a returnat un URL pentru prețuri.",
+      "openFailed": "Pagina de prețuri Shopify nu a putut fi deschisă."
+    },
+    "features": {
+      "withdrawalFlow": "Proces de retragere conform normelor UE",
+      "unlimitedRequests": "Cereri de retragere nelimitate",
+      "confirmationEmails": "E-mailuri de confirmare automate",
+      "themeBlock": "Suport pentru blocurile aplicației în temă",
+      "requestDashboard": "Panou pentru cereri",
+      "merchantNotifications": "Notificări pentru comerciant",
+      "basicCompliance": "Conformitate de bază inclusă",
+      "coreManagement": "Gestionarea de bază a cererilor de retragere",
+      "euLanguages": "Toate limbile UE acceptate",
+      "customPeriod": "Termen de retragere personalizat cu validare",
+      "customBranding": "Marcă și culori personalizate",
+      "advancedManagement": "Export CSV și gestionarea avansată a cererilor"
+    }
+  },
+  "help": {
+    "title": "Ajutor",
+    "commonQuestions": "Întrebări frecvente",
+    "introduction": "Găsiți răspunsuri rapide despre configurare și depanare.",
+    "supportTitle": "Mai aveți nevoie de ajutor?",
+    "supportDescription": "Dacă răspunsurile nu rezolvă problema, selectați Obțineți asistență din meniul ⋯ din dreapta sus pentru a ne contacta prin Shopify.",
+    "supportResponse": "Cererile de asistență primesc de obicei răspuns într-o zi lucrătoare.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "De ce aplicația nu funcționează cu Shopify Canvas?",
+        "answer": "Shopify Canvas este în acces anticipat și nu acceptă încă blocurile sau încorporările aplicațiilor necesare butonului de retragere. Aceasta este o limitare actuală a Canvas. Folosiți o temă compatibilă în editorul standard Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "De ce butonul de retragere nu apare în magazin?",
+        "answer": "Verificați dacă încorporarea sau blocul EU Withdrawal Button este activ în tema curentă. După schimbarea sau publicarea unei teme poate fi necesară reactivarea."
+      },
+      "buttonPosition": {
+        "question": "Pot schimba poziția butonului de retragere?",
+        "answer": "Da. Deschideți Setări pentru a ajusta poziția butonului flotant pe computer și mobil."
+      },
+      "buttonAppearance": {
+        "question": "Pot schimba aspectul butonului?",
+        "answer": "Da. Personalizați opțiunile de aspect disponibile în Setări."
+      },
+      "requestSubmitted": {
+        "question": "Ce se întâmplă când un client trimite o cerere de retragere?",
+        "answer": "Cererea este înregistrată și apare în Cereri, unde o puteți analiza și actualiza starea."
+      },
+      "notificationEmail": {
+        "question": "Voi primi un e-mail când un client trimite o cerere?",
+        "answer": "Da, dacă ați configurat o adresă pentru notificări. Verificați Setări dacă notificările nu sosesc."
+      },
+      "withdrawalPeriod": {
+        "question": "Pot schimba termenul de retragere?",
+        "answer": "Da. Termenul de retragere se configurează în Setări."
+      },
+      "automaticRefund": {
+        "question": "Aplicația rambursează sau anulează automat o comandă?",
+        "answer": "Nu. O cerere de retragere nu rambursează și nu anulează automat comanda Shopify. Dumneavoastră controlați analiza și procesarea cererii."
+      },
+      "previousRequests": {
+        "question": "Pot vedea cererile de retragere anterioare?",
+        "answer": "Da. Deschideți Cereri pentru a vedea cererile trimise prin aplicație."
+      },
+      "multipleLanguages": {
+        "question": "Aplicația acceptă mai multe limbi?",
+        "answer": "Limbile sunt configurabile. Gestionați opțiunile disponibile în Setări."
+      },
+      "themeChanged": {
+        "question": "Am schimbat tema Shopify și butonul a dispărut. Ce fac?",
+        "answer": "Deschideți editorul noii teme și activați încorporarea sau blocul EU Withdrawal Button."
+      },
+      "hideButton": {
+        "question": "Pot ascunde temporar butonul de retragere?",
+        "answer": "Da. Puteți dezactiva butonul magazinului fără să dezinstalați aplicația."
+      },
+      "missingEmails": {
+        "question": "De ce nu primesc e-mailurile de notificare?",
+        "answer": "Verificați adresa de notificări și setările de livrare în Setări. Verificați și folderul spam."
+      },
+      "legalCompliance": {
+        "question": "Aplicația garantează conformitatea juridică a magazinului?",
+        "answer": "Nu. Aplicația oferă instrumente pentru gestionarea cererilor de retragere. Rămâneți responsabil pentru respectarea legilor aplicabile afacerii de către politicile și procesele magazinului."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Magazinul nu a fost găsit.",
+    "entitlementUnavailable": "Dreptul la Shopify App Pricing nu a putut fi verificat.",
+    "planRequired": "Este necesar un abonament Shopify plătit.",
+    "languagesInvalid": "Limbile selectate nu sunt valide.",
+    "basicLanguageLimit": "Abonamentul Gratuit anterior include engleza și încă o limbă.",
+    "withdrawalPeriod": "Termenul de retragere trebuie să fie între 1 și 365 de zile.",
+    "smtpHost": "Gazda SMTP este obligatorie.",
+    "smtpPort": "Verificarea SMTP este limitată la porturile 465 și 587.",
+    "smtpUsername": "Utilizatorul SMTP este obligatoriu.",
+    "smtpFromEmail": "Adresa de e-mail a expeditorului este obligatorie.",
+    "smtpPassword": "Parola SMTP este obligatorie.",
+    "settingsUpdate": "Setările nu au putut fi actualizate.",
+    "requestNotFound": "Cererea nu a fost găsită.",
+    "invalidStatus": "Starea cererii nu este validă.",
+    "setupStatus": "Starea configurării nu a putut fi încărcată.",
+    "upgradeRequired": "Treceți la Pro pentru această funcție."
+  }
+}
