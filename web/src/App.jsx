@@ -23,16 +23,34 @@ import SettingsPage from "./pages/SettingsPage.jsx";
 import PlansPage from "./pages/PlansPage.jsx";
 import DpaPage from "./pages/DpaPage.jsx";
 import HelpPage from "./pages/HelpPage.jsx";
+import { useTranslation } from "react-i18next";
+
+import {
+    normalizeAdminLanguage,
+} from "./i18n";
+
+import polarisEn from "@shopify/polaris/locales/en.json";
+import polarisDe from "@shopify/polaris/locales/de.json";
+
+const POLARIS_TRANSLATIONS = {
+    en: polarisEn,
+    de: polarisDe,
+};
 
 const tabs = [
-    { key: "dashboard", label: "Dashboard", icon: HomeIcon },
-    { key: "requests", label: "Requests", icon: OrderIcon },
-    { key: "settings", label: "Settings", icon: SettingsIcon },
-    { key: "plans", label: "Plans", icon: ProductIcon },
-    { key: "help", label: "Help", icon: QuestionCircleIcon }
+    { key: "dashboard", labelKey: "navigation.dashboard", icon: HomeIcon },
+    { key: "requests", labelKey: "navigation.requests", icon: OrderIcon },
+    { key: "settings", labelKey: "navigation.settings", icon: SettingsIcon },
+    { key: "plans", labelKey: "navigation.plans", icon: ProductIcon },
+    { key: "help", labelKey: "navigation.help", icon: QuestionCircleIcon },
 ];
 
 export default function App() {
+    const { t, i18n } = useTranslation();
+
+    const adminLanguage = normalizeAdminLanguage(
+        i18n.resolvedLanguage || i18n.language
+    );
     const [tab, setTab] = useState("dashboard");
 
     const [boot, setBoot] = useState({ loading: true, error: "", data: null });
@@ -40,11 +58,13 @@ export default function App() {
 
     const title = useMemo(() => {
         if (boot.data?.shop?.entitlement?.kind === "PAYMENT_REQUIRED") {
-            return "Plans";
+            return t("navigation.plans");
         }
         const active = tabs.find((item) => item.key === tab);
-        return active ? active.label : "Dashboard";
-    }, [tab, boot.data]);
+        return active
+            ? t(`navigation.${active.key}`)
+            : t("navigation.dashboard");
+    }, [tab, boot.data, t]);
 
     function handleTabChange(nextTab) {
         if (nextTab === tab) {
@@ -69,6 +89,14 @@ export default function App() {
             }
 
             const data = await apiGet("/admin/me");
+
+            const savedLanguage = normalizeAdminLanguage(
+                data.shop?.adminLocale
+            );
+
+            if (i18n.language !== savedLanguage) {
+                await i18n.changeLanguage(savedLanguage);
+            }
 
             setBoot({
                 loading: false,
@@ -95,6 +123,19 @@ export default function App() {
         load();
     }, []);
 
+    useEffect(() => {
+        const savedLanguage = boot.data?.shop?.adminLocale;
+
+        if (!savedLanguage) return;
+
+        const nextLanguage =
+            normalizeAdminLanguage(savedLanguage);
+
+        if (i18n.language !== nextLanguage) {
+            void i18n.changeLanguage(nextLanguage);
+        }
+    }, [boot.data?.shop?.adminLocale, i18n]);
+
     const navigation = (
         <Navigation location="/">
             <Navigation.Section
@@ -106,40 +147,43 @@ export default function App() {
                         )
                         : tabs
                 ).map((item) => ({
-                    label: item.label,
+                    label: t(item.labelKey),
                     icon: item.icon,
                     selected: item.key === tab,
                     onClick: () => handleTabChange(item.key)
                 }))}
             />
 
+
             <Navigation.Section
-                title="Current plan"
+                title={t("navigation.currentPlan")}
                 items={[
                     {
                         label: boot.data?.shop?.entitlement?.isGrandfatheredFree
-                            ? "Plan: Grandfathered Free"
+                            ? t("navigation.planGrandfathered")
                             : boot.data?.shop?.entitlement?.isPaid
-                                ? "Plan: Pro"
-                                : "Plan required",
+                                ? t("navigation.planPro")
+                                : t("navigation.planRequired"),
                     },
                     {
                         label: boot.data?.shop?.entitlement?.isPaid
-                            ? "All premium controls enabled"
+                            ? t("navigation.premiumActive")
                             : boot.data?.shop?.entitlement?.isGrandfatheredFree
-                                ? "Legacy Free access active"
-                                : "Subscribe to continue",
-                    }
+                                ? t("navigation.grandfatheredActive")
+                                : t("navigation.subscribeToContinue"),
+                    },
                 ]}
             />
         </Navigation>
     );
 
     return (
-        <AppProvider i18n={{}}>
+        <AppProvider
+            i18n={POLARIS_TRANSLATIONS[adminLanguage]}
+        >
             <Frame navigation={boot.data?.shop?.dpaAcceptedAt ? navigation : null}>
                 {boot.loading && (
-                    <Page title={title}>
+                    <Page>
                         <Layout>
                             <Layout.Section>
                                 <Card>

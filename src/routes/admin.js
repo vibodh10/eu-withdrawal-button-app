@@ -107,6 +107,7 @@ function publicShopView(shop) {
         shopDomain: shop.shopDomain,
         plan: shop.plan,
         locale: shop.locale,
+        adminLocale: shop.adminLocale || "en",
         enabledLanguages: parseEnabledLanguages(
             shop.enabledLanguages
         ),
@@ -178,7 +179,12 @@ adminRouter.get("/me", async (req, res) => {
 });
 
 adminRouter.use((req, res, next) => {
-    if (req.path === "/dpa/accept") return next();
+    if (
+        req.path === "/dpa/accept" ||
+        req.path === "/admin-locale"
+    ) {
+        return next();
+    }
     if (hasAppEntitlement(req.shop)) return next();
 
     return res.status(402).json({
@@ -878,17 +884,65 @@ adminRouter.delete(
     }
 );
 
-adminRouter.post('/dpa/accept', async (req, res) => {
-  const shop = req.shop;
+adminRouter.post("/dpa/accept", async (req, res) => {
+    try {
+        const shop = req.shop;
+        const adminLocale = req.body?.adminLocale;
 
-  await prisma.shop.update({
-    where: { id: shop.id },
-    data: {
-      dpaAcceptedAt: new Date()
+        if (!["en", "de"].includes(adminLocale)) {
+            return res.status(400).json({
+                error: "Please select a supported language.",
+            });
+        }
+
+        const updated = await prisma.shop.update({
+            where: { id: shop.id },
+            data: {
+                adminLocale,
+                dpaAcceptedAt: shop.dpaAcceptedAt || new Date(),
+            },
+        });
+
+        return res.json({
+            success: true,
+            adminLocale: updated.adminLocale,
+        });
+    } catch (error) {
+        console.error("DPA acceptance failed:", error);
+
+        return res.status(500).json({
+            error: "Could not complete setup.",
+        });
     }
-  });
+});
 
-  res.json({ success: true });
+adminRouter.patch("/admin-locale", async (req, res) => {
+    try {
+        const adminLocale = req.body?.adminLocale;
+
+        if (!["en", "de"].includes(adminLocale)) {
+            return res.status(400).json({
+                error: "Unsupported admin language.",
+            });
+        }
+
+        const updated = await prisma.shop.update({
+            where: { id: req.shop.id },
+            data: { adminLocale },
+            select: { adminLocale: true },
+        });
+
+        return res.json({
+            success: true,
+            adminLocale: updated.adminLocale,
+        });
+    } catch (error) {
+        console.error("Updating admin language failed:", error);
+
+        return res.status(500).json({
+            error: "Could not update the app language.",
+        });
+    }
 });
 
 adminRouter.delete(

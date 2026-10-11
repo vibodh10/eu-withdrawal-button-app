@@ -1,87 +1,153 @@
 import { useState } from "react";
-import { Page, Layout, Card, Text, Button, BlockStack, InlineStack, Banner, Badge } from "@shopify/polaris";
+import { useTranslation } from "react-i18next";
+
+import {
+    Page,
+    Layout,
+    Card,
+    Text,
+    Button,
+    BlockStack,
+    InlineStack,
+    Banner,
+    Badge,
+} from "@shopify/polaris";
+
 import { openManagedPricing } from "../api";
 import FeatureList from "../components/FeatureList.jsx";
 
 export default function PlansPage({ boot }) {
-  const [state, setState] = useState({ working: false, error: "", message: "" });
-  const plans = boot.plans;
-  const entitlement = boot.shop.entitlement;
+    const { t } = useTranslation();
 
-  async function managePlan() {
-    try {
-      setState({
-        working: true,
+    const [state, setState] = useState({
+        working: false,
         error: "",
-        message: ""
-      });
+    });
 
-      const result = await openManagedPricing();
+    const plans = boot.plans;
+    const entitlement = boot.shop.entitlement;
 
-      if (result.confirmationUrl) {
-        window.top.location.href = result.confirmationUrl;
-        return;
-      }
+    async function managePlan() {
+        try {
+            setState({
+                working: true,
+                error: "",
+            });
 
-      setState({
-        working: false,
-        error: "Shopify did not return a pricing URL.",
-        message: "",
-      });
-    } catch (e) {
-      setState({
-        working: false,
-        error: e.message || "Could not open Shopify pricing.",
-        message: ""
-      });
+            const result = await openManagedPricing();
+
+            if (result.confirmationUrl) {
+                window.top.location.href = result.confirmationUrl;
+                return;
+            }
+
+            setState({
+                working: false,
+                error: t("plans.errors.missingUrl"),
+            });
+        } catch (error) {
+            setState({
+                working: false,
+                error:
+                    error.message ||
+                    t("plans.errors.openFailed"),
+            });
+        }
     }
-  }
 
-  return (
-      <Page title="Plans">
-        <Layout>
-          {state.error && (
-              <Layout.Section>
-                <Banner tone="critical" title="Could not open Shopify pricing">
-                  <Text as="p">{state.error}</Text>
-                </Banner>
-              </Layout.Section>
-          )}
+    return (
+        <Page title={t("plans.title")}>
+            <Layout>
 
-          <Layout.Section>
-            <InlineStack gap="400">
-              {entitlement?.isGrandfatheredFree && (
-                  <Card>
-                    <BlockStack gap="200">
-                      <InlineStack gap="200" blockAlign="center">
-                        <Text variant="headingMd">Grandfathered Free</Text>
-                        <Badge tone="success">Current</Badge>
-                      </InlineStack>
-                      <Text>Legacy entitlement — no charge</Text>
-                      <FeatureList items={plans.BASIC.features} />
-                      <Text tone="subdued">
-                        Upgrading permanently ends this legacy entitlement.
-                      </Text>
-                    </BlockStack>
-                  </Card>
-              )}
+                {state.error && (
+                    <Layout.Section>
+                        <Banner
+                            tone="critical"
+                            title={t("plans.errors.title")}
+                            onDismiss={() =>
+                                setState((current) => ({
+                                    ...current,
+                                    error: "",
+                                }))
+                            }
+                        >
+                            <Text as="p">
+                                {state.error}
+                            </Text>
+                        </Banner>
+                    </Layout.Section>
+                )}
 
-              <Card>
-                <BlockStack>
-                  <Text variant="headingMd">Pro</Text>
-                  <Text>{plans.PRO.priceLabel}</Text>
-                  <FeatureList items={plans.PRO.features} />
+                <Layout.Section>
+                    <InlineStack gap="400">
 
-                  <InlineStack gap="200">
-                    <Button variant="primary" onClick={managePlan} loading={state.working}>
-                      {entitlement?.isPaid ? "Manage subscription" : "Subscribe to Pro"}
-                    </Button>
-                  </InlineStack>
-                </BlockStack>
-              </Card>
-            </InlineStack>
-          </Layout.Section>
-        </Layout>
-      </Page>
-  );
+                        {entitlement?.isGrandfatheredFree && (
+                            <Card>
+                                <BlockStack gap="200">
+
+                                    <InlineStack
+                                        gap="200"
+                                        blockAlign="center"
+                                    >
+                                        <Text variant="headingMd">
+                                            {t("plans.grandfatheredFree")}
+                                        </Text>
+
+                                        <Badge tone="success">
+                                            {t("plans.current")}
+                                        </Badge>
+                                    </InlineStack>
+
+                                    <Text>
+                                        {t("plans.legacyDescription")}
+                                    </Text>
+
+                                    <FeatureList
+                                        items={plans.BASIC.features}
+                                    />
+
+                                    <Text tone="subdued">
+                                        {t("plans.legacyWarning")}
+                                    </Text>
+
+                                </BlockStack>
+                            </Card>
+                        )}
+
+                        <Card>
+                            <BlockStack>
+
+                                <Text variant="headingMd">
+                                    {t("plans.pro")}
+                                </Text>
+
+                                <Text>
+                                    {plans.PRO.priceLabel}
+                                </Text>
+
+                                <FeatureList
+                                    items={plans.PRO.features}
+                                />
+
+                                <InlineStack gap="200">
+                                    <Button
+                                        variant="primary"
+                                        onClick={managePlan}
+                                        loading={state.working}
+                                    >
+                                        {entitlement?.isPaid
+                                            ? t("plans.manageSubscription")
+                                            : t("plans.subscribePro")}
+                                    </Button>
+                                </InlineStack>
+
+                            </BlockStack>
+                        </Card>
+
+                    </InlineStack>
+                </Layout.Section>
+
+            </Layout>
+        </Page>
+    );
 }

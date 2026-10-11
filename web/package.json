@@ -13,8 +13,10 @@
     "@shopify/app-bridge-react": "^4.2.10",
     "@shopify/polaris": "^13.9.5",
     "@shopify/polaris-icons": "^9.3.1",
+    "i18next": "^26.4.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-i18next": "^17.0.16"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.4.1",

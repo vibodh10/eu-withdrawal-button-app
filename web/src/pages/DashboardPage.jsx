@@ -14,6 +14,7 @@ import {
 } from "@shopify/polaris";
 import { CheckCircleIcon } from "@shopify/polaris-icons";
 import { apiGet, apiSend, syncBilling } from "../api";
+import { useTranslation } from "react-i18next";
 
 export default function DashboardPage({
                                           boot,
@@ -48,6 +49,7 @@ export default function DashboardPage({
     const shopDomain = boot?.shop?.shopDomain;
     const SHOPIFY_API_KEY = import.meta.env.VITE_SHOPIFY_API_KEY;
     const APP_BLOCK_HANDLE = "withdrawal-button";
+    const { t } = useTranslation();
 
     const withdrawalPageUrl = shopDomain
         ? `https://${shopDomain}/pages/eu-withdrawal`
@@ -98,7 +100,7 @@ export default function DashboardPage({
           <Icon
               source={CheckCircleIcon}
               tone="success"
-              accessibilityLabel="Complete"
+              accessibilityLabel={t("dashboard.status.complete")}
           />
         </span>
             );
@@ -106,7 +108,7 @@ export default function DashboardPage({
 
         return (
             <span
-                aria-label="Not complete"
+                aria-label={t("dashboard.status.incomplete")}
                 role="img"
                 style={{
                     width: "20px",
@@ -245,7 +247,9 @@ export default function DashboardPage({
 
                 if (!cancelled) {
                     setBillingSyncError(
-                        error.message || "Could not refresh subscription status."
+                        error.message === "Failed to sync billing state"
+                            ? "billingSyncFailed"
+                            : "subscriptionStatusError"
                     );
                 }
             }
@@ -289,12 +293,17 @@ export default function DashboardPage({
     }
 
     return (
-        <Page title="Dashboard">
+        <Page title={t("dashboard.title")}>
             <Layout>
                 {billingSyncError && (
                     <Layout.Section>
-                        <Banner tone="warning" title="Could not refresh subscription">
-                            <Text as="p">{billingSyncError}</Text>
+                        <Banner
+                            tone="warning"
+                            title={t("dashboard.subscriptionError")}
+                        >
+                            <Text as="p">
+                                {t(`dashboard.${billingSyncError}`)}
+                            </Text>
                         </Banner>
                     </Layout.Section>
                 )}
@@ -308,26 +317,25 @@ export default function DashboardPage({
                                 </Text>
 
                                 <Text as="p">
-                                    Add a legally compliant EU withdrawal button to your storefront
-                                    in minutes. Collect customer withdrawal requests, manage them in
-                                    one place and stay compliant with EU regulations without complex
-                                    setup.
+                                    {t("dashboard.description")}
                                 </Text>
                             </BlockStack>
 
                             <BlockStack gap="100">
-                                <Text variant="headingSm">Plan</Text>
+                                <Text variant="headingSm">
+                                    {t("dashboard.plan")}
+                                </Text>
                                 <Badge
                                     tone={boot.shop.entitlement?.isPaid ? "success" : "info"}
                                 >
                                     {boot.shop.entitlement?.isGrandfatheredFree
-                                        ? "Grandfathered Free"
-                                        : "Pro"}
+                                        ? t("dashboard.grandfatheredFree")
+                                        : t("dashboard.planPro")}
                                 </Badge>
                                 <Text as="p">
                                     {boot.shop.entitlement?.isPaid
-                                        ? "Pro features are active."
-                                        : "Grandfathered Free access is active."}
+                                        ? t("dashboard.proActive")
+                                        : t("dashboard.freeActive")}
                                 </Text>
                             </BlockStack>
                         </InlineStack>
@@ -338,61 +346,67 @@ export default function DashboardPage({
                     <Grid>
                         <Grid.Cell columnSpan={{ xs: 6, sm: 3 }}>
                             <StatCard
-                                label="Total requests"
+                                label={t("dashboard.stats.total")}
                                 value={stats.total}
-                                helpText="All time across this shop"
+                                helpText={t("dashboard.stats.totalHelp")}
                             />
                         </Grid.Cell>
 
                         <Grid.Cell columnSpan={{ xs: 6, sm: 3 }}>
                             <StatCard
-                                label="Received"
+                                label={t("dashboard.stats.received")}
                                 value={stats.received}
-                                helpText="Waiting for action"
+                                helpText={t("dashboard.stats.receivedHelp")}
                             />
                         </Grid.Cell>
 
                         <Grid.Cell columnSpan={{ xs: 6, sm: 3 }}>
                             <StatCard
-                                label="Reviewed"
+                                label={t("dashboard.stats.reviewed")}
                                 value={stats.reviewed}
-                                helpText="Manually assessed"
+                                helpText={t("dashboard.stats.reviewedHelp")}
                             />
                         </Grid.Cell>
 
                         <Grid.Cell columnSpan={{ xs: 6, sm: 3 }}>
                             <StatCard
-                                label="Approved / Rejected"
+                                label={t("dashboard.stats.closed")}
                                 value={`${stats.approved} / ${stats.rejected}`}
-                                helpText="Closed states"
+                                helpText={t("dashboard.stats.closedHelp")}
                             />
                         </Grid.Cell>
                     </Grid>
                 </Layout.Section>
 
+
                 <Layout.Section>
                     <Card>
                         <BlockStack gap="400">
                             <BlockStack gap="100">
-                                <Text variant="headingMd">Complete your setup</Text>
+                                <Text variant="headingMd">
+                                    {t("dashboard.setup.title")}
+                                </Text>
                                 <Text as="p" tone="subdued">
-                                    Choose the setup that works best for your store. We recommend
-                                    enabling the floating sitewide button and also creating a
-                                    dedicated withdrawal page.
+                                    {t("dashboard.setup.description")}
                                 </Text>
                             </BlockStack>
 
                             {setupResult && (
-                                <Banner tone="success" title="Withdrawal page ready">
+                                <Banner
+                                    tone="success"
+                                    title={t("dashboard.setup.pageReady.title")}
+                                >
                                     <Text as="p">
-                                        Your withdrawal page is ready. You can now add the app block to
-                                        that page and link to it from your order confirmation emails.
+                                        {t("dashboard.setup.pageReady.description")}
                                     </Text>
                                 </Banner>
                             )}
 
                             {setupError && (
-                                <Banner tone="critical" title="Setup action failed">
+                                <Banner
+                                    tone="critical"
+                                    title={t("dashboard.setup.actionFailed")}
+                                >
                                     <Text as="p">{setupError}</Text>
                                 </Banner>
                             )}
@@ -400,103 +414,107 @@ export default function DashboardPage({
                             <BlockStack gap="300">
                                 <SetupCard
                                     complete={setupStatus.notificationEmail}
-                                    title="Add your notification email"
-                                    description="Enter the email address where you want to receive notifications when a customer submits a withdrawal request."
+                                    title={t("dashboard.setup.notification.title")}
+                                    description={t("dashboard.setup.notification.description")}
                                     actions={
                                         <Button
                                             variant={
-                                                boot.shop.merchantNotification ? "secondary" : "primary"
+                                                boot.shop.merchantNotification
+                                                    ? "secondary"
+                                                    : "primary"
                                             }
                                             onClick={onOpenSettings}
                                         >
                                             {boot.shop.merchantNotification
-                                                ? "Edit notification settings"
-                                                : "Add your notification email"}
+                                                ? t("dashboard.setup.notification.edit")
+                                                : t("dashboard.setup.notification.add")}
                                         </Button>
                                     }
                                 >
                                     {boot.shop.merchantNotification && (
                                         <Text as="p">
-                                            Notifications will be sent to{" "}
-                                            <strong>{boot.shop.merchantNotification}</strong>.
+                                            {t("dashboard.setup.notification.destination", {
+                                                email: boot.shop.merchantNotification,
+                                            })}
                                         </Text>
                                     )}
                                 </SetupCard>
 
                                 <SetupCard
                                     complete={setupStatus.floatingEmbed}
-                                    badge="Recommended"
+                                    badge={t("dashboard.setup.recommended")}
                                     badgeTone="success"
-                                    title="Enable floating sitewide button"
-                                    description="Best for visibility. This adds a floating withdrawal button across your storefront so customers can access the form from anywhere."
+                                    title={t("dashboard.setup.floating.title")}
+                                    description={t("dashboard.setup.floating.description")}
                                     actions={
                                         <Button
                                             variant="primary"
                                             onClick={() => openUrl(floatingEmbedUrl)}
                                         >
-                                            Enable floating button
+                                            {t("dashboard.setup.floating.button")}
                                         </Button>
                                     }
                                 />
 
                                 <SetupCard
                                     complete={setupStatus.withdrawalPage}
-                                    badge="Recommended"
+                                    badge={t("dashboard.setup.recommended")}
                                     badgeTone="attention"
-                                    title="Create a dedicated withdrawal page"
-                                    description="Create a standard page at /pages/eu-withdrawal so customers have a clear place to submit withdrawal requests."
+                                    title={t("dashboard.setup.withdrawalPage.title")}
+                                    description={t("dashboard.setup.withdrawalPage.description")}
                                     actions={
                                         <Button
                                             loading={setupLoading}
                                             disabled={setupLoading}
                                             onClick={createWithdrawalPage}
                                         >
-                                            Create page
+                                            {t("dashboard.setup.withdrawalPage.button")}
                                         </Button>
                                     }
                                 />
 
                                 <SetupCard
                                     complete={setupStatus.pageBlock}
-                                    badge="Recommended"
+                                    badge={t("dashboard.setup.recommended")}
                                     badgeTone="attention"
-                                    title="Add button block to the withdrawal page"
-                                    description="Open the theme editor and add the EU Withdrawal Button block to your dedicated withdrawal page."
+                                    title={t("dashboard.setup.pageBlock.title")}
+                                    description={t("dashboard.setup.pageBlock.description")}
                                     actions={
                                         <Button onClick={() => openUrl(appBlockDeepLink)}>
-                                            Add page block
+                                            {t("dashboard.setup.pageBlock.button")}
                                         </Button>
                                     }
                                 />
 
                                 <SetupCard
                                     showStatus={false}
-                                    badge="Suggested"
+                                    badge={t("dashboard.setup.suggested")}
                                     badgeTone="info"
-                                    title="Add the link to order confirmation emails"
-                                    description="Add your withdrawal page link to Shopify order confirmation emails so customers can find it after purchase."
+                                    title={t("dashboard.setup.orderEmail.title")}
+                                    description={t("dashboard.setup.orderEmail.description")}
                                     actions={
                                         <Button onClick={() => openUrl(notificationsUrl)}>
-                                            Open notifications
+                                            {t("dashboard.setup.orderEmail.button")}
                                         </Button>
                                     }
                                 >
                                     <Text as="p">
-                                        Suggested link: <strong>{withdrawalPageUrl}</strong>
+                                        {t("dashboard.setup.orderEmail.suggestedLink")}{" "}
+                                        <strong>{withdrawalPageUrl}</strong>
                                     </Text>
                                 </SetupCard>
 
                                 <SetupCard
                                     complete={setupStatus.testRequest}
-                                    title="Submit a test withdrawal request"
-                                    description="Visit your storefront or withdrawal page and submit a test request to confirm the customer experience works correctly."
+                                    title={t("dashboard.setup.testRequest.title")}
+                                    description={t("dashboard.setup.testRequest.description")}
                                     actions={
                                         <>
                                             <Button onClick={() => openUrl(withdrawalPageUrl)}>
-                                                Open withdrawal page
+                                                {t("dashboard.setup.testRequest.openPage")}
                                             </Button>
                                             <Button onClick={() => openUrl(storefrontUrl)}>
-                                                Open storefront
+                                                {t("dashboard.setup.testRequest.openStorefront")}
                                             </Button>
                                         </>
                                     }
@@ -504,21 +522,27 @@ export default function DashboardPage({
 
                                 <SetupCard
                                     complete={setupStatus.reviewedRequest}
-                                    title="Review requests in your dashboard"
-                                    description="Once a customer or test request is submitted, review it in the Requests section and update its status."
+                                    title={t("dashboard.setup.review.title")}
+                                    description={t("dashboard.setup.review.description")}
                                     actions={
-                                        <Button onClick={onOpenRequests}>Open requests</Button>
+                                        <Button onClick={onOpenRequests}>
+                                            {t("dashboard.setup.review.button")}
+                                        </Button>
                                     }
                                 />
 
                                 {!boot.isPro && (
                                     <SetupCard
                                         showStatus={false}
-                                        badge="Optional"
+                                        badge={t("dashboard.setup.optional")}
                                         badgeTone="info"
-                                        title="Upgrade to Pro"
-                                        description="Unlock order verification, advanced controls, automation, and custom workflows."
-                                        actions={<Button onClick={onOpenPlans}>View Pro</Button>}
+                                        title={t("dashboard.setup.upgrade.title")}
+                                        description={t("dashboard.setup.upgrade.description")}
+                                        actions={
+                                            <Button onClick={onOpenPlans}>
+                                                {t("dashboard.setup.upgrade.button")}
+                                            </Button>
+                                        }
                                     />
                                 )}
                             </BlockStack>

@@ -1,0 +1,454 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Language",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Continue",
+    "save": "Save",
+    "cancel": "Cancel",
+    "loading": "Loading..."
+  },
+  "onboarding": {
+    "welcome": "Welcome to EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Choose your language",
+    "languageDescription": "Select the language you would like to use in the app.",
+    "languageLabel": "App language",
+    "dpaTitle": "2. Data Processing Agreement",
+    "dpaDescription": "To use this app, you must agree to our Data Processing Agreement. It explains how customer data is processed on your behalf.",
+    "viewDpa": "View Data Processing Agreement",
+    "agree": "I have read and agree to the Data Processing Agreement",
+    "acceptContinue": "Accept and continue",
+    "error": "Could not complete setup. Please try again.",
+    "step1": "Step 1 of 2",
+    "step2": "Step 2 of 2",
+    "next": "Next",
+    "back": "Back"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "requests": "Requests",
+    "settings": "Settings",
+    "plans": "Plans",
+    "help": "Help",
+    "currentPlan": "Current plan",
+    "planGrandfathered": "Plan: Grandfathered Free",
+    "planPro": "Plan: Pro",
+    "planRequired": "Plan required",
+    "premiumActive": "All premium controls enabled",
+    "grandfatheredActive": "Grandfathered Free access active",
+    "subscribeToContinue": "Subscribe to continue"
+  },
+  "appLanguage": {
+    "title": "App language",
+    "description": "Choose the language used in the app dashboard. This does not change the languages available to customers.",
+    "label": "Display language",
+    "saveError": "Could not update the app language.",
+    "settingsTitle": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subscriptionError": "Could not refresh subscription",
+    "description": "Add a legally compliant EU withdrawal button to your storefront in minutes. Collect customer withdrawal requests, manage them in one place and stay compliant with EU regulations without complex setup.",
+    "plan": "Plan",
+    "grandfatheredFree": "Grandfathered Free",
+    "planPro": "Pro",
+    "proActive": "Pro features are active.",
+    "freeActive": "Grandfathered Free access is active.",
+    "stats": {
+      "total": "Total requests",
+      "totalHelp": "All time across this shop",
+      "received": "Received",
+      "receivedHelp": "Waiting for action",
+      "reviewed": "Reviewed",
+      "reviewedHelp": "Manually assessed",
+      "closed": "Approved / Rejected",
+      "closedHelp": "Closed states"
+    },
+    "status": {
+      "complete": "Complete",
+      "incomplete": "Not complete"
+    },
+    "setup": {
+      "title": "Complete your setup",
+      "description": "Choose the setup that works best for your store. We recommend enabling the floating sitewide button and also creating a dedicated withdrawal page.",
+      "recommended": "Recommended",
+      "suggested": "Suggested",
+      "optional": "Optional",
+      "pageReady": {
+        "title": "Withdrawal page ready",
+        "description": "Your withdrawal page is ready. You can now add the app block to that page and link to it from your order confirmation emails."
+      },
+      "actionFailed": "Setup action failed",
+      "notification": {
+        "title": "Add your notification email",
+        "description": "Enter the email address where you want to receive notifications when a customer submits a withdrawal request.",
+        "edit": "Edit notification settings",
+        "add": "Add your notification email",
+        "destination": "Notifications will be sent to {{email}}."
+      },
+      "floating": {
+        "title": "Enable floating sitewide button",
+        "description": "Best for visibility. This adds a floating withdrawal button across your storefront so customers can access the form from anywhere.",
+        "button": "Enable floating button"
+      },
+      "withdrawalPage": {
+        "title": "Create a dedicated withdrawal page",
+        "description": "Create a standard page at /pages/eu-withdrawal so customers have a clear place to submit withdrawal requests.",
+        "button": "Create page"
+      },
+      "pageBlock": {
+        "title": "Add button block to the withdrawal page",
+        "description": "Open the theme editor and add the EU Withdrawal Button block to your dedicated withdrawal page.",
+        "button": "Add page block"
+      },
+      "orderEmail": {
+        "title": "Add the link to order confirmation emails",
+        "description": "Add your withdrawal page link to Shopify order confirmation emails so customers can find it after purchase.",
+        "button": "Open notifications",
+        "suggestedLink": "Suggested link:"
+      },
+      "testRequest": {
+        "title": "Submit a test withdrawal request",
+        "description": "Visit your storefront or withdrawal page and submit a test request to confirm the customer experience works correctly.",
+        "openPage": "Open withdrawal page",
+        "openStorefront": "Open storefront"
+      },
+      "review": {
+        "title": "Review requests in your dashboard",
+        "description": "Once a customer or test request is submitted, review it in the Requests section and update its status.",
+        "button": "Open requests"
+      },
+      "upgrade": {
+        "title": "Upgrade to Pro",
+        "description": "Unlock order verification, advanced controls, automation, and custom workflows.",
+        "button": "View Pro"
+      }
+    },
+    "billingSyncFailed": "Failed to sync billing state",
+    "subscriptionStatusError": "Could not refresh subscription status."
+  },
+  "requests": {
+    "title": "Withdrawal requests",
+    "exportCSV": "Export CSV",
+    "status": "Status",
+    "verification": "Verification",
+    "search": "Search",
+    "searchPlaceholder": "Email, order, reference...",
+    "all": "All",
+    "empty": "No requests found.",
+    "unknown": "Unknown",
+    "noReason": "No reason provided",
+    "filterPro": "Advanced filtering and CSV export are available on Pro.",
+    "resourceSingular": "request",
+    "resourcePlural": "requests",
+    "selectedAll": "All",
+    "columns": {
+      "reference": "Reference",
+      "customer": "Customer",
+      "order": "Order",
+      "verification": "Verification",
+      "reason": "Reason",
+      "status": "Status",
+      "submitted": "Submitted",
+      "actions": "Actions"
+    },
+    "statuses": {
+      "RECEIVED": "Received",
+      "CONFIRMED": "Confirmed",
+      "REVIEWED": "Reviewed",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Verified",
+        "tooltip": "Order found and within the withdrawal period"
+      },
+      "NOT_FOUND": {
+        "label": "Order not found",
+        "tooltip": "No matching order was found in Shopify"
+      },
+      "EXPIRED": {
+        "label": "Period expired",
+        "tooltip": "Order found, but the withdrawal period has expired"
+      },
+      "ERROR": {
+        "label": "Unavailable",
+        "tooltip": "Could not verify the order because of a Shopify or API issue"
+      },
+      "UNVERIFIED": {
+        "label": "Not verified",
+        "tooltip": "Automatic order verification is available on Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Invalid order"
+    },
+    "deleteCustomer": {
+      "button": "Delete Customer Data",
+      "title": "Delete customer data",
+      "description": "This will permanently delete all stored withdrawal data for {{email}}."
+    },
+    "bulkDelete": {
+      "button": "Delete selected",
+      "title": "Delete selected requests",
+      "confirm": "Delete requests",
+      "description_one": "This will permanently delete {{count}} selected withdrawal request.",
+      "description_other": "This will permanently delete {{count}} selected withdrawal requests."
+    },
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "scrollLabel": "Scroll withdrawal requests horizontally",
+    "errors": {
+      "temporary": "Temporary server issue. Please try again in a few moments.",
+      "update": "Could not update the request status.",
+      "export": "Could not export CSV right now. Please try again shortly."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "loading": "Loading settings",
+    "saveFailed": "Settings could not be saved",
+    "general": {
+      "title": "General settings",
+      "customerLanguages": "Customer form languages",
+      "customerLanguagesDescription": "Choose the languages customers can use in the withdrawal form.",
+      "availableLanguages": "Languages available to customers",
+      "defaultLanguage": "Default language",
+      "defaultLanguageHelp": "The form opens in this language. Customers can switch to another enabled language.",
+      "basicLanguagesHelp": "The Grandfathered Free plan includes English plus 1 additional language. Upgrade to Pro to enable all supported languages.",
+      "notificationEmail": "Withdrawal notification email",
+      "notificationEmailHelp": "Internal alerts about new withdrawal requests are sent here.",
+      "upgradeTitle": "Upgrade to Pro to unlock advanced settings",
+      "upgradeDescription": "Adjustable withdrawal periods are available on Pro.",
+      "legalPage": "Legal page URL",
+      "privacyPage": "Privacy page URL",
+      "supportEmail": "Customer support email",
+      "supportEmailHelp": "Shown to customers and used as the reply-to address for managed delivery.",
+      "basicPeriod": "The Grandfathered Free plan uses a standard 14-day withdrawal baseline. Automatic validation is not enforced.",
+      "withdrawalPeriod": "Withdrawal period (days)",
+      "periodBasicHelp": "A 14-day baseline is applied for customer guidance. Upgrade to Pro to customise and enable automatic validation.",
+      "periodProHelp": "Set your withdrawal period. Requests will be validated against this when possible."
+    },
+    "errors": {
+      "basicLanguageLimit": "The Grandfathered Free plan includes English plus 1 additional language.",
+      "selectLanguage": "Select at least one language.",
+      "save": "Could not save settings.",
+      "saveFirst": "Save or discard your other settings before you {{action}}."
+    },
+    "plans": {
+      "basic": "Grandfathered Free",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Email delivery",
+      "description": "Choose how customer confirmation emails are sent.",
+      "deliveryMethod": "Delivery method",
+      "managed": "GL6 managed",
+      "managedOption": "GL6 managed delivery — Recommended",
+      "managedHelp": "Confirmation emails are sent through GL6’s verified email delivery service. Customer replies are directed to your support email.",
+      "smtpOption": "Custom SMTP — Pro",
+      "smtpOptionHelp": "Connect your own email provider using SMTP credentials.",
+      "proTitle": "Branded email delivery is available on Pro",
+      "proDescription": "Grandfathered Free stores use GL6 managed delivery. Customer replies are sent to the customer support email configured above.",
+      "connected": "Connected",
+      "connectionFailed": "Connection failed",
+      "requiresTesting": "Requires testing",
+      "statuses": {
+        "notConfigured": "Not configured",
+        "verified": "Verified",
+        "pending": "Pending",
+        "notStarted": "Not started",
+        "failed": "Failed",
+        "failure": "Failed",
+        "temporaryFailure": "Temporary failure"
+      },
+      "domain": {
+        "intro": "We recommend using a dedicated subdomain such as withdrawals.example.com. Add the DNS records shown below, then verify the domain.",
+        "label": "Sending domain or subdomain",
+        "help": "Do not include https:// or a path.",
+        "add": "Add sending domain",
+        "recordsHelp": "Add all required DNS records before starting verification.",
+        "columns": {
+          "type": "Type",
+          "name": "Name",
+          "value": "Value",
+          "priority": "Priority",
+          "status": "Status"
+        },
+        "issue": "Sending domain issue",
+        "check": "Check status",
+        "verify": "Verify domain",
+        "remove": "Remove domain",
+        "verifiedTitle": "Sending domain verified",
+        "verifiedDescription": "You can now choose the sender name and email address used for customer confirmation emails.",
+        "fromName": "From name",
+        "fromEmail": "From email",
+        "storePlaceholder": "Your store name",
+        "emailHelp": "This address must end with @{{domain}}.",
+        "saveSender": "Save sender details"
+      },
+      "smtp": {
+        "intro": "Enter the SMTP details supplied by your email provider. Save the settings before testing the connection.",
+        "host": "SMTP host",
+        "port": "SMTP port",
+        "portHelp": "Use 587 for STARTTLS or 465 for SSL/TLS in most cases.",
+        "security": "Connection security",
+        "starttls": "STARTTLS — usually port 587",
+        "ssl": "SSL/TLS — usually port 465",
+        "username": "SMTP username",
+        "usernameHelp": "This is often your complete email address.",
+        "password": "SMTP password",
+        "savedPasswordPlaceholder": "Leave blank to keep the saved password",
+        "newPasswordPlaceholder": "Enter SMTP password",
+        "savedPasswordHelp": "A password is already stored securely. Enter a new password only when replacing it.",
+        "newPasswordHelp": "Some providers require an app password rather than your normal account password.",
+        "fromName": "From name",
+        "fromEmail": "From email",
+        "storePlaceholder": "Your store name",
+        "fromEmailHelp": "Your SMTP provider must allow this address to be used as the sender.",
+        "connectionFailed": "SMTP connection failed",
+        "test": "Test connection",
+        "disconnect": "Disconnect SMTP",
+        "saveBeforeTest": "Save your changes before testing the connection."
+      },
+      "errors": {
+        "saveSmtpFirst": "Save your SMTP settings before testing the connection.",
+        "smtpFailed": "SMTP connection failed.",
+        "disconnectSmtp": "Could not disconnect SMTP.",
+        "domainRequired": "Enter a domain or subdomain first.",
+        "createDomain": "Could not create the sending domain.",
+        "refreshDomain": "Could not refresh the sending domain.",
+        "verifyDomain": "Could not start domain verification.",
+        "verifyBeforeSender": "Verify the sending domain before saving the sender address.",
+        "saveSender": "Could not save the sender address.",
+        "removeDomain": "Could not remove the sending domain.",
+        "dirtyActions": {
+          "disconnectSmtp": "disconnect SMTP",
+          "createDomain": "create a sending domain",
+          "checkDomain": "check the sending domain status",
+          "saveSender": "save the sender address",
+          "removeDomain": "remove the sending domain"
+        }
+      }
+    }
+  },
+
+  "plans": {
+    "title": "Plans",
+    "grandfatheredFree": "Grandfathered Free",
+    "pro": "Pro",
+    "current": "Current",
+    "legacyDescription": "Legacy entitlement — no charge",
+    "legacyWarning": "Upgrading permanently ends this legacy entitlement.",
+    "manageSubscription": "Manage subscription",
+    "subscribePro": "Subscribe to Pro",
+    "errors": {
+      "title": "Could not open Shopify pricing",
+      "missingUrl": "Shopify did not return a pricing URL.",
+      "openFailed": "Could not open Shopify pricing."
+    },
+
+    "features": {
+      "withdrawalFlow": "EU-compliant withdrawal flow",
+      "unlimitedRequests": "Unlimited withdrawal requests",
+      "confirmationEmails": "Automatic confirmation emails",
+      "themeBlock": "Theme app block support",
+      "requestDashboard": "Request dashboard",
+      "merchantNotifications": "Merchant notifications",
+      "basicCompliance": "Basic compliance included",
+      "coreManagement": "Core withdrawal request management",
+      "euLanguages": "All supported EU languages",
+      "customPeriod": "Custom withdrawal period with validation",
+      "customBranding": "Custom branding and brand colors",
+      "advancedManagement": "CSV export & advanced request management"
+    }
+  },
+
+  "help": {
+    "title": "Help",
+    "commonQuestions": "Common questions",
+    "introduction": "Find quick answers to common setup and troubleshooting questions.",
+    "supportTitle": "Still need help?",
+    "supportDescription": "If the answers above do not solve the issue, select Get support from the ⋯ menu in the top right to contact us through Shopify.",
+    "supportResponse": "Support requests are usually answered within one business day.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Why doesn't the app work with Shopify Canvas?",
+        "answer": "Shopify Canvas is currently in early access and does not yet support app blocks or app embeds, which our app uses to display and configure the withdrawal button. This is a current limitation of Shopify Canvas. You can continue using the app with a compatible theme in Shopify's standard theme editor."
+      },
+      "buttonNotShowing": {
+        "question": "Why is the withdrawal button not showing on my store?",
+        "answer": "Check that the EU Withdrawal Button app embed or app block is enabled in your current Shopify theme. If you recently changed or published a new theme, you may need to enable it again."
+      },
+      "buttonPosition": {
+        "question": "Can I change where the withdrawal button appears?",
+        "answer": "Yes. Open Settings in the app to adjust the floating button position for desktop and mobile."
+      },
+      "buttonAppearance": {
+        "question": "Can I change the appearance of the button?",
+        "answer": "Yes. You can customise the available button appearance settings from the app Settings page."
+      },
+      "requestSubmitted": {
+        "question": "What happens when a customer submits a withdrawal request?",
+        "answer": "The request is recorded in the app and appears in the Requests section, where you can review it and update its status."
+      },
+      "notificationEmail": {
+        "question": "Will I receive an email when a customer submits a request?",
+        "answer": "Yes, if you have configured a notification email in the app. Check your Settings page if notifications are not arriving."
+      },
+      "withdrawalPeriod": {
+        "question": "Can I change the withdrawal period?",
+        "answer": "Yes. The withdrawal period can be configured from the app Settings page."
+      },
+      "automaticRefund": {
+        "question": "Does the app automatically refund or cancel an order?",
+        "answer": "No. Submitting a withdrawal request does not automatically refund or cancel the Shopify order. You remain in control of reviewing and processing the request."
+      },
+      "previousRequests": {
+        "question": "Can I see previous withdrawal requests?",
+        "answer": "Yes. Open the Requests section to view withdrawal requests submitted through the app."
+      },
+      "multipleLanguages": {
+        "question": "Does the app support multiple languages?",
+        "answer": "The app supports configurable languages. You can manage the available language options from Settings."
+      },
+      "themeChanged": {
+        "question": "I changed my Shopify theme and the button disappeared. What should I do?",
+        "answer": "Open the theme editor for your new theme and make sure the EU Withdrawal Button app embed or app block is enabled."
+      },
+      "hideButton": {
+        "question": "Can I temporarily hide the withdrawal button?",
+        "answer": "Yes. You can disable the storefront button without uninstalling the app."
+      },
+      "missingEmails": {
+        "question": "Why am I not receiving notification emails?",
+        "answer": "Check that your notification email and email delivery settings are configured correctly in Settings. Also check your spam or junk folder."
+      },
+      "legalCompliance": {
+        "question": "Does this app guarantee that my store is legally compliant?",
+        "answer": "No. The app provides tools to help you offer and manage withdrawal requests. You remain responsible for making sure your store policies and processes meet the laws that apply to your business."
+      }
+    }
+  },
+
+  "apiErrors": {
+    "shopNotFound": "Shop not found.",
+    "entitlementUnavailable": "Could not verify Shopify App Pricing entitlement.",
+    "planRequired": "A paid Shopify plan is required.",
+    "languagesInvalid": "The selected languages are invalid.",
+    "basicLanguageLimit": "The Grandfathered Free plan includes English plus one additional language.",
+    "withdrawalPeriod": "The withdrawal period must be between 1 and 365 days.",
+    "smtpHost": "SMTP host is required.",
+    "smtpPort": "SMTP verification is limited to ports 465 and 587.",
+    "smtpUsername": "SMTP username is required.",
+    "smtpFromEmail": "Sender email address is required.",
+    "smtpPassword": "SMTP password is required.",
+    "settingsUpdate": "Could not update settings.",
+    "requestNotFound": "Request not found.",
+    "invalidStatus": "Invalid request status.",
+    "setupStatus": "Could not load setup status.",
+    "upgradeRequired": "Upgrade to Pro to use this feature."
+  }
+}

@@ -34,6 +34,7 @@ model Shop {
   billingSyncedAt            DateTime?
   billingVersion             Int                 @default(0)
   locale                     String              @default("en")
+  adminLocale String @default("en")
   enabledLanguages           String              @default("[\"en\",\"de\"]")
   brandingName               String?
   brandingPrimaryColor       String?
