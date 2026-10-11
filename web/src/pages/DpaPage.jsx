@@ -1,63 +1,172 @@
-import { Page, Card, Text, Button, BlockStack, Link, Checkbox } from "@shopify/polaris";
+
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import {
+    Page,
+    Card,
+    Text,
+    Button,
+    BlockStack,
+    InlineStack,
+    Link,
+    Checkbox,
+    Select,
+    Banner,
+} from "@shopify/polaris";
+
 import { apiSend } from "../api";
+import { normalizeAdminLanguage } from "../i18n";
+
+const LANGUAGE_OPTIONS = [
+    { label: "English", value: "en" },
+    { label: "Deutsch", value: "de" },
+];
 
 export default function DpaPage({ onAccepted }) {
-    const [loading, setLoading] = useState(false);
+    const { i18n } = useTranslation();
+
+    const [step, setStep] = useState(1);
+
+    const [language, setLanguage] = useState(() =>
+        normalizeAdminLanguage(i18n.resolvedLanguage || i18n.language)
+    );
+
+    const translate = i18n.getFixedT(language);
+
     const [checked, setChecked] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    function changeLanguage(value) {
+        const nextLanguage = normalizeAdminLanguage(value);
+
+        setLanguage(nextLanguage);
+        setError("");
+        setChecked(false);
+
+        void i18n.changeLanguage(nextLanguage);
+    }
+
+    function goNext() {
+        setError("");
+        setStep(2);
+    }
+
+    function goBack() {
+        if (loading) return;
+
+        setChecked(false);
+        setError("");
+        setStep(1);
+    }
 
     async function acceptDpa() {
-        if (!checked) return;
+        if (!checked || loading) return;
 
         setLoading(true);
+        setError("");
 
         try {
-            await apiSend("/admin/dpa/accept", "POST");
+            await apiSend("/admin/dpa/accept", "POST", {
+                adminLocale: language,
+            });
+
             await onAccepted?.({ silent: true });
         } catch (err) {
-            console.error(err);
-
-            alert(
-                "Could not complete setup right now. Please try again in a moment."
-            );
+            console.error("DPA acceptance failed:", err);
+            setError(translate("onboarding.error"));
         } finally {
             setLoading(false);
         }
     }
 
     return (
-        <Page title="Data Processing Agreement">
-            <Card>
-                <BlockStack gap="400">
+        <Page
+            title={
+                step === 1
+                    ? translate("onboarding.languageTitle").replace(/^1\.\s*/, "")
+                    : translate("onboarding.dpaTitle").replace(/^2\.\s*/, "")
+            }
+            subtitle={
+                step === 1
+                    ? translate("onboarding.step1")
+                    : translate("onboarding.step2")
+            }
+        >
+            <BlockStack gap="400">
+                {step === 1 && (
+                    <Card>
+                        <BlockStack gap="400">
+                            <Text as="p">
+                                {translate("onboarding.languageDescription")}
+                            </Text>
 
-                    <Text variant="bodyMd">
-                        To use this app, you must agree to our Data Processing Agreement.
-                        This outlines how customer data is processed on your behalf in compliance with GDPR.
-                    </Text>
+                            <Select
+                                label={translate("onboarding.languageLabel")}
+                                options={LANGUAGE_OPTIONS}
+                                value={language}
+                                onChange={changeLanguage}
+                            />
 
-                    <Text variant="bodyMd">
-                        <Link url="https://gl6.com/dpa" target="_blank" removeUnderline>
-                            View Data Processing Agreement
-                        </Link>
-                    </Text>
+                            <InlineStack align="end">
+                                <Button variant="primary" onClick={goNext}>
+                                    {translate("onboarding.next")}
+                                </Button>
+                            </InlineStack>
+                        </BlockStack>
+                    </Card>
+                )}
 
-                    <Checkbox
-                        label="I have read and agree to the Data Processing Agreement"
-                        checked={checked}
-                        onChange={setChecked}
-                    />
+                {step === 2 && (
+                    <Card>
+                        <BlockStack gap="400">
+                            <Text as="p">
+                                {translate("onboarding.dpaDescription")}
+                            </Text>
 
-                    <Button
-                        variant="primary"
-                        loading={loading}
-                        disabled={!checked}
-                        onClick={acceptDpa}
-                    >
-                        Accept and continue
-                    </Button>
+                            <Link
+                                url="https://gl6.com/dpa"
+                                target="_blank"
+                                removeUnderline
+                            >
+                                {translate("onboarding.viewDpa")}
+                            </Link>
 
-                </BlockStack>
-            </Card>
+                            <Checkbox
+                                label={translate("onboarding.agree")}
+                                checked={checked}
+                                onChange={setChecked}
+                                disabled={loading}
+                            />
+
+                            {error && (
+                                <Banner tone="critical">
+                                    <Text as="p">{error}</Text>
+                                </Banner>
+                            )}
+
+                            <InlineStack align="space-between">
+                                <Button
+                                    onClick={goBack}
+                                    disabled={loading}
+                                >
+                                    {translate("onboarding.back")}
+                                </Button>
+
+                                <Button
+                                    variant="primary"
+                                    loading={loading}
+                                    disabled={!checked || loading}
+                                    onClick={acceptDpa}
+                                >
+                                    {translate("onboarding.acceptContinue")}
+                                </Button>
+                            </InlineStack>
+                        </BlockStack>
+                    </Card>
+                )}
+            </BlockStack>
         </Page>
     );
 }

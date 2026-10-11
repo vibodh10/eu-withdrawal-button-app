@@ -1,0 +1,454 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Sprache",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Weiter",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "loading": "Wird geladen..."
+  },
+  "onboarding": {
+    "welcome": "Willkommen bei EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Sprache auswählen",
+    "languageDescription": "Wählen Sie die Sprache aus, in der Sie die App verwenden möchten.",
+    "languageLabel": "App-Sprache",
+    "dpaTitle": "2. Auftragsverarbeitungsvertrag",
+    "dpaDescription": "Um diese App zu nutzen, müssen Sie unserem Auftragsverarbeitungsvertrag zustimmen. Er erläutert, wie Kundendaten in Ihrem Auftrag verarbeitet werden.",
+    "viewDpa": "Auftragsverarbeitungsvertrag ansehen",
+    "agree": "Ich habe den Auftragsverarbeitungsvertrag gelesen und stimme ihm zu.",
+    "acceptContinue": "Akzeptieren und fortfahren",
+    "error": "Die Einrichtung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut.",
+    "step1": "Schritt 1 von 2",
+    "step2": "Schritt 2 von 2",
+    "next": "Weiter",
+    "back": "Zurück"
+  },
+  "navigation": {
+    "dashboard": "Übersicht",
+    "requests": "Anfragen",
+    "settings": "Einstellungen",
+    "plans": "Tarife",
+    "help": "Hilfe",
+    "currentPlan": "Aktueller Tarif",
+    "planGrandfathered": "Tarif: Grandfathered Free",
+    "planPro": "Tarif: Pro",
+    "planRequired": "Tarif erforderlich",
+    "premiumActive": "Alle Pro-Funktionen sind aktiviert",
+    "grandfatheredActive": "Grandfathered Free ist aktiv",
+    "subscribeToContinue": "Zum Fortfahren abonnieren"
+  },
+  "appLanguage": {
+    "title": "App-Sprache",
+    "description": "Wählen Sie die Sprache für die App-Oberfläche aus. Dies ändert nicht die Sprachen, die Kunden zur Verfügung stehen.",
+    "label": "Anzeigesprache",
+    "saveError": "Die App-Sprache konnte nicht aktualisiert werden.",
+    "settingsTitle": "Einstellungen"
+  },
+  "dashboard": {
+    "title": "Übersicht",
+    "subscriptionError": "Abonnement konnte nicht aktualisiert werden",
+    "description": "Fügen Sie Ihrem Onlineshop in wenigen Minuten eine Schaltfläche für Widerrufsanfragen hinzu. Erfassen und verwalten Sie Kundenanfragen zentral und unterstützen Sie die Einhaltung der EU-Widerrufsvorschriften ohne komplizierte Einrichtung.",
+    "plan": "Tarif",
+    "grandfatheredFree": "Bestandsschutz: Kostenlos",
+    "planPro": "Pro",
+    "proActive": "Die Pro-Funktionen sind aktiv.",
+    "freeActive": "Der kostenlose Zugang mit Bestandsschutz ist aktiv.",
+    "stats": {
+      "total": "Anfragen insgesamt",
+      "totalHelp": "Gesamter Zeitraum dieses Shops",
+      "received": "Eingegangen",
+      "receivedHelp": "Warten auf Bearbeitung",
+      "reviewed": "Geprüft",
+      "reviewedHelp": "Manuell geprüft",
+      "closed": "Genehmigt / Abgelehnt",
+      "closedHelp": "Abgeschlossene Vorgänge"
+    },
+    "status": {
+      "complete": "Abgeschlossen",
+      "incomplete": "Nicht abgeschlossen"
+    },
+    "setup": {
+      "title": "Einrichtung abschließen",
+      "description": "Wählen Sie die Einrichtung, die am besten zu Ihrem Shop passt. Wir empfehlen, die schwebende Schaltfläche für den gesamten Shop zu aktivieren und eine eigene Widerrufsseite zu erstellen.",
+      "recommended": "Empfohlen",
+      "suggested": "Vorgeschlagen",
+      "optional": "Optional",
+      "pageReady": {
+        "title": "Widerrufsseite ist bereit",
+        "description": "Ihre Widerrufsseite ist bereit. Sie können nun den App-Block hinzufügen und die Seite in Ihren Bestellbestätigungs-E-Mails verlinken."
+      },
+      "actionFailed": "Einrichtungsaktion fehlgeschlagen",
+      "notification": {
+        "title": "Benachrichtigungs-E-Mail hinzufügen",
+        "description": "Geben Sie die E-Mail-Adresse ein, an die Benachrichtigungen über neue Widerrufsanfragen gesendet werden sollen.",
+        "edit": "Benachrichtigungseinstellungen bearbeiten",
+        "add": "Benachrichtigungs-E-Mail hinzufügen",
+        "destination": "Benachrichtigungen werden an {{email}} gesendet."
+      },
+      "floating": {
+        "title": "Schwebende Schaltfläche im gesamten Shop aktivieren",
+        "description": "Für eine bessere Sichtbarkeit wird eine schwebende Widerrufsschaltfläche im gesamten Onlineshop angezeigt. Kunden können so von jeder Seite auf das Formular zugreifen.",
+        "button": "Schwebende Schaltfläche aktivieren"
+      },
+      "withdrawalPage": {
+        "title": "Eigene Widerrufsseite erstellen",
+        "description": "Erstellen Sie eine Seite unter /pages/eu-withdrawal, auf der Kunden ihre Widerrufsanfragen einreichen können.",
+        "button": "Seite erstellen"
+      },
+      "pageBlock": {
+        "title": "App-Block zur Widerrufsseite hinzufügen",
+        "description": "Öffnen Sie den Theme-Editor und fügen Sie den Block von EU Withdrawal Button zur Widerrufsseite hinzu.",
+        "button": "Seitenblock hinzufügen"
+      },
+      "orderEmail": {
+        "title": "Link in Bestellbestätigungs-E-Mails einfügen",
+        "description": "Fügen Sie den Link zur Widerrufsseite in Ihre Shopify-Bestellbestätigungen ein, damit Kunden ihn nach dem Kauf finden können.",
+        "button": "Benachrichtigungen öffnen",
+        "suggestedLink": "Vorgeschlagener Link:"
+      },
+      "testRequest": {
+        "title": "Test-Widerrufsanfrage einreichen",
+        "description": "Öffnen Sie Ihren Onlineshop oder Ihre Widerrufsseite und senden Sie eine Testanfrage, um den Ablauf aus Kundensicht zu überprüfen.",
+        "openPage": "Widerrufsseite öffnen",
+        "openStorefront": "Onlineshop öffnen"
+      },
+      "review": {
+        "title": "Widerrufsanfragen im Dashboard bearbeiten",
+        "description": "Nachdem eine Kunden- oder Testanfrage eingegangen ist, können Sie diese unter Anfragen prüfen und ihren Status ändern.",
+        "button": "Anfragen öffnen"
+      },
+      "upgrade": {
+        "title": "Auf Pro upgraden",
+        "description": "Schalten Sie Bestellverifizierung, erweiterte Einstellungen, Automatisierung und individuelle Arbeitsabläufe frei.",
+        "button": "Pro ansehen"
+      }
+    },
+    "billingSyncFailed": "Der Abonnementstatus konnte nicht synchronisiert werden.",
+    "subscriptionStatusError": "Der Abonnementstatus konnte nicht aktualisiert werden."
+  },
+  "requests": {
+    "title": "Widerrufsanfragen",
+    "exportCSV": "CSV exportieren",
+    "status": "Status",
+    "verification": "Verifizierung",
+    "search": "Suchen",
+    "searchPlaceholder": "E-Mail, Bestellung, Referenz...",
+    "all": "Alle",
+    "empty": "Keine Anfragen gefunden.",
+    "unknown": "Unbekannt",
+    "noReason": "Kein Grund angegeben",
+    "filterPro": "Erweiterte Filter und der CSV-Export sind mit Pro verfügbar.",
+    "resourceSingular": "Anfrage",
+    "resourcePlural": "Anfragen",
+    "selectedAll": "Alle",
+    "columns": {
+      "reference": "Referenz",
+      "customer": "Kunde",
+      "order": "Bestellung",
+      "verification": "Verifizierung",
+      "reason": "Grund",
+      "status": "Status",
+      "submitted": "Eingereicht",
+      "actions": "Aktionen"
+    },
+    "statuses": {
+      "RECEIVED": "Eingegangen",
+      "CONFIRMED": "Bestätigt",
+      "REVIEWED": "Geprüft",
+      "APPROVED": "Genehmigt",
+      "REJECTED": "Abgelehnt"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Verifiziert",
+        "tooltip": "Bestellung gefunden und Widerrufsfrist noch nicht abgelaufen"
+      },
+      "NOT_FOUND": {
+        "label": "Bestellung nicht gefunden",
+        "tooltip": "In Shopify wurde keine passende Bestellung gefunden"
+      },
+      "EXPIRED": {
+        "label": "Frist abgelaufen",
+        "tooltip": "Bestellung gefunden, aber die Widerrufsfrist ist abgelaufen"
+      },
+      "ERROR": {
+        "label": "Nicht verfügbar",
+        "tooltip": "Die Bestellung konnte aufgrund eines Shopify- oder API-Problems nicht verifiziert werden"
+      },
+      "UNVERIFIED": {
+        "label": "Nicht verifiziert",
+        "tooltip": "Die automatische Bestellverifizierung ist mit Pro verfügbar"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Ungültige Bestellung"
+    },
+    "deleteCustomer": {
+      "button": "Kundendaten löschen",
+      "title": "Kundendaten löschen",
+      "description": "Dadurch werden alle gespeicherten Widerrufsdaten für {{email}} dauerhaft gelöscht."
+    },
+    "bulkDelete": {
+      "button": "Ausgewählte löschen",
+      "title": "Ausgewählte Anfragen löschen",
+      "confirm": "Anfragen löschen",
+      "description_one": "Dadurch wird {{count}} ausgewählte Widerrufsanfrage dauerhaft gelöscht.",
+      "description_other": "Dadurch werden {{count}} ausgewählte Widerrufsanfragen dauerhaft gelöscht."
+    },
+    "delete": "Löschen",
+    "cancel": "Abbrechen",
+    "scrollLabel": "Widerrufsanfragen horizontal durchblättern",
+    "errors": {
+      "temporary": "Vorübergehendes Serverproblem. Bitte versuchen Sie es in einigen Augenblicken erneut.",
+      "update": "Der Status der Anfrage konnte nicht aktualisiert werden.",
+      "export": "Der CSV-Export ist momentan nicht möglich. Bitte versuchen Sie es später erneut."
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "loading": "Einstellungen werden geladen",
+    "saveFailed": "Einstellungen konnten nicht gespeichert werden",
+    "general": {
+      "title": "Allgemeine Einstellungen",
+      "customerLanguages": "Sprachen des Kundenformulars",
+      "customerLanguagesDescription": "Wählen Sie die Sprachen aus, die Kunden im Widerrufsformular verwenden können.",
+      "availableLanguages": "Für Kunden verfügbare Sprachen",
+      "defaultLanguage": "Standardsprache",
+      "defaultLanguageHelp": "Das Formular wird in dieser Sprache geöffnet. Kunden können zu einer anderen aktivierten Sprache wechseln.",
+      "basicLanguagesHelp": "Der Grandfathered Free-Tarif umfasst Englisch und eine weitere Sprache. Mit Pro können Sie alle unterstützten Sprachen aktivieren.",
+      "notificationEmail": "E-Mail-Adresse für Widerrufsbenachrichtigungen",
+      "notificationEmailHelp": "Interne Benachrichtigungen über neue Widerrufsanfragen werden an diese Adresse gesendet.",
+      "upgradeTitle": "Auf Pro upgraden, um erweiterte Einstellungen freizuschalten",
+      "upgradeDescription": "Anpassbare Widerrufsfristen sind mit Pro verfügbar.",
+      "legalPage": "URL der Rechtshinweise",
+      "privacyPage": "URL der Datenschutzerklärung",
+      "supportEmail": "E-Mail-Adresse des Kundensupports",
+      "supportEmailHelp": "Wird Kunden angezeigt und als Antwortadresse für den verwalteten E-Mail-Versand verwendet.",
+      "basicPeriod": "Der Grandfathered Free-Tarif verwendet eine standardmäßige Widerrufsfrist von 14 Tagen. Eine automatische Prüfung findet nicht statt.",
+      "withdrawalPeriod": "Widerrufsfrist (Tage)",
+      "periodBasicHelp": "Für Kundenhinweise wird eine Frist von 14 Tagen zugrunde gelegt. Mit Pro können Sie die Frist anpassen und die automatische Prüfung aktivieren.",
+      "periodProHelp": "Legen Sie Ihre Widerrufsfrist fest. Anfragen werden nach Möglichkeit anhand dieser Frist geprüft."
+    },
+    "errors": {
+      "basicLanguageLimit": "Der Grandfathered Free-Tarif umfasst Englisch und eine weitere Sprache.",
+      "selectLanguage": "Wählen Sie mindestens eine Sprache aus.",
+      "save": "Einstellungen konnten nicht gespeichert werden.",
+      "saveFirst": "Speichern oder verwerfen Sie Ihre anderen Änderungen, bevor Sie die folgende Aktion ausführen: {{action}}."
+    },
+    "plans": {
+      "basic": "Grandfathered Free",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "E-Mail-Versand",
+      "description": "Wählen Sie aus, wie Bestätigungs-E-Mails an Kunden versendet werden.",
+      "deliveryMethod": "Versandmethode",
+      "managed": "Von GL6 verwaltet",
+      "managedOption": "GL6 E-Mail-Versand — Empfohlen",
+      "managedHelp": "Bestätigungs-E-Mails werden über den verifizierten E-Mail-Dienst von GL6 versendet. Antworten der Kunden werden an Ihre Support-E-Mail-Adresse weitergeleitet.",
+      "smtpOption": "Eigener SMTP-Server — Pro",
+      "smtpOptionHelp": "Verbinden Sie Ihren eigenen E-Mail-Anbieter über SMTP-Zugangsdaten.",
+      "proTitle": "E-Mail-Versand mit eigener Absenderadresse ist mit Pro verfügbar",
+      "proDescription": "Shops mit dem Grandfathered Free-Tarif verwenden den E-Mail-Versand von GL6. Antworten der Kunden werden an die oben konfigurierte Support-E-Mail-Adresse gesendet.",
+      "connected": "Verbunden",
+      "connectionFailed": "Verbindung fehlgeschlagen",
+      "requiresTesting": "Verbindungstest erforderlich",
+      "statuses": {
+        "notConfigured": "Nicht konfiguriert",
+        "verified": "Verifiziert",
+        "pending": "Ausstehend",
+        "notStarted": "Noch nicht gestartet",
+        "failed": "Fehlgeschlagen",
+        "failure": "Fehlgeschlagen",
+        "temporaryFailure": "Vorübergehender Fehler"
+      },
+      "domain": {
+        "intro": "Wir empfehlen die Verwendung einer eigenen Subdomain wie withdrawals.example.com. Fügen Sie die unten aufgeführten DNS-Einträge hinzu und verifizieren Sie anschließend die Domain.",
+        "label": "Versanddomain oder Subdomain",
+        "help": "Geben Sie weder https:// noch einen Pfad ein.",
+        "add": "Versanddomain hinzufügen",
+        "recordsHelp": "Fügen Sie alle erforderlichen DNS-Einträge hinzu, bevor Sie die Verifizierung starten.",
+        "columns": {
+          "type": "Typ",
+          "name": "Name",
+          "value": "Wert",
+          "priority": "Priorität",
+          "status": "Status"
+        },
+        "issue": "Problem mit der Versanddomain",
+        "check": "Status prüfen",
+        "verify": "Domain verifizieren",
+        "remove": "Domain entfernen",
+        "verifiedTitle": "Versanddomain verifiziert",
+        "verifiedDescription": "Sie können jetzt den Absendernamen und die E-Mail-Adresse für Bestätigungs-E-Mails an Kunden festlegen.",
+        "fromName": "Absendername",
+        "fromEmail": "Absender-E-Mail-Adresse",
+        "storePlaceholder": "Name Ihres Shops",
+        "emailHelp": "Diese Adresse muss mit @{{domain}} enden.",
+        "saveSender": "Absenderdaten speichern"
+      },
+      "smtp": {
+        "intro": "Geben Sie die SMTP-Zugangsdaten Ihres E-Mail-Anbieters ein. Speichern Sie die Einstellungen, bevor Sie die Verbindung testen.",
+        "host": "SMTP-Server",
+        "port": "SMTP-Port",
+        "portHelp": "Verwenden Sie in den meisten Fällen Port 587 für STARTTLS oder Port 465 für SSL/TLS.",
+        "security": "Verbindungssicherheit",
+        "starttls": "STARTTLS — normalerweise Port 587",
+        "ssl": "SSL/TLS — normalerweise Port 465",
+        "username": "SMTP-Benutzername",
+        "usernameHelp": "Dies ist häufig Ihre vollständige E-Mail-Adresse.",
+        "password": "SMTP-Passwort",
+        "savedPasswordPlaceholder": "Leer lassen, um das gespeicherte Passwort beizubehalten",
+        "newPasswordPlaceholder": "SMTP-Passwort eingeben",
+        "savedPasswordHelp": "Ein Passwort ist bereits sicher gespeichert. Geben Sie nur dann ein neues Passwort ein, wenn Sie es ersetzen möchten.",
+        "newPasswordHelp": "Einige Anbieter verlangen ein App-Passwort statt Ihres normalen Kontopassworts.",
+        "fromName": "Absendername",
+        "fromEmail": "Absender-E-Mail-Adresse",
+        "storePlaceholder": "Name Ihres Shops",
+        "fromEmailHelp": "Ihr SMTP-Anbieter muss den Versand über diese Absenderadresse erlauben.",
+        "connectionFailed": "SMTP-Verbindung fehlgeschlagen",
+        "test": "Verbindung testen",
+        "disconnect": "SMTP-Verbindung trennen",
+        "saveBeforeTest": "Speichern Sie Ihre Änderungen, bevor Sie die Verbindung testen."
+      },
+      "errors": {
+        "saveSmtpFirst": "Speichern Sie Ihre SMTP-Einstellungen, bevor Sie die Verbindung testen.",
+        "smtpFailed": "SMTP-Verbindung fehlgeschlagen.",
+        "disconnectSmtp": "Die SMTP-Verbindung konnte nicht getrennt werden.",
+        "domainRequired": "Geben Sie zuerst eine Domain oder Subdomain ein.",
+        "createDomain": "Die Versanddomain konnte nicht erstellt werden.",
+        "refreshDomain": "Der Status der Versanddomain konnte nicht aktualisiert werden.",
+        "verifyDomain": "Die Domainverifizierung konnte nicht gestartet werden.",
+        "verifyBeforeSender": "Verifizieren Sie die Versanddomain, bevor Sie die Absenderadresse speichern.",
+        "saveSender": "Die Absenderadresse konnte nicht gespeichert werden.",
+        "removeDomain": "Die Versanddomain konnte nicht entfernt werden.",
+        "dirtyActions": {
+          "disconnectSmtp": "SMTP-Verbindung trennen",
+          "createDomain": "Versanddomain hinzufügen",
+          "checkDomain": "Status der Versanddomain prüfen",
+          "saveSender": "Absenderadresse speichern",
+          "removeDomain": "Versanddomain entfernen"
+        }
+      }
+    }
+  },
+
+  "plans": {
+    "title": "Tarife",
+    "grandfatheredFree": "Grandfathered Free",
+    "pro": "Pro",
+    "current": "Aktuell",
+    "legacyDescription": "Bestandsschutz-Tarif — dauerhaft kostenlos",
+    "legacyWarning": "Bei einem Upgrade erlischt dieser Bestandsschutz dauerhaft.",
+    "manageSubscription": "Abonnement verwalten",
+    "subscribePro": "Pro abonnieren",
+    "errors": {
+      "title": "Shopify-Tarife konnten nicht geöffnet werden",
+      "missingUrl": "Shopify hat keine URL zur Tarifverwaltung zurückgegeben.",
+      "openFailed": "Die Shopify-Tarifverwaltung konnte nicht geöffnet werden."
+    },
+
+    "features": {
+      "withdrawalFlow": "EU-konformer Widerrufsprozess",
+      "unlimitedRequests": "Unbegrenzte Widerrufsanfragen",
+      "confirmationEmails": "Automatische Bestätigungs-E-Mails",
+      "themeBlock": "Unterstützung für Theme-App-Blöcke",
+      "requestDashboard": "Übersicht für Widerrufsanfragen",
+      "merchantNotifications": "Benachrichtigungen für Händler",
+      "basicCompliance": "Grundlegende Compliance-Funktionen enthalten",
+      "coreManagement": "Verwaltung von Widerrufsanfragen",
+      "euLanguages": "Alle unterstützten EU-Sprachen",
+      "customPeriod": "Individuelle Widerrufsfrist mit Validierung",
+      "customBranding": "Individuelles Branding und Markenfarben",
+      "advancedManagement": "CSV-Export und erweiterte Anfragenverwaltung"
+    }
+  },
+
+  "help": {
+    "title": "Hilfe",
+    "commonQuestions": "Häufig gestellte Fragen",
+    "introduction": "Hier finden Sie schnelle Antworten auf häufige Fragen zur Einrichtung und Fehlerbehebung.",
+    "supportTitle": "Benötigen Sie weitere Hilfe?",
+    "supportDescription": "Wenn die Antworten oben Ihr Problem nicht lösen, wählen Sie oben rechts im Menü ⋯ die Option „Support erhalten“, um uns über Shopify zu kontaktieren.",
+    "supportResponse": "Supportanfragen werden in der Regel innerhalb eines Werktages beantwortet.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Warum funktioniert die App nicht mit Shopify Canvas?",
+        "answer": "Shopify Canvas befindet sich derzeit in der Early-Access-Phase und unterstützt noch keine App-Blöcke oder App-Einbettungen. Diese werden von unserer App verwendet, um die Widerrufsschaltfläche anzuzeigen und zu konfigurieren. Dies ist eine aktuelle Einschränkung von Shopify Canvas. Sie können die App weiterhin mit einem kompatiblen Theme im regulären Shopify-Theme-Editor verwenden."
+      },
+      "buttonNotShowing": {
+        "question": "Warum wird die Widerrufsschaltfläche in meinem Shop nicht angezeigt?",
+        "answer": "Überprüfen Sie, ob die App-Einbettung oder der App-Block von EU Withdrawal Button in Ihrem aktuellen Shopify-Theme aktiviert ist. Wenn Sie kürzlich das Theme gewechselt oder ein neues veröffentlicht haben, müssen Sie die Funktion möglicherweise erneut aktivieren."
+      },
+      "buttonPosition": {
+        "question": "Kann ich die Position der Widerrufsschaltfläche ändern?",
+        "answer": "Ja. Öffnen Sie die Einstellungen der App, um die Position der schwebenden Schaltfläche für Desktopgeräte und Mobilgeräte anzupassen."
+      },
+      "buttonAppearance": {
+        "question": "Kann ich das Aussehen der Schaltfläche ändern?",
+        "answer": "Ja. Die verfügbaren Einstellungen für das Erscheinungsbild der Schaltfläche können Sie unter Einstellungen in der App anpassen."
+      },
+      "requestSubmitted": {
+        "question": "Was passiert, wenn ein Kunde eine Widerrufsanfrage einreicht?",
+        "answer": "Die Anfrage wird in der App gespeichert und erscheint unter Anfragen. Dort können Sie sie prüfen und ihren Status aktualisieren."
+      },
+      "notificationEmail": {
+        "question": "Erhalte ich eine E-Mail, wenn ein Kunde eine Anfrage einreicht?",
+        "answer": "Ja, sofern Sie in der App eine Benachrichtigungs-E-Mail-Adresse eingerichtet haben. Prüfen Sie Ihre Einstellungen, falls Sie keine Benachrichtigungen erhalten."
+      },
+      "withdrawalPeriod": {
+        "question": "Kann ich die Widerrufsfrist ändern?",
+        "answer": "Ja. Die Widerrufsfrist kann in den Einstellungen der App konfiguriert werden."
+      },
+      "automaticRefund": {
+        "question": "Erstattet die App automatisch Zahlungen oder storniert sie Bestellungen?",
+        "answer": "Nein. Das Einreichen einer Widerrufsanfrage führt nicht automatisch zu einer Rückerstattung oder Stornierung der Shopify-Bestellung. Die Prüfung und Bearbeitung der Anfrage liegt weiterhin bei Ihnen."
+      },
+      "previousRequests": {
+        "question": "Kann ich frühere Widerrufsanfragen einsehen?",
+        "answer": "Ja. Unter Anfragen können Sie alle über die App eingereichten Widerrufsanfragen einsehen."
+      },
+      "multipleLanguages": {
+        "question": "Unterstützt die App mehrere Sprachen?",
+        "answer": "Die App unterstützt konfigurierbare Sprachen. Sie können die verfügbaren Sprachoptionen unter Einstellungen verwalten."
+      },
+      "themeChanged": {
+        "question": "Ich habe mein Shopify-Theme geändert und die Schaltfläche ist verschwunden. Was soll ich tun?",
+        "answer": "Öffnen Sie den Theme-Editor für Ihr neues Theme und stellen Sie sicher, dass die App-Einbettung oder der App-Block von EU Withdrawal Button aktiviert ist."
+      },
+      "hideButton": {
+        "question": "Kann ich die Widerrufsschaltfläche vorübergehend ausblenden?",
+        "answer": "Ja. Sie können die Schaltfläche im Onlineshop deaktivieren, ohne die App zu deinstallieren."
+      },
+      "missingEmails": {
+        "question": "Warum erhalte ich keine Benachrichtigungs-E-Mails?",
+        "answer": "Überprüfen Sie, ob die Benachrichtigungs-E-Mail-Adresse und die E-Mail-Versandeinstellungen korrekt eingerichtet sind. Kontrollieren Sie außerdem Ihren Spam-Ordner."
+      },
+      "legalCompliance": {
+        "question": "Garantiert die App, dass mein Shop alle gesetzlichen Anforderungen erfüllt?",
+        "answer": "Nein. Die App stellt Funktionen bereit, mit denen Sie Widerrufsanfragen ermöglichen und verwalten können. Sie bleiben dafür verantwortlich, dass Ihre Shop-Richtlinien und Abläufe den für Ihr Unternehmen geltenden Gesetzen entsprechen."
+      }
+    }
+  },
+
+  "apiErrors": {
+    "shopNotFound": "Shop nicht gefunden.",
+    "entitlementUnavailable": "Die Shopify-Tarifberechtigung konnte nicht überprüft werden.",
+    "planRequired": "Ein kostenpflichtiger Shopify-Tarif ist erforderlich.",
+    "languagesInvalid": "Die ausgewählten Sprachen sind ungültig.",
+    "basicLanguageLimit": "Der Grandfathered Free-Tarif umfasst Englisch und eine weitere Sprache.",
+    "withdrawalPeriod": "Die Widerrufsfrist muss zwischen 1 und 365 Tagen liegen.",
+    "smtpHost": "Ein SMTP-Server ist erforderlich.",
+    "smtpPort": "Die SMTP-Verifizierung ist auf die Ports 465 und 587 beschränkt.",
+    "smtpUsername": "Ein SMTP-Benutzername ist erforderlich.",
+    "smtpFromEmail": "Eine Absender-E-Mail-Adresse ist erforderlich.",
+    "smtpPassword": "Ein SMTP-Passwort ist erforderlich.",
+    "settingsUpdate": "Die Einstellungen konnten nicht aktualisiert werden.",
+    "requestNotFound": "Anfrage nicht gefunden.",
+    "invalidStatus": "Ungültiger Anfragestatus.",
+    "setupStatus": "Der Einrichtungsstatus konnte nicht geladen werden.",
+    "upgradeRequired": "Für diese Funktion ist Pro erforderlich."
+  }
+}

@@ -1,5 +1,33 @@
 import { getSessionToken } from "@shopify/app-bridge-utils";
 import { app } from "./appBridge.js";
+import i18next from "i18next";
+
+
+const API_ERROR_KEYS = {
+    "Shop not found": "shopNotFound",
+    "Shop not found.": "shopNotFound",
+    "Could not verify Shopify App Pricing entitlement.":
+        "entitlementUnavailable",
+    "A paid Shopify App Pricing plan is required.":
+        "planRequired",
+    "enabledLanguages must be an array":
+        "languagesInvalid",
+    "The Basic plan includes English plus 1 additional language.":
+        "basicLanguageLimit",
+    "Withdrawal period must be between 1 and 365 days.":
+        "withdrawalPeriod",
+    "SMTP host is required.": "smtpHost",
+    "SMTP verification is limited to ports 465 and 587.":
+        "smtpPort",
+    "SMTP username is required.": "smtpUsername",
+    "From email is required.": "smtpFromEmail",
+    "SMTP password is required.": "smtpPassword",
+    "Could not update settings": "settingsUpdate",
+    "Request not found": "requestNotFound",
+    "Invalid status": "invalidStatus",
+    "Could not load setup status.": "setupStatus",
+    "Upgrade to Pro": "upgradeRequired",
+};
 
 export async function getAuthHeaders() {
   const token = await getSessionToken(app);
@@ -50,10 +78,20 @@ async function parseResponseError(res) {
     text ||
     `Request failed with status ${res.status}`;
 
-  const err = new Error(message);
-  err.status = res.status;
-  err.data = data;
-  return err;
+    const translationKey = API_ERROR_KEYS[message];
+
+    const displayMessage = translationKey
+        ? i18next.t(`apiErrors.${translationKey}`)
+        : message;
+
+    const err = new Error(displayMessage);
+
+    err.status = res.status;
+    err.data = data;
+    err.originalMessage = message;
+    err.translationKey = translationKey || null;
+
+    return err;
 }
 
 export async function apiGet(url) {
