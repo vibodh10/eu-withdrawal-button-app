@@ -1,0 +1,452 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Kalba",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Tęsti",
+    "save": "Išsaugoti",
+    "cancel": "Atšaukti",
+    "loading": "Įkeliama..."
+  },
+  "onboarding": {
+    "welcome": "Sveiki atvykę į EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Pasirinkite kalbą",
+    "languageDescription": "Pasirinkite programėlėje naudojamą kalbą.",
+    "languageLabel": "Programėlės kalba",
+    "dpaTitle": "2. Duomenų tvarkymo sutartis",
+    "dpaDescription": "Norėdami naudoti programėlę, turite sutikti su mūsų duomenų tvarkymo sutartimi. Ji paaiškina klientų duomenų tvarkymą jūsų vardu.",
+    "viewDpa": "Peržiūrėti duomenų tvarkymo sutartį",
+    "agree": "Perskaičiau duomenų tvarkymo sutartį ir su ja sutinku",
+    "acceptContinue": "Sutikti ir tęsti",
+    "error": "Nepavyko baigti sąrankos. Bandykite dar kartą.",
+    "step1": "1 žingsnis iš 2",
+    "step2": "2 žingsnis iš 2",
+    "next": "Toliau",
+    "back": "Atgal"
+  },
+  "navigation": {
+    "dashboard": "Valdymo skydelis",
+    "requests": "Prašymai",
+    "settings": "Nustatymai",
+    "plans": "Planai",
+    "help": "Pagalba",
+    "currentPlan": "Dabartinis planas",
+    "planGrandfathered": "Planas: Ankstesnis nemokamas",
+    "planPro": "Planas: Pro",
+    "planRequired": "Reikalingas planas",
+    "premiumActive": "Visos papildomos funkcijos įjungtos",
+    "grandfatheredActive": "Ankstesnė nemokama prieiga aktyvi",
+    "subscribeToContinue": "Norėdami tęsti, užsisakykite planą"
+  },
+  "appLanguage": {
+    "title": "Programėlės kalba",
+    "description": "Pasirinkite valdymo skydelio kalbą. Tai nekeičia klientams prieinamų kalbų.",
+    "label": "Rodymo kalba",
+    "saveError": "Nepavyko atnaujinti programėlės kalbos.",
+    "settingsTitle": "Nustatymai"
+  },
+  "dashboard": {
+    "title": "Valdymo skydelis",
+    "subscriptionError": "Nepavyko atnaujinti prenumeratos",
+    "description": "Per kelias minutes pridėkite ES taisykles atitinkantį sutarties atsisakymo mygtuką. Rinkite ir tvarkykite klientų prašymus vienoje vietoje be sudėtingos sąrankos.",
+    "plan": "Planas",
+    "grandfatheredFree": "Ankstesnis nemokamas",
+    "planPro": "Pro",
+    "proActive": "Pro funkcijos aktyvios.",
+    "freeActive": "Ankstesnė nemokama prieiga aktyvi.",
+    "stats": {
+      "total": "Iš viso prašymų",
+      "totalHelp": "Per visą parduotuvės veiklos laiką",
+      "received": "Gauti",
+      "receivedHelp": "Laukia veiksmų",
+      "reviewed": "Peržiūrėti",
+      "reviewedHelp": "Įvertinti rankiniu būdu",
+      "closed": "Patvirtinti / Atmesti",
+      "closedHelp": "Užbaigtos būsenos"
+    },
+    "status": {
+      "complete": "Baigta",
+      "incomplete": "Nebaigta"
+    },
+    "setup": {
+      "title": "Užbaikite sąranką",
+      "description": "Pasirinkite parduotuvei tinkamą sąranką. Rekomenduojame slankųjį mygtuką visoje svetainėje ir atskirą sutarties atsisakymo puslapį.",
+      "recommended": "Rekomenduojama",
+      "suggested": "Siūloma",
+      "optional": "Neprivaloma",
+      "pageReady": {
+        "title": "Sutarties atsisakymo puslapis paruoštas",
+        "description": "Puslapis paruoštas. Pridėkite programėlės bloką ir nuorodą užsakymo patvirtinimo laiškuose."
+      },
+      "actionFailed": "Sąrankos veiksmas nepavyko",
+      "notification": {
+        "title": "Pridėkite pranešimų el. paštą",
+        "description": "Įveskite adresą, kuriuo norite gauti pranešimus apie klientų prašymus atsisakyti sutarties.",
+        "edit": "Keisti pranešimų nustatymus",
+        "add": "Pridėkite pranešimų el. paštą",
+        "destination": "Pranešimai bus siunčiami adresu {{email}}."
+      },
+      "floating": {
+        "title": "Įjungti slankųjį mygtuką visoje svetainėje",
+        "description": "Geriausias matomumas. Slankusis sutarties atsisakymo mygtukas leidžia atverti formą iš bet kurio parduotuvės puslapio.",
+        "button": "Įjungti slankųjį mygtuką"
+      },
+      "withdrawalPage": {
+        "title": "Sukurti atskirą sutarties atsisakymo puslapį",
+        "description": "Sukurkite įprastą puslapį /pages/eu-withdrawal, kad klientai turėtų aiškią vietą prašymams pateikti.",
+        "button": "Sukurti puslapį"
+      },
+      "pageBlock": {
+        "title": "Pridėti mygtuko bloką sutarties atsisakymo puslapyje",
+        "description": "Atverkite temos redaktorių ir pridėkite EU Withdrawal Button bloką sutarties atsisakymo puslapyje.",
+        "button": "Pridėti puslapio bloką"
+      },
+      "orderEmail": {
+        "title": "Pridėti nuorodą užsakymo patvirtinimo laiškuose",
+        "description": "Pridėkite sutarties atsisakymo puslapio nuorodą Shopify patvirtinimuose, kad klientai ją rastų po pirkimo.",
+        "button": "Atverti pranešimus",
+        "suggestedLink": "Siūloma nuoroda:"
+      },
+      "testRequest": {
+        "title": "Pateikti bandomąjį sutarties atsisakymo prašymą",
+        "description": "Atverkite parduotuvę ar sutarties atsisakymo puslapį ir pateikite bandomąjį prašymą klientų patirčiai patikrinti.",
+        "openPage": "Atverti sutarties atsisakymo puslapį",
+        "openStorefront": "Atverti parduotuvę"
+      },
+      "review": {
+        "title": "Peržiūrėkite prašymus valdymo skydelyje",
+        "description": "Gavę kliento ar bandomąjį prašymą, peržiūrėkite jį skiltyje Prašymai ir atnaujinkite būseną.",
+        "button": "Atverti prašymus"
+      },
+      "upgrade": {
+        "title": "Pereiti prie Pro",
+        "description": "Atrakinkite užsakymų tikrinimą, papildomus nustatymus, automatizavimą ir pasirinktines darbo eigas.",
+        "button": "Peržiūrėti Pro"
+      }
+    },
+    "billingSyncFailed": "Nepavyko sinchronizuoti atsiskaitymo būsenos",
+    "subscriptionStatusError": "Nepavyko atnaujinti prenumeratos būsenos."
+  },
+  "requests": {
+    "title": "Sutarties atsisakymo prašymai",
+    "exportCSV": "Eksportuoti CSV",
+    "status": "Būsena",
+    "verification": "Tikrinimas",
+    "search": "Paieška",
+    "searchPlaceholder": "El. paštas, užsakymas, numeris...",
+    "all": "Visi",
+    "empty": "Prašymų nerasta.",
+    "unknown": "Nežinoma",
+    "noReason": "Priežastis nenurodyta",
+    "filterPro": "Išplėstinis filtravimas ir CSV eksportas prieinami su Pro.",
+    "resourceSingular": "prašymas",
+    "resourcePlural": "prašymai",
+    "selectedAll": "Visi",
+    "columns": {
+      "reference": "Registracijos numeris",
+      "customer": "Klientas",
+      "order": "Užsakymas",
+      "verification": "Tikrinimas",
+      "reason": "Priežastis",
+      "status": "Būsena",
+      "submitted": "Pateikta",
+      "actions": "Veiksmai"
+    },
+    "statuses": {
+      "RECEIVED": "Gautas",
+      "CONFIRMED": "Patvirtintas",
+      "REVIEWED": "Peržiūrėtas",
+      "APPROVED": "Priimtas",
+      "REJECTED": "Atmestas"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Patikrinta",
+        "tooltip": "Užsakymas rastas per sutarties atsisakymo terminą"
+      },
+      "NOT_FOUND": {
+        "label": "Užsakymas nerastas",
+        "tooltip": "Shopify nerastas atitinkamas užsakymas"
+      },
+      "EXPIRED": {
+        "label": "Terminas pasibaigęs",
+        "tooltip": "Užsakymas rastas, bet sutarties atsisakymo terminas pasibaigęs"
+      },
+      "ERROR": {
+        "label": "Neprieinama",
+        "tooltip": "Užsakymo nepavyko patikrinti dėl Shopify ar API problemos"
+      },
+      "UNVERIFIED": {
+        "label": "Nepatikrinta",
+        "tooltip": "Automatinis užsakymų tikrinimas prieinamas su Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Netinkamas užsakymas"
+    },
+    "deleteCustomer": {
+      "button": "Ištrinti kliento duomenis",
+      "title": "Ištrinti kliento duomenis",
+      "description": "Visi išsaugoti sutarties atsisakymo duomenys apie {{email}} bus visam laikui ištrinti."
+    },
+    "bulkDelete": {
+      "button": "Ištrinti pasirinktus",
+      "title": "Ištrinti pasirinktus prašymus",
+      "confirm": "Ištrinti prašymus",
+      "description_one": "Bus visam laikui ištrintas {{count}} pasirinktas sutarties atsisakymo prašymas.",
+      "description_other": "Bus visam laikui ištrinta {{count}} pasirinktų sutarties atsisakymo prašymų.",
+      "description_few": "Bus visam laikui ištrinti {{count}} pasirinkti sutarties atsisakymo prašymai.",
+      "description_many": "Pasirinkti sutarties atsisakymo prašymai bus visam laikui ištrinti. Skaičius: {{count}}."
+    },
+    "delete": "Ištrinti",
+    "cancel": "Atšaukti",
+    "scrollLabel": "Slinkti sutarties atsisakymo prašymus horizontaliai",
+    "errors": {
+      "temporary": "Laikina serverio problema. Bandykite dar kartą po kelių akimirkų.",
+      "update": "Nepavyko atnaujinti prašymo būsenos.",
+      "export": "Dabar negalima eksportuoti CSV. Netrukus bandykite dar kartą."
+    }
+  },
+  "settings": {
+    "title": "Nustatymai",
+    "loading": "Įkeliami nustatymai",
+    "saveFailed": "Nepavyko išsaugoti nustatymų",
+    "general": {
+      "title": "Bendrieji nustatymai",
+      "customerLanguages": "Klientų formos kalbos",
+      "customerLanguagesDescription": "Pasirinkite kalbas, kurias klientai gali naudoti sutarties atsisakymo formoje.",
+      "availableLanguages": "Klientams prieinamos kalbos",
+      "defaultLanguage": "Numatytoji kalba",
+      "defaultLanguageHelp": "Forma atveriama šia kalba. Klientai gali pasirinkti kitą įjungtą kalbą.",
+      "basicLanguagesHelp": "Ankstesnis nemokamas planas apima anglų ir dar vieną kalbą. Pereikite prie Pro visoms palaikomoms kalboms.",
+      "notificationEmail": "Sutarties atsisakymo pranešimų el. paštas",
+      "notificationEmailHelp": "Čia siunčiami vidiniai pranešimai apie naujus sutarties atsisakymo prašymus.",
+      "upgradeTitle": "Pereikite prie Pro papildomiems nustatymams",
+      "upgradeDescription": "Keičiamus sutarties atsisakymo terminus galima naudoti su Pro.",
+      "legalPage": "Teisinio puslapio URL",
+      "privacyPage": "Privatumo puslapio URL",
+      "supportEmail": "Klientų aptarnavimo el. paštas",
+      "supportEmailHelp": "Rodomas klientams ir naudojamas kaip atsakymų adresas valdomame siuntime.",
+      "basicPeriod": "Ankstesnis nemokamas planas naudoja orientacinį 14 dienų terminą. Automatinis tikrinimas netaikomas.",
+      "withdrawalPeriod": "Sutarties atsisakymo terminas (dienomis)",
+      "periodBasicHelp": "Klientams nurodomas orientacinis 14 dienų terminas. Pereikite prie Pro keitimui ir automatiniam tikrinimui.",
+      "periodProHelp": "Nustatykite sutarties atsisakymo terminą. Prašymai bus tikrinami pagal jį, kai tai įmanoma."
+    },
+    "errors": {
+      "basicLanguageLimit": "Ankstesnis nemokamas planas apima anglų ir dar vieną kalbą.",
+      "selectLanguage": "Pasirinkite bent vieną kalbą.",
+      "save": "Nepavyko išsaugoti nustatymų.",
+      "saveFirst": "Prieš šį veiksmą išsaugokite arba atmeskite kitus pakeitimus: {{action}}."
+    },
+    "plans": {
+      "basic": "Ankstesnis nemokamas",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "El. laiškų pristatymas",
+      "description": "Pasirinkite patvirtinimo laiškų siuntimo klientams būdą.",
+      "deliveryMethod": "Pristatymo būdas",
+      "managed": "Valdoma GL6",
+      "managedOption": "GL6 valdomas pristatymas — Rekomenduojama",
+      "managedHelp": "Patvirtinimus siunčia patvirtinta GL6 el. pašto paslauga. Klientų atsakymai siunčiami jūsų pagalbos adresu.",
+      "smtpOption": "Savas SMTP — Pro",
+      "smtpOptionHelp": "Prijunkite el. pašto tiekėją naudodami SMTP prisijungimo duomenis.",
+      "proTitle": "Laiškai su jūsų prekės ženklu prieinami su Pro",
+      "proDescription": "Ankstesnio nemokamo plano parduotuvės naudoja GL6. Atsakymai siunčiami aukščiau nustatytu klientų aptarnavimo adresu.",
+      "connected": "Prijungta",
+      "connectionFailed": "Prisijungti nepavyko",
+      "requiresTesting": "Reikia išbandyti",
+      "statuses": {
+        "notConfigured": "Nesukonfigūruota",
+        "verified": "Patvirtinta",
+        "pending": "Laukiama",
+        "notStarted": "Nepradėta",
+        "failed": "Nepavyko",
+        "failure": "Nepavyko",
+        "temporaryFailure": "Laikina klaida"
+      },
+      "domain": {
+        "intro": "Rekomenduojame atskirą padomenį, pavyzdžiui, withdrawals.example.com. Pridėkite žemiau pateiktus DNS įrašus ir patvirtinkite domeną.",
+        "label": "Siuntimo domenas arba padomenis",
+        "help": "Neįtraukite https:// ar kelio.",
+        "add": "Pridėti siuntimo domeną",
+        "recordsHelp": "Prieš tikrinimą pridėkite visus reikalingus DNS įrašus.",
+        "columns": {
+          "type": "Tipas",
+          "name": "Pavadinimas",
+          "value": "Reikšmė",
+          "priority": "Prioritetas",
+          "status": "Būsena"
+        },
+        "issue": "Siuntimo domeno problema",
+        "check": "Patikrinti būseną",
+        "verify": "Patvirtinti domeną",
+        "remove": "Pašalinti domeną",
+        "verifiedTitle": "Siuntimo domenas patvirtintas",
+        "verifiedDescription": "Dabar galite pasirinkti klientų patvirtinimo laiškų siuntėjo vardą ir adresą.",
+        "fromName": "Siuntėjo vardas",
+        "fromEmail": "Siuntėjo el. paštas",
+        "storePlaceholder": "Parduotuvės pavadinimas",
+        "emailHelp": "Adresas turi baigtis @{{domain}}.",
+        "saveSender": "Išsaugoti siuntėjo duomenis"
+      },
+      "smtp": {
+        "intro": "Įveskite el. pašto tiekėjo SMTP duomenis. Prieš ryšio bandymą išsaugokite nustatymus.",
+        "host": "SMTP serveris",
+        "port": "SMTP prievadas",
+        "portHelp": "Paprastai naudokite 587 STARTTLS arba 465 SSL/TLS.",
+        "security": "Ryšio saugumas",
+        "starttls": "STARTTLS — paprastai prievadas 587",
+        "ssl": "SSL/TLS — paprastai prievadas 465",
+        "username": "SMTP naudotojo vardas",
+        "usernameHelp": "Dažnai tai visas jūsų el. pašto adresas.",
+        "password": "SMTP slaptažodis",
+        "savedPasswordPlaceholder": "Palikite tuščią, kad išlaikytumėte išsaugotą slaptažodį",
+        "newPasswordPlaceholder": "Įveskite SMTP slaptažodį",
+        "savedPasswordHelp": "Slaptažodis jau saugiai išsaugotas. Naują įveskite tik norėdami pakeisti.",
+        "newPasswordHelp": "Kai kurie tiekėjai reikalauja programėlės slaptažodžio vietoje įprasto paskyros slaptažodžio.",
+        "fromName": "Siuntėjo vardas",
+        "fromEmail": "Siuntėjo el. paštas",
+        "storePlaceholder": "Parduotuvės pavadinimas",
+        "fromEmailHelp": "SMTP tiekėjas turi leisti naudoti šį siuntėjo adresą.",
+        "connectionFailed": "SMTP ryšys nepavyko",
+        "test": "Išbandyti ryšį",
+        "disconnect": "Atjungti SMTP",
+        "saveBeforeTest": "Prieš ryšio bandymą išsaugokite pakeitimus."
+      },
+      "errors": {
+        "saveSmtpFirst": "Prieš ryšio bandymą išsaugokite SMTP nustatymus.",
+        "smtpFailed": "SMTP ryšys nepavyko.",
+        "disconnectSmtp": "Nepavyko atjungti SMTP.",
+        "domainRequired": "Pirmiausia įveskite domeną ar padomenį.",
+        "createDomain": "Nepavyko sukurti siuntimo domeno.",
+        "refreshDomain": "Nepavyko atnaujinti siuntimo domeno.",
+        "verifyDomain": "Nepavyko pradėti domeno tikrinimo.",
+        "verifyBeforeSender": "Prieš išsaugodami siuntėjo adresą patvirtinkite siuntimo domeną.",
+        "saveSender": "Nepavyko išsaugoti siuntėjo adreso.",
+        "removeDomain": "Nepavyko pašalinti siuntimo domeno.",
+        "dirtyActions": {
+          "disconnectSmtp": "SMTP atjungimas",
+          "createDomain": "siuntimo domeno sukūrimas",
+          "checkDomain": "siuntimo domeno būsenos patikrinimas",
+          "saveSender": "siuntėjo adreso išsaugojimas",
+          "removeDomain": "siuntimo domeno pašalinimas"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Planai",
+    "grandfatheredFree": "Ankstesnis nemokamas",
+    "pro": "Pro",
+    "current": "Dabartinis",
+    "legacyDescription": "Ankstesnė teisė — be mokesčio",
+    "legacyWarning": "Plano keitimas visam laikui panaikina šią ankstesnę teisę.",
+    "manageSubscription": "Tvarkyti prenumeratą",
+    "subscribePro": "Užsisakyti Pro",
+    "errors": {
+      "title": "Nepavyko atverti Shopify kainodaros",
+      "missingUrl": "Shopify nepateikė kainodaros URL.",
+      "openFailed": "Nepavyko atverti Shopify kainodaros."
+    },
+    "features": {
+      "withdrawalFlow": "ES taisykles atitinkantis sutarties atsisakymo procesas",
+      "unlimitedRequests": "Neriboti sutarties atsisakymo prašymai",
+      "confirmationEmails": "Automatiniai patvirtinimo laiškai",
+      "themeBlock": "Temos programėlės blokų palaikymas",
+      "requestDashboard": "Prašymų valdymo skydelis",
+      "merchantNotifications": "Pranešimai prekybininkui",
+      "basicCompliance": "Bazinis atitikimas įtrauktas",
+      "coreManagement": "Pagrindinis sutarties atsisakymo prašymų valdymas",
+      "euLanguages": "Visos palaikomos ES kalbos",
+      "customPeriod": "Keičiamas sutarties atsisakymo terminas su tikrinimu",
+      "customBranding": "Savas prekės ženklas ir spalvos",
+      "advancedManagement": "CSV eksportas ir išplėstinis prašymų valdymas"
+    }
+  },
+  "help": {
+    "title": "Pagalba",
+    "commonQuestions": "Dažni klausimai",
+    "introduction": "Greiti atsakymai apie sąranką ir trikčių šalinimą.",
+    "supportTitle": "Reikia daugiau pagalbos?",
+    "supportDescription": "Jei atsakymai neišsprendžia problemos, meniu ⋯ viršuje dešinėje pasirinkite Gauti pagalbą ir susisiekite su mumis per Shopify.",
+    "supportResponse": "Į pagalbos prašymus paprastai atsakome per vieną darbo dieną.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Kodėl programėlė neveikia su Shopify Canvas?",
+        "answer": "Shopify Canvas yra ankstyvos prieigos etape ir dar nepalaiko sutarties atsisakymo mygtukui reikalingų programėlės blokų ar įterpimų. Tai dabartinis Canvas apribojimas. Naudokite suderinamą temą įprastame Shopify redaktoriuje."
+      },
+      "buttonNotShowing": {
+        "question": "Kodėl sutarties atsisakymo mygtukas nerodomas parduotuvėje?",
+        "answer": "Patikrinkite, ar EU Withdrawal Button įterpimas ar blokas įjungtas dabartinėje temoje. Pakeitus ar paskelbus temą gali reikėti įjungti dar kartą."
+      },
+      "buttonPosition": {
+        "question": "Ar galiu keisti sutarties atsisakymo mygtuko vietą?",
+        "answer": "Taip. Atverkite Nustatymus ir pakeiskite slankiojo mygtuko vietą kompiuteryje ir mobiliajame įrenginyje."
+      },
+      "buttonAppearance": {
+        "question": "Ar galiu keisti mygtuko išvaizdą?",
+        "answer": "Taip. Pritaikykite prieinamas išvaizdos parinktis programėlės Nustatymuose."
+      },
+      "requestSubmitted": {
+        "question": "Kas vyksta klientui pateikus sutarties atsisakymo prašymą?",
+        "answer": "Prašymas išsaugomas skiltyje Prašymai, kur galite jį peržiūrėti ir atnaujinti būseną."
+      },
+      "notificationEmail": {
+        "question": "Ar gausiu el. laišką klientui pateikus prašymą?",
+        "answer": "Taip, jei nustatėte pranešimų adresą. Patikrinkite Nustatymus, jei pranešimai negaunami."
+      },
+      "withdrawalPeriod": {
+        "question": "Ar galiu keisti sutarties atsisakymo terminą?",
+        "answer": "Taip. Terminą galima nustatyti programėlės Nustatymuose."
+      },
+      "automaticRefund": {
+        "question": "Ar programėlė automatiškai grąžina pinigus arba atšaukia užsakymą?",
+        "answer": "Ne. Sutarties atsisakymo prašymas automatiškai negrąžina pinigų ir neatšaukia Shopify užsakymo. Jūs valdote prašymo peržiūrą ir tvarkymą."
+      },
+      "previousRequests": {
+        "question": "Ar galiu matyti ankstesnius sutarties atsisakymo prašymus?",
+        "answer": "Taip. Atverkite Prašymus, kad matytumėte pateiktus prašymus."
+      },
+      "multipleLanguages": {
+        "question": "Ar programėlė palaiko kelias kalbas?",
+        "answer": "Kalbas galima pasirinkti. Prieinamas parinktis tvarkykite Nustatymuose."
+      },
+      "themeChanged": {
+        "question": "Pakeičiau Shopify temą ir mygtukas dingo. Ką daryti?",
+        "answer": "Atverkite naujos temos redaktorių ir įjunkite EU Withdrawal Button įterpimą ar bloką."
+      },
+      "hideButton": {
+        "question": "Ar galiu laikinai paslėpti sutarties atsisakymo mygtuką?",
+        "answer": "Taip. Parduotuvės mygtuką galima išjungti nepašalinant programėlės."
+      },
+      "missingEmails": {
+        "question": "Kodėl negaunu pranešimų el. paštu?",
+        "answer": "Patikrinkite pranešimų adresą ir siuntimo nustatymus Nustatymuose. Patikrinkite ir šlamšto aplanką."
+      },
+      "legalCompliance": {
+        "question": "Ar programėlė garantuoja parduotuvės teisinį atitikimą?",
+        "answer": "Ne. Programėlė padeda klientams pateikti prašymus atsisakyti sutarties, o jums – juos valdyti. Jūs atsakote už tai, kad parduotuvės taisyklės ir procesai atitiktų jūsų verslui taikomus įstatymus."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Parduotuvė nerasta.",
+    "entitlementUnavailable": "Nepavyko patikrinti Shopify App Pricing teisės.",
+    "planRequired": "Reikalingas mokamas Shopify planas.",
+    "languagesInvalid": "Pasirinktos kalbos netinkamos.",
+    "basicLanguageLimit": "Ankstesnis nemokamas planas apima anglų ir dar vieną kalbą.",
+    "withdrawalPeriod": "Sutarties atsisakymo terminas turi būti nuo 1 iki 365 dienų.",
+    "smtpHost": "Reikalingas SMTP serveris.",
+    "smtpPort": "SMTP tikrinimas ribojamas 465 ir 587 prievadais.",
+    "smtpUsername": "Reikalingas SMTP naudotojo vardas.",
+    "smtpFromEmail": "Reikalingas siuntėjo el. pašto adresas.",
+    "smtpPassword": "Reikalingas SMTP slaptažodis.",
+    "settingsUpdate": "Nepavyko atnaujinti nustatymų.",
+    "requestNotFound": "Prašymas nerastas.",
+    "invalidStatus": "Netinkama prašymo būsena.",
+    "setupStatus": "Nepavyko įkelti sąrankos būsenos.",
+    "upgradeRequired": "Šiai funkcijai pereikite prie Pro."
+  }
+}

@@ -1,0 +1,452 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Jazyk",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Pokračovať",
+    "save": "Uložiť",
+    "cancel": "Zrušiť",
+    "loading": "Načítava sa..."
+  },
+  "onboarding": {
+    "welcome": "Vitajte v EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Vyberte jazyk",
+    "languageDescription": "Vyberte jazyk, ktorý chcete používať v aplikácii.",
+    "languageLabel": "Jazyk aplikácie",
+    "dpaTitle": "2. Zmluva o spracúvaní osobných údajov",
+    "dpaDescription": "Na používanie aplikácie musíte prijať našu zmluvu o spracúvaní osobných údajov. Vysvetľuje spracúvanie údajov zákazníkov vo vašom mene.",
+    "viewDpa": "Zobraziť zmluvu o spracúvaní osobných údajov",
+    "agree": "Prečítal/a som si zmluvu o spracúvaní osobných údajov a súhlasím s ňou",
+    "acceptContinue": "Prijať a pokračovať",
+    "error": "Nastavenie sa nepodarilo dokončiť. Skúste to znova.",
+    "step1": "Krok 1 z 2",
+    "step2": "Krok 2 z 2",
+    "next": "Ďalej",
+    "back": "Späť"
+  },
+  "navigation": {
+    "dashboard": "Prehľad",
+    "requests": "Žiadosti",
+    "settings": "Nastavenia",
+    "plans": "Programy",
+    "help": "Pomoc",
+    "currentPlan": "Aktuálny program",
+    "planGrandfathered": "Program: Pôvodný bezplatný",
+    "planPro": "Program: Pro",
+    "planRequired": "Je potrebný program",
+    "premiumActive": "Všetky prémiové funkcie sú zapnuté",
+    "grandfatheredActive": "Pôvodný bezplatný prístup je aktívny",
+    "subscribeToContinue": "Pokračujte predplatením"
+  },
+  "appLanguage": {
+    "title": "Jazyk aplikácie",
+    "description": "Vyberte jazyk prehľadu aplikácie. Jazyky dostupné zákazníkom sa nemenia.",
+    "label": "Jazyk zobrazenia",
+    "saveError": "Jazyk aplikácie sa nepodarilo aktualizovať.",
+    "settingsTitle": "Nastavenia"
+  },
+  "dashboard": {
+    "title": "Prehľad",
+    "subscriptionError": "Predplatné sa nepodarilo aktualizovať",
+    "description": "Pridajte do obchodu za pár minút tlačidlo na odstúpenie podľa pravidiel EÚ. Zbierajte a spravujte žiadosti zákazníkov na jednom mieste bez zložitého nastavovania.",
+    "plan": "Program",
+    "grandfatheredFree": "Pôvodný bezplatný",
+    "planPro": "Pro",
+    "proActive": "Funkcie Pro sú aktívne.",
+    "freeActive": "Pôvodný bezplatný prístup je aktívny.",
+    "stats": {
+      "total": "Žiadosti spolu",
+      "totalHelp": "Za celé obdobie tohto obchodu",
+      "received": "Prijaté",
+      "receivedHelp": "Čakajú na akciu",
+      "reviewed": "Posúdené",
+      "reviewedHelp": "Ručne posúdené",
+      "closed": "Schválené / Zamietnuté",
+      "closedHelp": "Uzavreté stavy"
+    },
+    "status": {
+      "complete": "Dokončené",
+      "incomplete": "Nedokončené"
+    },
+    "setup": {
+      "title": "Dokončite nastavenie",
+      "description": "Vyberte nastavenie vhodné pre obchod. Odporúčame plávajúce tlačidlo na celom webe a samostatnú stránku na odstúpenie.",
+      "recommended": "Odporúčané",
+      "suggested": "Navrhované",
+      "optional": "Voliteľné",
+      "pageReady": {
+        "title": "Stránka na odstúpenie je pripravená",
+        "description": "Stránka je pripravená. Pridajte blok aplikácie a odkaz do e-mailov s potvrdením objednávky."
+      },
+      "actionFailed": "Akcia nastavenia zlyhala",
+      "notification": {
+        "title": "Pridajte e-mail na oznámenia",
+        "description": "Zadajte adresu, na ktorú chcete oznámenia o žiadostiach zákazníkov o odstúpenie.",
+        "edit": "Upraviť nastavenia oznámení",
+        "add": "Pridajte e-mail na oznámenia",
+        "destination": "Oznámenia budú zaslané na {{email}}."
+      },
+      "floating": {
+        "title": "Zapnúť plávajúce tlačidlo na celom webe",
+        "description": "Najlepšia viditeľnosť. Plávajúce tlačidlo v celom obchode sprístupní formulár z ľubovoľnej stránky.",
+        "button": "Zapnúť plávajúce tlačidlo"
+      },
+      "withdrawalPage": {
+        "title": "Vytvoriť samostatnú stránku na odstúpenie",
+        "description": "Vytvorte bežnú stránku na /pages/eu-withdrawal, aby zákazníci mali jasné miesto na podávanie žiadostí.",
+        "button": "Vytvoriť stránku"
+      },
+      "pageBlock": {
+        "title": "Pridať blok tlačidla na stránku na odstúpenie",
+        "description": "Otvorte editor témy a pridajte blok EU Withdrawal Button na samostatnú stránku na odstúpenie.",
+        "button": "Pridať blok stránky"
+      },
+      "orderEmail": {
+        "title": "Pridať odkaz do potvrdení objednávky",
+        "description": "Pridajte odkaz na stránku na odstúpenie do potvrdzovacích e-mailov Shopify, aby ju zákazníci našli po nákupe.",
+        "button": "Otvoriť oznámenia",
+        "suggestedLink": "Navrhovaný odkaz:"
+      },
+      "testRequest": {
+        "title": "Odoslať skúšobnú žiadosť o odstúpenie",
+        "description": "Otvorte obchod alebo stránku na odstúpenie a odošlite skúšobnú žiadosť na overenie skúsenosti zákazníka.",
+        "openPage": "Otvoriť stránku na odstúpenie",
+        "openStorefront": "Otvoriť obchod"
+      },
+      "review": {
+        "title": "Posúdiť žiadosti v prehľade",
+        "description": "Po odoslaní skutočnej alebo skúšobnej žiadosti ju posúďte v časti Žiadosti a aktualizujte stav.",
+        "button": "Otvoriť žiadosti"
+      },
+      "upgrade": {
+        "title": "Prejsť na Pro",
+        "description": "Získajte overovanie objednávok, pokročilé nastavenia, automatizáciu a vlastné pracovné postupy.",
+        "button": "Zobraziť Pro"
+      }
+    },
+    "billingSyncFailed": "Stav fakturácie sa nepodarilo synchronizovať",
+    "subscriptionStatusError": "Stav predplatného sa nepodarilo aktualizovať."
+  },
+  "requests": {
+    "title": "Žiadosti o odstúpenie",
+    "exportCSV": "Exportovať CSV",
+    "status": "Stav",
+    "verification": "Overenie",
+    "search": "Hľadať",
+    "searchPlaceholder": "E-mail, objednávka, referencia...",
+    "all": "Všetky",
+    "empty": "Nenašli sa žiadne žiadosti.",
+    "unknown": "Neznámy",
+    "noReason": "Dôvod nebol uvedený",
+    "filterPro": "Pokročilé filtrovanie a export CSV sú dostupné v Pro.",
+    "resourceSingular": "žiadosť",
+    "resourcePlural": "žiadosti",
+    "selectedAll": "Všetky",
+    "columns": {
+      "reference": "Referencia",
+      "customer": "Zákazník",
+      "order": "Objednávka",
+      "verification": "Overenie",
+      "reason": "Dôvod",
+      "status": "Stav",
+      "submitted": "Odoslané",
+      "actions": "Akcie"
+    },
+    "statuses": {
+      "RECEIVED": "Prijatá",
+      "CONFIRMED": "Potvrdená",
+      "REVIEWED": "Posúdená",
+      "APPROVED": "Schválená",
+      "REJECTED": "Zamietnutá"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Overené",
+        "tooltip": "Objednávka nájdená v lehote na odstúpenie"
+      },
+      "NOT_FOUND": {
+        "label": "Objednávka sa nenašla",
+        "tooltip": "V Shopify sa nenašla zodpovedajúca objednávka"
+      },
+      "EXPIRED": {
+        "label": "Lehota uplynula",
+        "tooltip": "Objednávka nájdená, ale lehota na odstúpenie uplynula"
+      },
+      "ERROR": {
+        "label": "Nedostupné",
+        "tooltip": "Objednávku nemožno overiť pre problém Shopify alebo API"
+      },
+      "UNVERIFIED": {
+        "label": "Neoverené",
+        "tooltip": "Automatické overovanie objednávok je dostupné v Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Neplatná objednávka"
+    },
+    "deleteCustomer": {
+      "button": "Vymazať údaje zákazníka",
+      "title": "Vymazať údaje zákazníka",
+      "description": "Všetky uložené údaje o odstúpení pre {{email}} budú natrvalo vymazané."
+    },
+    "bulkDelete": {
+      "button": "Vymazať vybrané",
+      "title": "Vymazať vybrané žiadosti",
+      "confirm": "Vymazať žiadosti",
+      "description_one": "Natrvalo sa vymaže {{count}} vybraná žiadosť o odstúpenie.",
+      "description_other": "Natrvalo sa vymaže {{count}} vybraných žiadostí o odstúpenie.",
+      "description_few": "Natrvalo sa vymažú {{count}} vybrané žiadosti o odstúpenie.",
+      "description_many": "Vybrané žiadosti o odstúpenie sa natrvalo vymažú. Počet: {{count}}."
+    },
+    "delete": "Vymazať",
+    "cancel": "Zrušiť",
+    "scrollLabel": "Vodorovne posúvať žiadosti o odstúpenie",
+    "errors": {
+      "temporary": "Dočasný problém servera. Skúste to znova o chvíľu.",
+      "update": "Stav žiadosti sa nepodarilo aktualizovať.",
+      "export": "CSV teraz nemožno exportovať. Skúste to čoskoro znova."
+    }
+  },
+  "settings": {
+    "title": "Nastavenia",
+    "loading": "Načítavajú sa nastavenia",
+    "saveFailed": "Nastavenia sa nepodarilo uložiť",
+    "general": {
+      "title": "Všeobecné nastavenia",
+      "customerLanguages": "Jazyky zákazníckeho formulára",
+      "customerLanguagesDescription": "Vyberte jazyky, ktoré môžu zákazníci používať vo formulári na odstúpenie.",
+      "availableLanguages": "Jazyky dostupné zákazníkom",
+      "defaultLanguage": "Predvolený jazyk",
+      "defaultLanguageHelp": "Formulár sa otvorí v tomto jazyku. Zákazníci si môžu vybrať iný zapnutý jazyk.",
+      "basicLanguagesHelp": "Pôvodný bezplatný program obsahuje angličtinu a jeden ďalší jazyk. Pre všetky podporované jazyky prejdite na Pro.",
+      "notificationEmail": "E-mail na oznámenia o odstúpení",
+      "notificationEmailHelp": "Sem sa zasielajú interné oznámenia o nových žiadostiach o odstúpenie.",
+      "upgradeTitle": "Prejdite na Pro pre pokročilé nastavenia",
+      "upgradeDescription": "Nastaviteľné lehoty na odstúpenie sú dostupné v Pro.",
+      "legalPage": "URL právnej stránky",
+      "privacyPage": "URL stránky ochrany súkromia",
+      "supportEmail": "E-mail zákazníckej podpory",
+      "supportEmailHelp": "Zobrazený zákazníkom a používaný ako adresa na odpovede pri spravovanom doručovaní.",
+      "basicPeriod": "Pôvodný bezplatný program používa orientačnú lehotu 14 dní. Automatické overovanie sa neuplatňuje.",
+      "withdrawalPeriod": "Lehota na odstúpenie (dni)",
+      "periodBasicHelp": "Zákazníkom sa uvádza orientačná lehota 14 dní. Prejdite na Pro pre úpravy a automatické overovanie.",
+      "periodProHelp": "Nastavte lehotu na odstúpenie. Žiadosti sa podľa nej overia, ak to bude možné."
+    },
+    "errors": {
+      "basicLanguageLimit": "Pôvodný bezplatný program obsahuje angličtinu a jeden ďalší jazyk.",
+      "selectLanguage": "Vyberte aspoň jeden jazyk.",
+      "save": "Nastavenia sa nepodarilo uložiť.",
+      "saveFirst": "Pred nasledujúcou akciou uložte alebo zahoďte ostatné zmeny: {{action}}."
+    },
+    "plans": {
+      "basic": "Pôvodný bezplatný",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Doručovanie e-mailov",
+      "description": "Vyberte spôsob odosielania potvrdzovacích e-mailov zákazníkom.",
+      "deliveryMethod": "Spôsob doručenia",
+      "managed": "Spravované GL6",
+      "managedOption": "Spravované doručovanie GL6 — Odporúčané",
+      "managedHelp": "Potvrdzovacie e-maily sa zasielajú cez overenú službu GL6. Odpovede zákazníkov smerujú na adresu podpory.",
+      "smtpOption": "Vlastné SMTP — Pro",
+      "smtpOptionHelp": "Pripojte poskytovateľa e-mailu pomocou prihlasovacích údajov SMTP.",
+      "proTitle": "E-maily s vlastnou značkou sú dostupné v Pro",
+      "proDescription": "Obchody s pôvodným bezplatným programom používajú GL6. Odpovede smerujú na adresu podpory nastavenú vyššie.",
+      "connected": "Pripojené",
+      "connectionFailed": "Pripojenie zlyhalo",
+      "requiresTesting": "Vyžaduje test",
+      "statuses": {
+        "notConfigured": "Nenastavené",
+        "verified": "Overené",
+        "pending": "Čaká",
+        "notStarted": "Nezačaté",
+        "failed": "Zlyhalo",
+        "failure": "Zlyhalo",
+        "temporaryFailure": "Dočasná chyba"
+      },
+      "domain": {
+        "intro": "Odporúčame samostatnú subdoménu, napríklad withdrawals.example.com. Pridajte záznamy DNS nižšie a overte doménu.",
+        "label": "Odosielacia doména alebo subdoména",
+        "help": "Neuvádzajte https:// ani cestu.",
+        "add": "Pridať odosielaciu doménu",
+        "recordsHelp": "Pred spustením overovania pridajte všetky potrebné záznamy DNS.",
+        "columns": {
+          "type": "Typ",
+          "name": "Názov",
+          "value": "Hodnota",
+          "priority": "Priorita",
+          "status": "Stav"
+        },
+        "issue": "Problém odosielacej domény",
+        "check": "Skontrolovať stav",
+        "verify": "Overiť doménu",
+        "remove": "Odstrániť doménu",
+        "verifiedTitle": "Odosielacia doména overená",
+        "verifiedDescription": "Teraz môžete vybrať meno a e-mailovú adresu odosielateľa pre potvrdenia zákazníkom.",
+        "fromName": "Meno odosielateľa",
+        "fromEmail": "E-mail odosielateľa",
+        "storePlaceholder": "Názov obchodu",
+        "emailHelp": "Adresa musí končiť na @{{domain}}.",
+        "saveSender": "Uložiť údaje odosielateľa"
+      },
+      "smtp": {
+        "intro": "Zadajte údaje SMTP od poskytovateľa e-mailu. Pred testovaním pripojenia uložte nastavenia.",
+        "host": "Server SMTP",
+        "port": "Port SMTP",
+        "portHelp": "Zvyčajne použite 587 pre STARTTLS alebo 465 pre SSL/TLS.",
+        "security": "Zabezpečenie pripojenia",
+        "starttls": "STARTTLS — zvyčajne port 587",
+        "ssl": "SSL/TLS — zvyčajne port 465",
+        "username": "Používateľské meno SMTP",
+        "usernameHelp": "Často ide o úplnú e-mailovú adresu.",
+        "password": "Heslo SMTP",
+        "savedPasswordPlaceholder": "Nechajte prázdne na zachovanie uloženého hesla",
+        "newPasswordPlaceholder": "Zadajte heslo SMTP",
+        "savedPasswordHelp": "Heslo je už bezpečne uložené. Nové zadajte iba na jeho nahradenie.",
+        "newPasswordHelp": "Niektorí poskytovatelia vyžadujú heslo aplikácie namiesto bežného hesla účtu.",
+        "fromName": "Meno odosielateľa",
+        "fromEmail": "E-mail odosielateľa",
+        "storePlaceholder": "Názov obchodu",
+        "fromEmailHelp": "Poskytovateľ SMTP musí povoliť túto adresu ako odosielateľa.",
+        "connectionFailed": "Pripojenie SMTP zlyhalo",
+        "test": "Otestovať pripojenie",
+        "disconnect": "Odpojiť SMTP",
+        "saveBeforeTest": "Pred testovaním pripojenia uložte zmeny."
+      },
+      "errors": {
+        "saveSmtpFirst": "Pred testovaním pripojenia uložte nastavenia SMTP.",
+        "smtpFailed": "Pripojenie SMTP zlyhalo.",
+        "disconnectSmtp": "SMTP sa nepodarilo odpojiť.",
+        "domainRequired": "Najprv zadajte doménu alebo subdoménu.",
+        "createDomain": "Odosielaciu doménu sa nepodarilo vytvoriť.",
+        "refreshDomain": "Odosielaciu doménu sa nepodarilo aktualizovať.",
+        "verifyDomain": "Overovanie domény sa nepodarilo spustiť.",
+        "verifyBeforeSender": "Pred uložením adresy odosielateľa overte odosielaciu doménu.",
+        "saveSender": "Adresu odosielateľa sa nepodarilo uložiť.",
+        "removeDomain": "Odosielaciu doménu sa nepodarilo odstrániť.",
+        "dirtyActions": {
+          "disconnectSmtp": "odpojenie SMTP",
+          "createDomain": "vytvorenie odosielacej domény",
+          "checkDomain": "kontrola stavu odosielacej domény",
+          "saveSender": "uloženie adresy odosielateľa",
+          "removeDomain": "odstránenie odosielacej domény"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Programy",
+    "grandfatheredFree": "Pôvodný bezplatný",
+    "pro": "Pro",
+    "current": "Aktuálny",
+    "legacyDescription": "Pôvodný nárok — bez poplatku",
+    "legacyWarning": "Prechod na vyšší program tento pôvodný nárok natrvalo ukončí.",
+    "manageSubscription": "Spravovať predplatné",
+    "subscribePro": "Predplatiť Pro",
+    "errors": {
+      "title": "Cenník Shopify sa nepodarilo otvoriť",
+      "missingUrl": "Shopify nevrátilo URL cenníka.",
+      "openFailed": "Cenník Shopify sa nepodarilo otvoriť."
+    },
+    "features": {
+      "withdrawalFlow": "Proces odstúpenia podľa pravidiel EÚ",
+      "unlimitedRequests": "Neobmedzené žiadosti o odstúpenie",
+      "confirmationEmails": "Automatické potvrdzovacie e-maily",
+      "themeBlock": "Podpora blokov aplikácie v téme",
+      "requestDashboard": "Prehľad žiadostí",
+      "merchantNotifications": "Oznámenia obchodníkovi",
+      "basicCompliance": "Základný súlad zahrnutý",
+      "coreManagement": "Základná správa žiadostí o odstúpenie",
+      "euLanguages": "Všetky podporované jazyky EÚ",
+      "customPeriod": "Vlastná lehota na odstúpenie s overovaním",
+      "customBranding": "Vlastná značka a farby",
+      "advancedManagement": "Export CSV a pokročilá správa žiadostí"
+    }
+  },
+  "help": {
+    "title": "Pomoc",
+    "commonQuestions": "Časté otázky",
+    "introduction": "Rýchle odpovede na otázky o nastavení a riešení problémov.",
+    "supportTitle": "Potrebujete ďalšiu pomoc?",
+    "supportDescription": "Ak odpovede nepomohli, zvoľte Získať podporu v ponuke ⋯ vpravo hore a kontaktujte nás cez Shopify.",
+    "supportResponse": "Na žiadosti o podporu zvyčajne odpovedáme do jedného pracovného dňa.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Prečo aplikácia nefunguje so Shopify Canvas?",
+        "answer": "Shopify Canvas je v predbežnom prístupe a ešte nepodporuje bloky ani vloženia aplikácií pre tlačidlo odstúpenia. Ide o súčasné obmedzenie Canvas. Použite kompatibilnú tému v bežnom editore Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "Prečo sa tlačidlo odstúpenia nezobrazuje v obchode?",
+        "answer": "Overte, že je vloženie alebo blok EU Withdrawal Button zapnutý v aktuálnej téme. Po zmene alebo publikovaní témy môže byť potrebné zapnutie zopakovať."
+      },
+      "buttonPosition": {
+        "question": "Môžem zmeniť umiestnenie tlačidla odstúpenia?",
+        "answer": "Áno. Otvorte Nastavenia a upravte umiestnenie plávajúceho tlačidla pre počítače a mobily."
+      },
+      "buttonAppearance": {
+        "question": "Môžem zmeniť vzhľad tlačidla?",
+        "answer": "Áno. Dostupné možnosti vzhľadu upravíte v Nastaveniach aplikácie."
+      },
+      "requestSubmitted": {
+        "question": "Čo sa stane, keď zákazník odošle žiadosť o odstúpenie?",
+        "answer": "Žiadosť sa zaznamená v časti Žiadosti, kde ju môžete posúdiť a aktualizovať stav."
+      },
+      "notificationEmail": {
+        "question": "Dostanem e-mail, keď zákazník odošle žiadosť?",
+        "answer": "Áno, ak máte nastavený e-mail na oznámenia. Ak oznámenia neprichádzajú, skontrolujte Nastavenia."
+      },
+      "withdrawalPeriod": {
+        "question": "Môžem zmeniť lehotu na odstúpenie?",
+        "answer": "Áno. Lehotu upravíte v Nastaveniach aplikácie."
+      },
+      "automaticRefund": {
+        "question": "Vracia aplikácia automaticky platbu alebo ruší objednávku?",
+        "answer": "Nie. Odoslanie žiadosti automaticky nevráti platbu ani nezruší objednávku Shopify. Posúdenie a spracovanie zostáva na vás."
+      },
+      "previousRequests": {
+        "question": "Môžem zobraziť predchádzajúce žiadosti o odstúpenie?",
+        "answer": "Áno. Otvorte Žiadosti a zobrazte odoslané žiadosti."
+      },
+      "multipleLanguages": {
+        "question": "Podporuje aplikácia viac jazykov?",
+        "answer": "Jazyky aplikácie možno nastaviť. Dostupné jazyky spravujete v Nastaveniach."
+      },
+      "themeChanged": {
+        "question": "Zmenil/a som tému Shopify a tlačidlo zmizlo. Čo mám robiť?",
+        "answer": "Otvorte editor novej témy a zapnite vloženie alebo blok EU Withdrawal Button."
+      },
+      "hideButton": {
+        "question": "Môžem tlačidlo odstúpenia dočasne skryť?",
+        "answer": "Áno. Tlačidlo obchodu môžete vypnúť bez odinštalovania aplikácie."
+      },
+      "missingEmails": {
+        "question": "Prečo nedostávam e-maily s oznámeniami?",
+        "answer": "Skontrolujte adresu oznámení a nastavenia doručovania v Nastaveniach. Skontrolujte aj priečinok nevyžiadanej pošty."
+      },
+      "legalCompliance": {
+        "question": "Zaručuje aplikácia právny súlad obchodu?",
+        "answer": "Nie. Aplikácia poskytuje nástroje na prijímanie a správu žiadostí o odstúpenie. Za súlad pravidiel a postupov obchodu s právnymi predpismi platnými pre vaše podnikanie zodpovedáte vy."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Obchod sa nenašiel.",
+    "entitlementUnavailable": "Nárok Shopify App Pricing sa nepodarilo overiť.",
+    "planRequired": "Je potrebný platený program Shopify.",
+    "languagesInvalid": "Vybrané jazyky sú neplatné.",
+    "basicLanguageLimit": "Pôvodný bezplatný program obsahuje angličtinu a jeden ďalší jazyk.",
+    "withdrawalPeriod": "Lehota na odstúpenie musí byť 1 až 365 dní.",
+    "smtpHost": "Server SMTP je povinný.",
+    "smtpPort": "Overovanie SMTP je obmedzené na porty 465 a 587.",
+    "smtpUsername": "Používateľské meno SMTP je povinné.",
+    "smtpFromEmail": "E-mailová adresa odosielateľa je povinná.",
+    "smtpPassword": "Heslo SMTP je povinné.",
+    "settingsUpdate": "Nastavenia sa nepodarilo aktualizovať.",
+    "requestNotFound": "Žiadosť sa nenašla.",
+    "invalidStatus": "Neplatný stav žiadosti.",
+    "setupStatus": "Stav nastavenia sa nepodarilo načítať.",
+    "upgradeRequired": "Pre túto funkciu prejdite na Pro."
+  }
+}

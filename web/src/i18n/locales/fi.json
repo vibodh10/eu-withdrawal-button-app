@@ -1,0 +1,450 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Kieli",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Jatka",
+    "save": "Tallenna",
+    "cancel": "Peruuta",
+    "loading": "Ladataan..."
+  },
+  "onboarding": {
+    "welcome": "Tervetuloa EU Withdrawal Button Made Easy -sovellukseen",
+    "languageTitle": "1. Valitse kieli",
+    "languageDescription": "Valitse sovelluksessa käytettävä kieli.",
+    "languageLabel": "Sovelluksen kieli",
+    "dpaTitle": "2. Tietojenkäsittelysopimus",
+    "dpaDescription": "Sovelluksen käyttö edellyttää tietojenkäsittelysopimuksemme hyväksymistä. Sopimus kuvaa, miten asiakastietoja käsitellään puolestasi.",
+    "viewDpa": "Näytä tietojenkäsittelysopimus",
+    "agree": "Olen lukenut tietojenkäsittelysopimuksen ja hyväksyn sen",
+    "acceptContinue": "Hyväksy ja jatka",
+    "error": "Käyttöönottoa ei voitu viimeistellä. Yritä uudelleen.",
+    "step1": "Vaihe 1/2",
+    "step2": "Vaihe 2/2",
+    "next": "Seuraava",
+    "back": "Takaisin"
+  },
+  "navigation": {
+    "dashboard": "Hallintapaneeli",
+    "requests": "Pyynnöt",
+    "settings": "Asetukset",
+    "plans": "Tilaukset",
+    "help": "Ohje",
+    "currentPlan": "Nykyinen tilaustaso",
+    "planGrandfathered": "Tilaustaso: Aiempi maksuton",
+    "planPro": "Tilaustaso: Pro",
+    "planRequired": "Tilaus vaaditaan",
+    "premiumActive": "Kaikki lisäominaisuudet käytössä",
+    "grandfatheredActive": "Aiempi maksuton käyttöoikeus voimassa",
+    "subscribeToContinue": "Tee tilaus jatkaaksesi"
+  },
+  "appLanguage": {
+    "title": "Sovelluksen kieli",
+    "description": "Valitse hallintapaneelin kieli. Tämä ei muuta asiakkaiden käytettävissä olevia kieliä.",
+    "label": "Näyttökieli",
+    "saveError": "Sovelluksen kieltä ei voitu päivittää.",
+    "settingsTitle": "Asetukset"
+  },
+  "dashboard": {
+    "title": "Hallintapaneeli",
+    "subscriptionError": "Tilausta ei voitu päivittää",
+    "description": "Lisää kauppaasi EU-sääntöjen mukainen peruuttamispainike minuuteissa. Kerää ja hallitse asiakkaiden peruuttamispyynnöt yhdessä paikassa ilman monimutkaista käyttöönottoa.",
+    "plan": "Tilaustaso",
+    "grandfatheredFree": "Aiempi maksuton",
+    "planPro": "Pro",
+    "proActive": "Pro-ominaisuudet ovat käytössä.",
+    "freeActive": "Aiempi maksuton käyttöoikeus on voimassa.",
+    "stats": {
+      "total": "Pyynnöt yhteensä",
+      "totalHelp": "Kaupan koko toiminta-ajalta",
+      "received": "Vastaanotetut",
+      "receivedHelp": "Odottaa toimenpiteitä",
+      "reviewed": "Tarkastetut",
+      "reviewedHelp": "Arvioitu käsin",
+      "closed": "Hyväksytyt / Hylätyt",
+      "closedHelp": "Suljetut tilat"
+    },
+    "status": {
+      "complete": "Valmis",
+      "incomplete": "Kesken"
+    },
+    "setup": {
+      "title": "Viimeistele käyttöönotto",
+      "description": "Valitse kaupallesi sopiva toteutus. Suosittelemme kelluvaa painiketta koko sivustolle ja erillistä peruuttamissivua.",
+      "recommended": "Suositeltu",
+      "suggested": "Ehdotettu",
+      "optional": "Valinnainen",
+      "pageReady": {
+        "title": "Peruuttamissivu valmis",
+        "description": "Peruuttamissivu on valmis. Lisää sovelluslohko sivulle ja linkitä siihen tilausvahvistusviesteistä."
+      },
+      "actionFailed": "Käyttöönottotoiminto epäonnistui",
+      "notification": {
+        "title": "Lisää ilmoitusten sähköpostiosoite",
+        "description": "Anna sähköpostiosoite, johon haluat ilmoitukset asiakkaiden peruuttamispyynnöistä.",
+        "edit": "Muokkaa ilmoitusasetuksia",
+        "add": "Lisää ilmoitusten sähköpostiosoite",
+        "destination": "Ilmoitukset lähetetään osoitteeseen {{email}}."
+      },
+      "floating": {
+        "title": "Ota kelluva painike käyttöön koko sivustolla",
+        "description": "Paras näkyvyys. Kelluva peruuttamispainike tuo lomakkeen saataville kaupan jokaisella sivulla.",
+        "button": "Ota kelluva painike käyttöön"
+      },
+      "withdrawalPage": {
+        "title": "Luo erillinen peruuttamissivu",
+        "description": "Luo tavallinen sivu osoitteeseen /pages/eu-withdrawal, jotta asiakkailla on selkeä paikka peruuttamispyynnöille.",
+        "button": "Luo sivu"
+      },
+      "pageBlock": {
+        "title": "Lisää painikelohko peruuttamissivulle",
+        "description": "Avaa teemaeditori ja lisää EU Withdrawal Button -lohko erilliselle peruuttamissivulle.",
+        "button": "Lisää sivulohko"
+      },
+      "orderEmail": {
+        "title": "Lisää linkki tilausvahvistusviesteihin",
+        "description": "Lisää peruuttamissivun linkki Shopifyn tilausvahvistusviesteihin, jotta asiakkaat löytävät sen ostoksen jälkeen.",
+        "button": "Avaa ilmoitukset",
+        "suggestedLink": "Ehdotettu linkki:"
+      },
+      "testRequest": {
+        "title": "Lähetä testiperuuttamispyyntö",
+        "description": "Avaa kauppa tai peruuttamissivu ja lähetä testipyyntö asiakaskokemuksen tarkistamiseksi.",
+        "openPage": "Avaa peruuttamissivu",
+        "openStorefront": "Avaa kauppa"
+      },
+      "review": {
+        "title": "Tarkasta pyynnöt hallintapaneelissa",
+        "description": "Tarkasta asiakkaan pyyntö tai testipyyntö Pyynnöt-osiossa ja päivitä sen tila.",
+        "button": "Avaa pyynnöt"
+      },
+      "upgrade": {
+        "title": "Päivitä Pro-versioon",
+        "description": "Avaa tilausten tarkistus, lisäasetukset, automaatio ja mukautetut työnkulut.",
+        "button": "Näytä Pro"
+      }
+    },
+    "billingSyncFailed": "Laskutuksen tilaa ei voitu synkronoida",
+    "subscriptionStatusError": "Tilauksen tilaa ei voitu päivittää."
+  },
+  "requests": {
+    "title": "Peruuttamispyynnöt",
+    "exportCSV": "Vie CSV",
+    "status": "Tila",
+    "verification": "Tarkistus",
+    "search": "Hae",
+    "searchPlaceholder": "Sähköposti, tilaus, viite...",
+    "all": "Kaikki",
+    "empty": "Pyyntöjä ei löytynyt.",
+    "unknown": "Tuntematon",
+    "noReason": "Syytä ei annettu",
+    "filterPro": "Lisäsuodatus ja CSV-vienti ovat käytettävissä Pro-versiossa.",
+    "resourceSingular": "pyyntö",
+    "resourcePlural": "pyynnöt",
+    "selectedAll": "Kaikki",
+    "columns": {
+      "reference": "Viite",
+      "customer": "Asiakas",
+      "order": "Tilaus",
+      "verification": "Tarkistus",
+      "reason": "Syy",
+      "status": "Tila",
+      "submitted": "Lähetetty",
+      "actions": "Toiminnot"
+    },
+    "statuses": {
+      "RECEIVED": "Vastaanotettu",
+      "CONFIRMED": "Vahvistettu",
+      "REVIEWED": "Tarkastettu",
+      "APPROVED": "Hyväksytty",
+      "REJECTED": "Hylätty"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Tarkistettu",
+        "tooltip": "Tilaus löytyi ja peruuttamisaika on voimassa"
+      },
+      "NOT_FOUND": {
+        "label": "Tilausta ei löytynyt",
+        "tooltip": "Vastaavaa tilausta ei löytynyt Shopifysta"
+      },
+      "EXPIRED": {
+        "label": "Määräaika päättynyt",
+        "tooltip": "Tilaus löytyi, mutta peruuttamisaika on päättynyt"
+      },
+      "ERROR": {
+        "label": "Ei saatavilla",
+        "tooltip": "Tilausta ei voitu tarkistaa Shopify- tai API-ongelman vuoksi"
+      },
+      "UNVERIFIED": {
+        "label": "Ei tarkistettu",
+        "tooltip": "Automaattinen tilausten tarkistus on käytettävissä Pro-versiossa"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Virheellinen tilaus"
+    },
+    "deleteCustomer": {
+      "button": "Poista asiakastiedot",
+      "title": "Poista asiakastiedot",
+      "description": "Kaikki osoitteen {{email}} tallennetut peruuttamistiedot poistetaan pysyvästi."
+    },
+    "bulkDelete": {
+      "button": "Poista valitut",
+      "title": "Poista valitut pyynnöt",
+      "confirm": "Poista pyynnöt",
+      "description_one": "Tämä poistaa pysyvästi {{count}} valitun peruuttamispyynnön.",
+      "description_other": "Tämä poistaa pysyvästi {{count}} valittua peruuttamispyyntöä."
+    },
+    "delete": "Poista",
+    "cancel": "Peruuta",
+    "scrollLabel": "Vieritä peruuttamispyyntöjä vaakasuunnassa",
+    "errors": {
+      "temporary": "Tilapäinen palvelinongelma. Yritä hetken kuluttua uudelleen.",
+      "update": "Pyynnön tilaa ei voitu päivittää.",
+      "export": "CSV-vienti ei onnistu juuri nyt. Yritä pian uudelleen."
+    }
+  },
+  "settings": {
+    "title": "Asetukset",
+    "loading": "Ladataan asetuksia",
+    "saveFailed": "Asetuksia ei voitu tallentaa",
+    "general": {
+      "title": "Yleiset asetukset",
+      "customerLanguages": "Asiakaslomakkeen kielet",
+      "customerLanguagesDescription": "Valitse kielet, joita asiakkaat voivat käyttää peruuttamislomakkeessa.",
+      "availableLanguages": "Asiakkaiden käytettävissä olevat kielet",
+      "defaultLanguage": "Oletuskieli",
+      "defaultLanguageHelp": "Lomake avautuu tällä kielellä. Asiakas voi valita toisen käyttöön otetun kielen.",
+      "basicLanguagesHelp": "Aiempi maksuton tilaus sisältää englannin ja yhden lisäkielen. Päivitä Pro-versioon saadaksesi kaikki tuetut kielet.",
+      "notificationEmail": "Peruuttamisilmoitusten sähköposti",
+      "notificationEmailHelp": "Uusien peruuttamispyyntöjen sisäiset ilmoitukset lähetetään tähän osoitteeseen.",
+      "upgradeTitle": "Päivitä Pro-versioon saadaksesi lisäasetukset",
+      "upgradeDescription": "Mukautettavat peruuttamisajat ovat käytettävissä Pro-versiossa.",
+      "legalPage": "Oikeudellisen sivun URL",
+      "privacyPage": "Tietosuojasivun URL",
+      "supportEmail": "Asiakastuen sähköposti",
+      "supportEmailHelp": "Näkyy asiakkaille ja toimii hallitun lähetyksen vastausosoitteena.",
+      "basicPeriod": "Aiempi maksuton tilaus käyttää ohjeellista 14 päivän peruuttamisaikaa. Automaattista tarkistusta ei sovelleta.",
+      "withdrawalPeriod": "Peruuttamisaika (päivää)",
+      "periodBasicHelp": "Asiakkaille annetaan ohjeellinen 14 päivän määräaika. Päivitä Pro-versioon mukauttamista ja automaattista tarkistusta varten.",
+      "periodProHelp": "Aseta peruuttamisaika. Pyynnöt tarkistetaan sen perusteella mahdollisuuksien mukaan."
+    },
+    "errors": {
+      "basicLanguageLimit": "Aiempi maksuton tilaus sisältää englannin ja yhden lisäkielen.",
+      "selectLanguage": "Valitse vähintään yksi kieli.",
+      "save": "Asetuksia ei voitu tallentaa.",
+      "saveFirst": "Tallenna tai hylkää muut muutokset ennen seuraavaa toimintoa: {{action}}."
+    },
+    "plans": {
+      "basic": "Aiempi maksuton",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Sähköpostien lähetys",
+      "description": "Valitse, miten vahvistusviestit lähetetään asiakkaille.",
+      "deliveryMethod": "Lähetystapa",
+      "managed": "GL6:n hallinnoima",
+      "managedOption": "GL6:n hallinnoima lähetys — Suositeltu",
+      "managedHelp": "Vahvistusviestit lähetetään GL6:n varmennetun sähköpostipalvelun kautta. Asiakkaiden vastaukset ohjataan tukiosoitteeseesi.",
+      "smtpOption": "Oma SMTP — Pro",
+      "smtpOptionHelp": "Yhdistä sähköpostipalvelusi SMTP-tunnuksilla.",
+      "proTitle": "Oman brändin mukainen sähköpostilähetys on saatavilla Pro-versiossa",
+      "proDescription": "Aiemman maksuttoman tilauksen kaupat käyttävät GL6:n hallinnoimaa lähetystä. Vastaukset ohjataan yllä asetettuun asiakastuen osoitteeseen.",
+      "connected": "Yhdistetty",
+      "connectionFailed": "Yhteys epäonnistui",
+      "requiresTesting": "Testaus vaaditaan",
+      "statuses": {
+        "notConfigured": "Ei määritetty",
+        "verified": "Varmennettu",
+        "pending": "Odottaa",
+        "notStarted": "Ei aloitettu",
+        "failed": "Epäonnistui",
+        "failure": "Epäonnistui",
+        "temporaryFailure": "Tilapäinen virhe"
+      },
+      "domain": {
+        "intro": "Suosittelemme erillistä aliverkkotunnusta, kuten withdrawals.example.com. Lisää alla olevat DNS-tietueet ja varmenna verkkotunnus.",
+        "label": "Lähetyksen verkkotunnus tai aliverkkotunnus",
+        "help": "Älä lisää https://-alkua tai polkua.",
+        "add": "Lisää lähetyksen verkkotunnus",
+        "recordsHelp": "Lisää kaikki vaaditut DNS-tietueet ennen varmennuksen aloittamista.",
+        "columns": {
+          "type": "Tyyppi",
+          "name": "Nimi",
+          "value": "Arvo",
+          "priority": "Prioriteetti",
+          "status": "Tila"
+        },
+        "issue": "Lähetysverkkotunnuksen ongelma",
+        "check": "Tarkista tila",
+        "verify": "Varmenna verkkotunnus",
+        "remove": "Poista verkkotunnus",
+        "verifiedTitle": "Lähetyksen verkkotunnus varmennettu",
+        "verifiedDescription": "Voit nyt valita lähettäjän nimen ja sähköpostiosoitteen asiakkaiden vahvistusviesteihin.",
+        "fromName": "Lähettäjän nimi",
+        "fromEmail": "Lähettäjän sähköposti",
+        "storePlaceholder": "Kauppasi nimi",
+        "emailHelp": "Osoitteen on päätyttävä merkkijonoon @{{domain}}.",
+        "saveSender": "Tallenna lähettäjätiedot"
+      },
+      "smtp": {
+        "intro": "Anna sähköpostipalvelusi SMTP-tiedot. Tallenna asetukset ennen yhteyden testaamista.",
+        "host": "SMTP-palvelin",
+        "port": "SMTP-portti",
+        "portHelp": "Käytä yleensä porttia 587 STARTTLS:lle tai 465 SSL/TLS:lle.",
+        "security": "Yhteyden suojaus",
+        "starttls": "STARTTLS — yleensä portti 587",
+        "ssl": "SSL/TLS — yleensä portti 465",
+        "username": "SMTP-käyttäjätunnus",
+        "usernameHelp": "Tämä on usein koko sähköpostiosoitteesi.",
+        "password": "SMTP-salasana",
+        "savedPasswordPlaceholder": "Jätä tyhjäksi säilyttääksesi tallennetun salasanan",
+        "newPasswordPlaceholder": "Anna SMTP-salasana",
+        "savedPasswordHelp": "Salasana on jo tallennettu turvallisesti. Anna uusi vain vaihtaaksesi sen.",
+        "newPasswordHelp": "Jotkin palvelut vaativat sovellussalasanan tavallisen tilisalasanan sijaan.",
+        "fromName": "Lähettäjän nimi",
+        "fromEmail": "Lähettäjän sähköposti",
+        "storePlaceholder": "Kauppasi nimi",
+        "fromEmailHelp": "SMTP-palvelusi on sallittava tämän osoitteen käyttö lähettäjänä.",
+        "connectionFailed": "SMTP-yhteys epäonnistui",
+        "test": "Testaa yhteys",
+        "disconnect": "Katkaise SMTP-yhteys",
+        "saveBeforeTest": "Tallenna muutokset ennen yhteyden testaamista."
+      },
+      "errors": {
+        "saveSmtpFirst": "Tallenna SMTP-asetukset ennen yhteyden testaamista.",
+        "smtpFailed": "SMTP-yhteys epäonnistui.",
+        "disconnectSmtp": "SMTP-yhteyttä ei voitu katkaista.",
+        "domainRequired": "Anna ensin verkkotunnus tai aliverkkotunnus.",
+        "createDomain": "Lähetysverkkotunnusta ei voitu luoda.",
+        "refreshDomain": "Lähetysverkkotunnusta ei voitu päivittää.",
+        "verifyDomain": "Verkkotunnuksen varmennusta ei voitu aloittaa.",
+        "verifyBeforeSender": "Varmenna lähetysverkkotunnus ennen lähettäjän osoitteen tallentamista.",
+        "saveSender": "Lähettäjän osoitetta ei voitu tallentaa.",
+        "removeDomain": "Lähetysverkkotunnusta ei voitu poistaa.",
+        "dirtyActions": {
+          "disconnectSmtp": "katkaise SMTP-yhteys",
+          "createDomain": "luo lähetysverkkotunnus",
+          "checkDomain": "tarkista lähetysverkkotunnuksen tila",
+          "saveSender": "tallenna lähettäjän osoite",
+          "removeDomain": "poista lähetysverkkotunnus"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Tilaukset",
+    "grandfatheredFree": "Aiempi maksuton",
+    "pro": "Pro",
+    "current": "Nykyinen",
+    "legacyDescription": "Aiempi käyttöoikeus — maksuton",
+    "legacyWarning": "Päivitys päättää tämän aiemman käyttöoikeuden pysyvästi.",
+    "manageSubscription": "Hallitse tilausta",
+    "subscribePro": "Tilaa Pro",
+    "errors": {
+      "title": "Shopifyn hinnoittelusivua ei voitu avata",
+      "missingUrl": "Shopify ei palauttanut hinnoittelun URL-osoitetta.",
+      "openFailed": "Shopifyn hinnoittelusivua ei voitu avata."
+    },
+    "features": {
+      "withdrawalFlow": "EU-sääntöjen mukainen peruuttamisprosessi",
+      "unlimitedRequests": "Rajattomat peruuttamispyynnöt",
+      "confirmationEmails": "Automaattiset vahvistusviestit",
+      "themeBlock": "Teeman sovelluslohkojen tuki",
+      "requestDashboard": "Pyyntöjen hallintapaneeli",
+      "merchantNotifications": "Ilmoitukset kauppiaalle",
+      "basicCompliance": "Perustason vaatimustenmukaisuus sisältyy",
+      "coreManagement": "Peruuttamispyyntöjen perushallinta",
+      "euLanguages": "Kaikki tuetut EU-kielet",
+      "customPeriod": "Mukautettu peruuttamisaika tarkistuksella",
+      "customBranding": "Oma brändi ja brändivärit",
+      "advancedManagement": "CSV-vienti ja pyyntöjen lisähallinta"
+    }
+  },
+  "help": {
+    "title": "Ohje",
+    "commonQuestions": "Usein kysytyt kysymykset",
+    "introduction": "Löydä nopeasti vastaukset käyttöönoton ja vianmäärityksen kysymyksiin.",
+    "supportTitle": "Tarvitsetko lisää apua?",
+    "supportDescription": "Jos vastaukset eivät ratkaise ongelmaa, valitse oikean yläkulman ⋯-valikosta Hanki tukea ottaaksesi meihin yhteyttä Shopifyn kautta.",
+    "supportResponse": "Tukipyyntöihin vastataan yleensä yhden arkipäivän kuluessa.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Miksi sovellus ei toimi Shopify Canvasin kanssa?",
+        "answer": "Shopify Canvas on ennakkokäytössä eikä vielä tue peruuttamispainikkeen tarvitsemia sovelluslohkoja tai upotuksia. Tämä on Canvasin nykyinen rajoitus. Käytä yhteensopivaa teemaa Shopifyn tavallisessa teemaeditorissa."
+      },
+      "buttonNotShowing": {
+        "question": "Miksi peruuttamispainike ei näy kaupassani?",
+        "answer": "Tarkista, että EU Withdrawal Button -upotus tai sovelluslohko on käytössä nykyisessä teemassa. Teeman vaihdon tai julkaisun jälkeen se on ehkä otettava uudelleen käyttöön."
+      },
+      "buttonPosition": {
+        "question": "Voinko muuttaa peruuttamispainikkeen sijaintia?",
+        "answer": "Kyllä. Avaa Asetukset ja muuta kelluvan painikkeen sijaintia tietokoneella ja mobiilissa."
+      },
+      "buttonAppearance": {
+        "question": "Voinko muuttaa painikkeen ulkoasua?",
+        "answer": "Kyllä. Mukauta käytettävissä olevia ulkoasuasetuksia sovelluksen Asetuksissa."
+      },
+      "requestSubmitted": {
+        "question": "Mitä tapahtuu, kun asiakas lähettää peruuttamispyynnön?",
+        "answer": "Pyyntö tallennetaan ja näkyy Pyynnöt-osiossa, jossa voit tarkastaa sen ja päivittää tilan."
+      },
+      "notificationEmail": {
+        "question": "Saanko sähköpostin, kun asiakas lähettää pyynnön?",
+        "answer": "Kyllä, jos olet asettanut ilmoitusten sähköpostiosoitteen. Tarkista Asetukset, jos ilmoitukset eivät saavu."
+      },
+      "withdrawalPeriod": {
+        "question": "Voinko muuttaa peruuttamisaikaa?",
+        "answer": "Kyllä. Peruuttamisaika voidaan määrittää sovelluksen Asetuksissa."
+      },
+      "automaticRefund": {
+        "question": "Palauttaako sovellus maksun tai peruuttaako se tilauksen automaattisesti?",
+        "answer": "Ei. Peruuttamispyyntö ei automaattisesti palauta maksua tai peruuta Shopify-tilausta. Sinä vastaat pyynnön arvioinnista ja käsittelystä."
+      },
+      "previousRequests": {
+        "question": "Voinko nähdä aiemmat peruuttamispyynnöt?",
+        "answer": "Kyllä. Avaa Pyynnöt-osio nähdäksesi lähetetyt pyynnöt."
+      },
+      "multipleLanguages": {
+        "question": "Tukeeko sovellus useita kieliä?",
+        "answer": "Sovelluksen kielet ovat valittavissa. Hallitse käytettävissä olevia kieliä Asetuksissa."
+      },
+      "themeChanged": {
+        "question": "Vaihdoin Shopify-teemaa ja painike katosi. Mitä teen?",
+        "answer": "Avaa uuden teeman editori ja ota EU Withdrawal Button -upotus tai sovelluslohko käyttöön."
+      },
+      "hideButton": {
+        "question": "Voinko piilottaa peruuttamispainikkeen tilapäisesti?",
+        "answer": "Kyllä. Voit poistaa kaupan painikkeen käytöstä poistamatta sovellusta."
+      },
+      "missingEmails": {
+        "question": "Miksi en saa ilmoitussähköposteja?",
+        "answer": "Tarkista ilmoitusten osoite ja sähköpostin lähetysasetukset Asetuksista. Tarkista myös roskapostikansio."
+      },
+      "legalCompliance": {
+        "question": "Takaako sovellus kauppani lainmukaisuuden?",
+        "answer": "Ei. Sovellus auttaa asiakkaita tekemään peruuttamispyyntöjä ja sinua hallitsemaan niitä. Vastaat itse siitä, että kaupan käytännöt ja prosessit noudattavat liiketoimintaasi sovellettavia lakeja."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Kauppaa ei löytynyt.",
+    "entitlementUnavailable": "Shopify App Pricing -käyttöoikeutta ei voitu tarkistaa.",
+    "planRequired": "Maksullinen Shopify-tilaus vaaditaan.",
+    "languagesInvalid": "Valitut kielet ovat virheellisiä.",
+    "basicLanguageLimit": "Aiempi maksuton tilaus sisältää englannin ja yhden lisäkielen.",
+    "withdrawalPeriod": "Peruuttamisajan on oltava 1–365 päivää.",
+    "smtpHost": "SMTP-palvelin vaaditaan.",
+    "smtpPort": "SMTP-varmennus on rajoitettu portteihin 465 ja 587.",
+    "smtpUsername": "SMTP-käyttäjätunnus vaaditaan.",
+    "smtpFromEmail": "Lähettäjän sähköpostiosoite vaaditaan.",
+    "smtpPassword": "SMTP-salasana vaaditaan.",
+    "settingsUpdate": "Asetuksia ei voitu päivittää.",
+    "requestNotFound": "Pyyntöä ei löytynyt.",
+    "invalidStatus": "Virheellinen pyynnön tila.",
+    "setupStatus": "Käyttöönoton tilaa ei voitu ladata.",
+    "upgradeRequired": "Päivitä Pro-versioon käyttääksesi tätä toimintoa."
+  }
+}

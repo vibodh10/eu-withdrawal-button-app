@@ -1,0 +1,450 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Språk",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Fortsätt",
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "loading": "Läser in..."
+  },
+  "onboarding": {
+    "welcome": "Välkommen till EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Välj språk",
+    "languageDescription": "Välj det språk du vill använda i appen.",
+    "languageLabel": "Appens språk",
+    "dpaTitle": "2. Personuppgiftsbiträdesavtal",
+    "dpaDescription": "Du måste godkänna vårt personuppgiftsbiträdesavtal för att använda appen. Det beskriver hur kunduppgifter behandlas för din räkning.",
+    "viewDpa": "Visa personuppgiftsbiträdesavtal",
+    "agree": "Jag har läst och godkänner personuppgiftsbiträdesavtalet",
+    "acceptContinue": "Godkänn och fortsätt",
+    "error": "Det gick inte att slutföra inställningarna. Försök igen.",
+    "step1": "Steg 1 av 2",
+    "step2": "Steg 2 av 2",
+    "next": "Nästa",
+    "back": "Tillbaka"
+  },
+  "navigation": {
+    "dashboard": "Översikt",
+    "requests": "Begäranden",
+    "settings": "Inställningar",
+    "plans": "Abonnemang",
+    "help": "Hjälp",
+    "currentPlan": "Nuvarande abonnemang",
+    "planGrandfathered": "Abonnemang: Tidigare gratis",
+    "planPro": "Abonnemang: Pro",
+    "planRequired": "Abonnemang krävs",
+    "premiumActive": "Alla premiumfunktioner är aktiverade",
+    "grandfatheredActive": "Tidigare gratisåtkomst är aktiv",
+    "subscribeToContinue": "Prenumerera för att fortsätta"
+  },
+  "appLanguage": {
+    "title": "Appens språk",
+    "description": "Välj språk för appens översikt. Det ändrar inte kundernas tillgängliga språk.",
+    "label": "Visningsspråk",
+    "saveError": "Det gick inte att uppdatera appens språk.",
+    "settingsTitle": "Inställningar"
+  },
+  "dashboard": {
+    "title": "Översikt",
+    "subscriptionError": "Det gick inte att uppdatera abonnemanget",
+    "description": "Lägg till en ångerrättsknapp enligt EU-reglerna i din butik på några minuter. Samla och hantera kundernas begäranden på ett ställe utan komplicerad installation.",
+    "plan": "Abonnemang",
+    "grandfatheredFree": "Tidigare gratis",
+    "planPro": "Pro",
+    "proActive": "Pro-funktionerna är aktiva.",
+    "freeActive": "Tidigare gratisåtkomst är aktiv.",
+    "stats": {
+      "total": "Totalt antal begäranden",
+      "totalHelp": "Sedan butikens start",
+      "received": "Mottagna",
+      "receivedHelp": "Väntar på åtgärd",
+      "reviewed": "Granskade",
+      "reviewedHelp": "Manuellt bedömda",
+      "closed": "Godkända / Avvisade",
+      "closedHelp": "Avslutade statusar"
+    },
+    "status": {
+      "complete": "Klart",
+      "incomplete": "Inte klart"
+    },
+    "setup": {
+      "title": "Slutför dina inställningar",
+      "description": "Välj det upplägg som passar butiken bäst. Vi rekommenderar en flytande knapp på hela webbplatsen och en särskild sida för ångerrätt.",
+      "recommended": "Rekommenderat",
+      "suggested": "Föreslaget",
+      "optional": "Valfritt",
+      "pageReady": {
+        "title": "Sidan för ångerrätt är klar",
+        "description": "Din sida för ångerrätt är klar. Lägg till appblocket och länka till sidan från orderbekräftelserna."
+      },
+      "actionFailed": "Inställningsåtgärden misslyckades",
+      "notification": {
+        "title": "Lägg till din adress för aviseringar",
+        "description": "Ange den e-postadress där du vill få aviseringar när en kund skickar en begäran om att utöva ångerrätten.",
+        "edit": "Ändra aviseringsinställningar",
+        "add": "Lägg till din adress för aviseringar",
+        "destination": "Aviseringar skickas till {{email}}."
+      },
+      "floating": {
+        "title": "Aktivera flytande knapp på hela webbplatsen",
+        "description": "Bäst för synlighet. En flytande ångerrättsknapp i hela butiken gör formuläret tillgängligt från alla sidor.",
+        "button": "Aktivera flytande knapp"
+      },
+      "withdrawalPage": {
+        "title": "Skapa en särskild sida för ångerrätt",
+        "description": "Skapa en vanlig sida på /pages/eu-withdrawal så att kunderna har en tydlig plats för sina begäranden.",
+        "button": "Skapa sida"
+      },
+      "pageBlock": {
+        "title": "Lägg till knappblocket på sidan för ångerrätt",
+        "description": "Öppna temaredigeraren och lägg till EU Withdrawal Button-blocket på din särskilda sida.",
+        "button": "Lägg till sidblock"
+      },
+      "orderEmail": {
+        "title": "Lägg till länken i orderbekräftelserna",
+        "description": "Lägg till länken till sidan för ångerrätt i Shopifys orderbekräftelser så att kunderna hittar den efter köpet.",
+        "button": "Öppna aviseringar",
+        "suggestedLink": "Föreslagen länk:"
+      },
+      "testRequest": {
+        "title": "Skicka en testbegäran om ångerrätt",
+        "description": "Besök butiken eller sidan för ångerrätt och skicka en testbegäran för att kontrollera kundupplevelsen.",
+        "openPage": "Öppna sidan för ångerrätt",
+        "openStorefront": "Öppna butik"
+      },
+      "review": {
+        "title": "Granska begäranden i översikten",
+        "description": "Granska en kund- eller testbegäran under Begäranden och uppdatera dess status.",
+        "button": "Öppna begäranden"
+      },
+      "upgrade": {
+        "title": "Uppgradera till Pro",
+        "description": "Få tillgång till orderverifiering, avancerade inställningar, automatisering och anpassade arbetsflöden.",
+        "button": "Visa Pro"
+      }
+    },
+    "billingSyncFailed": "Det gick inte att synkronisera faktureringsstatus",
+    "subscriptionStatusError": "Det gick inte att uppdatera abonnemangsstatus."
+  },
+  "requests": {
+    "title": "Begäranden om ångerrätt",
+    "exportCSV": "Exportera CSV",
+    "status": "Status",
+    "verification": "Verifiering",
+    "search": "Sök",
+    "searchPlaceholder": "E-post, order, referens...",
+    "all": "Alla",
+    "empty": "Inga begäranden hittades.",
+    "unknown": "Okänd",
+    "noReason": "Ingen anledning angiven",
+    "filterPro": "Avancerad filtrering och CSV-export finns med Pro.",
+    "resourceSingular": "begäran",
+    "resourcePlural": "begäranden",
+    "selectedAll": "Alla",
+    "columns": {
+      "reference": "Referens",
+      "customer": "Kund",
+      "order": "Order",
+      "verification": "Verifiering",
+      "reason": "Anledning",
+      "status": "Status",
+      "submitted": "Inskickad",
+      "actions": "Åtgärder"
+    },
+    "statuses": {
+      "RECEIVED": "Mottagen",
+      "CONFIRMED": "Bekräftad",
+      "REVIEWED": "Granskad",
+      "APPROVED": "Godkänd",
+      "REJECTED": "Avvisad"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Verifierad",
+        "tooltip": "Order hittad inom ångerfristen"
+      },
+      "NOT_FOUND": {
+        "label": "Order saknas",
+        "tooltip": "Ingen motsvarande order hittades i Shopify"
+      },
+      "EXPIRED": {
+        "label": "Fristen har gått ut",
+        "tooltip": "Order hittad, men ångerfristen har gått ut"
+      },
+      "ERROR": {
+        "label": "Inte tillgänglig",
+        "tooltip": "Ordern kunde inte verifieras på grund av ett Shopify- eller API-problem"
+      },
+      "UNVERIFIED": {
+        "label": "Inte verifierad",
+        "tooltip": "Automatisk orderverifiering finns med Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Ogiltig order"
+    },
+    "deleteCustomer": {
+      "button": "Radera kunduppgifter",
+      "title": "Radera kunduppgifter",
+      "description": "Alla sparade uppgifter om ångerrätt för {{email}} raderas permanent."
+    },
+    "bulkDelete": {
+      "button": "Radera markerade",
+      "title": "Radera markerade begäranden",
+      "confirm": "Radera begäranden",
+      "description_one": "Detta raderar permanent {{count}} markerad begäran om ångerrätt.",
+      "description_other": "Detta raderar permanent {{count}} markerade begäranden om ångerrätt."
+    },
+    "delete": "Radera",
+    "cancel": "Avbryt",
+    "scrollLabel": "Rulla begäranden om ångerrätt vågrätt",
+    "errors": {
+      "temporary": "Tillfälligt serverproblem. Försök igen om en liten stund.",
+      "update": "Det gick inte att uppdatera begärans status.",
+      "export": "Det går inte att exportera CSV just nu. Försök igen snart."
+    }
+  },
+  "settings": {
+    "title": "Inställningar",
+    "loading": "Läser in inställningar",
+    "saveFailed": "Inställningarna kunde inte sparas",
+    "general": {
+      "title": "Allmänna inställningar",
+      "customerLanguages": "Språk i kundformuläret",
+      "customerLanguagesDescription": "Välj de språk kunderna kan använda i formuläret för ångerrätt.",
+      "availableLanguages": "Tillgängliga kundspråk",
+      "defaultLanguage": "Standardspråk",
+      "defaultLanguageHelp": "Formuläret öppnas på detta språk. Kunder kan välja ett annat aktiverat språk.",
+      "basicLanguagesHelp": "Tidigare gratis omfattar engelska och ett ytterligare språk. Uppgradera till Pro för alla språk som stöds.",
+      "notificationEmail": "E-post för aviseringar om ångerrätt",
+      "notificationEmailHelp": "Interna aviseringar om nya begäranden skickas hit.",
+      "upgradeTitle": "Uppgradera till Pro för avancerade inställningar",
+      "upgradeDescription": "Anpassningsbara ångerfrister finns med Pro.",
+      "legalPage": "URL till juridisk sida",
+      "privacyPage": "URL till integritetssida",
+      "supportEmail": "E-post till kundsupport",
+      "supportEmailHelp": "Visas för kunder och används som svarsadress vid hanterad leverans.",
+      "basicPeriod": "Tidigare gratis använder en vägledande standardfrist på 14 dagar. Automatisk validering tillämpas inte.",
+      "withdrawalPeriod": "Ångerfrist (dagar)",
+      "periodBasicHelp": "Kunder får vägledning utifrån 14 dagar. Uppgradera till Pro för anpassning och automatisk validering.",
+      "periodProHelp": "Ange din ångerfrist. Begäranden valideras mot den när det är möjligt."
+    },
+    "errors": {
+      "basicLanguageLimit": "Tidigare gratis omfattar engelska och ett ytterligare språk.",
+      "selectLanguage": "Välj minst ett språk.",
+      "save": "Det gick inte att spara inställningarna.",
+      "saveFirst": "Spara eller kasta dina andra ändringar innan du utför följande: {{action}}."
+    },
+    "plans": {
+      "basic": "Tidigare gratis",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "E-postleverans",
+      "description": "Välj hur bekräftelsemeddelanden till kunder skickas.",
+      "deliveryMethod": "Leveransmetod",
+      "managed": "Hanterad av GL6",
+      "managedOption": "GL6-hanterad leverans — Rekommenderas",
+      "managedHelp": "Bekräftelsemeddelanden skickas genom GL6:s verifierade e-posttjänst. Kundernas svar går till din supportadress.",
+      "smtpOption": "Egen SMTP — Pro",
+      "smtpOptionHelp": "Anslut din e-postleverantör med SMTP-uppgifter.",
+      "proTitle": "E-post med ditt varumärke finns med Pro",
+      "proDescription": "Tidigare gratis-butiker använder GL6-hanterad leverans. Kundernas svar går till supportadressen ovan.",
+      "connected": "Ansluten",
+      "connectionFailed": "Anslutningen misslyckades",
+      "requiresTesting": "Behöver testas",
+      "statuses": {
+        "notConfigured": "Inte konfigurerad",
+        "verified": "Verifierad",
+        "pending": "Väntande",
+        "notStarted": "Inte påbörjad",
+        "failed": "Misslyckades",
+        "failure": "Misslyckades",
+        "temporaryFailure": "Tillfälligt fel"
+      },
+      "domain": {
+        "intro": "Vi rekommenderar en särskild underdomän som withdrawals.example.com. Lägg till DNS-posterna nedan och verifiera domänen.",
+        "label": "Avsändardomän eller underdomän",
+        "help": "Ta inte med https:// eller en sökväg.",
+        "add": "Lägg till avsändardomän",
+        "recordsHelp": "Lägg till alla nödvändiga DNS-poster innan verifieringen startas.",
+        "columns": {
+          "type": "Typ",
+          "name": "Namn",
+          "value": "Värde",
+          "priority": "Prioritet",
+          "status": "Status"
+        },
+        "issue": "Problem med avsändardomänen",
+        "check": "Kontrollera status",
+        "verify": "Verifiera domän",
+        "remove": "Ta bort domän",
+        "verifiedTitle": "Avsändardomän verifierad",
+        "verifiedDescription": "Nu kan du välja avsändarnamn och e-postadress för kundbekräftelser.",
+        "fromName": "Avsändarnamn",
+        "fromEmail": "Avsändaradress",
+        "storePlaceholder": "Butikens namn",
+        "emailHelp": "Adressen måste sluta med @{{domain}}.",
+        "saveSender": "Spara avsändaruppgifter"
+      },
+      "smtp": {
+        "intro": "Ange SMTP-uppgifterna från din e-postleverantör. Spara inställningarna innan du testar anslutningen.",
+        "host": "SMTP-värd",
+        "port": "SMTP-port",
+        "portHelp": "Använd vanligen 587 för STARTTLS eller 465 för SSL/TLS.",
+        "security": "Anslutningssäkerhet",
+        "starttls": "STARTTLS — vanligen port 587",
+        "ssl": "SSL/TLS — vanligen port 465",
+        "username": "SMTP-användarnamn",
+        "usernameHelp": "Detta är ofta din fullständiga e-postadress.",
+        "password": "SMTP-lösenord",
+        "savedPasswordPlaceholder": "Lämna tomt för att behålla sparat lösenord",
+        "newPasswordPlaceholder": "Ange SMTP-lösenord",
+        "savedPasswordHelp": "Ett lösenord är redan säkert sparat. Ange bara ett nytt för att ersätta det.",
+        "newPasswordHelp": "Vissa leverantörer kräver ett applösenord i stället för kontots vanliga lösenord.",
+        "fromName": "Avsändarnamn",
+        "fromEmail": "Avsändaradress",
+        "storePlaceholder": "Butikens namn",
+        "fromEmailHelp": "Din SMTP-leverantör måste tillåta denna avsändaradress.",
+        "connectionFailed": "SMTP-anslutningen misslyckades",
+        "test": "Testa anslutning",
+        "disconnect": "Koppla från SMTP",
+        "saveBeforeTest": "Spara ändringarna innan du testar anslutningen."
+      },
+      "errors": {
+        "saveSmtpFirst": "Spara SMTP-inställningarna innan du testar anslutningen.",
+        "smtpFailed": "SMTP-anslutningen misslyckades.",
+        "disconnectSmtp": "Det gick inte att koppla från SMTP.",
+        "domainRequired": "Ange först en domän eller underdomän.",
+        "createDomain": "Avsändardomänen kunde inte skapas.",
+        "refreshDomain": "Avsändardomänen kunde inte uppdateras.",
+        "verifyDomain": "Domänverifiering kunde inte startas.",
+        "verifyBeforeSender": "Verifiera avsändardomänen innan du sparar avsändaradressen.",
+        "saveSender": "Avsändaradressen kunde inte sparas.",
+        "removeDomain": "Avsändardomänen kunde inte tas bort.",
+        "dirtyActions": {
+          "disconnectSmtp": "koppla från SMTP",
+          "createDomain": "skapa en avsändardomän",
+          "checkDomain": "kontrollera avsändardomänens status",
+          "saveSender": "spara avsändaradressen",
+          "removeDomain": "ta bort avsändardomänen"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Abonnemang",
+    "grandfatheredFree": "Tidigare gratis",
+    "pro": "Pro",
+    "current": "Nuvarande",
+    "legacyDescription": "Tidigare rättighet — utan avgift",
+    "legacyWarning": "En uppgradering avslutar denna tidigare rättighet permanent.",
+    "manageSubscription": "Hantera abonnemang",
+    "subscribePro": "Prenumerera på Pro",
+    "errors": {
+      "title": "Shopifys prissida kunde inte öppnas",
+      "missingUrl": "Shopify returnerade ingen pris-URL.",
+      "openFailed": "Shopifys prissida kunde inte öppnas."
+    },
+    "features": {
+      "withdrawalFlow": "Ångerrättsflöde enligt EU-reglerna",
+      "unlimitedRequests": "Obegränsade begäranden om ångerrätt",
+      "confirmationEmails": "Automatiska bekräftelsemeddelanden",
+      "themeBlock": "Stöd för tema-appblock",
+      "requestDashboard": "Översikt över begäranden",
+      "merchantNotifications": "Aviseringar till handlaren",
+      "basicCompliance": "Grundläggande efterlevnad ingår",
+      "coreManagement": "Grundläggande hantering av begäranden om ångerrätt",
+      "euLanguages": "Alla EU-språk som stöds",
+      "customPeriod": "Anpassad ångerfrist med validering",
+      "customBranding": "Eget varumärke och egna färger",
+      "advancedManagement": "CSV-export och avancerad hantering av begäranden"
+    }
+  },
+  "help": {
+    "title": "Hjälp",
+    "commonQuestions": "Vanliga frågor",
+    "introduction": "Hitta snabba svar om inställningar och felsökning.",
+    "supportTitle": "Behöver du mer hjälp?",
+    "supportDescription": "Om svaren inte löser problemet, välj Få support i menyn ⋯ uppe till höger för att kontakta oss via Shopify.",
+    "supportResponse": "Supportärenden besvaras vanligen inom en arbetsdag.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Varför fungerar appen inte med Shopify Canvas?",
+        "answer": "Shopify Canvas är i tidig åtkomst och stöder ännu inte appblock eller appinbäddningar för ångerrättsknappen. Det är en aktuell Canvas-begränsning. Använd ett kompatibelt tema i Shopifys vanliga temaredigerare."
+      },
+      "buttonNotShowing": {
+        "question": "Varför visas inte ångerrättsknappen i min butik?",
+        "answer": "Kontrollera att EU Withdrawal Button är aktiverad som appinbäddning eller appblock i temat. Efter ett temabyte eller en publicering kan den behöva aktiveras igen."
+      },
+      "buttonPosition": {
+        "question": "Kan jag ändra ångerrättsknappens placering?",
+        "answer": "Ja. Öppna Inställningar för att justera den flytande knappen på dator och mobil."
+      },
+      "buttonAppearance": {
+        "question": "Kan jag ändra knappens utseende?",
+        "answer": "Ja. Anpassa tillgängliga utseendealternativ under Inställningar."
+      },
+      "requestSubmitted": {
+        "question": "Vad händer när en kund skickar en begäran om ångerrätt?",
+        "answer": "Begäran sparas och visas under Begäranden, där du kan granska den och uppdatera status."
+      },
+      "notificationEmail": {
+        "question": "Får jag ett e-postmeddelande när en kund skickar en begäran?",
+        "answer": "Ja, om en aviseringsadress är inställd. Kontrollera Inställningar om aviseringar inte kommer fram."
+      },
+      "withdrawalPeriod": {
+        "question": "Kan jag ändra ångerfristen?",
+        "answer": "Ja. Ångerfristen kan ändras under appens Inställningar."
+      },
+      "automaticRefund": {
+        "question": "Återbetalar eller annullerar appen automatiskt en order?",
+        "answer": "Nej. En begäran om ångerrätt återbetalar eller annullerar inte Shopify-ordern automatiskt. Du ansvarar för granskning och hantering."
+      },
+      "previousRequests": {
+        "question": "Kan jag se tidigare begäranden om ångerrätt?",
+        "answer": "Ja. Öppna Begäranden för att se inskickade begäranden."
+      },
+      "multipleLanguages": {
+        "question": "Stöder appen flera språk?",
+        "answer": "Appen stöder valbara språk. Hantera tillgängliga språk under Inställningar."
+      },
+      "themeChanged": {
+        "question": "Jag bytte Shopify-tema och knappen försvann. Vad gör jag?",
+        "answer": "Öppna det nya temats redigerare och aktivera EU Withdrawal Button som appinbäddning eller appblock."
+      },
+      "hideButton": {
+        "question": "Kan jag dölja ångerrättsknappen tillfälligt?",
+        "answer": "Ja. Du kan inaktivera butiksknappen utan att avinstallera appen."
+      },
+      "missingEmails": {
+        "question": "Varför får jag inga aviseringsmeddelanden?",
+        "answer": "Kontrollera aviseringsadressen och leveransinställningarna under Inställningar. Kontrollera även skräpposten."
+      },
+      "legalCompliance": {
+        "question": "Garanterar appen att min butik följer lagen?",
+        "answer": "Nej. Appen hjälper dig att erbjuda och hantera begäranden om ångerrätt. Du ansvarar för att butikens policyer och processer följer lagarna som gäller för din verksamhet."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Butiken hittades inte.",
+    "entitlementUnavailable": "Rätten till Shopify App Pricing kunde inte verifieras.",
+    "planRequired": "Ett betalt Shopify-abonnemang krävs.",
+    "languagesInvalid": "De valda språken är ogiltiga.",
+    "basicLanguageLimit": "Tidigare gratis omfattar engelska och ett ytterligare språk.",
+    "withdrawalPeriod": "Ångerfristen måste vara mellan 1 och 365 dagar.",
+    "smtpHost": "SMTP-värd krävs.",
+    "smtpPort": "SMTP-verifiering är begränsad till port 465 och 587.",
+    "smtpUsername": "SMTP-användarnamn krävs.",
+    "smtpFromEmail": "Avsändaradress krävs.",
+    "smtpPassword": "SMTP-lösenord krävs.",
+    "settingsUpdate": "Inställningarna kunde inte uppdateras.",
+    "requestNotFound": "Begäran hittades inte.",
+    "invalidStatus": "Ogiltig status för begäran.",
+    "setupStatus": "Inställningsstatus kunde inte läsas in.",
+    "upgradeRequired": "Uppgradera till Pro för den här funktionen."
+  }
+}

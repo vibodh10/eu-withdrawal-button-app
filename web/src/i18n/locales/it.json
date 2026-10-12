@@ -1,0 +1,451 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Lingua",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Continua",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "loading": "Caricamento..."
+  },
+  "onboarding": {
+    "welcome": "Benvenuto in EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Scegli la lingua",
+    "languageDescription": "Seleziona la lingua da usare nell’app.",
+    "languageLabel": "Lingua dell’app",
+    "dpaTitle": "2. Accordo sul trattamento dei dati",
+    "dpaDescription": "Per usare l’app devi accettare il nostro accordo sul trattamento dei dati. Spiega come i dati dei clienti vengono trattati per tuo conto.",
+    "viewDpa": "Visualizza l’accordo sul trattamento dei dati",
+    "agree": "Ho letto e accetto l’accordo sul trattamento dei dati",
+    "acceptContinue": "Accetta e continua",
+    "error": "Impossibile completare la configurazione. Riprova.",
+    "step1": "Passaggio 1 di 2",
+    "step2": "Passaggio 2 di 2",
+    "next": "Avanti",
+    "back": "Indietro"
+  },
+  "navigation": {
+    "dashboard": "Pannello di controllo",
+    "requests": "Richieste",
+    "settings": "Impostazioni",
+    "plans": "Piani",
+    "help": "Assistenza",
+    "currentPlan": "Piano attuale",
+    "planGrandfathered": "Piano: Gratuito preesistente",
+    "planPro": "Piano: Pro",
+    "planRequired": "È necessario un piano",
+    "premiumActive": "Tutti i controlli premium sono abilitati",
+    "grandfatheredActive": "Accesso Gratuito preesistente attivo",
+    "subscribeToContinue": "Abbonati per continuare"
+  },
+  "appLanguage": {
+    "title": "Lingua dell’app",
+    "description": "Scegli la lingua del pannello di controllo. Non modifica le lingue disponibili per i clienti.",
+    "label": "Lingua di visualizzazione",
+    "saveError": "Impossibile aggiornare la lingua dell’app.",
+    "settingsTitle": "Impostazioni"
+  },
+  "dashboard": {
+    "title": "Pannello di controllo",
+    "subscriptionError": "Impossibile aggiornare l’abbonamento",
+    "description": "Aggiungi in pochi minuti un pulsante di recesso conforme alle norme UE alla tua vetrina. Raccogli e gestisci le richieste dei clienti in un unico posto, senza configurazioni complesse.",
+    "plan": "Piano",
+    "grandfatheredFree": "Gratuito preesistente",
+    "planPro": "Pro",
+    "proActive": "Le funzionalità Pro sono attive.",
+    "freeActive": "L’accesso Gratuito preesistente è attivo.",
+    "stats": {
+      "total": "Richieste totali",
+      "totalHelp": "Dall’apertura di questo negozio",
+      "received": "Ricevute",
+      "receivedHelp": "In attesa di intervento",
+      "reviewed": "Esaminate",
+      "reviewedHelp": "Valutate manualmente",
+      "closed": "Approvate / Rifiutate",
+      "closedHelp": "Stati chiusi"
+    },
+    "status": {
+      "complete": "Completato",
+      "incomplete": "Non completato"
+    },
+    "setup": {
+      "title": "Completa la configurazione",
+      "description": "Scegli la configurazione più adatta al negozio. Consigliamo il pulsante flottante su tutto il sito e una pagina dedicata al recesso.",
+      "recommended": "Consigliato",
+      "suggested": "Suggerito",
+      "optional": "Facoltativo",
+      "pageReady": {
+        "title": "Pagina di recesso pronta",
+        "description": "La pagina di recesso è pronta. Puoi aggiungervi il blocco dell’app e collegarla nelle email di conferma dell’ordine."
+      },
+      "actionFailed": "Configurazione non riuscita",
+      "notification": {
+        "title": "Aggiungi l’email per le notifiche",
+        "description": "Inserisci l’indirizzo email a cui ricevere le notifiche quando un cliente invia una richiesta di recesso.",
+        "edit": "Modifica le impostazioni di notifica",
+        "add": "Aggiungi l’email per le notifiche",
+        "destination": "Le notifiche saranno inviate a {{email}}."
+      },
+      "floating": {
+        "title": "Abilita il pulsante flottante su tutto il sito",
+        "description": "Ideale per la visibilità. Aggiunge un pulsante di recesso mobile in tutta la vetrina, per accedere al modulo da qualsiasi pagina.",
+        "button": "Abilita il pulsante flottante"
+      },
+      "withdrawalPage": {
+        "title": "Crea una pagina dedicata al recesso",
+        "description": "Crea una pagina standard all’indirizzo /pages/eu-withdrawal, per offrire ai clienti un punto chiaro da cui inviare le richieste.",
+        "button": "Crea pagina"
+      },
+      "pageBlock": {
+        "title": "Aggiungi il blocco del pulsante alla pagina di recesso",
+        "description": "Apri l’editor del tema e aggiungi il blocco EU Withdrawal Button alla pagina dedicata al recesso.",
+        "button": "Aggiungi blocco alla pagina"
+      },
+      "orderEmail": {
+        "title": "Aggiungi il link alle email di conferma dell’ordine",
+        "description": "Aggiungi il link della pagina di recesso alle email di conferma Shopify, così i clienti possono trovarla dopo l’acquisto.",
+        "button": "Apri notifiche",
+        "suggestedLink": "Link suggerito:"
+      },
+      "testRequest": {
+        "title": "Invia una richiesta di recesso di prova",
+        "description": "Visita la vetrina o la pagina di recesso e invia una richiesta di prova per verificare il percorso del cliente.",
+        "openPage": "Apri pagina di recesso",
+        "openStorefront": "Apri vetrina"
+      },
+      "review": {
+        "title": "Esamina le richieste nel pannello di controllo",
+        "description": "Quando viene inviata una richiesta reale o di prova, esaminala nella sezione Richieste e aggiornane lo stato.",
+        "button": "Apri richieste"
+      },
+      "upgrade": {
+        "title": "Passa a Pro",
+        "description": "Sblocca la verifica degli ordini, i controlli avanzati, l’automazione e i flussi personalizzati.",
+        "button": "Visualizza Pro"
+      }
+    },
+    "billingSyncFailed": "Sincronizzazione dello stato di fatturazione non riuscita",
+    "subscriptionStatusError": "Impossibile aggiornare lo stato dell’abbonamento."
+  },
+  "requests": {
+    "title": "Richieste di recesso",
+    "exportCSV": "Esporta CSV",
+    "status": "Stato",
+    "verification": "Verifica",
+    "search": "Cerca",
+    "searchPlaceholder": "Email, ordine, riferimento...",
+    "all": "Tutte",
+    "empty": "Nessuna richiesta trovata.",
+    "unknown": "Sconosciuto",
+    "noReason": "Nessun motivo indicato",
+    "filterPro": "I filtri avanzati e l’esportazione CSV sono disponibili con Pro.",
+    "resourceSingular": "richiesta",
+    "resourcePlural": "richieste",
+    "selectedAll": "Tutte",
+    "columns": {
+      "reference": "Riferimento",
+      "customer": "Cliente",
+      "order": "Ordine",
+      "verification": "Verifica",
+      "reason": "Motivo",
+      "status": "Stato",
+      "submitted": "Inviata",
+      "actions": "Azioni"
+    },
+    "statuses": {
+      "RECEIVED": "Ricevuta",
+      "CONFIRMED": "Confermata",
+      "REVIEWED": "Esaminata",
+      "APPROVED": "Approvata",
+      "REJECTED": "Rifiutata"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Verificato",
+        "tooltip": "Ordine trovato entro il termine di recesso"
+      },
+      "NOT_FOUND": {
+        "label": "Ordine non trovato",
+        "tooltip": "Nessun ordine corrispondente trovato su Shopify"
+      },
+      "EXPIRED": {
+        "label": "Termine scaduto",
+        "tooltip": "Ordine trovato, ma il termine di recesso è scaduto"
+      },
+      "ERROR": {
+        "label": "Non disponibile",
+        "tooltip": "Impossibile verificare l’ordine a causa di un problema Shopify o API"
+      },
+      "UNVERIFIED": {
+        "label": "Non verificato",
+        "tooltip": "La verifica automatica degli ordini è disponibile con Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Ordine non valido"
+    },
+    "deleteCustomer": {
+      "button": "Elimina dati del cliente",
+      "title": "Elimina dati del cliente",
+      "description": "Tutti i dati di recesso archiviati per {{email}} saranno eliminati definitivamente."
+    },
+    "bulkDelete": {
+      "button": "Elimina selezionate",
+      "title": "Elimina richieste selezionate",
+      "confirm": "Elimina richieste",
+      "description_one": "Verrà eliminata definitivamente {{count}} richiesta di recesso selezionata.",
+      "description_other": "Verranno eliminate definitivamente {{count}} richieste di recesso selezionate.",
+      "description_many": "Verranno eliminate definitivamente {{count}} richieste di recesso selezionate."
+    },
+    "delete": "Elimina",
+    "cancel": "Annulla",
+    "scrollLabel": "Scorri orizzontalmente le richieste di recesso",
+    "errors": {
+      "temporary": "Problema temporaneo del server. Riprova tra qualche istante.",
+      "update": "Impossibile aggiornare lo stato della richiesta.",
+      "export": "Impossibile esportare il CSV al momento. Riprova tra poco."
+    }
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "loading": "Caricamento delle impostazioni",
+    "saveFailed": "Impossibile salvare le impostazioni",
+    "general": {
+      "title": "Impostazioni generali",
+      "customerLanguages": "Lingue del modulo clienti",
+      "customerLanguagesDescription": "Scegli le lingue che i clienti possono usare nel modulo di recesso.",
+      "availableLanguages": "Lingue disponibili per i clienti",
+      "defaultLanguage": "Lingua predefinita",
+      "defaultLanguageHelp": "Il modulo si apre in questa lingua. I clienti possono scegliere un’altra lingua abilitata.",
+      "basicLanguagesHelp": "Il piano Gratuito preesistente include l’inglese e una lingua aggiuntiva. Passa a Pro per abilitare tutte le lingue supportate.",
+      "notificationEmail": "Email per le notifiche di recesso",
+      "notificationEmailHelp": "Le notifiche interne sulle nuove richieste di recesso vengono inviate qui.",
+      "upgradeTitle": "Passa a Pro per sbloccare le impostazioni avanzate",
+      "upgradeDescription": "I termini di recesso personalizzabili sono disponibili con Pro.",
+      "legalPage": "URL della pagina legale",
+      "privacyPage": "URL della pagina sulla privacy",
+      "supportEmail": "Email dell’assistenza clienti",
+      "supportEmailHelp": "Visibile ai clienti e usata come indirizzo di risposta per l’invio gestito.",
+      "basicPeriod": "Il piano Gratuito preesistente usa un termine indicativo di 14 giorni. La convalida automatica non viene applicata.",
+      "withdrawalPeriod": "Termine di recesso (giorni)",
+      "periodBasicHelp": "Ai clienti viene indicato un termine di 14 giorni. Passa a Pro per personalizzarlo e abilitare la convalida automatica.",
+      "periodProHelp": "Imposta il termine di recesso. Le richieste verranno convalidate rispetto a questo termine quando possibile."
+    },
+    "errors": {
+      "basicLanguageLimit": "Il piano Gratuito preesistente include l’inglese e una lingua aggiuntiva.",
+      "selectLanguage": "Seleziona almeno una lingua.",
+      "save": "Impossibile salvare le impostazioni.",
+      "saveFirst": "Salva o annulla le altre modifiche prima di {{action}}."
+    },
+    "plans": {
+      "basic": "Gratuito preesistente",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Invio delle email",
+      "description": "Scegli come inviare le email di conferma ai clienti.",
+      "deliveryMethod": "Metodo di invio",
+      "managed": "Gestito da GL6",
+      "managedOption": "Invio gestito da GL6 — Consigliato",
+      "managedHelp": "Le email di conferma sono inviate dal servizio di invio verificato di GL6. Le risposte dei clienti sono indirizzate alla tua email di assistenza.",
+      "smtpOption": "SMTP personalizzato — Pro",
+      "smtpOptionHelp": "Collega il tuo provider email usando le credenziali SMTP.",
+      "proTitle": "L’invio di email con il tuo marchio è disponibile con Pro",
+      "proDescription": "I negozi Gratuito preesistente usano l’invio gestito da GL6. Le risposte dei clienti sono inviate all’indirizzo di assistenza impostato sopra.",
+      "connected": "Connesso",
+      "connectionFailed": "Connessione non riuscita",
+      "requiresTesting": "Test necessario",
+      "statuses": {
+        "notConfigured": "Non configurato",
+        "verified": "Verificato",
+        "pending": "In attesa",
+        "notStarted": "Non avviato",
+        "failed": "Non riuscito",
+        "failure": "Non riuscito",
+        "temporaryFailure": "Errore temporaneo"
+      },
+      "domain": {
+        "intro": "Consigliamo un sottodominio dedicato, come withdrawals.example.com. Aggiungi i record DNS indicati sotto, poi verifica il dominio.",
+        "label": "Dominio o sottodominio di invio",
+        "help": "Non includere https:// o un percorso.",
+        "add": "Aggiungi dominio di invio",
+        "recordsHelp": "Aggiungi tutti i record DNS richiesti prima di avviare la verifica.",
+        "columns": {
+          "type": "Tipo",
+          "name": "Nome",
+          "value": "Valore",
+          "priority": "Priorità",
+          "status": "Stato"
+        },
+        "issue": "Problema con il dominio di invio",
+        "check": "Controlla stato",
+        "verify": "Verifica dominio",
+        "remove": "Rimuovi dominio",
+        "verifiedTitle": "Dominio di invio verificato",
+        "verifiedDescription": "Ora puoi scegliere il nome e l’indirizzo email del mittente per le conferme ai clienti.",
+        "fromName": "Nome del mittente",
+        "fromEmail": "Email del mittente",
+        "storePlaceholder": "Nome del tuo negozio",
+        "emailHelp": "Questo indirizzo deve terminare con @{{domain}}.",
+        "saveSender": "Salva dati del mittente"
+      },
+      "smtp": {
+        "intro": "Inserisci i dati SMTP forniti dal tuo provider email. Salva le impostazioni prima di verificare la connessione.",
+        "host": "Host SMTP",
+        "port": "Porta SMTP",
+        "portHelp": "In genere usa 587 per STARTTLS o 465 per SSL/TLS.",
+        "security": "Sicurezza della connessione",
+        "starttls": "STARTTLS — di solito porta 587",
+        "ssl": "SSL/TLS — di solito porta 465",
+        "username": "Nome utente SMTP",
+        "usernameHelp": "Spesso corrisponde al tuo indirizzo email completo.",
+        "password": "Password SMTP",
+        "savedPasswordPlaceholder": "Lascia vuoto per mantenere la password salvata",
+        "newPasswordPlaceholder": "Inserisci la password SMTP",
+        "savedPasswordHelp": "Una password è già archiviata in modo sicuro. Inseriscine una nuova solo per sostituirla.",
+        "newPasswordHelp": "Alcuni provider richiedono una password per l’app anziché la normale password dell’account.",
+        "fromName": "Nome del mittente",
+        "fromEmail": "Email del mittente",
+        "storePlaceholder": "Nome del tuo negozio",
+        "fromEmailHelp": "Il provider SMTP deve consentire di usare questo indirizzo come mittente.",
+        "connectionFailed": "Connessione SMTP non riuscita",
+        "test": "Verifica connessione",
+        "disconnect": "Disconnetti SMTP",
+        "saveBeforeTest": "Salva le modifiche prima di verificare la connessione."
+      },
+      "errors": {
+        "saveSmtpFirst": "Salva le impostazioni SMTP prima di verificare la connessione.",
+        "smtpFailed": "Connessione SMTP non riuscita.",
+        "disconnectSmtp": "Impossibile disconnettere SMTP.",
+        "domainRequired": "Inserisci prima un dominio o sottodominio.",
+        "createDomain": "Impossibile creare il dominio di invio.",
+        "refreshDomain": "Impossibile aggiornare il dominio di invio.",
+        "verifyDomain": "Impossibile avviare la verifica del dominio.",
+        "verifyBeforeSender": "Verifica il dominio di invio prima di salvare l’indirizzo del mittente.",
+        "saveSender": "Impossibile salvare l’indirizzo del mittente.",
+        "removeDomain": "Impossibile rimuovere il dominio di invio.",
+        "dirtyActions": {
+          "disconnectSmtp": "disconnettere SMTP",
+          "createDomain": "creare un dominio di invio",
+          "checkDomain": "controllare lo stato del dominio di invio",
+          "saveSender": "salvare l’indirizzo del mittente",
+          "removeDomain": "rimuovere il dominio di invio"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Piani",
+    "grandfatheredFree": "Gratuito preesistente",
+    "pro": "Pro",
+    "current": "Attuale",
+    "legacyDescription": "Diritto preesistente — senza costi",
+    "legacyWarning": "Il passaggio a un piano superiore pone definitivamente fine a questo diritto preesistente.",
+    "manageSubscription": "Gestisci abbonamento",
+    "subscribePro": "Abbonati a Pro",
+    "errors": {
+      "title": "Impossibile aprire i prezzi Shopify",
+      "missingUrl": "Shopify non ha restituito un URL per i prezzi.",
+      "openFailed": "Impossibile aprire i prezzi Shopify."
+    },
+    "features": {
+      "withdrawalFlow": "Flusso di recesso conforme alle norme UE",
+      "unlimitedRequests": "Richieste di recesso illimitate",
+      "confirmationEmails": "Email di conferma automatiche",
+      "themeBlock": "Supporto dei blocchi dell’app nel tema",
+      "requestDashboard": "Pannello delle richieste",
+      "merchantNotifications": "Notifiche al venditore",
+      "basicCompliance": "Conformità di base inclusa",
+      "coreManagement": "Gestione essenziale delle richieste di recesso",
+      "euLanguages": "Tutte le lingue UE supportate",
+      "customPeriod": "Termine di recesso personalizzato con convalida",
+      "customBranding": "Marchio e colori personalizzati",
+      "advancedManagement": "Esportazione CSV e gestione avanzata delle richieste"
+    }
+  },
+  "help": {
+    "title": "Assistenza",
+    "commonQuestions": "Domande frequenti",
+    "introduction": "Trova risposte rapide alle domande sulla configurazione e sulla risoluzione dei problemi.",
+    "supportTitle": "Hai ancora bisogno di aiuto?",
+    "supportDescription": "Se queste risposte non risolvono il problema, seleziona Ottieni assistenza dal menu ⋯ in alto a destra per contattarci tramite Shopify.",
+    "supportResponse": "Di solito rispondiamo alle richieste di assistenza entro un giorno lavorativo.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Perché l’app non funziona con Shopify Canvas?",
+        "answer": "Shopify Canvas è in accesso anticipato e non supporta ancora i blocchi o gli incorporamenti dell’app usati per mostrare e configurare il pulsante di recesso. È un limite attuale di Canvas. Puoi usare l’app con un tema compatibile nell’editor standard di Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "Perché il pulsante di recesso non appare nel negozio?",
+        "answer": "Verifica che l’incorporamento o il blocco EU Withdrawal Button sia abilitato nel tema Shopify attuale. Dopo aver cambiato o pubblicato un tema, potrebbe essere necessario riabilitarlo."
+      },
+      "buttonPosition": {
+        "question": "Posso cambiare la posizione del pulsante di recesso?",
+        "answer": "Sì. Apri le Impostazioni per regolare la posizione del pulsante flottante su desktop e dispositivi mobili."
+      },
+      "buttonAppearance": {
+        "question": "Posso cambiare l’aspetto del pulsante?",
+        "answer": "Sì. Puoi personalizzare le opzioni di aspetto disponibili nelle Impostazioni dell’app."
+      },
+      "requestSubmitted": {
+        "question": "Cosa succede quando un cliente invia una richiesta di recesso?",
+        "answer": "La richiesta viene registrata e appare nella sezione Richieste, dove puoi esaminarla e aggiornarne lo stato."
+      },
+      "notificationEmail": {
+        "question": "Riceverò un’email quando un cliente invia una richiesta?",
+        "answer": "Sì, se hai configurato un’email per le notifiche. Controlla le Impostazioni se le notifiche non arrivano."
+      },
+      "withdrawalPeriod": {
+        "question": "Posso modificare il termine di recesso?",
+        "answer": "Sì. Il termine di recesso può essere configurato nelle Impostazioni dell’app."
+      },
+      "automaticRefund": {
+        "question": "L’app rimborsa o annulla automaticamente un ordine?",
+        "answer": "No. L’invio di una richiesta di recesso non rimborsa né annulla automaticamente l’ordine Shopify. Resti responsabile dell’esame e della gestione della richiesta."
+      },
+      "previousRequests": {
+        "question": "Posso vedere le richieste di recesso precedenti?",
+        "answer": "Sì. Apri la sezione Richieste per vedere le richieste inviate tramite l’app."
+      },
+      "multipleLanguages": {
+        "question": "L’app supporta più lingue?",
+        "answer": "L’app supporta lingue configurabili. Puoi gestire le lingue disponibili nelle Impostazioni."
+      },
+      "themeChanged": {
+        "question": "Ho cambiato il tema Shopify e il pulsante è scomparso. Cosa devo fare?",
+        "answer": "Apri l’editor del nuovo tema e assicurati che l’incorporamento o il blocco EU Withdrawal Button sia abilitato."
+      },
+      "hideButton": {
+        "question": "Posso nascondere temporaneamente il pulsante di recesso?",
+        "answer": "Sì. Puoi disabilitare il pulsante della vetrina senza disinstallare l’app."
+      },
+      "missingEmails": {
+        "question": "Perché non ricevo le email di notifica?",
+        "answer": "Verifica che l’indirizzo per le notifiche e le impostazioni di invio siano corretti nelle Impostazioni. Controlla anche la cartella spam."
+      },
+      "legalCompliance": {
+        "question": "L’app garantisce la conformità legale del negozio?",
+        "answer": "No. L’app offre strumenti per gestire le richieste di recesso. Resti responsabile della conformità delle politiche e delle procedure del negozio alle leggi applicabili alla tua attività."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Negozio non trovato.",
+    "entitlementUnavailable": "Impossibile verificare il diritto a Shopify App Pricing.",
+    "planRequired": "È necessario un piano Shopify a pagamento.",
+    "languagesInvalid": "Le lingue selezionate non sono valide.",
+    "basicLanguageLimit": "Il piano Gratuito preesistente include l’inglese e una lingua aggiuntiva.",
+    "withdrawalPeriod": "Il termine di recesso deve essere compreso tra 1 e 365 giorni.",
+    "smtpHost": "L’host SMTP è obbligatorio.",
+    "smtpPort": "La verifica SMTP è limitata alle porte 465 e 587.",
+    "smtpUsername": "Il nome utente SMTP è obbligatorio.",
+    "smtpFromEmail": "L’indirizzo email del mittente è obbligatorio.",
+    "smtpPassword": "La password SMTP è obbligatoria.",
+    "settingsUpdate": "Impossibile aggiornare le impostazioni.",
+    "requestNotFound": "Richiesta non trovata.",
+    "invalidStatus": "Stato della richiesta non valido.",
+    "setupStatus": "Impossibile caricare lo stato della configurazione.",
+    "upgradeRequired": "Passa a Pro per usare questa funzione."
+  }
+}

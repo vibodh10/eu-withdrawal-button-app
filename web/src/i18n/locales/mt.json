@@ -1,0 +1,453 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Lingwa",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Kompli",
+    "save": "Issejvja",
+    "cancel": "Ikkanċella",
+    "loading": "Qed jitgħabba..."
+  },
+  "onboarding": {
+    "welcome": "Merħba f’EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Agħżel il-lingwa tiegħek",
+    "languageDescription": "Agħżel il-lingwa li trid tuża fl-app.",
+    "languageLabel": "Lingwa tal-app",
+    "dpaTitle": "2. Ftehim dwar l-Ipproċessar tad-Data",
+    "dpaDescription": "Biex tuża l-app, trid taċċetta l-ftehim tagħna dwar l-ipproċessar tad-data. Jispjega kif tiġi pproċessata d-data tal-klijenti f’ismek.",
+    "viewDpa": "Ara l-ftehim dwar l-ipproċessar tad-data",
+    "agree": "Qrajt u naqbel mal-ftehim dwar l-ipproċessar tad-data",
+    "acceptContinue": "Aċċetta u kompli",
+    "error": "Ma setax jitlesta l-issettjar. Erġa’ pprova.",
+    "step1": "Pass 1 minn 2",
+    "step2": "Pass 2 minn 2",
+    "next": "Li jmiss",
+    "back": "Lura"
+  },
+  "navigation": {
+    "dashboard": "Panew",
+    "requests": "Talbiet",
+    "settings": "Issettjar",
+    "plans": "Pjanijiet",
+    "help": "Għajnuna",
+    "currentPlan": "Pjan attwali",
+    "planGrandfathered": "Pjan: B’xejn preċedenti",
+    "planPro": "Pjan: Pro",
+    "planRequired": "Huwa meħtieġ pjan",
+    "premiumActive": "Il-funzjonijiet premium kollha huma attivati",
+    "grandfatheredActive": "L-aċċess b’xejn preċedenti huwa attiv",
+    "subscribeToContinue": "Abbona biex tkompli"
+  },
+  "appLanguage": {
+    "title": "Lingwa tal-app",
+    "description": "Agħżel il-lingwa tal-panew. Dan ma jbiddilx il-lingwi disponibbli għall-klijenti.",
+    "label": "Lingwa tal-wiri",
+    "saveError": "Ma setgħetx tiġi aġġornata l-lingwa tal-app.",
+    "settingsTitle": "Issettjar"
+  },
+  "dashboard": {
+    "title": "Panew",
+    "subscriptionError": "Ma setax jiġi aġġornat l-abbonament",
+    "description": "Żid buttuna tal-irtirar skont ir-regoli tal-UE fil-ħanut tiegħek fi ftit minuti. Iġbor u mmaniġġja t-talbiet tal-klijenti f’post wieħed mingħajr issettjar kumpless.",
+    "plan": "Pjan",
+    "grandfatheredFree": "B’xejn preċedenti",
+    "planPro": "Pro",
+    "proActive": "Il-funzjonijiet Pro huma attivi.",
+    "freeActive": "L-aċċess b’xejn preċedenti huwa attiv.",
+    "stats": {
+      "total": "Talbiet totali",
+      "totalHelp": "Matul iż-żmien kollu ta’ dan il-ħanut",
+      "received": "Riċevuti",
+      "receivedHelp": "Qed jistennew azzjoni",
+      "reviewed": "Riveduti",
+      "reviewedHelp": "Evalwati manwalment",
+      "closed": "Approvati / Miċħuda",
+      "closedHelp": "Stati magħluqa"
+    },
+    "status": {
+      "complete": "Lest",
+      "incomplete": "Mhux lest"
+    },
+    "setup": {
+      "title": "Lesti l-issettjar",
+      "description": "Agħżel l-issettjar xieraq għall-ħanut. Nirrakkomandaw buttuna li tibqa’ tidher fis-sit kollu u paġna ddedikata għall-irtirar.",
+      "recommended": "Rakkomandat",
+      "suggested": "Suġġerit",
+      "optional": "Mhux obbligatorju",
+      "pageReady": {
+        "title": "Il-paġna tal-irtirar hija lesta",
+        "description": "Il-paġna hija lesta. Żid il-blokka tal-app u link fl-emails ta’ konferma tal-ordni."
+      },
+      "actionFailed": "L-azzjoni tal-issettjar falliet",
+      "notification": {
+        "title": "Żid l-email għan-notifiki",
+        "description": "Daħħal l-indirizz fejn trid tirċievi notifiki meta klijent jibgħat talba għall-irtirar.",
+        "edit": "Editja l-issettjar tan-notifiki",
+        "add": "Żid l-email għan-notifiki",
+        "destination": "In-notifiki jintbagħtu lil {{email}}."
+      },
+      "floating": {
+        "title": "Attiva l-buttuna li tibqa’ tidher fis-sit kollu",
+        "description": "L-aħjar viżibbiltà. Buttuna tal-irtirar li tibqa’ tidher fil-ħanut kollu tagħti aċċess għall-formola minn kull paġna.",
+        "button": "Attiva l-buttuna li tibqa’ tidher"
+      },
+      "withdrawalPage": {
+        "title": "Oħloq paġna ddedikata għall-irtirar",
+        "description": "Oħloq paġna standard fuq /pages/eu-withdrawal biex il-klijenti jkollhom post ċar fejn jibagħtu t-talbiet.",
+        "button": "Oħloq paġna"
+      },
+      "pageBlock": {
+        "title": "Żid il-blokka tal-buttuna mal-paġna tal-irtirar",
+        "description": "Iftaħ l-editur tat-tema u żid il-blokka EU Withdrawal Button mal-paġna tal-irtirar.",
+        "button": "Żid blokka tal-paġna"
+      },
+      "orderEmail": {
+        "title": "Żid il-link fl-emails ta’ konferma tal-ordni",
+        "description": "Żid il-link tal-paġna tal-irtirar fil-konfermi Shopify biex il-klijenti jsibuha wara x-xiri.",
+        "button": "Iftaħ in-notifiki",
+        "suggestedLink": "Link suġġerit:"
+      },
+      "testRequest": {
+        "title": "Ibgħat talba ta’ prova għall-irtirar",
+        "description": "Żur il-ħanut jew il-paġna tal-irtirar u ibgħat talba ta’ prova biex tiċċekkja l-esperjenza tal-klijent.",
+        "openPage": "Iftaħ il-paġna tal-irtirar",
+        "openStorefront": "Iftaħ il-ħanut"
+      },
+      "review": {
+        "title": "Irrevedi t-talbiet fil-panew",
+        "description": "Wara talba ta’ klijent jew ta’ prova, irrevediha fit-taqsima Talbiet u aġġorna l-istat tagħha.",
+        "button": "Iftaħ it-talbiet"
+      },
+      "upgrade": {
+        "title": "Aġġorna għal Pro",
+        "description": "Attiva l-verifika tal-ordnijiet, kontrolli avvanzati, awtomazzjoni u proċessi personalizzati.",
+        "button": "Ara Pro"
+      }
+    },
+    "billingSyncFailed": "Ma setax jiġi ssinkronizzat l-istat tal-kontijiet",
+    "subscriptionStatusError": "Ma setax jiġi aġġornat l-istat tal-abbonament."
+  },
+  "requests": {
+    "title": "Talbiet għall-irtirar",
+    "exportCSV": "Esporta CSV",
+    "status": "Stat",
+    "verification": "Verifika",
+    "search": "Fittex",
+    "searchPlaceholder": "Email, ordni, referenza...",
+    "all": "Kollha",
+    "empty": "Ma nstabux talbiet.",
+    "unknown": "Mhux magħruf",
+    "noReason": "Ma ngħatatx raġuni",
+    "filterPro": "Il-filtrar avvanzat u l-esportazzjoni CSV huma disponibbli bi Pro.",
+    "resourceSingular": "talba",
+    "resourcePlural": "talbiet",
+    "selectedAll": "Kollha",
+    "columns": {
+      "reference": "Referenza",
+      "customer": "Klijent",
+      "order": "Ordni",
+      "verification": "Verifika",
+      "reason": "Raġuni",
+      "status": "Stat",
+      "submitted": "Mibgħuta",
+      "actions": "Azzjonijiet"
+    },
+    "statuses": {
+      "RECEIVED": "Riċevuta",
+      "CONFIRMED": "Ikkonfermata",
+      "REVIEWED": "Riveduta",
+      "APPROVED": "Approvata",
+      "REJECTED": "Miċħuda"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Verifikata",
+        "tooltip": "Instabet l-ordni fil-perjodu tal-irtirar"
+      },
+      "NOT_FOUND": {
+        "label": "L-ordni ma nstabitx",
+        "tooltip": "Ma nstabitx ordni korrispondenti f’Shopify"
+      },
+      "EXPIRED": {
+        "label": "Il-perjodu skada",
+        "tooltip": "Instabet l-ordni, iżda l-perjodu tal-irtirar skada"
+      },
+      "ERROR": {
+        "label": "Mhux disponibbli",
+        "tooltip": "L-ordni ma setgħetx tiġi vverifikata minħabba problema Shopify jew API"
+      },
+      "UNVERIFIED": {
+        "label": "Mhux verifikata",
+        "tooltip": "Il-verifika awtomatika tal-ordnijiet hija disponibbli bi Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Ordni mhux valida"
+    },
+    "deleteCustomer": {
+      "button": "Ħassar id-data tal-klijent",
+      "title": "Ħassar id-data tal-klijent",
+      "description": "Id-data kollha tal-irtirar maħżuna għal {{email}} titħassar b’mod permanenti."
+    },
+    "bulkDelete": {
+      "button": "Ħassar magħżula",
+      "title": "Ħassar it-talbiet magħżula",
+      "confirm": "Ħassar it-talbiet",
+      "description_one": "Titħassar b’mod permanenti {{count}} talba magħżula għall-irtirar.",
+      "description_other": "It-talbiet magħżula għall-irtirar jitħassru b’mod permanenti. Għadd: {{count}}.",
+      "description_two": "It-talbiet magħżula għall-irtirar jitħassru b’mod permanenti. Għadd: {{count}}.",
+      "description_few": "It-talbiet magħżula għall-irtirar jitħassru b’mod permanenti. Għadd: {{count}}.",
+      "description_many": "It-talbiet magħżula għall-irtirar jitħassru b’mod permanenti. Għadd: {{count}}."
+    },
+    "delete": "Ħassar",
+    "cancel": "Ikkanċella",
+    "scrollLabel": "Skrollja t-talbiet għall-irtirar orizzontalment",
+    "errors": {
+      "temporary": "Problema temporanja fis-server. Erġa’ pprova fi ftit ħin.",
+      "update": "Ma setax jiġi aġġornat l-istat tat-talba.",
+      "export": "CSV ma jistax jiġi esportat bħalissa. Erġa’ pprova dalwaqt."
+    }
+  },
+  "settings": {
+    "title": "Issettjar",
+    "loading": "Qed jitgħabba l-issettjar",
+    "saveFailed": "L-issettjar ma setax jiġi ssejvjat",
+    "general": {
+      "title": "Issettjar ġenerali",
+      "customerLanguages": "Lingwi tal-formola tal-klijenti",
+      "customerLanguagesDescription": "Agħżel il-lingwi li l-klijenti jistgħu jużaw fil-formola tal-irtirar.",
+      "availableLanguages": "Lingwi disponibbli għall-klijenti",
+      "defaultLanguage": "Lingwa prestabbilita",
+      "defaultLanguageHelp": "Il-formola tinfetaħ b’din il-lingwa. Il-klijenti jistgħu jagħżlu lingwa attivata oħra.",
+      "basicLanguagesHelp": "Il-pjan B’xejn preċedenti jinkludi l-Ingliż u lingwa oħra. Aġġorna għal Pro għal-lingwi appoġġjati kollha.",
+      "notificationEmail": "Email tan-notifiki tal-irtirar",
+      "notificationEmailHelp": "L-avviżi interni dwar talbiet ġodda għall-irtirar jintbagħtu hawn.",
+      "upgradeTitle": "Aġġorna għal Pro għal issettjar avvanzat",
+      "upgradeDescription": "Perjodi tal-irtirar aġġustabbli huma disponibbli bi Pro.",
+      "legalPage": "URL tal-paġna legali",
+      "privacyPage": "URL tal-paġna tal-privatezza",
+      "supportEmail": "Email tal-appoġġ għall-klijenti",
+      "supportEmailHelp": "Jintwera lill-klijenti u jintuża bħala indirizz għat-tweġibiet fil-kunsinna ġestita.",
+      "basicPeriod": "Il-pjan B’xejn preċedenti juża perjodu indikattiv ta’ 14-il jum. Il-validazzjoni awtomatika mhijiex applikata.",
+      "withdrawalPeriod": "Perjodu tal-irtirar (jiem)",
+      "periodBasicHelp": "Il-klijenti jingħataw perjodu indikattiv ta’ 14-il jum. Aġġorna għal Pro għall-personalizzazzjoni u l-validazzjoni awtomatika.",
+      "periodProHelp": "Issettja l-perjodu tal-irtirar. It-talbiet jiġu vvalidati kontrih meta jkun possibbli."
+    },
+    "errors": {
+      "basicLanguageLimit": "Il-pjan B’xejn preċedenti jinkludi l-Ingliż u lingwa oħra.",
+      "selectLanguage": "Agħżel mill-inqas lingwa waħda.",
+      "save": "Ma setax jiġi ssejvjat l-issettjar.",
+      "saveFirst": "Issejvja jew warrab il-bidliet l-oħra qabel l-azzjoni li ġejja: {{action}}."
+    },
+    "plans": {
+      "basic": "B’xejn preċedenti",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Kunsinna tal-email",
+      "description": "Agħżel kif jintbagħtu l-emails ta’ konferma lill-klijenti.",
+      "deliveryMethod": "Metodu tal-kunsinna",
+      "managed": "Ġestita minn GL6",
+      "managedOption": "Kunsinna ġestita minn GL6 — Rakkomandata",
+      "managedHelp": "Il-konfermi jintbagħtu mis-servizz ivverifikat tal-email ta’ GL6. It-tweġibiet tal-klijenti jmorru fl-indirizz tal-appoġġ tiegħek.",
+      "smtpOption": "SMTP tiegħek — Pro",
+      "smtpOptionHelp": "Qabbad il-fornitur tal-email bil-kredenzjali SMTP.",
+      "proTitle": "Emails bil-marka tiegħek huma disponibbli bi Pro",
+      "proDescription": "Il-ħwienet B’xejn preċedenti jużaw GL6. It-tweġibiet jintbagħtu fl-indirizz tal-appoġġ issettjat hawn fuq.",
+      "connected": "Konness",
+      "connectionFailed": "Il-konnessjoni falliet",
+      "requiresTesting": "Jeħtieġ prova",
+      "statuses": {
+        "notConfigured": "Mhux konfigurat",
+        "verified": "Ivverifikat",
+        "pending": "Pendenti",
+        "notStarted": "Mhux mibdi",
+        "failed": "Falla",
+        "failure": "Falla",
+        "temporaryFailure": "Żball temporanju"
+      },
+      "domain": {
+        "intro": "Nirrakkomandaw sottodominju ddedikat bħal withdrawals.example.com. Żid ir-rekords DNS hawn taħt u vverifika d-dominju.",
+        "label": "Dominju jew sottodominju għall-bgħit",
+        "help": "Tinkludix https:// jew mogħdija.",
+        "add": "Żid dominju għall-bgħit",
+        "recordsHelp": "Żid ir-rekords DNS kollha meħtieġa qabel il-verifika.",
+        "columns": {
+          "type": "Tip",
+          "name": "Isem",
+          "value": "Valur",
+          "priority": "Prijorità",
+          "status": "Stat"
+        },
+        "issue": "Problema fid-dominju għall-bgħit",
+        "check": "Iċċekkja l-istat",
+        "verify": "Ivverifika d-dominju",
+        "remove": "Neħħi d-dominju",
+        "verifiedTitle": "Id-dominju għall-bgħit huwa vverifikat",
+        "verifiedDescription": "Issa tista’ tagħżel l-isem u l-indirizz tal-mittent għall-konfermi lill-klijenti.",
+        "fromName": "Isem il-mittent",
+        "fromEmail": "Email tal-mittent",
+        "storePlaceholder": "Isem il-ħanut tiegħek",
+        "emailHelp": "L-indirizz irid jispiċċa b’@{{domain}}.",
+        "saveSender": "Issejvja d-dettalji tal-mittent"
+      },
+      "smtp": {
+        "intro": "Daħħal id-dettalji SMTP tal-fornitur tal-email. Issejvja l-issettjar qabel tipprova l-konnessjoni.",
+        "host": "Host SMTP",
+        "port": "Port SMTP",
+        "portHelp": "Normalment uża 587 għal STARTTLS jew 465 għal SSL/TLS.",
+        "security": "Sigurtà tal-konnessjoni",
+        "starttls": "STARTTLS — normalment port 587",
+        "ssl": "SSL/TLS — normalment port 465",
+        "username": "Isem tal-utent SMTP",
+        "usernameHelp": "Dan spiss ikun l-indirizz elettroniku sħiħ tiegħek.",
+        "password": "Password SMTP",
+        "savedPasswordPlaceholder": "Ħalli vojt biex iżżomm il-password issejvjata",
+        "newPasswordPlaceholder": "Daħħal il-password SMTP",
+        "savedPasswordHelp": "Password diġà hija maħżuna b’mod sigur. Daħħal waħda ġdida biss biex tibdilha.",
+        "newPasswordHelp": "Xi fornituri jeħtieġu password tal-app minflok il-password normali tal-kont.",
+        "fromName": "Isem il-mittent",
+        "fromEmail": "Email tal-mittent",
+        "storePlaceholder": "Isem il-ħanut tiegħek",
+        "fromEmailHelp": "Il-fornitur SMTP irid jippermetti dan l-indirizz bħala mittent.",
+        "connectionFailed": "Il-konnessjoni SMTP falliet",
+        "test": "Ipprova l-konnessjoni",
+        "disconnect": "Skonnettja SMTP",
+        "saveBeforeTest": "Issejvja l-bidliet qabel tipprova l-konnessjoni."
+      },
+      "errors": {
+        "saveSmtpFirst": "Issejvja l-issettjar SMTP qabel tipprova l-konnessjoni.",
+        "smtpFailed": "Il-konnessjoni SMTP falliet.",
+        "disconnectSmtp": "SMTP ma setax jiġi skonnettjat.",
+        "domainRequired": "Daħħal dominju jew sottodominju l-ewwel.",
+        "createDomain": "Ma setax jinħoloq id-dominju għall-bgħit.",
+        "refreshDomain": "Ma setax jiġi aġġornat id-dominju għall-bgħit.",
+        "verifyDomain": "Ma setgħetx tinbeda l-verifika tad-dominju.",
+        "verifyBeforeSender": "Ivverifika d-dominju għall-bgħit qabel tissejvja l-indirizz tal-mittent.",
+        "saveSender": "Ma setax jiġi ssejvjat l-indirizz tal-mittent.",
+        "removeDomain": "Ma setax jitneħħa d-dominju għall-bgħit.",
+        "dirtyActions": {
+          "disconnectSmtp": "skonnessjoni ta’ SMTP",
+          "createDomain": "ħolqien ta’ dominju għall-bgħit",
+          "checkDomain": "verifika tal-istat tad-dominju għall-bgħit",
+          "saveSender": "issejvjar tal-indirizz tal-mittent",
+          "removeDomain": "tneħħija tad-dominju għall-bgħit"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Pjanijiet",
+    "grandfatheredFree": "B’xejn preċedenti",
+    "pro": "Pro",
+    "current": "Attwali",
+    "legacyDescription": "Dritt preċedenti — bla ħlas",
+    "legacyWarning": "L-aġġornament itemm dan id-dritt preċedenti b’mod permanenti.",
+    "manageSubscription": "Immaniġġja l-abbonament",
+    "subscribePro": "Abbona għal Pro",
+    "errors": {
+      "title": "Ma setgħux jinfetħu l-prezzijiet Shopify",
+      "missingUrl": "Shopify ma rritornax URL tal-prezzijiet.",
+      "openFailed": "Ma setgħux jinfetħu l-prezzijiet Shopify."
+    },
+    "features": {
+      "withdrawalFlow": "Proċess tal-irtirar skont ir-regoli tal-UE",
+      "unlimitedRequests": "Talbiet għall-irtirar bla limitu",
+      "confirmationEmails": "Emails ta’ konferma awtomatiċi",
+      "themeBlock": "Appoġġ għall-blokki tal-app fit-tema",
+      "requestDashboard": "Panew tat-talbiet",
+      "merchantNotifications": "Notifiki għall-bejjiegħ",
+      "basicCompliance": "Konformità bażika inkluża",
+      "coreManagement": "Ġestjoni bażika tat-talbiet għall-irtirar",
+      "euLanguages": "Il-lingwi kollha tal-UE appoġġjati",
+      "customPeriod": "Perjodu tal-irtirar personalizzat b’validazzjoni",
+      "customBranding": "Marka u kuluri personalizzati",
+      "advancedManagement": "Esportazzjoni CSV u ġestjoni avvanzata tat-talbiet"
+    }
+  },
+  "help": {
+    "title": "Għajnuna",
+    "commonQuestions": "Mistoqsijiet frekwenti",
+    "introduction": "Tweġibiet rapidi dwar l-issettjar u s-soluzzjoni tal-problemi.",
+    "supportTitle": "Għad għandek bżonn l-għajnuna?",
+    "supportDescription": "Jekk it-tweġibiet ma jsolvux il-problema, agħżel Ikseb appoġġ mill-menu ⋯ fin-naħa ta’ fuq tal-lemin biex tikkuntattjana permezz ta’ Shopify.",
+    "supportResponse": "Normalment inwieġbu t-talbiet għall-appoġġ fi żmien ġurnata tax-xogħol.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Għaliex l-app ma taħdimx ma’ Shopify Canvas?",
+        "answer": "Shopify Canvas jinsab f’aċċess bikri u għadu ma jappoġġjax il-blokki jew l-inkorporazzjonijiet tal-app għall-buttuna tal-irtirar. Din hija limitazzjoni attwali ta’ Canvas. Uża tema kompatibbli fl-editur standard ta’ Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "Għaliex il-buttuna tal-irtirar ma tidhirx fil-ħanut?",
+        "answer": "Iċċekkja li l-inkorporazzjoni jew il-blokka EU Withdrawal Button hija attivata fit-tema attwali. Wara bidla jew pubblikazzjoni ta’ tema jista’ jkun meħtieġ terġa’ tattivaha."
+      },
+      "buttonPosition": {
+        "question": "Nista’ nibdel il-pożizzjoni tal-buttuna tal-irtirar?",
+        "answer": "Iva. Iftaħ l-Issettjar biex tbiddel il-pożizzjoni tal-buttuna fuq kompjuter u mowbajl."
+      },
+      "buttonAppearance": {
+        "question": "Nista’ nibdel id-dehra tal-buttuna?",
+        "answer": "Iva. Ippersonalizza l-għażliet tad-dehra disponibbli fl-Issettjar tal-app."
+      },
+      "requestSubmitted": {
+        "question": "X’jiġri meta klijent jibgħat talba għall-irtirar?",
+        "answer": "It-talba tiġi rreġistrata fit-taqsima Talbiet, fejn tista’ tirrevediha u taġġorna l-istat tagħha."
+      },
+      "notificationEmail": {
+        "question": "Se nirċievi email meta klijent jibgħat talba?",
+        "answer": "Iva, jekk ikkonfigurajt indirizz għan-notifiki. Iċċekkja l-Issettjar jekk in-notifiki ma jaslux."
+      },
+      "withdrawalPeriod": {
+        "question": "Nista’ nibdel il-perjodu tal-irtirar?",
+        "answer": "Iva. Il-perjodu jiġi ssettjat fl-Issettjar tal-app."
+      },
+      "automaticRefund": {
+        "question": "L-app tirrifondi jew tikkanċella ordni awtomatikament?",
+        "answer": "Le. Talba għall-irtirar ma tirrifondix u ma tikkanċellax l-ordni Shopify awtomatikament. Int tikkontrolla r-reviżjoni u l-ipproċessar tat-talba."
+      },
+      "previousRequests": {
+        "question": "Nista’ nara talbiet għall-irtirar preċedenti?",
+        "answer": "Iva. Iftaħ Talbiet biex tara t-talbiet mibgħuta."
+      },
+      "multipleLanguages": {
+        "question": "L-app tappoġġja diversi lingwi?",
+        "answer": "Il-lingwi jistgħu jiġu kkonfigurati. Immaniġġja l-għażliet disponibbli mill-Issettjar."
+      },
+      "themeChanged": {
+        "question": "Biddilt it-tema Shopify u l-buttuna sparixxiet. X’nagħmel?",
+        "answer": "Iftaħ l-editur tat-tema l-ġdida u attiva l-inkorporazzjoni jew il-blokka EU Withdrawal Button."
+      },
+      "hideButton": {
+        "question": "Nista’ naħbi l-buttuna tal-irtirar temporanjament?",
+        "answer": "Iva. Tista’ tiddiżattiva l-buttuna tal-ħanut mingħajr ma tneħħi l-app."
+      },
+      "missingEmails": {
+        "question": "Għaliex mhux qed nirċievi emails ta’ notifika?",
+        "answer": "Iċċekkja l-indirizz tan-notifiki u l-issettjar tal-kunsinna. Iċċekkja wkoll il-folder tal-ispam."
+      },
+      "legalCompliance": {
+        "question": "L-app tiggarantixxi l-konformità legali tal-ħanut?",
+        "answer": "Le. L-app toffri għodod għall-ġestjoni tat-talbiet għall-irtirar. Int tibqa’ responsabbli biex il-politiki u l-proċessi tal-ħanut jissodisfaw il-liġijiet li japplikaw għan-negozju tiegħek."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Il-ħanut ma nstabx.",
+    "entitlementUnavailable": "Ma setax jiġi vverifikat id-dritt ta’ Shopify App Pricing.",
+    "planRequired": "Huwa meħtieġ pjan Shopify bi ħlas.",
+    "languagesInvalid": "Il-lingwi magħżula mhumiex validi.",
+    "basicLanguageLimit": "Il-pjan B’xejn preċedenti jinkludi l-Ingliż u lingwa oħra.",
+    "withdrawalPeriod": "Il-perjodu tal-irtirar irid ikun bejn 1 u 365 jum.",
+    "smtpHost": "Huwa meħtieġ host SMTP.",
+    "smtpPort": "Il-verifika SMTP hija limitata għall-ports 465 u 587.",
+    "smtpUsername": "Huwa meħtieġ isem tal-utent SMTP.",
+    "smtpFromEmail": "Huwa meħtieġ l-indirizz elettroniku tal-mittent.",
+    "smtpPassword": "Hija meħtieġa password SMTP.",
+    "settingsUpdate": "Ma setax jiġi aġġornat l-issettjar.",
+    "requestNotFound": "It-talba ma nstabitx.",
+    "invalidStatus": "Stat tat-talba mhux validu.",
+    "setupStatus": "Ma setax jitgħabba l-istat tal-issettjar.",
+    "upgradeRequired": "Aġġorna għal Pro biex tuża din il-funzjoni."
+  }
+}

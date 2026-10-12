@@ -1,0 +1,450 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Taal",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Doorgaan",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "loading": "Laden..."
+  },
+  "onboarding": {
+    "welcome": "Welkom bij EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Kies uw taal",
+    "languageDescription": "Selecteer de taal die u in de app wilt gebruiken.",
+    "languageLabel": "App-taal",
+    "dpaTitle": "2. Verwerkersovereenkomst",
+    "dpaDescription": "Om deze app te gebruiken, moet u onze verwerkersovereenkomst accepteren. Deze legt uit hoe klantgegevens namens u worden verwerkt.",
+    "viewDpa": "Verwerkersovereenkomst bekijken",
+    "agree": "Ik heb de verwerkersovereenkomst gelezen en ga ermee akkoord",
+    "acceptContinue": "Accepteren en doorgaan",
+    "error": "De installatie kon niet worden voltooid. Probeer het opnieuw.",
+    "step1": "Stap 1 van 2",
+    "step2": "Stap 2 van 2",
+    "next": "Volgende",
+    "back": "Terug"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "requests": "Verzoeken",
+    "settings": "Instellingen",
+    "plans": "Abonnementen",
+    "help": "Help",
+    "currentPlan": "Huidig abonnement",
+    "planGrandfathered": "Abonnement: Bestaand gratis",
+    "planPro": "Abonnement: Pro",
+    "planRequired": "Abonnement vereist",
+    "premiumActive": "Alle premiumfuncties ingeschakeld",
+    "grandfatheredActive": "Bestaande gratis toegang actief",
+    "subscribeToContinue": "Neem een abonnement om door te gaan"
+  },
+  "appLanguage": {
+    "title": "App-taal",
+    "description": "Kies de taal van het dashboard. Dit verandert de beschikbare klanttalen niet.",
+    "label": "Weergavetaal",
+    "saveError": "De app-taal kon niet worden bijgewerkt.",
+    "settingsTitle": "Instellingen"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subscriptionError": "Het abonnement kon niet worden vernieuwd",
+    "description": "Voeg binnen enkele minuten een herroepingsknop volgens de EU-regels toe aan uw winkel. Verzamel en beheer klantverzoeken op één plek, zonder ingewikkelde installatie.",
+    "plan": "Abonnement",
+    "grandfatheredFree": "Bestaand gratis",
+    "planPro": "Pro",
+    "proActive": "Pro-functies zijn actief.",
+    "freeActive": "Bestaande gratis toegang is actief.",
+    "stats": {
+      "total": "Totaal aantal verzoeken",
+      "totalHelp": "Sinds de opening van deze winkel",
+      "received": "Ontvangen",
+      "receivedHelp": "Wachten op actie",
+      "reviewed": "Beoordeeld",
+      "reviewedHelp": "Handmatig beoordeeld",
+      "closed": "Goedgekeurd / Afgewezen",
+      "closedHelp": "Afgesloten statussen"
+    },
+    "status": {
+      "complete": "Voltooid",
+      "incomplete": "Niet voltooid"
+    },
+    "setup": {
+      "title": "Voltooi uw installatie",
+      "description": "Kies de beste inrichting voor uw winkel. We raden een zwevende knop op de hele site en een aparte herroepingspagina aan.",
+      "recommended": "Aanbevolen",
+      "suggested": "Voorgesteld",
+      "optional": "Optioneel",
+      "pageReady": {
+        "title": "Herroepingspagina gereed",
+        "description": "Uw herroepingspagina is gereed. Voeg het app-blok toe en link naar de pagina vanuit uw bestelbevestigingsmails."
+      },
+      "actionFailed": "Installatieactie mislukt",
+      "notification": {
+        "title": "Voeg uw meldingsadres toe",
+        "description": "Vul het e-mailadres in waarop u meldingen wilt ontvangen wanneer een klant een herroepingsverzoek indient.",
+        "edit": "Meldingsinstellingen bewerken",
+        "add": "Voeg uw meldingsadres toe",
+        "destination": "Meldingen worden verzonden naar {{email}}."
+      },
+      "floating": {
+        "title": "Zwevende knop op de hele site inschakelen",
+        "description": "Voor optimale zichtbaarheid. Een zwevende herroepingsknop in uw hele winkel biedt toegang tot het formulier vanaf elke pagina.",
+        "button": "Zwevende knop inschakelen"
+      },
+      "withdrawalPage": {
+        "title": "Een aparte herroepingspagina maken",
+        "description": "Maak een standaardpagina op /pages/eu-withdrawal zodat klanten een duidelijke plek hebben om verzoeken in te dienen.",
+        "button": "Pagina maken"
+      },
+      "pageBlock": {
+        "title": "Knopblok toevoegen aan de herroepingspagina",
+        "description": "Open de thema-editor en voeg het EU Withdrawal Button-blok toe aan uw aparte herroepingspagina.",
+        "button": "Paginablok toevoegen"
+      },
+      "orderEmail": {
+        "title": "Link toevoegen aan bestelbevestigingsmails",
+        "description": "Voeg de link naar uw herroepingspagina toe aan Shopify-bestelbevestigingen zodat klanten deze na aankoop kunnen vinden.",
+        "button": "Meldingen openen",
+        "suggestedLink": "Voorgestelde link:"
+      },
+      "testRequest": {
+        "title": "Een testverzoek tot herroeping indienen",
+        "description": "Bezoek uw winkel of herroepingspagina en dien een testverzoek in om het klantproces te controleren.",
+        "openPage": "Herroepingspagina openen",
+        "openStorefront": "Winkel openen"
+      },
+      "review": {
+        "title": "Verzoeken beoordelen in uw dashboard",
+        "description": "Beoordeel een klant- of testverzoek in het onderdeel Verzoeken en werk de status bij.",
+        "button": "Verzoeken openen"
+      },
+      "upgrade": {
+        "title": "Upgraden naar Pro",
+        "description": "Ontgrendel bestelverificatie, geavanceerde instellingen, automatisering en aangepaste processen.",
+        "button": "Pro bekijken"
+      }
+    },
+    "billingSyncFailed": "Factureringsstatus kon niet worden gesynchroniseerd",
+    "subscriptionStatusError": "Abonnementsstatus kon niet worden vernieuwd."
+  },
+  "requests": {
+    "title": "Herroepingsverzoeken",
+    "exportCSV": "CSV exporteren",
+    "status": "Status",
+    "verification": "Verificatie",
+    "search": "Zoeken",
+    "searchPlaceholder": "E-mail, bestelling, referentie...",
+    "all": "Alle",
+    "empty": "Geen verzoeken gevonden.",
+    "unknown": "Onbekend",
+    "noReason": "Geen reden opgegeven",
+    "filterPro": "Geavanceerde filters en CSV-export zijn beschikbaar met Pro.",
+    "resourceSingular": "verzoek",
+    "resourcePlural": "verzoeken",
+    "selectedAll": "Alle",
+    "columns": {
+      "reference": "Referentie",
+      "customer": "Klant",
+      "order": "Bestelling",
+      "verification": "Verificatie",
+      "reason": "Reden",
+      "status": "Status",
+      "submitted": "Ingediend",
+      "actions": "Acties"
+    },
+    "statuses": {
+      "RECEIVED": "Ontvangen",
+      "CONFIRMED": "Bevestigd",
+      "REVIEWED": "Beoordeeld",
+      "APPROVED": "Goedgekeurd",
+      "REJECTED": "Afgewezen"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Geverifieerd",
+        "tooltip": "Bestelling gevonden binnen de herroepingstermijn"
+      },
+      "NOT_FOUND": {
+        "label": "Bestelling niet gevonden",
+        "tooltip": "Geen overeenkomende bestelling gevonden in Shopify"
+      },
+      "EXPIRED": {
+        "label": "Termijn verstreken",
+        "tooltip": "Bestelling gevonden, maar de herroepingstermijn is verstreken"
+      },
+      "ERROR": {
+        "label": "Niet beschikbaar",
+        "tooltip": "Bestelling kon niet worden geverifieerd door een Shopify- of API-probleem"
+      },
+      "UNVERIFIED": {
+        "label": "Niet geverifieerd",
+        "tooltip": "Automatische bestelverificatie is beschikbaar met Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Ongeldige bestelling"
+    },
+    "deleteCustomer": {
+      "button": "Klantgegevens verwijderen",
+      "title": "Klantgegevens verwijderen",
+      "description": "Alle opgeslagen herroepingsgegevens voor {{email}} worden permanent verwijderd."
+    },
+    "bulkDelete": {
+      "button": "Selectie verwijderen",
+      "title": "Geselecteerde verzoeken verwijderen",
+      "confirm": "Verzoeken verwijderen",
+      "description_one": "Dit verwijdert permanent {{count}} geselecteerd herroepingsverzoek.",
+      "description_other": "Dit verwijdert permanent {{count}} geselecteerde herroepingsverzoeken."
+    },
+    "delete": "Verwijderen",
+    "cancel": "Annuleren",
+    "scrollLabel": "Herroepingsverzoeken horizontaal scrollen",
+    "errors": {
+      "temporary": "Tijdelijk serverprobleem. Probeer het over enkele ogenblikken opnieuw.",
+      "update": "De verzoekstatus kon niet worden bijgewerkt.",
+      "export": "CSV kan momenteel niet worden geëxporteerd. Probeer het binnenkort opnieuw."
+    }
+  },
+  "settings": {
+    "title": "Instellingen",
+    "loading": "Instellingen laden",
+    "saveFailed": "Instellingen konden niet worden opgeslagen",
+    "general": {
+      "title": "Algemene instellingen",
+      "customerLanguages": "Talen van het klantformulier",
+      "customerLanguagesDescription": "Kies de talen die klanten in het herroepingsformulier kunnen gebruiken.",
+      "availableLanguages": "Beschikbare klanttalen",
+      "defaultLanguage": "Standaardtaal",
+      "defaultLanguageHelp": "Het formulier opent in deze taal. Klanten kunnen een andere ingeschakelde taal kiezen.",
+      "basicLanguagesHelp": "Het Bestaand gratis-abonnement bevat Engels en één extra taal. Upgrade naar Pro voor alle ondersteunde talen.",
+      "notificationEmail": "E-mail voor herroepingsmeldingen",
+      "notificationEmailHelp": "Interne meldingen over nieuwe herroepingsverzoeken worden hierheen gestuurd.",
+      "upgradeTitle": "Upgrade naar Pro voor geavanceerde instellingen",
+      "upgradeDescription": "Aanpasbare herroepingstermijnen zijn beschikbaar met Pro.",
+      "legalPage": "URL van juridische pagina",
+      "privacyPage": "URL van privacypagina",
+      "supportEmail": "E-mail van klantenservice",
+      "supportEmailHelp": "Zichtbaar voor klanten en gebruikt als antwoordadres bij beheerde verzending.",
+      "basicPeriod": "Het Bestaand gratis-abonnement gebruikt een standaard indicatieve termijn van 14 dagen. Automatische validatie wordt niet toegepast.",
+      "withdrawalPeriod": "Herroepingstermijn (dagen)",
+      "periodBasicHelp": "Klanten krijgen een indicatieve termijn van 14 dagen. Upgrade naar Pro om deze aan te passen en automatische validatie in te schakelen.",
+      "periodProHelp": "Stel uw herroepingstermijn in. Verzoeken worden waar mogelijk tegen deze termijn gevalideerd."
+    },
+    "errors": {
+      "basicLanguageLimit": "Het Bestaand gratis-abonnement bevat Engels en één extra taal.",
+      "selectLanguage": "Selecteer minstens één taal.",
+      "save": "Instellingen konden niet worden opgeslagen.",
+      "saveFirst": "Sla uw andere wijzigingen op of maak ze ongedaan voordat u de volgende actie uitvoert: {{action}}."
+    },
+    "plans": {
+      "basic": "Bestaand gratis",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "E-mailverzending",
+      "description": "Kies hoe bevestigingsmails aan klanten worden verzonden.",
+      "deliveryMethod": "Verzendmethode",
+      "managed": "Beheerd door GL6",
+      "managedOption": "Beheerde verzending door GL6 — Aanbevolen",
+      "managedHelp": "Bevestigingsmails worden verzonden via de geverifieerde verzenddienst van GL6. Antwoorden van klanten gaan naar uw klantenserviceadres.",
+      "smtpOption": "Eigen SMTP — Pro",
+      "smtpOptionHelp": "Verbind uw e-mailprovider met SMTP-inloggegevens.",
+      "proTitle": "E-mailverzending in uw huisstijl is beschikbaar met Pro",
+      "proDescription": "Winkels met het Bestaand gratis-abonnement gebruiken GL6-verzending. Antwoorden gaan naar het hierboven ingestelde klantenserviceadres.",
+      "connected": "Verbonden",
+      "connectionFailed": "Verbinding mislukt",
+      "requiresTesting": "Test vereist",
+      "statuses": {
+        "notConfigured": "Niet ingesteld",
+        "verified": "Geverifieerd",
+        "pending": "In behandeling",
+        "notStarted": "Niet gestart",
+        "failed": "Mislukt",
+        "failure": "Mislukt",
+        "temporaryFailure": "Tijdelijke fout"
+      },
+      "domain": {
+        "intro": "We raden een apart subdomein aan, zoals withdrawals.example.com. Voeg de onderstaande DNS-records toe en verifieer het domein.",
+        "label": "Verzenddomein of subdomein",
+        "help": "Gebruik geen https:// of pad.",
+        "add": "Verzenddomein toevoegen",
+        "recordsHelp": "Voeg alle vereiste DNS-records toe voordat u de verificatie start.",
+        "columns": {
+          "type": "Type",
+          "name": "Naam",
+          "value": "Waarde",
+          "priority": "Prioriteit",
+          "status": "Status"
+        },
+        "issue": "Probleem met verzenddomein",
+        "check": "Status controleren",
+        "verify": "Domein verifiëren",
+        "remove": "Domein verwijderen",
+        "verifiedTitle": "Verzenddomein geverifieerd",
+        "verifiedDescription": "U kunt nu de afzendernaam en het e-mailadres voor klantbevestigingen kiezen.",
+        "fromName": "Afzendernaam",
+        "fromEmail": "Afzenderadres",
+        "storePlaceholder": "Naam van uw winkel",
+        "emailHelp": "Dit adres moet eindigen op @{{domain}}.",
+        "saveSender": "Afzendergegevens opslaan"
+      },
+      "smtp": {
+        "intro": "Vul de SMTP-gegevens van uw e-mailprovider in. Sla de instellingen op voordat u de verbinding test.",
+        "host": "SMTP-host",
+        "port": "SMTP-poort",
+        "portHelp": "Gebruik meestal 587 voor STARTTLS of 465 voor SSL/TLS.",
+        "security": "Verbindingsbeveiliging",
+        "starttls": "STARTTLS — meestal poort 587",
+        "ssl": "SSL/TLS — meestal poort 465",
+        "username": "SMTP-gebruikersnaam",
+        "usernameHelp": "Dit is vaak uw volledige e-mailadres.",
+        "password": "SMTP-wachtwoord",
+        "savedPasswordPlaceholder": "Laat leeg om het opgeslagen wachtwoord te behouden",
+        "newPasswordPlaceholder": "Vul het SMTP-wachtwoord in",
+        "savedPasswordHelp": "Er is al een wachtwoord veilig opgeslagen. Vul alleen een nieuw wachtwoord in om het te vervangen.",
+        "newPasswordHelp": "Sommige providers vereisen een app-wachtwoord in plaats van uw gewone accountwachtwoord.",
+        "fromName": "Afzendernaam",
+        "fromEmail": "Afzenderadres",
+        "storePlaceholder": "Naam van uw winkel",
+        "fromEmailHelp": "Uw SMTP-provider moet dit adres als afzender toestaan.",
+        "connectionFailed": "SMTP-verbinding mislukt",
+        "test": "Verbinding testen",
+        "disconnect": "SMTP loskoppelen",
+        "saveBeforeTest": "Sla uw wijzigingen op voordat u de verbinding test."
+      },
+      "errors": {
+        "saveSmtpFirst": "Sla uw SMTP-instellingen op voordat u de verbinding test.",
+        "smtpFailed": "SMTP-verbinding mislukt.",
+        "disconnectSmtp": "SMTP kon niet worden losgekoppeld.",
+        "domainRequired": "Vul eerst een domein of subdomein in.",
+        "createDomain": "Verzenddomein kon niet worden gemaakt.",
+        "refreshDomain": "Verzenddomein kon niet worden vernieuwd.",
+        "verifyDomain": "Domeinverificatie kon niet worden gestart.",
+        "verifyBeforeSender": "Verifieer het verzenddomein voordat u het afzenderadres opslaat.",
+        "saveSender": "Afzenderadres kon niet worden opgeslagen.",
+        "removeDomain": "Verzenddomein kon niet worden verwijderd.",
+        "dirtyActions": {
+          "disconnectSmtp": "SMTP loskoppelen",
+          "createDomain": "een verzenddomein maken",
+          "checkDomain": "de status van het verzenddomein controleren",
+          "saveSender": "het afzenderadres opslaan",
+          "removeDomain": "het verzenddomein verwijderen"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Abonnementen",
+    "grandfatheredFree": "Bestaand gratis",
+    "pro": "Pro",
+    "current": "Huidig",
+    "legacyDescription": "Bestaand recht — kosteloos",
+    "legacyWarning": "Een upgrade beëindigt dit bestaande recht permanent.",
+    "manageSubscription": "Abonnement beheren",
+    "subscribePro": "Abonneren op Pro",
+    "errors": {
+      "title": "Shopify-prijzen konden niet worden geopend",
+      "missingUrl": "Shopify heeft geen prijs-URL teruggegeven.",
+      "openFailed": "Shopify-prijzen konden niet worden geopend."
+    },
+    "features": {
+      "withdrawalFlow": "Herroepingsproces volgens EU-regels",
+      "unlimitedRequests": "Onbeperkt herroepingsverzoeken",
+      "confirmationEmails": "Automatische bevestigingsmails",
+      "themeBlock": "Ondersteuning voor app-blokken in het thema",
+      "requestDashboard": "Verzoekendashboard",
+      "merchantNotifications": "Meldingen voor de handelaar",
+      "basicCompliance": "Basisnaleving inbegrepen",
+      "coreManagement": "Basisbeheer van herroepingsverzoeken",
+      "euLanguages": "Alle ondersteunde EU-talen",
+      "customPeriod": "Aangepaste herroepingstermijn met validatie",
+      "customBranding": "Eigen huisstijl en merkkleuren",
+      "advancedManagement": "CSV-export en geavanceerd verzoekbeheer"
+    }
+  },
+  "help": {
+    "title": "Help",
+    "commonQuestions": "Veelgestelde vragen",
+    "introduction": "Vind snel antwoorden op vragen over installatie en probleemoplossing.",
+    "supportTitle": "Nog hulp nodig?",
+    "supportDescription": "Als deze antwoorden niet helpen, kies dan Ondersteuning krijgen in het menu ⋯ rechtsboven om via Shopify contact met ons op te nemen.",
+    "supportResponse": "Ondersteuningsverzoeken worden meestal binnen één werkdag beantwoord.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Waarom werkt de app niet met Shopify Canvas?",
+        "answer": "Shopify Canvas is nog in vroege toegang en ondersteunt nog geen app-blokken of app-embeds voor de herroepingsknop. Dit is een huidige beperking van Canvas. Gebruik een compatibel thema in de standaard thema-editor van Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "Waarom is de herroepingsknop niet zichtbaar in mijn winkel?",
+        "answer": "Controleer of het EU Withdrawal Button-embed of app-blok in uw huidige Shopify-thema is ingeschakeld. Na een themawijziging of publicatie moet u dit mogelijk opnieuw inschakelen."
+      },
+      "buttonPosition": {
+        "question": "Kan ik de positie van de herroepingsknop aanpassen?",
+        "answer": "Ja. Open Instellingen om de positie van de zwevende knop voor desktop en mobiel aan te passen."
+      },
+      "buttonAppearance": {
+        "question": "Kan ik het uiterlijk van de knop aanpassen?",
+        "answer": "Ja. Pas de beschikbare uiterlijkopties aan via Instellingen in de app."
+      },
+      "requestSubmitted": {
+        "question": "Wat gebeurt er wanneer een klant een herroepingsverzoek indient?",
+        "answer": "Het verzoek wordt opgeslagen en verschijnt onder Verzoeken, waar u het kunt beoordelen en de status bijwerken."
+      },
+      "notificationEmail": {
+        "question": "Krijg ik een e-mail wanneer een klant een verzoek indient?",
+        "answer": "Ja, als u een meldingsadres hebt ingesteld. Controleer Instellingen als meldingen niet aankomen."
+      },
+      "withdrawalPeriod": {
+        "question": "Kan ik de herroepingstermijn aanpassen?",
+        "answer": "Ja. De herroepingstermijn kan worden ingesteld via Instellingen in de app."
+      },
+      "automaticRefund": {
+        "question": "Betaalt de app automatisch terug of annuleert deze een bestelling?",
+        "answer": "Nee. Een herroepingsverzoek leidt niet automatisch tot terugbetaling of annulering van de Shopify-bestelling. U beheert de beoordeling en verwerking zelf."
+      },
+      "previousRequests": {
+        "question": "Kan ik eerdere herroepingsverzoeken bekijken?",
+        "answer": "Ja. Open Verzoeken om ingediende herroepingsverzoeken te bekijken."
+      },
+      "multipleLanguages": {
+        "question": "Ondersteunt de app meerdere talen?",
+        "answer": "De app ondersteunt instelbare talen. Beheer de beschikbare opties via Instellingen."
+      },
+      "themeChanged": {
+        "question": "Ik heb mijn Shopify-thema veranderd en de knop is verdwenen. Wat nu?",
+        "answer": "Open de editor van het nieuwe thema en schakel het EU Withdrawal Button-embed of app-blok in."
+      },
+      "hideButton": {
+        "question": "Kan ik de herroepingsknop tijdelijk verbergen?",
+        "answer": "Ja. U kunt de winkelknop uitschakelen zonder de app te verwijderen."
+      },
+      "missingEmails": {
+        "question": "Waarom ontvang ik geen meldingsmails?",
+        "answer": "Controleer uw meldingsadres en verzendinstellingen in Instellingen. Controleer ook uw spammap."
+      },
+      "legalCompliance": {
+        "question": "Garandeert deze app dat mijn winkel aan de wet voldoet?",
+        "answer": "Nee. De app biedt hulpmiddelen voor het aanbieden en beheren van herroepingsverzoeken. U blijft ervoor verantwoordelijk dat uw winkelbeleid en processen voldoen aan de wetten die op uw bedrijf van toepassing zijn."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Winkel niet gevonden.",
+    "entitlementUnavailable": "Recht op Shopify App Pricing kon niet worden geverifieerd.",
+    "planRequired": "Een betaald Shopify-abonnement is vereist.",
+    "languagesInvalid": "De geselecteerde talen zijn ongeldig.",
+    "basicLanguageLimit": "Het Bestaand gratis-abonnement bevat Engels en één extra taal.",
+    "withdrawalPeriod": "De herroepingstermijn moet tussen 1 en 365 dagen liggen.",
+    "smtpHost": "SMTP-host is verplicht.",
+    "smtpPort": "SMTP-verificatie is beperkt tot poorten 465 en 587.",
+    "smtpUsername": "SMTP-gebruikersnaam is verplicht.",
+    "smtpFromEmail": "E-mailadres van afzender is verplicht.",
+    "smtpPassword": "SMTP-wachtwoord is verplicht.",
+    "settingsUpdate": "Instellingen konden niet worden bijgewerkt.",
+    "requestNotFound": "Verzoek niet gevonden.",
+    "invalidStatus": "Ongeldige verzoekstatus.",
+    "setupStatus": "Installatiestatus kon niet worden geladen.",
+    "upgradeRequired": "Upgrade naar Pro om deze functie te gebruiken."
+  }
+}

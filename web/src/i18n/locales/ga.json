@@ -1,0 +1,453 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Teanga",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Lean ar aghaidh",
+    "save": "Sábháil",
+    "cancel": "Cealaigh",
+    "loading": "Á lódáil..."
+  },
+  "onboarding": {
+    "welcome": "Fáilte go EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Roghnaigh do theanga",
+    "languageDescription": "Roghnaigh an teanga is mian leat a úsáid san aip.",
+    "languageLabel": "Teanga na haipe",
+    "dpaTitle": "2. Comhaontú Próiseála Sonraí",
+    "dpaDescription": "Caithfidh tú glacadh lenár gComhaontú Próiseála Sonraí chun an aip a úsáid. Míníonn sé conas a phróiseáiltear sonraí custaiméirí ar do shon.",
+    "viewDpa": "Féach an Comhaontú Próiseála Sonraí",
+    "agree": "Tá an Comhaontú Próiseála Sonraí léite agam agus glacaim leis",
+    "acceptContinue": "Glac agus lean ar aghaidh",
+    "error": "Níorbh fhéidir an socrú a chríochnú. Bain triail eile as.",
+    "step1": "Céim 1 as 2",
+    "step2": "Céim 2 as 2",
+    "next": "Ar aghaidh",
+    "back": "Ar ais"
+  },
+  "navigation": {
+    "dashboard": "Deais",
+    "requests": "Iarratais",
+    "settings": "Socruithe",
+    "plans": "Pleananna",
+    "help": "Cabhair",
+    "currentPlan": "Plean reatha",
+    "planGrandfathered": "Plean: Saor in aisce roimhe seo",
+    "planPro": "Plean: Pro",
+    "planRequired": "Plean de dhíth",
+    "premiumActive": "Tá gach feidhm phréimhe cumasaithe",
+    "grandfatheredActive": "Tá an rochtain saor in aisce roimhe seo gníomhach",
+    "subscribeToContinue": "Liostáil chun leanúint ar aghaidh"
+  },
+  "appLanguage": {
+    "title": "Teanga na haipe",
+    "description": "Roghnaigh teanga na deaise. Ní athraíonn sé seo na teangacha atá ar fáil do chustaiméirí.",
+    "label": "Teanga taispeána",
+    "saveError": "Níorbh fhéidir teanga na haipe a nuashonrú.",
+    "settingsTitle": "Socruithe"
+  },
+  "dashboard": {
+    "title": "Deais",
+    "subscriptionError": "Níorbh fhéidir an síntiús a athnuachan",
+    "description": "Cuir cnaipe tarraingthe siar a chomhlíonann rialacha an AE le do shiopa i gceann cúpla nóiméad. Bailigh agus bainistigh iarratais custaiméirí in aon áit amháin gan socrú casta.",
+    "plan": "Plean",
+    "grandfatheredFree": "Saor in aisce roimhe seo",
+    "planPro": "Pro",
+    "proActive": "Tá feidhmeanna Pro gníomhach.",
+    "freeActive": "Tá an rochtain saor in aisce roimhe seo gníomhach.",
+    "stats": {
+      "total": "Iarratais san iomlán",
+      "totalHelp": "Le linn shaolré an tsiopa seo",
+      "received": "Faighte",
+      "receivedHelp": "Ag fanacht le gníomh",
+      "reviewed": "Athbhreithnithe",
+      "reviewedHelp": "Measúnaithe de láimh",
+      "closed": "Ceadaithe / Diúltaithe",
+      "closedHelp": "Stádais dúnta"
+    },
+    "status": {
+      "complete": "Críochnaithe",
+      "incomplete": "Gan chríochnú"
+    },
+    "setup": {
+      "title": "Críochnaigh an socrú",
+      "description": "Roghnaigh an socrú is fearr don siopa. Molaimid cnaipe ar snámh ar fud an tsuímh agus leathanach ar leith don tarraingt siar.",
+      "recommended": "Molta",
+      "suggested": "Beartaithe",
+      "optional": "Roghnach",
+      "pageReady": {
+        "title": "Tá an leathanach tarraingthe siar réidh",
+        "description": "Tá an leathanach réidh. Cuir bloc na haipe leis agus nasc chuige sna ríomhphoist dearbhaithe ordaithe."
+      },
+      "actionFailed": "Theip ar an ngníomh socraithe",
+      "notification": {
+        "title": "Cuir do sheoladh fógraí leis",
+        "description": "Cuir isteach an seoladh ar mhaith leat fógraí a fháil air nuair a chuireann custaiméir iarratas ar tharraingt siar isteach.",
+        "edit": "Cuir socruithe fógraí in eagar",
+        "add": "Cuir do sheoladh fógraí leis",
+        "destination": "Seolfar fógraí chuig {{email}}."
+      },
+      "floating": {
+        "title": "Cumasaigh cnaipe ar snámh ar fud an tsuímh",
+        "description": "An infheictheacht is fearr. Tugann cnaipe tarraingthe siar ar snámh ar fud an tsiopa rochtain ar an bhfoirm ó gach leathanach.",
+        "button": "Cumasaigh cnaipe ar snámh"
+      },
+      "withdrawalPage": {
+        "title": "Cruthaigh leathanach ar leith don tarraingt siar",
+        "description": "Cruthaigh gnáthleathanach ag /pages/eu-withdrawal le háit shoiléir a thabhairt do chustaiméirí chun iarratais a chur isteach.",
+        "button": "Cruthaigh leathanach"
+      },
+      "pageBlock": {
+        "title": "Cuir bloc an chnaipe leis an leathanach tarraingthe siar",
+        "description": "Oscail eagarthóir an téama agus cuir bloc EU Withdrawal Button leis an leathanach tarraingthe siar.",
+        "button": "Cuir bloc leathanaigh leis"
+      },
+      "orderEmail": {
+        "title": "Cuir an nasc sna ríomhphoist dearbhaithe ordaithe",
+        "description": "Cuir nasc an leathanaigh tarraingthe siar sna ríomhphoist dearbhaithe Shopify chun go bhfaighidh custaiméirí é tar éis ceannach.",
+        "button": "Oscail fógraí",
+        "suggestedLink": "Nasc molta:"
+      },
+      "testRequest": {
+        "title": "Cuir iarratas tástála ar tharraingt siar isteach",
+        "description": "Tabhair cuairt ar an siopa nó ar an leathanach tarraingthe siar agus cuir iarratas tástála isteach chun eispéireas an chustaiméara a sheiceáil.",
+        "openPage": "Oscail an leathanach tarraingthe siar",
+        "openStorefront": "Oscail an siopa"
+      },
+      "review": {
+        "title": "Athbhreithnigh iarratais sa deais",
+        "description": "Tar éis iarratas custaiméara nó tástála, athbhreithnigh é sa rannán Iarratais agus nuashonraigh a stádas.",
+        "button": "Oscail iarratais"
+      },
+      "upgrade": {
+        "title": "Uasghrádaigh go Pro",
+        "description": "Faigh fíorú orduithe, rialuithe casta, uathoibriú agus sreafaí oibre saincheaptha.",
+        "button": "Féach Pro"
+      }
+    },
+    "billingSyncFailed": "Níorbh fhéidir staid na billeála a shioncronú",
+    "subscriptionStatusError": "Níorbh fhéidir stádas an tsíntiúis a athnuachan."
+  },
+  "requests": {
+    "title": "Iarratais ar tharraingt siar",
+    "exportCSV": "Easpórtáil CSV",
+    "status": "Stádas",
+    "verification": "Fíorú",
+    "search": "Cuardaigh",
+    "searchPlaceholder": "Ríomhphost, ordú, tagairt...",
+    "all": "Gach ceann",
+    "empty": "Níor aimsíodh iarratais.",
+    "unknown": "Anaithnid",
+    "noReason": "Níor tugadh cúis",
+    "filterPro": "Tá ardscagadh agus easpórtáil CSV ar fáil le Pro.",
+    "resourceSingular": "iarratas",
+    "resourcePlural": "iarratais",
+    "selectedAll": "Gach ceann",
+    "columns": {
+      "reference": "Tagairt",
+      "customer": "Custaiméir",
+      "order": "Ordú",
+      "verification": "Fíorú",
+      "reason": "Cúis",
+      "status": "Stádas",
+      "submitted": "Curtha isteach",
+      "actions": "Gníomhartha"
+    },
+    "statuses": {
+      "RECEIVED": "Faighte",
+      "CONFIRMED": "Deimhnithe",
+      "REVIEWED": "Athbhreithnithe",
+      "APPROVED": "Ceadaithe",
+      "REJECTED": "Diúltaithe"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Fíoraithe",
+        "tooltip": "Fuarthas an t-ordú laistigh den tréimhse tarraingthe siar"
+      },
+      "NOT_FOUND": {
+        "label": "Níor aimsíodh an t-ordú",
+        "tooltip": "Níor aimsíodh ordú meaitseála in Shopify"
+      },
+      "EXPIRED": {
+        "label": "Tréimhse imithe in éag",
+        "tooltip": "Fuarthas an t-ordú ach tá an tréimhse tarraingthe siar imithe in éag"
+      },
+      "ERROR": {
+        "label": "Níl ar fáil",
+        "tooltip": "Níorbh fhéidir an t-ordú a fhíorú mar gheall ar fhadhb Shopify nó API"
+      },
+      "UNVERIFIED": {
+        "label": "Gan fíorú",
+        "tooltip": "Tá fíorú uathoibríoch orduithe ar fáil le Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Ordú neamhbhailí"
+    },
+    "deleteCustomer": {
+      "button": "Scrios sonraí custaiméara",
+      "title": "Scrios sonraí custaiméara",
+      "description": "Scriosfar go buan na sonraí tarraingthe siar go léir atá stóráilte do {{email}}."
+    },
+    "bulkDelete": {
+      "button": "Scrios na cinn roghnaithe",
+      "title": "Scrios iarratais roghnaithe",
+      "confirm": "Scrios iarratais",
+      "description_one": "Scriosfar go buan {{count}} iarratas roghnaithe ar tharraingt siar.",
+      "description_other": "Scriosfar na hiarratais roghnaithe ar tharraingt siar go buan. Líon: {{count}}.",
+      "description_two": "Scriosfar na hiarratais roghnaithe ar tharraingt siar go buan. Líon: {{count}}.",
+      "description_few": "Scriosfar na hiarratais roghnaithe ar tharraingt siar go buan. Líon: {{count}}.",
+      "description_many": "Scriosfar na hiarratais roghnaithe ar tharraingt siar go buan. Líon: {{count}}."
+    },
+    "delete": "Scrios",
+    "cancel": "Cealaigh",
+    "scrollLabel": "Scrollaigh iarratais ar tharraingt siar go cothrománach",
+    "errors": {
+      "temporary": "Fadhb shealadach leis an bhfreastalaí. Bain triail eile as i gceann tamaill.",
+      "update": "Níorbh fhéidir stádas an iarratais a nuashonrú.",
+      "export": "Ní féidir CSV a easpórtáil faoi láthair. Bain triail eile as go luath."
+    }
+  },
+  "settings": {
+    "title": "Socruithe",
+    "loading": "Socruithe á lódáil",
+    "saveFailed": "Níorbh fhéidir na socruithe a shábháil",
+    "general": {
+      "title": "Socruithe ginearálta",
+      "customerLanguages": "Teangacha na foirme do chustaiméirí",
+      "customerLanguagesDescription": "Roghnaigh na teangacha is féidir le custaiméirí a úsáid san fhoirm tarraingthe siar.",
+      "availableLanguages": "Teangacha atá ar fáil do chustaiméirí",
+      "defaultLanguage": "Teanga réamhshocraithe",
+      "defaultLanguageHelp": "Osclaítear an fhoirm sa teanga seo. Is féidir le custaiméirí teanga chumasaithe eile a roghnú.",
+      "basicLanguagesHelp": "Cuimsíonn an plean saor in aisce roimhe seo Béarla agus teanga amháin eile. Uasghrádaigh go Pro do gach teanga a dtacaítear léi.",
+      "notificationEmail": "Ríomhphost fógraí tarraingthe siar",
+      "notificationEmailHelp": "Seoltar foláirimh inmheánacha faoi iarratais nua ar tharraingt siar anseo.",
+      "upgradeTitle": "Uasghrádaigh go Pro do shocruithe casta",
+      "upgradeDescription": "Tá tréimhsí tarraingthe siar inchoigeartaithe ar fáil le Pro.",
+      "legalPage": "URL an leathanaigh dlí",
+      "privacyPage": "URL an leathanaigh príobháideachais",
+      "supportEmail": "Ríomhphost tacaíochta custaiméirí",
+      "supportEmailHelp": "Taispeántar do chustaiméirí é agus úsáidtear mar sheoladh freagartha é le seachadadh bainistithe.",
+      "basicPeriod": "Úsáideann an plean saor in aisce roimhe seo tréimhse threorach 14 lá. Ní chuirtear bailíochtú uathoibríoch i bhfeidhm.",
+      "withdrawalPeriod": "Tréimhse tarraingthe siar (laethanta)",
+      "periodBasicHelp": "Tugtar tréimhse threorach 14 lá do chustaiméirí. Uasghrádaigh go Pro chun í a athrú agus bailíochtú uathoibríoch a chumasú.",
+      "periodProHelp": "Socraigh an tréimhse tarraingthe siar. Déanfar iarratais a bhailíochtú ina leith nuair is féidir."
+    },
+    "errors": {
+      "basicLanguageLimit": "Cuimsíonn an plean saor in aisce roimhe seo Béarla agus teanga amháin eile.",
+      "selectLanguage": "Roghnaigh teanga amháin ar a laghad.",
+      "save": "Níorbh fhéidir na socruithe a shábháil.",
+      "saveFirst": "Sábháil nó cuir ar ceal na hathruithe eile roimh an ngníomh seo: {{action}}."
+    },
+    "plans": {
+      "basic": "Saor in aisce roimhe seo",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Seachadadh ríomhphoist",
+      "description": "Roghnaigh conas a sheoltar ríomhphoist dearbhaithe chuig custaiméirí.",
+      "deliveryMethod": "Modh seachadta",
+      "managed": "Bainistithe ag GL6",
+      "managedOption": "Seachadadh bainistithe GL6 — Molta",
+      "managedHelp": "Seoltar ríomhphoist dearbhaithe trí sheirbhís fhíoraithe GL6. Téann freagraí custaiméirí chuig do sheoladh tacaíochta.",
+      "smtpOption": "SMTP saincheaptha — Pro",
+      "smtpOptionHelp": "Ceangail do sholáthraí ríomhphoist le sonraí logála isteach SMTP.",
+      "proTitle": "Tá ríomhphoist le do bhranda ar fáil le Pro",
+      "proDescription": "Úsáideann siopaí saor in aisce roimhe seo seachadadh GL6. Téann freagraí chuig an seoladh tacaíochta atá socraithe thuas.",
+      "connected": "Ceangailte",
+      "connectionFailed": "Theip ar an nasc",
+      "requiresTesting": "Tástáil de dhíth",
+      "statuses": {
+        "notConfigured": "Gan chumrú",
+        "verified": "Fíoraithe",
+        "pending": "Ar feitheamh",
+        "notStarted": "Gan tosú",
+        "failed": "Theip",
+        "failure": "Theip",
+        "temporaryFailure": "Teip shealadach"
+      },
+      "domain": {
+        "intro": "Molaimid fo-fhearann ar leith, mar withdrawals.example.com. Cuir na taifid DNS thíos leis agus fíoraigh an fearann.",
+        "label": "Fearann nó fo-fhearann seolta",
+        "help": "Ná cuir https:// ná cosán san áireamh.",
+        "add": "Cuir fearann seolta leis",
+        "recordsHelp": "Cuir gach taifead DNS riachtanach leis sula dtosaíonn tú ar an bhfíorú.",
+        "columns": {
+          "type": "Cineál",
+          "name": "Ainm",
+          "value": "Luach",
+          "priority": "Tosaíocht",
+          "status": "Stádas"
+        },
+        "issue": "Fadhb leis an bhfearann seolta",
+        "check": "Seiceáil stádas",
+        "verify": "Fíoraigh fearann",
+        "remove": "Bain fearann",
+        "verifiedTitle": "Fearann seolta fíoraithe",
+        "verifiedDescription": "Is féidir leat ainm agus seoladh ríomhphoist an tseoltóra a roghnú do ríomhphoist dearbhaithe custaiméirí anois.",
+        "fromName": "Ainm an tseoltóra",
+        "fromEmail": "Ríomhphost an tseoltóra",
+        "storePlaceholder": "Ainm do shiopa",
+        "emailHelp": "Caithfidh an seoladh seo críochnú le @{{domain}}.",
+        "saveSender": "Sábháil sonraí an tseoltóra"
+      },
+      "smtp": {
+        "intro": "Cuir isteach sonraí SMTP do sholáthraí ríomhphoist. Sábháil na socruithe sula dtástálann tú an nasc.",
+        "host": "Óstach SMTP",
+        "port": "Port SMTP",
+        "portHelp": "Úsáid 587 do STARTTLS nó 465 do SSL/TLS de ghnáth.",
+        "security": "Slándáil an naisc",
+        "starttls": "STARTTLS — port 587 de ghnáth",
+        "ssl": "SSL/TLS — port 465 de ghnáth",
+        "username": "Ainm úsáideora SMTP",
+        "usernameHelp": "Is minic gurb é seo do sheoladh ríomhphoist iomlán.",
+        "password": "Pasfhocal SMTP",
+        "savedPasswordPlaceholder": "Fág bán chun an pasfhocal sábháilte a choinneáil",
+        "newPasswordPlaceholder": "Cuir pasfhocal SMTP isteach",
+        "savedPasswordHelp": "Tá pasfhocal stóráilte go slán cheana féin. Ná cuir ceann nua isteach ach chun é a athsholáthar.",
+        "newPasswordHelp": "Teastaíonn pasfhocal aip ó roinnt soláthraithe in ionad ghnáthphasfhocal an chuntais.",
+        "fromName": "Ainm an tseoltóra",
+        "fromEmail": "Ríomhphost an tseoltóra",
+        "storePlaceholder": "Ainm do shiopa",
+        "fromEmailHelp": "Caithfidh do sholáthraí SMTP an seoladh seo a cheadú mar sheoltóir.",
+        "connectionFailed": "Theip ar an nasc SMTP",
+        "test": "Tástáil nasc",
+        "disconnect": "Dícheangail SMTP",
+        "saveBeforeTest": "Sábháil na hathruithe sula dtástálann tú an nasc."
+      },
+      "errors": {
+        "saveSmtpFirst": "Sábháil socruithe SMTP sula dtástálann tú an nasc.",
+        "smtpFailed": "Theip ar an nasc SMTP.",
+        "disconnectSmtp": "Níorbh fhéidir SMTP a dhícheangal.",
+        "domainRequired": "Cuir fearann nó fo-fhearann isteach ar dtús.",
+        "createDomain": "Níorbh fhéidir an fearann seolta a chruthú.",
+        "refreshDomain": "Níorbh fhéidir an fearann seolta a athnuachan.",
+        "verifyDomain": "Níorbh fhéidir fíorú an fhearainn a thosú.",
+        "verifyBeforeSender": "Fíoraigh an fearann seolta sula sábhálann tú seoladh an tseoltóra.",
+        "saveSender": "Níorbh fhéidir seoladh an tseoltóra a shábháil.",
+        "removeDomain": "Níorbh fhéidir an fearann seolta a bhaint.",
+        "dirtyActions": {
+          "disconnectSmtp": "SMTP a dhícheangal",
+          "createDomain": "fearann seolta a chruthú",
+          "checkDomain": "stádas an fhearainn seolta a sheiceáil",
+          "saveSender": "seoladh an tseoltóra a shábháil",
+          "removeDomain": "an fearann seolta a bhaint"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Pleananna",
+    "grandfatheredFree": "Saor in aisce roimhe seo",
+    "pro": "Pro",
+    "current": "Reatha",
+    "legacyDescription": "Teidlíocht roimhe seo — gan táille",
+    "legacyWarning": "Cuireann uasghrádú deireadh buan leis an teidlíocht seo roimhe seo.",
+    "manageSubscription": "Bainistigh síntiús",
+    "subscribePro": "Liostáil le Pro",
+    "errors": {
+      "title": "Níorbh fhéidir praghsáil Shopify a oscailt",
+      "missingUrl": "Níor sheol Shopify URL praghsála ar ais.",
+      "openFailed": "Níorbh fhéidir praghsáil Shopify a oscailt."
+    },
+    "features": {
+      "withdrawalFlow": "Próiseas tarraingthe siar de réir rialacha an AE",
+      "unlimitedRequests": "Iarratais neamhtheoranta ar tharraingt siar",
+      "confirmationEmails": "Ríomhphoist dearbhaithe uathoibríocha",
+      "themeBlock": "Tacaíocht do bhlocanna aip sa téama",
+      "requestDashboard": "Deais iarratas",
+      "merchantNotifications": "Fógraí don cheannaí",
+      "basicCompliance": "Comhlíonadh bunúsach san áireamh",
+      "coreManagement": "Bainistíocht bhunúsach ar iarratais tarraingthe siar",
+      "euLanguages": "Gach teanga AE a dtacaítear léi",
+      "customPeriod": "Tréimhse tarraingthe siar saincheaptha le bailíochtú",
+      "customBranding": "Brandáil agus dathanna saincheaptha",
+      "advancedManagement": "Easpórtáil CSV agus ardbhainistíocht iarratas"
+    }
+  },
+  "help": {
+    "title": "Cabhair",
+    "commonQuestions": "Ceisteanna coitianta",
+    "introduction": "Faigh freagraí tapa ar cheisteanna socraithe agus fabhtcheartaithe.",
+    "supportTitle": "An bhfuil tuilleadh cabhrach uait?",
+    "supportDescription": "Mura réitíonn na freagraí an fhadhb, roghnaigh Faigh tacaíocht sa roghchlár ⋯ sa chúinne uachtarach ar dheis chun teagmháil a dhéanamh linn trí Shopify.",
+    "supportResponse": "Freagraítear iarratais tacaíochta laistigh de lá oibre amháin de ghnáth.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Cén fáth nach n-oibríonn an aip le Shopify Canvas?",
+        "answer": "Tá Shopify Canvas i rochtain luath agus ní thacaíonn sé fós le blocanna nó le leabuithe aip don chnaipe tarraingthe siar. Is teorainn reatha Canvas é seo. Úsáid téama comhoiriúnach i ngnátheagarthóir téama Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "Cén fáth nach dtaispeántar an cnaipe tarraingthe siar i mo shiopa?",
+        "answer": "Seiceáil go bhfuil leabú nó bloc EU Withdrawal Button cumasaithe sa téama reatha. B’fhéidir go mbeidh ort é a chumasú arís tar éis téama a athrú nó a fhoilsiú."
+      },
+      "buttonPosition": {
+        "question": "An féidir suíomh an chnaipe tarraingthe siar a athrú?",
+        "answer": "Is féidir. Oscail Socruithe agus athraigh suíomh an chnaipe ar snámh ar ríomhaire agus ar fhón."
+      },
+      "buttonAppearance": {
+        "question": "An féidir cuma an chnaipe a athrú?",
+        "answer": "Is féidir. Athraigh na roghanna cuma atá ar fáil i Socruithe na haipe."
+      },
+      "requestSubmitted": {
+        "question": "Cad a tharlaíonn nuair a chuireann custaiméir iarratas ar tharraingt siar isteach?",
+        "answer": "Taifeadtar an t-iarratas sa rannán Iarratais, áit ar féidir leat é a athbhreithniú agus a stádas a nuashonrú."
+      },
+      "notificationEmail": {
+        "question": "An bhfaighidh mé ríomhphost nuair a chuireann custaiméir iarratas isteach?",
+        "answer": "Gheobhaidh, má tá seoladh fógraí socraithe agat. Seiceáil Socruithe mura dtagann fógraí."
+      },
+      "withdrawalPeriod": {
+        "question": "An féidir an tréimhse tarraingthe siar a athrú?",
+        "answer": "Is féidir. Socraítear an tréimhse i Socruithe na haipe."
+      },
+      "automaticRefund": {
+        "question": "An aisíocann nó an gcealaíonn an aip ordú go huathoibríoch?",
+        "answer": "Ní dhéanann. Ní aisíocann ná ní chealaíonn iarratas ar tharraingt siar an t-ordú Shopify go huathoibríoch. Is tusa a rialaíonn athbhreithniú agus próiseáil an iarratais."
+      },
+      "previousRequests": {
+        "question": "An féidir iarratais ar tharraingt siar roimhe seo a fheiceáil?",
+        "answer": "Is féidir. Oscail Iarratais chun na hiarratais a cuireadh isteach a fheiceáil."
+      },
+      "multipleLanguages": {
+        "question": "An dtacaíonn an aip le teangacha éagsúla?",
+        "answer": "Is féidir teangacha a chumrú. Bainistigh na roghanna atá ar fáil i Socruithe."
+      },
+      "themeChanged": {
+        "question": "D’athraigh mé mo théama Shopify agus d’imigh an cnaipe. Cad a dhéanaim?",
+        "answer": "Oscail eagarthóir an téama nua agus cumasaigh leabú nó bloc EU Withdrawal Button."
+      },
+      "hideButton": {
+        "question": "An féidir an cnaipe tarraingthe siar a cheilt go sealadach?",
+        "answer": "Is féidir. Díchumasaigh cnaipe an tsiopa gan an aip a dhíshuiteáil."
+      },
+      "missingEmails": {
+        "question": "Cén fáth nach bhfaighim ríomhphoist fógraí?",
+        "answer": "Seiceáil seoladh na bhfógraí agus na socruithe seachadta i Socruithe. Seiceáil an fillteán turscair freisin."
+      },
+      "legalCompliance": {
+        "question": "An ráthaíonn an aip go gcomhlíonann mo shiopa an dlí?",
+        "answer": "Ní ráthaíonn. Tugann an aip uirlisí chun iarratais ar tharraingt siar a thairiscint agus a bhainistiú. Tá tú freagrach as polasaithe agus próisis do shiopa a bheith de réir na ndlíthe a bhaineann le do ghnó."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Níor aimsíodh an siopa.",
+    "entitlementUnavailable": "Níorbh fhéidir teidlíocht Shopify App Pricing a fhíorú.",
+    "planRequired": "Tá plean íoctha Shopify de dhíth.",
+    "languagesInvalid": "Tá na teangacha roghnaithe neamhbhailí.",
+    "basicLanguageLimit": "Cuimsíonn an plean saor in aisce roimhe seo Béarla agus teanga amháin eile.",
+    "withdrawalPeriod": "Caithfidh an tréimhse tarraingthe siar a bheith idir 1 agus 365 lá.",
+    "smtpHost": "Tá óstach SMTP de dhíth.",
+    "smtpPort": "Tá fíorú SMTP teoranta do phoirt 465 agus 587.",
+    "smtpUsername": "Tá ainm úsáideora SMTP de dhíth.",
+    "smtpFromEmail": "Tá seoladh ríomhphoist an tseoltóra de dhíth.",
+    "smtpPassword": "Tá pasfhocal SMTP de dhíth.",
+    "settingsUpdate": "Níorbh fhéidir na socruithe a nuashonrú.",
+    "requestNotFound": "Níor aimsíodh an t-iarratas.",
+    "invalidStatus": "Stádas iarratais neamhbhailí.",
+    "setupStatus": "Níorbh fhéidir stádas an tsocraithe a lódáil.",
+    "upgradeRequired": "Uasghrádaigh go Pro chun an fheidhm seo a úsáid."
+  }
+}

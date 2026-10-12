@@ -1,0 +1,451 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Idioma",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Continuar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "loading": "Cargando..."
+  },
+  "onboarding": {
+    "welcome": "Bienvenido a EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Elige tu idioma",
+    "languageDescription": "Selecciona el idioma que deseas usar en la aplicación.",
+    "languageLabel": "Idioma de la aplicación",
+    "dpaTitle": "2. Acuerdo de tratamiento de datos",
+    "dpaDescription": "Para usar la aplicación debes aceptar nuestro acuerdo de tratamiento de datos. Explica cómo se tratan los datos de clientes en tu nombre.",
+    "viewDpa": "Ver el acuerdo de tratamiento de datos",
+    "agree": "He leído y acepto el acuerdo de tratamiento de datos",
+    "acceptContinue": "Aceptar y continuar",
+    "error": "No se ha podido completar la configuración. Inténtalo de nuevo.",
+    "step1": "Paso 1 de 2",
+    "step2": "Paso 2 de 2",
+    "next": "Siguiente",
+    "back": "Atrás"
+  },
+  "navigation": {
+    "dashboard": "Panel de control",
+    "requests": "Solicitudes",
+    "settings": "Configuración",
+    "plans": "Planes",
+    "help": "Ayuda",
+    "currentPlan": "Plan actual",
+    "planGrandfathered": "Plan: Gratuito heredado",
+    "planPro": "Plan: Pro",
+    "planRequired": "Se requiere un plan",
+    "premiumActive": "Todos los controles premium están activados",
+    "grandfatheredActive": "Acceso Gratuito heredado activo",
+    "subscribeToContinue": "Suscríbete para continuar"
+  },
+  "appLanguage": {
+    "title": "Idioma de la aplicación",
+    "description": "Elige el idioma del panel. No cambia los idiomas disponibles para los clientes.",
+    "label": "Idioma de visualización",
+    "saveError": "No se ha podido actualizar el idioma de la aplicación.",
+    "settingsTitle": "Configuración"
+  },
+  "dashboard": {
+    "title": "Panel de control",
+    "subscriptionError": "No se ha podido actualizar la suscripción",
+    "description": "Añade a tu tienda en minutos un botón de desistimiento conforme a la normativa de la UE. Recoge y gestiona las solicitudes de clientes en un solo lugar, sin una configuración compleja.",
+    "plan": "Plan",
+    "grandfatheredFree": "Gratuito heredado",
+    "planPro": "Pro",
+    "proActive": "Las funciones Pro están activas.",
+    "freeActive": "El acceso Gratuito heredado está activo.",
+    "stats": {
+      "total": "Total de solicitudes",
+      "totalHelp": "Desde la apertura de esta tienda",
+      "received": "Recibidas",
+      "receivedHelp": "Pendientes de actuación",
+      "reviewed": "Revisadas",
+      "reviewedHelp": "Evaluadas manualmente",
+      "closed": "Aprobadas / Rechazadas",
+      "closedHelp": "Estados cerrados"
+    },
+    "status": {
+      "complete": "Completado",
+      "incomplete": "Sin completar"
+    },
+    "setup": {
+      "title": "Completa la configuración",
+      "description": "Elige la configuración adecuada para tu tienda. Recomendamos activar el botón flotante en todo el sitio y crear una página de desistimiento.",
+      "recommended": "Recomendado",
+      "suggested": "Sugerido",
+      "optional": "Opcional",
+      "pageReady": {
+        "title": "Página de desistimiento lista",
+        "description": "Tu página de desistimiento está lista. Puedes añadirle el bloque de la aplicación y enlazarla desde los correos de confirmación de pedido."
+      },
+      "actionFailed": "Ha fallado la configuración",
+      "notification": {
+        "title": "Añade tu correo de notificaciones",
+        "description": "Introduce la dirección donde recibir notificaciones cuando un cliente envíe una solicitud de desistimiento.",
+        "edit": "Editar la configuración de notificaciones",
+        "add": "Añade tu correo de notificaciones",
+        "destination": "Las notificaciones se enviarán a {{email}}."
+      },
+      "floating": {
+        "title": "Activar el botón flotante en todo el sitio",
+        "description": "Ideal para la visibilidad. Añade un botón flotante de desistimiento en toda la tienda para acceder al formulario desde cualquier página.",
+        "button": "Activar botón flotante"
+      },
+      "withdrawalPage": {
+        "title": "Crear una página de desistimiento",
+        "description": "Crea una página estándar en /pages/eu-withdrawal para que los clientes tengan un lugar claro donde enviar solicitudes de desistimiento.",
+        "button": "Crear página"
+      },
+      "pageBlock": {
+        "title": "Añadir el bloque del botón a la página de desistimiento",
+        "description": "Abre el editor de temas y añade el bloque EU Withdrawal Button a la página de desistimiento.",
+        "button": "Añadir bloque de página"
+      },
+      "orderEmail": {
+        "title": "Añadir el enlace a los correos de confirmación de pedido",
+        "description": "Añade el enlace de la página de desistimiento a los correos de confirmación de Shopify para que los clientes la encuentren después de comprar.",
+        "button": "Abrir notificaciones",
+        "suggestedLink": "Enlace sugerido:"
+      },
+      "testRequest": {
+        "title": "Enviar una solicitud de desistimiento de prueba",
+        "description": "Visita tu tienda o página de desistimiento y envía una solicitud de prueba para comprobar la experiencia del cliente.",
+        "openPage": "Abrir página de desistimiento",
+        "openStorefront": "Abrir tienda"
+      },
+      "review": {
+        "title": "Revisar solicitudes en el panel",
+        "description": "Cuando se envíe una solicitud real o de prueba, revísala en Solicitudes y actualiza su estado.",
+        "button": "Abrir solicitudes"
+      },
+      "upgrade": {
+        "title": "Mejorar a Pro",
+        "description": "Accede a verificación de pedidos, controles avanzados, automatización y procesos personalizados.",
+        "button": "Ver Pro"
+      }
+    },
+    "billingSyncFailed": "No se ha podido sincronizar el estado de facturación",
+    "subscriptionStatusError": "No se ha podido actualizar el estado de la suscripción."
+  },
+  "requests": {
+    "title": "Solicitudes de desistimiento",
+    "exportCSV": "Exportar CSV",
+    "status": "Estado",
+    "verification": "Verificación",
+    "search": "Buscar",
+    "searchPlaceholder": "Correo, pedido, referencia...",
+    "all": "Todas",
+    "empty": "No se han encontrado solicitudes.",
+    "unknown": "Desconocido",
+    "noReason": "Sin motivo indicado",
+    "filterPro": "Los filtros avanzados y la exportación CSV están disponibles con Pro.",
+    "resourceSingular": "solicitud",
+    "resourcePlural": "solicitudes",
+    "selectedAll": "Todas",
+    "columns": {
+      "reference": "Referencia",
+      "customer": "Cliente",
+      "order": "Pedido",
+      "verification": "Verificación",
+      "reason": "Motivo",
+      "status": "Estado",
+      "submitted": "Fecha de envío",
+      "actions": "Acciones"
+    },
+    "statuses": {
+      "RECEIVED": "Recibida",
+      "CONFIRMED": "Confirmada",
+      "REVIEWED": "Revisada",
+      "APPROVED": "Aprobada",
+      "REJECTED": "Rechazada"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Verificado",
+        "tooltip": "Pedido encontrado dentro del plazo de desistimiento"
+      },
+      "NOT_FOUND": {
+        "label": "Pedido no encontrado",
+        "tooltip": "No se ha encontrado un pedido coincidente en Shopify"
+      },
+      "EXPIRED": {
+        "label": "Plazo vencido",
+        "tooltip": "Pedido encontrado, pero el plazo de desistimiento ha vencido"
+      },
+      "ERROR": {
+        "label": "No disponible",
+        "tooltip": "No se ha podido verificar el pedido por un problema de Shopify o de la API"
+      },
+      "UNVERIFIED": {
+        "label": "Sin verificar",
+        "tooltip": "La verificación automática de pedidos está disponible con Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Pedido no válido"
+    },
+    "deleteCustomer": {
+      "button": "Eliminar datos del cliente",
+      "title": "Eliminar datos del cliente",
+      "description": "Se eliminarán permanentemente todos los datos de desistimiento guardados para {{email}}."
+    },
+    "bulkDelete": {
+      "button": "Eliminar seleccionadas",
+      "title": "Eliminar solicitudes seleccionadas",
+      "confirm": "Eliminar solicitudes",
+      "description_one": "Se eliminará permanentemente {{count}} solicitud de desistimiento seleccionada.",
+      "description_other": "Se eliminarán permanentemente {{count}} solicitudes de desistimiento seleccionadas.",
+      "description_many": "Se eliminarán permanentemente {{count}} solicitudes de desistimiento seleccionadas."
+    },
+    "delete": "Eliminar",
+    "cancel": "Cancelar",
+    "scrollLabel": "Desplazar las solicitudes de desistimiento horizontalmente",
+    "errors": {
+      "temporary": "Problema temporal del servidor. Inténtalo de nuevo en unos instantes.",
+      "update": "No se ha podido actualizar el estado de la solicitud.",
+      "export": "No se ha podido exportar el CSV ahora. Inténtalo de nuevo pronto."
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "loading": "Cargando configuración",
+    "saveFailed": "No se ha podido guardar la configuración",
+    "general": {
+      "title": "Configuración general",
+      "customerLanguages": "Idiomas del formulario para clientes",
+      "customerLanguagesDescription": "Elige los idiomas que los clientes pueden usar en el formulario de desistimiento.",
+      "availableLanguages": "Idiomas disponibles para clientes",
+      "defaultLanguage": "Idioma predeterminado",
+      "defaultLanguageHelp": "El formulario se abre en este idioma. Los clientes pueden elegir otro idioma activado.",
+      "basicLanguagesHelp": "El plan Gratuito heredado incluye inglés y un idioma adicional. Mejora a Pro para activar todos los idiomas compatibles.",
+      "notificationEmail": "Correo de notificación de desistimientos",
+      "notificationEmailHelp": "Aquí se envían los avisos internos sobre nuevas solicitudes de desistimiento.",
+      "upgradeTitle": "Mejora a Pro para acceder a la configuración avanzada",
+      "upgradeDescription": "Los plazos de desistimiento personalizables están disponibles con Pro.",
+      "legalPage": "URL de la página legal",
+      "privacyPage": "URL de la página de privacidad",
+      "supportEmail": "Correo de atención al cliente",
+      "supportEmailHelp": "Se muestra a los clientes y se usa como dirección de respuesta en el envío gestionado.",
+      "basicPeriod": "El plan Gratuito heredado usa un plazo orientativo de 14 días. No se aplica la validación automática.",
+      "withdrawalPeriod": "Plazo de desistimiento (días)",
+      "periodBasicHelp": "Se usa un plazo orientativo de 14 días para los clientes. Mejora a Pro para personalizarlo y activar la validación automática.",
+      "periodProHelp": "Establece el plazo de desistimiento. Las solicitudes se validarán según este plazo cuando sea posible."
+    },
+    "errors": {
+      "basicLanguageLimit": "El plan Gratuito heredado incluye inglés y un idioma adicional.",
+      "selectLanguage": "Selecciona al menos un idioma.",
+      "save": "No se ha podido guardar la configuración.",
+      "saveFirst": "Guarda o descarta los demás cambios antes de {{action}}."
+    },
+    "plans": {
+      "basic": "Gratuito heredado",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Envío de correos",
+      "description": "Elige cómo se envían los correos de confirmación a los clientes.",
+      "deliveryMethod": "Método de envío",
+      "managed": "Gestionado por GL6",
+      "managedOption": "Envío gestionado por GL6 — Recomendado",
+      "managedHelp": "Los correos de confirmación se envían a través del servicio de envío verificado de GL6. Las respuestas de los clientes se dirigen a tu correo de atención al cliente.",
+      "smtpOption": "SMTP personalizado — Pro",
+      "smtpOptionHelp": "Conecta tu proveedor de correo mediante sus credenciales SMTP.",
+      "proTitle": "El envío de correos con tu marca está disponible con Pro",
+      "proDescription": "Las tiendas con el plan Gratuito heredado usan el envío gestionado por GL6. Las respuestas se envían al correo de atención al cliente configurado arriba.",
+      "connected": "Conectado",
+      "connectionFailed": "Error de conexión",
+      "requiresTesting": "Requiere prueba",
+      "statuses": {
+        "notConfigured": "Sin configurar",
+        "verified": "Verificado",
+        "pending": "Pendiente",
+        "notStarted": "Sin iniciar",
+        "failed": "Error",
+        "failure": "Error",
+        "temporaryFailure": "Error temporal"
+      },
+      "domain": {
+        "intro": "Recomendamos un subdominio exclusivo como withdrawals.example.com. Añade los registros DNS indicados abajo y verifica el dominio.",
+        "label": "Dominio o subdominio de envío",
+        "help": "No incluyas https:// ni una ruta.",
+        "add": "Añadir dominio de envío",
+        "recordsHelp": "Añade todos los registros DNS necesarios antes de iniciar la verificación.",
+        "columns": {
+          "type": "Tipo",
+          "name": "Nombre",
+          "value": "Valor",
+          "priority": "Prioridad",
+          "status": "Estado"
+        },
+        "issue": "Problema con el dominio de envío",
+        "check": "Consultar estado",
+        "verify": "Verificar dominio",
+        "remove": "Eliminar dominio",
+        "verifiedTitle": "Dominio de envío verificado",
+        "verifiedDescription": "Ahora puedes elegir el nombre y correo del remitente para las confirmaciones a clientes.",
+        "fromName": "Nombre del remitente",
+        "fromEmail": "Correo del remitente",
+        "storePlaceholder": "Nombre de tu tienda",
+        "emailHelp": "La dirección debe terminar en @{{domain}}.",
+        "saveSender": "Guardar datos del remitente"
+      },
+      "smtp": {
+        "intro": "Introduce los datos SMTP de tu proveedor de correo. Guarda la configuración antes de probar la conexión.",
+        "host": "Servidor SMTP",
+        "port": "Puerto SMTP",
+        "portHelp": "Normalmente usa 587 para STARTTLS o 465 para SSL/TLS.",
+        "security": "Seguridad de la conexión",
+        "starttls": "STARTTLS — normalmente puerto 587",
+        "ssl": "SSL/TLS — normalmente puerto 465",
+        "username": "Usuario SMTP",
+        "usernameHelp": "Suele ser tu dirección de correo completa.",
+        "password": "Contraseña SMTP",
+        "savedPasswordPlaceholder": "Deja vacío para conservar la contraseña guardada",
+        "newPasswordPlaceholder": "Introduce la contraseña SMTP",
+        "savedPasswordHelp": "Ya hay una contraseña guardada de forma segura. Introduce otra solo para sustituirla.",
+        "newPasswordHelp": "Algunos proveedores requieren una contraseña de aplicación en vez de la contraseña habitual de la cuenta.",
+        "fromName": "Nombre del remitente",
+        "fromEmail": "Correo del remitente",
+        "storePlaceholder": "Nombre de tu tienda",
+        "fromEmailHelp": "Tu proveedor SMTP debe permitir usar esta dirección como remitente.",
+        "connectionFailed": "Error de conexión SMTP",
+        "test": "Probar conexión",
+        "disconnect": "Desconectar SMTP",
+        "saveBeforeTest": "Guarda los cambios antes de probar la conexión."
+      },
+      "errors": {
+        "saveSmtpFirst": "Guarda la configuración SMTP antes de probar la conexión.",
+        "smtpFailed": "Error de conexión SMTP.",
+        "disconnectSmtp": "No se ha podido desconectar SMTP.",
+        "domainRequired": "Introduce primero un dominio o subdominio.",
+        "createDomain": "No se ha podido crear el dominio de envío.",
+        "refreshDomain": "No se ha podido actualizar el dominio de envío.",
+        "verifyDomain": "No se ha podido iniciar la verificación del dominio.",
+        "verifyBeforeSender": "Verifica el dominio de envío antes de guardar el correo del remitente.",
+        "saveSender": "No se ha podido guardar el correo del remitente.",
+        "removeDomain": "No se ha podido eliminar el dominio de envío.",
+        "dirtyActions": {
+          "disconnectSmtp": "desconectar SMTP",
+          "createDomain": "crear un dominio de envío",
+          "checkDomain": "consultar el estado del dominio de envío",
+          "saveSender": "guardar el correo del remitente",
+          "removeDomain": "eliminar el dominio de envío"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Planes",
+    "grandfatheredFree": "Gratuito heredado",
+    "pro": "Pro",
+    "current": "Actual",
+    "legacyDescription": "Derecho heredado — sin coste",
+    "legacyWarning": "La mejora pone fin permanentemente a este derecho heredado.",
+    "manageSubscription": "Gestionar suscripción",
+    "subscribePro": "Suscribirse a Pro",
+    "errors": {
+      "title": "No se ha podido abrir la página de precios de Shopify",
+      "missingUrl": "Shopify no ha devuelto una URL de precios.",
+      "openFailed": "No se ha podido abrir la página de precios de Shopify."
+    },
+    "features": {
+      "withdrawalFlow": "Proceso de desistimiento conforme a la normativa de la UE",
+      "unlimitedRequests": "Solicitudes de desistimiento ilimitadas",
+      "confirmationEmails": "Correos de confirmación automáticos",
+      "themeBlock": "Compatibilidad con bloques de aplicación en el tema",
+      "requestDashboard": "Panel de solicitudes",
+      "merchantNotifications": "Notificaciones al comercio",
+      "basicCompliance": "Cumplimiento básico incluido",
+      "coreManagement": "Gestión básica de solicitudes de desistimiento",
+      "euLanguages": "Todos los idiomas de la UE compatibles",
+      "customPeriod": "Plazo de desistimiento personalizado con validación",
+      "customBranding": "Marca y colores personalizados",
+      "advancedManagement": "Exportación CSV y gestión avanzada de solicitudes"
+    }
+  },
+  "help": {
+    "title": "Ayuda",
+    "commonQuestions": "Preguntas frecuentes",
+    "introduction": "Encuentra respuestas rápidas a preguntas sobre configuración y resolución de problemas.",
+    "supportTitle": "¿Necesitas más ayuda?",
+    "supportDescription": "Si estas respuestas no resuelven el problema, selecciona Obtener ayuda en el menú ⋯ de arriba a la derecha para contactarnos a través de Shopify.",
+    "supportResponse": "Normalmente respondemos a las solicitudes de ayuda en un día laborable.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "¿Por qué la aplicación no funciona con Shopify Canvas?",
+        "answer": "Shopify Canvas está en acceso anticipado y aún no admite los bloques ni las integraciones de aplicación usados para mostrar y configurar el botón de desistimiento. Es una limitación actual de Canvas. Puedes usar un tema compatible en el editor estándar de Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "¿Por qué no se muestra el botón de desistimiento en mi tienda?",
+        "answer": "Comprueba que la integración o el bloque EU Withdrawal Button esté activado en el tema actual. Si has cambiado o publicado un tema, quizá debas activarlo de nuevo."
+      },
+      "buttonPosition": {
+        "question": "¿Puedo cambiar la posición del botón de desistimiento?",
+        "answer": "Sí. Abre Configuración para ajustar la posición del botón flotante en ordenadores y móviles."
+      },
+      "buttonAppearance": {
+        "question": "¿Puedo cambiar el aspecto del botón?",
+        "answer": "Sí. Puedes personalizar las opciones de aspecto disponibles en Configuración."
+      },
+      "requestSubmitted": {
+        "question": "¿Qué ocurre cuando un cliente envía una solicitud de desistimiento?",
+        "answer": "La solicitud se registra y aparece en Solicitudes, donde puedes revisarla y actualizar su estado."
+      },
+      "notificationEmail": {
+        "question": "¿Recibiré un correo cuando un cliente envíe una solicitud?",
+        "answer": "Sí, si has configurado un correo de notificaciones. Comprueba Configuración si no llegan los avisos."
+      },
+      "withdrawalPeriod": {
+        "question": "¿Puedo cambiar el plazo de desistimiento?",
+        "answer": "Sí. Puedes configurar el plazo de desistimiento desde Configuración."
+      },
+      "automaticRefund": {
+        "question": "¿La aplicación reembolsa o cancela automáticamente un pedido?",
+        "answer": "No. Enviar una solicitud de desistimiento no reembolsa ni cancela automáticamente el pedido Shopify. Tú controlas la revisión y tramitación de la solicitud."
+      },
+      "previousRequests": {
+        "question": "¿Puedo ver solicitudes de desistimiento anteriores?",
+        "answer": "Sí. Abre Solicitudes para ver las solicitudes enviadas a través de la aplicación."
+      },
+      "multipleLanguages": {
+        "question": "¿La aplicación admite varios idiomas?",
+        "answer": "Los idiomas son configurables. Puedes gestionar los idiomas disponibles en Configuración."
+      },
+      "themeChanged": {
+        "question": "He cambiado mi tema Shopify y el botón ha desaparecido. ¿Qué hago?",
+        "answer": "Abre el editor del tema nuevo y activa la integración o el bloque EU Withdrawal Button."
+      },
+      "hideButton": {
+        "question": "¿Puedo ocultar temporalmente el botón de desistimiento?",
+        "answer": "Sí. Puedes desactivar el botón de la tienda sin desinstalar la aplicación."
+      },
+      "missingEmails": {
+        "question": "¿Por qué no recibo los correos de notificación?",
+        "answer": "Comprueba el correo de notificaciones y la configuración de envío en Configuración. Revisa también la carpeta de correo no deseado."
+      },
+      "legalCompliance": {
+        "question": "¿La aplicación garantiza el cumplimiento legal de mi tienda?",
+        "answer": "No. La aplicación ofrece herramientas para gestionar solicitudes de desistimiento. Tú sigues siendo responsable de que las políticas y los procesos de la tienda cumplan las leyes aplicables a tu negocio."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Tienda no encontrada.",
+    "entitlementUnavailable": "No se ha podido verificar el derecho a Shopify App Pricing.",
+    "planRequired": "Se requiere un plan de pago de Shopify.",
+    "languagesInvalid": "Los idiomas seleccionados no son válidos.",
+    "basicLanguageLimit": "El plan Gratuito heredado incluye inglés y un idioma adicional.",
+    "withdrawalPeriod": "El plazo de desistimiento debe estar entre 1 y 365 días.",
+    "smtpHost": "El servidor SMTP es obligatorio.",
+    "smtpPort": "La verificación SMTP está limitada a los puertos 465 y 587.",
+    "smtpUsername": "El usuario SMTP es obligatorio.",
+    "smtpFromEmail": "El correo del remitente es obligatorio.",
+    "smtpPassword": "La contraseña SMTP es obligatoria.",
+    "settingsUpdate": "No se ha podido actualizar la configuración.",
+    "requestNotFound": "Solicitud no encontrada.",
+    "invalidStatus": "Estado de solicitud no válido.",
+    "setupStatus": "No se ha podido cargar el estado de configuración.",
+    "upgradeRequired": "Mejora a Pro para usar esta función."
+  }
+}

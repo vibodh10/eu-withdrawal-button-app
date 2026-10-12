@@ -1,0 +1,450 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Keel",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Jätka",
+    "save": "Salvesta",
+    "cancel": "Tühista",
+    "loading": "Laadimine..."
+  },
+  "onboarding": {
+    "welcome": "Tere tulemast rakendusse EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Valige keel",
+    "languageDescription": "Valige rakenduses kasutatav keel.",
+    "languageLabel": "Rakenduse keel",
+    "dpaTitle": "2. Andmetöötlusleping",
+    "dpaDescription": "Rakenduse kasutamiseks peate nõustuma meie andmetöötluslepinguga. See selgitab kliendiandmete töötlemist teie nimel.",
+    "viewDpa": "Vaata andmetöötluslepingut",
+    "agree": "Olen andmetöötluslepingu läbi lugenud ja nõustun sellega",
+    "acceptContinue": "Nõustu ja jätka",
+    "error": "Seadistamist ei õnnestunud lõpetada. Proovige uuesti.",
+    "step1": "Samm 1/2",
+    "step2": "Samm 2/2",
+    "next": "Edasi",
+    "back": "Tagasi"
+  },
+  "navigation": {
+    "dashboard": "Ülevaade",
+    "requests": "Taotlused",
+    "settings": "Seaded",
+    "plans": "Paketid",
+    "help": "Abi",
+    "currentPlan": "Praegune pakett",
+    "planGrandfathered": "Pakett: Varasem tasuta",
+    "planPro": "Pakett: Pro",
+    "planRequired": "Pakett on vajalik",
+    "premiumActive": "Kõik lisafunktsioonid on lubatud",
+    "grandfatheredActive": "Varasem tasuta ligipääs on aktiivne",
+    "subscribeToContinue": "Jätkamiseks tellige pakett"
+  },
+  "appLanguage": {
+    "title": "Rakenduse keel",
+    "description": "Valige ülevaate keel. See ei muuda klientidele pakutavaid keeli.",
+    "label": "Kuvamise keel",
+    "saveError": "Rakenduse keelt ei õnnestunud uuendada.",
+    "settingsTitle": "Seaded"
+  },
+  "dashboard": {
+    "title": "Ülevaade",
+    "subscriptionError": "Tellimust ei õnnestunud värskendada",
+    "description": "Lisage mõne minutiga poodi EL-i reeglitele vastav taganemisnupp. Koguge ja hallake klientide taotlusi ühes kohas ilma keeruka seadistamiseta.",
+    "plan": "Pakett",
+    "grandfatheredFree": "Varasem tasuta",
+    "planPro": "Pro",
+    "proActive": "Pro funktsioonid on aktiivsed.",
+    "freeActive": "Varasem tasuta ligipääs on aktiivne.",
+    "stats": {
+      "total": "Taotlusi kokku",
+      "totalHelp": "Kogu poe tegutsemisaja jooksul",
+      "received": "Saadud",
+      "receivedHelp": "Ootavad tegevust",
+      "reviewed": "Läbi vaadatud",
+      "reviewedHelp": "Käsitsi hinnatud",
+      "closed": "Heaks kiidetud / Tagasi lükatud",
+      "closedHelp": "Lõpetatud olekud"
+    },
+    "status": {
+      "complete": "Valmis",
+      "incomplete": "Pole valmis"
+    },
+    "setup": {
+      "title": "Lõpetage seadistamine",
+      "description": "Valige poele sobiv lahendus. Soovitame ujuvat nuppu kogu veebilehel ja eraldi taganemislehte.",
+      "recommended": "Soovitatav",
+      "suggested": "Pakutud",
+      "optional": "Valikuline",
+      "pageReady": {
+        "title": "Taganemisleht on valmis",
+        "description": "Taganemisleht on valmis. Lisage rakenduse plokk ja viide tellimuskinnituse e-kirjadesse."
+      },
+      "actionFailed": "Seadistamistoiming ebaõnnestus",
+      "notification": {
+        "title": "Lisage teavituste e-posti aadress",
+        "description": "Sisestage aadress, kuhu soovite teavitusi klientide taganemistaotluste kohta.",
+        "edit": "Muuda teavituste seadeid",
+        "add": "Lisage teavituste e-posti aadress",
+        "destination": "Teavitused saadetakse aadressile {{email}}."
+      },
+      "floating": {
+        "title": "Luba ujuv nupp kogu veebilehel",
+        "description": "Parim nähtavus. Ujuv taganemisnupp kogu poes võimaldab avada vormi igalt lehelt.",
+        "button": "Luba ujuv nupp"
+      },
+      "withdrawalPage": {
+        "title": "Loo eraldi taganemisleht",
+        "description": "Looge tavaline leht aadressil /pages/eu-withdrawal, et klientidel oleks selge koht taotluste esitamiseks.",
+        "button": "Loo leht"
+      },
+      "pageBlock": {
+        "title": "Lisa nupuplokk taganemislehele",
+        "description": "Avage teema redaktor ja lisage EU Withdrawal Button plokk eraldi taganemislehele.",
+        "button": "Lisa leheplokk"
+      },
+      "orderEmail": {
+        "title": "Lisa link tellimuskinnituse e-kirjadesse",
+        "description": "Lisage taganemislehe link Shopify tellimuskinnitustesse, et kliendid leiaksid selle pärast ostu.",
+        "button": "Ava teavitused",
+        "suggestedLink": "Soovitatud link:"
+      },
+      "testRequest": {
+        "title": "Esita taganemise testtaotlus",
+        "description": "Avage pood või taganemisleht ja esitage testtaotlus kliendikogemuse kontrollimiseks.",
+        "openPage": "Ava taganemisleht",
+        "openStorefront": "Ava pood"
+      },
+      "review": {
+        "title": "Vaadake taotlused üle ülevaates",
+        "description": "Pärast kliendi- või testtaotluse esitamist vaadake see üle jaotises Taotlused ja uuendage olekut.",
+        "button": "Ava taotlused"
+      },
+      "upgrade": {
+        "title": "Mine üle Pro paketile",
+        "description": "Avage tellimuste kontroll, lisaseaded, automatiseerimine ja kohandatud töövood.",
+        "button": "Vaata Pro paketti"
+      }
+    },
+    "billingSyncFailed": "Arvelduse olekut ei õnnestunud sünkroonida",
+    "subscriptionStatusError": "Tellimuse olekut ei õnnestunud värskendada."
+  },
+  "requests": {
+    "title": "Taganemistaotlused",
+    "exportCSV": "Ekspordi CSV",
+    "status": "Olek",
+    "verification": "Kontroll",
+    "search": "Otsi",
+    "searchPlaceholder": "E-post, tellimus, viide...",
+    "all": "Kõik",
+    "empty": "Taotlusi ei leitud.",
+    "unknown": "Teadmata",
+    "noReason": "Põhjust pole esitatud",
+    "filterPro": "Täpsem filtreerimine ja CSV eksport on saadaval Pro paketis.",
+    "resourceSingular": "taotlus",
+    "resourcePlural": "taotlused",
+    "selectedAll": "Kõik",
+    "columns": {
+      "reference": "Viide",
+      "customer": "Klient",
+      "order": "Tellimus",
+      "verification": "Kontroll",
+      "reason": "Põhjus",
+      "status": "Olek",
+      "submitted": "Esitatud",
+      "actions": "Toimingud"
+    },
+    "statuses": {
+      "RECEIVED": "Saadud",
+      "CONFIRMED": "Kinnitatud",
+      "REVIEWED": "Läbi vaadatud",
+      "APPROVED": "Heaks kiidetud",
+      "REJECTED": "Tagasi lükatud"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Kontrollitud",
+        "tooltip": "Tellimus leitud ja taganemistähtaeg kehtib"
+      },
+      "NOT_FOUND": {
+        "label": "Tellimust ei leitud",
+        "tooltip": "Shopifyst ei leitud vastavat tellimust"
+      },
+      "EXPIRED": {
+        "label": "Tähtaeg möödunud",
+        "tooltip": "Tellimus leitud, kuid taganemistähtaeg on möödunud"
+      },
+      "ERROR": {
+        "label": "Pole saadaval",
+        "tooltip": "Tellimust ei saanud kontrollida Shopify või API probleemi tõttu"
+      },
+      "UNVERIFIED": {
+        "label": "Kontrollimata",
+        "tooltip": "Automaatne tellimuste kontroll on saadaval Pro paketis"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Vigane tellimus"
+    },
+    "deleteCustomer": {
+      "button": "Kustuta kliendiandmed",
+      "title": "Kustuta kliendiandmed",
+      "description": "Kõik aadressi {{email}} salvestatud taganemisandmed kustutatakse jäädavalt."
+    },
+    "bulkDelete": {
+      "button": "Kustuta valitud",
+      "title": "Kustuta valitud taotlused",
+      "confirm": "Kustuta taotlused",
+      "description_one": "See kustutab jäädavalt {{count}} valitud taganemistaotluse.",
+      "description_other": "See kustutab jäädavalt {{count}} valitud taganemistaotlust."
+    },
+    "delete": "Kustuta",
+    "cancel": "Tühista",
+    "scrollLabel": "Keri taganemistaotlusi horisontaalselt",
+    "errors": {
+      "temporary": "Ajutine serveriprobleem. Proovige mõne hetke pärast uuesti.",
+      "update": "Taotluse olekut ei õnnestunud uuendada.",
+      "export": "CSV eksport pole praegu võimalik. Proovige peagi uuesti."
+    }
+  },
+  "settings": {
+    "title": "Seaded",
+    "loading": "Seadete laadimine",
+    "saveFailed": "Seadeid ei õnnestunud salvestada",
+    "general": {
+      "title": "Üldseaded",
+      "customerLanguages": "Kliendivormi keeled",
+      "customerLanguagesDescription": "Valige keeled, mida kliendid saavad taganemisvormis kasutada.",
+      "availableLanguages": "Klientidele saadaval keeled",
+      "defaultLanguage": "Vaikekeel",
+      "defaultLanguageHelp": "Vorm avaneb selles keeles. Kliendid saavad valida teise lubatud keele.",
+      "basicLanguagesHelp": "Varasem tasuta pakett sisaldab inglise keelt ja üht lisakeelt. Kõigi toetatud keelte jaoks valige Pro.",
+      "notificationEmail": "Taganemisteavituste e-post",
+      "notificationEmailHelp": "Siia saadetakse sisemised teavitused uutest taganemistaotlustest.",
+      "upgradeTitle": "Lisaseadete avamiseks valige Pro",
+      "upgradeDescription": "Muudetavad taganemistähtajad on saadaval Pro paketis.",
+      "legalPage": "Õigusteabe lehe URL",
+      "privacyPage": "Privaatsuslehe URL",
+      "supportEmail": "Klienditoe e-post",
+      "supportEmailHelp": "Nähtav klientidele ja kasutusel vastuseaadressina hallatud saatmisel.",
+      "basicPeriod": "Varasem tasuta pakett kasutab soovituslikku 14-päevast tähtaega. Automaatset kontrolli ei rakendata.",
+      "withdrawalPeriod": "Taganemistähtaeg (päeva)",
+      "periodBasicHelp": "Klientidele antakse soovituslik 14-päevane tähtaeg. Kohandamiseks ja automaatseks kontrolliks valige Pro.",
+      "periodProHelp": "Määrake taganemistähtaeg. Võimaluse korral kontrollitakse taotlusi selle põhjal."
+    },
+    "errors": {
+      "basicLanguageLimit": "Varasem tasuta pakett sisaldab inglise keelt ja üht lisakeelt.",
+      "selectLanguage": "Valige vähemalt üks keel.",
+      "save": "Seadeid ei õnnestunud salvestada.",
+      "saveFirst": "Enne järgmist toimingut salvestage või tühistage muud muudatused: {{action}}."
+    },
+    "plans": {
+      "basic": "Varasem tasuta",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "E-kirjade kohaletoimetamine",
+      "description": "Valige klientide kinnituskirjade saatmise viis.",
+      "deliveryMethod": "Saatmisviis",
+      "managed": "GL6 hallatud",
+      "managedOption": "GL6 hallatud saatmine — Soovitatav",
+      "managedHelp": "Kinnituskirjad saadetakse GL6 kontrollitud e-posti teenuse kaudu. Klientide vastused suunatakse teie toe aadressile.",
+      "smtpOption": "Oma SMTP — Pro",
+      "smtpOptionHelp": "Ühendage e-posti pakkuja SMTP sisselogimisandmetega.",
+      "proTitle": "Oma kaubamärgiga e-kirjad on saadaval Pro paketis",
+      "proDescription": "Varasema tasuta paketiga poed kasutavad GL6 saatmist. Vastused suunatakse ülal määratud klienditoe aadressile.",
+      "connected": "Ühendatud",
+      "connectionFailed": "Ühendus ebaõnnestus",
+      "requiresTesting": "Vajab testimist",
+      "statuses": {
+        "notConfigured": "Seadistamata",
+        "verified": "Kontrollitud",
+        "pending": "Ootel",
+        "notStarted": "Alustamata",
+        "failed": "Ebaõnnestus",
+        "failure": "Ebaõnnestus",
+        "temporaryFailure": "Ajutine tõrge"
+      },
+      "domain": {
+        "intro": "Soovitame eraldi alamdomeeni, näiteks withdrawals.example.com. Lisage allolevad DNS-kirjed ja kontrollige domeeni.",
+        "label": "Saatmisdomeen või alamdomeen",
+        "help": "Ärge lisage https:// ega teekonda.",
+        "add": "Lisa saatmisdomeen",
+        "recordsHelp": "Lisage kõik vajalikud DNS-kirjed enne kontrolli alustamist.",
+        "columns": {
+          "type": "Tüüp",
+          "name": "Nimi",
+          "value": "Väärtus",
+          "priority": "Prioriteet",
+          "status": "Olek"
+        },
+        "issue": "Saatmisdomeeni probleem",
+        "check": "Kontrolli olekut",
+        "verify": "Kontrolli domeeni",
+        "remove": "Eemalda domeen",
+        "verifiedTitle": "Saatmisdomeen kontrollitud",
+        "verifiedDescription": "Nüüd saate valida klientide kinnituskirjade saatja nime ja e-posti aadressi.",
+        "fromName": "Saatja nimi",
+        "fromEmail": "Saatja e-post",
+        "storePlaceholder": "Teie poe nimi",
+        "emailHelp": "Aadress peab lõppema kujul @{{domain}}.",
+        "saveSender": "Salvesta saatja andmed"
+      },
+      "smtp": {
+        "intro": "Sisestage e-posti pakkuja SMTP andmed. Salvestage seaded enne ühenduse testimist.",
+        "host": "SMTP server",
+        "port": "SMTP port",
+        "portHelp": "Tavaliselt kasutage STARTTLS-i jaoks 587 või SSL/TLS-i jaoks 465.",
+        "security": "Ühenduse turvalisus",
+        "starttls": "STARTTLS — tavaliselt port 587",
+        "ssl": "SSL/TLS — tavaliselt port 465",
+        "username": "SMTP kasutajanimi",
+        "usernameHelp": "See on sageli teie täielik e-posti aadress.",
+        "password": "SMTP parool",
+        "savedPasswordPlaceholder": "Jätke tühjaks, et säilitada salvestatud parool",
+        "newPasswordPlaceholder": "Sisestage SMTP parool",
+        "savedPasswordHelp": "Parool on juba turvaliselt salvestatud. Sisestage uus ainult asendamiseks.",
+        "newPasswordHelp": "Mõni pakkuja nõuab tavapärase kontoparooli asemel rakenduse parooli.",
+        "fromName": "Saatja nimi",
+        "fromEmail": "Saatja e-post",
+        "storePlaceholder": "Teie poe nimi",
+        "fromEmailHelp": "SMTP pakkuja peab lubama seda saatja aadressi.",
+        "connectionFailed": "SMTP ühendus ebaõnnestus",
+        "test": "Testi ühendust",
+        "disconnect": "Katkesta SMTP ühendus",
+        "saveBeforeTest": "Salvestage muudatused enne ühenduse testimist."
+      },
+      "errors": {
+        "saveSmtpFirst": "Salvestage SMTP seaded enne ühenduse testimist.",
+        "smtpFailed": "SMTP ühendus ebaõnnestus.",
+        "disconnectSmtp": "SMTP ühendust ei õnnestunud katkestada.",
+        "domainRequired": "Sisestage esmalt domeen või alamdomeen.",
+        "createDomain": "Saatmisdomeeni ei õnnestunud luua.",
+        "refreshDomain": "Saatmisdomeeni ei õnnestunud värskendada.",
+        "verifyDomain": "Domeeni kontrolli ei õnnestunud alustada.",
+        "verifyBeforeSender": "Kontrollige saatmisdomeeni enne saatja aadressi salvestamist.",
+        "saveSender": "Saatja aadressi ei õnnestunud salvestada.",
+        "removeDomain": "Saatmisdomeeni ei õnnestunud eemaldada.",
+        "dirtyActions": {
+          "disconnectSmtp": "SMTP ühenduse katkestamine",
+          "createDomain": "saatmisdomeeni loomine",
+          "checkDomain": "saatmisdomeeni oleku kontrollimine",
+          "saveSender": "saatja aadressi salvestamine",
+          "removeDomain": "saatmisdomeeni eemaldamine"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Paketid",
+    "grandfatheredFree": "Varasem tasuta",
+    "pro": "Pro",
+    "current": "Praegune",
+    "legacyDescription": "Varasem õigus — tasuta",
+    "legacyWarning": "Üleminek lõpetab selle varasema õiguse jäädavalt.",
+    "manageSubscription": "Halda tellimust",
+    "subscribePro": "Telli Pro",
+    "errors": {
+      "title": "Shopify hinnakirja ei õnnestunud avada",
+      "missingUrl": "Shopify ei tagastanud hinnakirja URL-i.",
+      "openFailed": "Shopify hinnakirja ei õnnestunud avada."
+    },
+    "features": {
+      "withdrawalFlow": "EL-i reeglitele vastav taganemisprotsess",
+      "unlimitedRequests": "Piiramatu arv taganemistaotlusi",
+      "confirmationEmails": "Automaatsed kinnituskirjad",
+      "themeBlock": "Teema rakenduse plokkide tugi",
+      "requestDashboard": "Taotluste ülevaade",
+      "merchantNotifications": "Kaupmehe teavitused",
+      "basicCompliance": "Põhinõuetele vastavus sisaldub",
+      "coreManagement": "Taganemistaotluste põhihaldus",
+      "euLanguages": "Kõik toetatud EL-i keeled",
+      "customPeriod": "Kohandatud taganemistähtaeg kontrolliga",
+      "customBranding": "Oma kaubamärk ja värvid",
+      "advancedManagement": "CSV eksport ja taotluste täpsem haldus"
+    }
+  },
+  "help": {
+    "title": "Abi",
+    "commonQuestions": "Korduma kippuvad küsimused",
+    "introduction": "Kiired vastused seadistamise ja tõrkeotsingu küsimustele.",
+    "supportTitle": "Vajate veel abi?",
+    "supportDescription": "Kui vastused ei lahenda probleemi, valige paremas ülanurgas ⋯ menüüst Hangi tuge, et võtta meiega Shopify kaudu ühendust.",
+    "supportResponse": "Tugipäringutele vastatakse tavaliselt ühe tööpäeva jooksul.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Miks rakendus ei tööta Shopify Canvasiga?",
+        "answer": "Shopify Canvas on varajases juurdepääsus ega toeta veel taganemisnupu rakenduse plokke või manuseid. See on Canvasi praegune piirang. Kasutage sobivat teemat Shopify tavalises teema redaktoris."
+      },
+      "buttonNotShowing": {
+        "question": "Miks taganemisnupp poes ei ilmu?",
+        "answer": "Kontrollige, et EU Withdrawal Button manus või plokk oleks praeguses teemas lubatud. Pärast teema muutmist või avaldamist võib olla vaja see uuesti lubada."
+      },
+      "buttonPosition": {
+        "question": "Kas saan muuta taganemisnupu asukohta?",
+        "answer": "Jah. Avage Seaded ning muutke ujuva nupu asukohta arvutis ja mobiilis."
+      },
+      "buttonAppearance": {
+        "question": "Kas saan muuta nupu välimust?",
+        "answer": "Jah. Kohandage olemasolevaid välimuse valikuid rakenduse Seadetes."
+      },
+      "requestSubmitted": {
+        "question": "Mis juhtub, kui klient esitab taganemistaotluse?",
+        "answer": "Taotlus salvestatakse ja kuvatakse jaotises Taotlused, kus saate seda läbi vaadata ja olekut uuendada."
+      },
+      "notificationEmail": {
+        "question": "Kas saan e-kirja, kui klient esitab taotluse?",
+        "answer": "Jah, kui teavituste aadress on seadistatud. Kui teavitused ei saabu, kontrollige Seadeid."
+      },
+      "withdrawalPeriod": {
+        "question": "Kas saan muuta taganemistähtaega?",
+        "answer": "Jah. Taganemistähtaega saab määrata rakenduse Seadetes."
+      },
+      "automaticRefund": {
+        "question": "Kas rakendus tagastab raha või tühistab tellimuse automaatselt?",
+        "answer": "Ei. Taganemistaotlus ei tagasta raha ega tühista Shopify tellimust automaatselt. Taotluse läbivaatamine ja töötlemine on teie kontrolli all."
+      },
+      "previousRequests": {
+        "question": "Kas saan vaadata varasemaid taganemistaotlusi?",
+        "answer": "Jah. Avage Taotlused, et vaadata esitatud taotlusi."
+      },
+      "multipleLanguages": {
+        "question": "Kas rakendus toetab mitut keelt?",
+        "answer": "Keeled on seadistatavad. Hallake saadaolevaid keeli Seadetes."
+      },
+      "themeChanged": {
+        "question": "Muutsin Shopify teemat ja nupp kadus. Mida teha?",
+        "answer": "Avage uue teema redaktor ja lubage EU Withdrawal Button manus või plokk."
+      },
+      "hideButton": {
+        "question": "Kas saan taganemisnupu ajutiselt peita?",
+        "answer": "Jah. Poe nupu saab keelata rakendust eemaldamata."
+      },
+      "missingEmails": {
+        "question": "Miks ma ei saa teavituskirju?",
+        "answer": "Kontrollige teavituste aadressi ja saatmisseadeid Seadetes. Vaadake ka rämpsposti kausta."
+      },
+      "legalCompliance": {
+        "question": "Kas rakendus tagab poe õigusliku vastavuse?",
+        "answer": "Ei. Rakendus aitab klientidel taganemistaotlusi esitada ja teil neid hallata. Vastutate ise selle eest, et poe põhimõtted ja protsessid vastaksid teie ettevõttele kohalduvatele seadustele."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Poodi ei leitud.",
+    "entitlementUnavailable": "Shopify App Pricing õigust ei õnnestunud kontrollida.",
+    "planRequired": "Tasuline Shopify pakett on vajalik.",
+    "languagesInvalid": "Valitud keeled on vigased.",
+    "basicLanguageLimit": "Varasem tasuta pakett sisaldab inglise keelt ja üht lisakeelt.",
+    "withdrawalPeriod": "Taganemistähtaeg peab olema 1 kuni 365 päeva.",
+    "smtpHost": "SMTP server on vajalik.",
+    "smtpPort": "SMTP kontroll on piiratud portidega 465 ja 587.",
+    "smtpUsername": "SMTP kasutajanimi on vajalik.",
+    "smtpFromEmail": "Saatja e-posti aadress on vajalik.",
+    "smtpPassword": "SMTP parool on vajalik.",
+    "settingsUpdate": "Seadeid ei õnnestunud uuendada.",
+    "requestNotFound": "Taotlust ei leitud.",
+    "invalidStatus": "Vigane taotluse olek.",
+    "setupStatus": "Seadistamise olekut ei õnnestunud laadida.",
+    "upgradeRequired": "Selle funktsiooni jaoks valige Pro."
+  }
+}

@@ -1,0 +1,451 @@
+{
+  "common": {
+    "appName": "EU Withdrawal Button Made Easy",
+    "language": "Idioma",
+    "english": "English",
+    "german": "Deutsch",
+    "continue": "Continuar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "loading": "A carregar..."
+  },
+  "onboarding": {
+    "welcome": "Bem-vindo ao EU Withdrawal Button Made Easy",
+    "languageTitle": "1. Escolha o seu idioma",
+    "languageDescription": "Selecione o idioma que pretende utilizar na aplicação.",
+    "languageLabel": "Idioma da aplicação",
+    "dpaTitle": "2. Acordo de tratamento de dados",
+    "dpaDescription": "Para utilizar esta aplicação, tem de aceitar o nosso acordo de tratamento de dados. Explica como os dados dos clientes são tratados em seu nome.",
+    "viewDpa": "Ver o acordo de tratamento de dados",
+    "agree": "Li e aceito o acordo de tratamento de dados",
+    "acceptContinue": "Aceitar e continuar",
+    "error": "Não foi possível concluir a configuração. Tente novamente.",
+    "step1": "Passo 1 de 2",
+    "step2": "Passo 2 de 2",
+    "next": "Seguinte",
+    "back": "Voltar"
+  },
+  "navigation": {
+    "dashboard": "Painel",
+    "requests": "Pedidos",
+    "settings": "Definições",
+    "plans": "Planos",
+    "help": "Ajuda",
+    "currentPlan": "Plano atual",
+    "planGrandfathered": "Plano: Gratuito anterior",
+    "planPro": "Plano: Pro",
+    "planRequired": "É necessário um plano",
+    "premiumActive": "Todos os controlos premium estão ativados",
+    "grandfatheredActive": "Acesso Gratuito anterior ativo",
+    "subscribeToContinue": "Subscreva para continuar"
+  },
+  "appLanguage": {
+    "title": "Idioma da aplicação",
+    "description": "Escolha o idioma do painel da aplicação. Isto não altera os idiomas disponíveis para os clientes.",
+    "label": "Idioma de apresentação",
+    "saveError": "Não foi possível atualizar o idioma da aplicação.",
+    "settingsTitle": "Definições"
+  },
+  "dashboard": {
+    "title": "Painel",
+    "subscriptionError": "Não foi possível atualizar a subscrição",
+    "description": "Adicione à sua loja, em minutos, um botão de livre resolução conforme às regras da UE. Recolha e gira pedidos dos clientes num só local, sem uma configuração complexa.",
+    "plan": "Plano",
+    "grandfatheredFree": "Gratuito anterior",
+    "planPro": "Pro",
+    "proActive": "As funcionalidades Pro estão ativas.",
+    "freeActive": "O acesso Gratuito anterior está ativo.",
+    "stats": {
+      "total": "Total de pedidos",
+      "totalHelp": "Desde a abertura desta loja",
+      "received": "Recebidos",
+      "receivedHelp": "A aguardar ação",
+      "reviewed": "Analisados",
+      "reviewedHelp": "Avaliados manualmente",
+      "closed": "Aprovados / Rejeitados",
+      "closedHelp": "Estados encerrados"
+    },
+    "status": {
+      "complete": "Concluído",
+      "incomplete": "Por concluir"
+    },
+    "setup": {
+      "title": "Conclua a configuração",
+      "description": "Escolha a configuração mais adequada à loja. Recomendamos o botão flutuante em todo o site e uma página dedicada à livre resolução.",
+      "recommended": "Recomendado",
+      "suggested": "Sugerido",
+      "optional": "Opcional",
+      "pageReady": {
+        "title": "Página de livre resolução pronta",
+        "description": "A sua página de livre resolução está pronta. Pode adicionar-lhe o bloco da aplicação e criar uma ligação nos emails de confirmação da encomenda."
+      },
+      "actionFailed": "Ação de configuração falhou",
+      "notification": {
+        "title": "Adicione o seu email de notificações",
+        "description": "Introduza o endereço onde pretende receber notificações quando um cliente apresenta um pedido de livre resolução.",
+        "edit": "Editar definições de notificação",
+        "add": "Adicione o seu email de notificações",
+        "destination": "As notificações serão enviadas para {{email}}."
+      },
+      "floating": {
+        "title": "Ativar o botão flutuante em todo o site",
+        "description": "Ideal para visibilidade. Adiciona um botão flutuante de livre resolução em toda a loja, permitindo aceder ao formulário a partir de qualquer página.",
+        "button": "Ativar botão flutuante"
+      },
+      "withdrawalPage": {
+        "title": "Criar uma página dedicada à livre resolução",
+        "description": "Crie uma página normal em /pages/eu-withdrawal para os clientes terem um local claro onde apresentar os seus pedidos.",
+        "button": "Criar página"
+      },
+      "pageBlock": {
+        "title": "Adicionar o bloco do botão à página de livre resolução",
+        "description": "Abra o editor de temas e adicione o bloco EU Withdrawal Button à sua página dedicada à livre resolução.",
+        "button": "Adicionar bloco de página"
+      },
+      "orderEmail": {
+        "title": "Adicionar a ligação aos emails de confirmação da encomenda",
+        "description": "Adicione a ligação da página de livre resolução aos emails de confirmação Shopify para os clientes a encontrarem após a compra.",
+        "button": "Abrir notificações",
+        "suggestedLink": "Ligação sugerida:"
+      },
+      "testRequest": {
+        "title": "Apresentar um pedido de livre resolução de teste",
+        "description": "Visite a loja ou a página de livre resolução e apresente um pedido de teste para verificar a experiência do cliente.",
+        "openPage": "Abrir página de livre resolução",
+        "openStorefront": "Abrir loja"
+      },
+      "review": {
+        "title": "Analisar pedidos no painel",
+        "description": "Após um pedido real ou de teste, analise-o na secção Pedidos e atualize o estado.",
+        "button": "Abrir pedidos"
+      },
+      "upgrade": {
+        "title": "Atualizar para Pro",
+        "description": "Desbloqueie a verificação de encomendas, controlos avançados, automatização e processos personalizados.",
+        "button": "Ver Pro"
+      }
+    },
+    "billingSyncFailed": "Não foi possível sincronizar o estado da faturação",
+    "subscriptionStatusError": "Não foi possível atualizar o estado da subscrição."
+  },
+  "requests": {
+    "title": "Pedidos de livre resolução",
+    "exportCSV": "Exportar CSV",
+    "status": "Estado",
+    "verification": "Verificação",
+    "search": "Pesquisar",
+    "searchPlaceholder": "Email, encomenda, referência...",
+    "all": "Todos",
+    "empty": "Não foram encontrados pedidos.",
+    "unknown": "Desconhecido",
+    "noReason": "Sem motivo indicado",
+    "filterPro": "A filtragem avançada e a exportação CSV estão disponíveis no Pro.",
+    "resourceSingular": "pedido",
+    "resourcePlural": "pedidos",
+    "selectedAll": "Todos",
+    "columns": {
+      "reference": "Referência",
+      "customer": "Cliente",
+      "order": "Encomenda",
+      "verification": "Verificação",
+      "reason": "Motivo",
+      "status": "Estado",
+      "submitted": "Apresentado",
+      "actions": "Ações"
+    },
+    "statuses": {
+      "RECEIVED": "Recebido",
+      "CONFIRMED": "Confirmado",
+      "REVIEWED": "Analisado",
+      "APPROVED": "Aprovado",
+      "REJECTED": "Rejeitado"
+    },
+    "verificationStates": {
+      "VERIFIED": {
+        "label": "Verificada",
+        "tooltip": "Encomenda encontrada dentro do prazo de livre resolução"
+      },
+      "NOT_FOUND": {
+        "label": "Encomenda não encontrada",
+        "tooltip": "Não foi encontrada uma encomenda correspondente no Shopify"
+      },
+      "EXPIRED": {
+        "label": "Prazo expirado",
+        "tooltip": "Encomenda encontrada, mas o prazo de livre resolução expirou"
+      },
+      "ERROR": {
+        "label": "Indisponível",
+        "tooltip": "Não foi possível verificar a encomenda devido a um problema do Shopify ou da API"
+      },
+      "UNVERIFIED": {
+        "label": "Não verificada",
+        "tooltip": "A verificação automática de encomendas está disponível no Pro"
+      }
+    },
+    "verificationFilter": {
+      "invalidOrder": "Encomenda inválida"
+    },
+    "deleteCustomer": {
+      "button": "Eliminar dados do cliente",
+      "title": "Eliminar dados do cliente",
+      "description": "Todos os dados de livre resolução guardados para {{email}} serão eliminados permanentemente."
+    },
+    "bulkDelete": {
+      "button": "Eliminar selecionados",
+      "title": "Eliminar pedidos selecionados",
+      "confirm": "Eliminar pedidos",
+      "description_one": "Os pedidos de livre resolução selecionados serão eliminados permanentemente. Total: {{count}}.",
+      "description_other": "Serão eliminados permanentemente {{count}} pedidos de livre resolução selecionados.",
+      "description_many": "Serão eliminados permanentemente {{count}} pedidos de livre resolução selecionados."
+    },
+    "delete": "Eliminar",
+    "cancel": "Cancelar",
+    "scrollLabel": "Deslocar os pedidos de livre resolução na horizontal",
+    "errors": {
+      "temporary": "Problema temporário do servidor. Tente novamente dentro de instantes.",
+      "update": "Não foi possível atualizar o estado do pedido.",
+      "export": "Não foi possível exportar o CSV agora. Tente novamente em breve."
+    }
+  },
+  "settings": {
+    "title": "Definições",
+    "loading": "A carregar as definições",
+    "saveFailed": "Não foi possível guardar as definições",
+    "general": {
+      "title": "Definições gerais",
+      "customerLanguages": "Idiomas do formulário dos clientes",
+      "customerLanguagesDescription": "Escolha os idiomas que os clientes podem utilizar no formulário de livre resolução.",
+      "availableLanguages": "Idiomas disponíveis para os clientes",
+      "defaultLanguage": "Idioma predefinido",
+      "defaultLanguageHelp": "O formulário abre neste idioma. Os clientes podem escolher outro idioma ativado.",
+      "basicLanguagesHelp": "O plano Gratuito anterior inclui inglês e mais um idioma. Atualize para Pro para ativar todos os idiomas suportados.",
+      "notificationEmail": "Email de notificação de livre resolução",
+      "notificationEmailHelp": "Os alertas internos sobre novos pedidos de livre resolução são enviados para aqui.",
+      "upgradeTitle": "Atualize para Pro para desbloquear as definições avançadas",
+      "upgradeDescription": "Os prazos de livre resolução personalizáveis estão disponíveis no Pro.",
+      "legalPage": "URL da página legal",
+      "privacyPage": "URL da página de privacidade",
+      "supportEmail": "Email de apoio ao cliente",
+      "supportEmailHelp": "Apresentado aos clientes e utilizado como endereço de resposta no envio gerido.",
+      "basicPeriod": "O plano Gratuito anterior usa um prazo indicativo de 14 dias. Não é aplicada a validação automática.",
+      "withdrawalPeriod": "Prazo de livre resolução (dias)",
+      "periodBasicHelp": "É apresentado aos clientes um prazo indicativo de 14 dias. Atualize para Pro para personalizar e ativar a validação automática.",
+      "periodProHelp": "Defina o prazo de livre resolução. Os pedidos serão validados face a este prazo quando possível."
+    },
+    "errors": {
+      "basicLanguageLimit": "O plano Gratuito anterior inclui inglês e mais um idioma.",
+      "selectLanguage": "Selecione pelo menos um idioma.",
+      "save": "Não foi possível guardar as definições.",
+      "saveFirst": "Guarde ou descarte as outras alterações antes de {{action}}."
+    },
+    "plans": {
+      "basic": "Gratuito anterior",
+      "pro": "Pro"
+    },
+    "email": {
+      "title": "Envio de emails",
+      "description": "Escolha como são enviados os emails de confirmação aos clientes.",
+      "deliveryMethod": "Método de envio",
+      "managed": "Gerido pela GL6",
+      "managedOption": "Envio gerido pela GL6 — Recomendado",
+      "managedHelp": "Os emails de confirmação são enviados pelo serviço de envio verificado da GL6. As respostas dos clientes são encaminhadas para o seu email de apoio.",
+      "smtpOption": "SMTP personalizado — Pro",
+      "smtpOptionHelp": "Ligue o seu fornecedor de email através das credenciais SMTP.",
+      "proTitle": "O envio de emails com a sua marca está disponível no Pro",
+      "proDescription": "As lojas com o plano Gratuito anterior utilizam o envio gerido pela GL6. As respostas são enviadas para o email de apoio ao cliente configurado acima.",
+      "connected": "Ligado",
+      "connectionFailed": "Falha de ligação",
+      "requiresTesting": "Requer teste",
+      "statuses": {
+        "notConfigured": "Não configurado",
+        "verified": "Verificado",
+        "pending": "Pendente",
+        "notStarted": "Não iniciado",
+        "failed": "Falhou",
+        "failure": "Falhou",
+        "temporaryFailure": "Falha temporária"
+      },
+      "domain": {
+        "intro": "Recomendamos um subdomínio dedicado, como withdrawals.example.com. Adicione os registos DNS abaixo e verifique o domínio.",
+        "label": "Domínio ou subdomínio de envio",
+        "help": "Não inclua https:// nem um caminho.",
+        "add": "Adicionar domínio de envio",
+        "recordsHelp": "Adicione todos os registos DNS necessários antes de iniciar a verificação.",
+        "columns": {
+          "type": "Tipo",
+          "name": "Nome",
+          "value": "Valor",
+          "priority": "Prioridade",
+          "status": "Estado"
+        },
+        "issue": "Problema no domínio de envio",
+        "check": "Consultar estado",
+        "verify": "Verificar domínio",
+        "remove": "Remover domínio",
+        "verifiedTitle": "Domínio de envio verificado",
+        "verifiedDescription": "Pode agora escolher o nome e endereço do remetente para os emails de confirmação aos clientes.",
+        "fromName": "Nome do remetente",
+        "fromEmail": "Email do remetente",
+        "storePlaceholder": "Nome da sua loja",
+        "emailHelp": "Este endereço tem de terminar em @{{domain}}.",
+        "saveSender": "Guardar dados do remetente"
+      },
+      "smtp": {
+        "intro": "Introduza os dados SMTP fornecidos pelo seu serviço de email. Guarde as definições antes de testar a ligação.",
+        "host": "Servidor SMTP",
+        "port": "Porta SMTP",
+        "portHelp": "Utilize normalmente 587 para STARTTLS ou 465 para SSL/TLS.",
+        "security": "Segurança da ligação",
+        "starttls": "STARTTLS — normalmente porta 587",
+        "ssl": "SSL/TLS — normalmente porta 465",
+        "username": "Utilizador SMTP",
+        "usernameHelp": "É frequentemente o seu endereço de email completo.",
+        "password": "Palavra-passe SMTP",
+        "savedPasswordPlaceholder": "Deixe em branco para manter a palavra-passe guardada",
+        "newPasswordPlaceholder": "Introduza a palavra-passe SMTP",
+        "savedPasswordHelp": "Já existe uma palavra-passe guardada em segurança. Introduza uma nova apenas para a substituir.",
+        "newPasswordHelp": "Alguns fornecedores exigem uma palavra-passe de aplicação em vez da palavra-passe normal da conta.",
+        "fromName": "Nome do remetente",
+        "fromEmail": "Email do remetente",
+        "storePlaceholder": "Nome da sua loja",
+        "fromEmailHelp": "O fornecedor SMTP tem de permitir este endereço como remetente.",
+        "connectionFailed": "Falha na ligação SMTP",
+        "test": "Testar ligação",
+        "disconnect": "Desligar SMTP",
+        "saveBeforeTest": "Guarde as alterações antes de testar a ligação."
+      },
+      "errors": {
+        "saveSmtpFirst": "Guarde as definições SMTP antes de testar a ligação.",
+        "smtpFailed": "Falha na ligação SMTP.",
+        "disconnectSmtp": "Não foi possível desligar o SMTP.",
+        "domainRequired": "Introduza primeiro um domínio ou subdomínio.",
+        "createDomain": "Não foi possível criar o domínio de envio.",
+        "refreshDomain": "Não foi possível atualizar o domínio de envio.",
+        "verifyDomain": "Não foi possível iniciar a verificação do domínio.",
+        "verifyBeforeSender": "Verifique o domínio de envio antes de guardar o endereço do remetente.",
+        "saveSender": "Não foi possível guardar o endereço do remetente.",
+        "removeDomain": "Não foi possível remover o domínio de envio.",
+        "dirtyActions": {
+          "disconnectSmtp": "desligar o SMTP",
+          "createDomain": "criar um domínio de envio",
+          "checkDomain": "consultar o estado do domínio de envio",
+          "saveSender": "guardar o endereço do remetente",
+          "removeDomain": "remover o domínio de envio"
+        }
+      }
+    }
+  },
+  "plans": {
+    "title": "Planos",
+    "grandfatheredFree": "Gratuito anterior",
+    "pro": "Pro",
+    "current": "Atual",
+    "legacyDescription": "Direito anterior — sem custos",
+    "legacyWarning": "A atualização termina permanentemente este direito anterior.",
+    "manageSubscription": "Gerir subscrição",
+    "subscribePro": "Subscrever Pro",
+    "errors": {
+      "title": "Não foi possível abrir os preços do Shopify",
+      "missingUrl": "O Shopify não devolveu um URL de preços.",
+      "openFailed": "Não foi possível abrir os preços do Shopify."
+    },
+    "features": {
+      "withdrawalFlow": "Processo de livre resolução conforme às regras da UE",
+      "unlimitedRequests": "Pedidos de livre resolução ilimitados",
+      "confirmationEmails": "Emails de confirmação automáticos",
+      "themeBlock": "Suporte para blocos de aplicação do tema",
+      "requestDashboard": "Painel de pedidos",
+      "merchantNotifications": "Notificações ao comerciante",
+      "basicCompliance": "Conformidade básica incluída",
+      "coreManagement": "Gestão essencial de pedidos de livre resolução",
+      "euLanguages": "Todos os idiomas da UE suportados",
+      "customPeriod": "Prazo de livre resolução personalizado com validação",
+      "customBranding": "Marca e cores personalizadas",
+      "advancedManagement": "Exportação CSV e gestão avançada de pedidos"
+    }
+  },
+  "help": {
+    "title": "Ajuda",
+    "commonQuestions": "Perguntas frequentes",
+    "introduction": "Encontre respostas rápidas às dúvidas de configuração e resolução de problemas.",
+    "supportTitle": "Ainda precisa de ajuda?",
+    "supportDescription": "Se estas respostas não resolverem o problema, selecione Obter apoio no menu ⋯ no canto superior direito para nos contactar através do Shopify.",
+    "supportResponse": "Os pedidos de apoio são normalmente respondidos num dia útil.",
+    "faqs": {
+      "canvasSupport": {
+        "question": "Porque é que a aplicação não funciona com Shopify Canvas?",
+        "answer": "O Shopify Canvas está em acesso antecipado e ainda não suporta os blocos nem as incorporações de aplicação usados para apresentar e configurar o botão de livre resolução. É uma limitação atual do Canvas. Pode utilizar um tema compatível no editor normal do Shopify."
+      },
+      "buttonNotShowing": {
+        "question": "Porque é que o botão de livre resolução não aparece na loja?",
+        "answer": "Verifique se a incorporação ou o bloco EU Withdrawal Button está ativado no tema atual. Após alterar ou publicar um tema, poderá ser necessário ativá-lo novamente."
+      },
+      "buttonPosition": {
+        "question": "Posso alterar a posição do botão de livre resolução?",
+        "answer": "Sim. Abra as Definições para ajustar a posição do botão flutuante no computador e no telemóvel."
+      },
+      "buttonAppearance": {
+        "question": "Posso alterar o aspeto do botão?",
+        "answer": "Sim. Pode personalizar as opções de aspeto disponíveis nas Definições da aplicação."
+      },
+      "requestSubmitted": {
+        "question": "O que acontece quando um cliente apresenta um pedido de livre resolução?",
+        "answer": "O pedido é registado e aparece na secção Pedidos, onde o pode analisar e atualizar o estado."
+      },
+      "notificationEmail": {
+        "question": "Receberei um email quando um cliente apresentar um pedido?",
+        "answer": "Sim, se tiver configurado um email de notificações. Consulte as Definições se as notificações não chegarem."
+      },
+      "withdrawalPeriod": {
+        "question": "Posso alterar o prazo de livre resolução?",
+        "answer": "Sim. O prazo de livre resolução pode ser configurado nas Definições da aplicação."
+      },
+      "automaticRefund": {
+        "question": "A aplicação reembolsa ou cancela automaticamente uma encomenda?",
+        "answer": "Não. Apresentar um pedido de livre resolução não reembolsa nem cancela automaticamente a encomenda Shopify. Continua responsável pela análise e tratamento do pedido."
+      },
+      "previousRequests": {
+        "question": "Posso consultar pedidos de livre resolução anteriores?",
+        "answer": "Sim. Abra a secção Pedidos para consultar os pedidos apresentados através da aplicação."
+      },
+      "multipleLanguages": {
+        "question": "A aplicação suporta vários idiomas?",
+        "answer": "Os idiomas são configuráveis. Pode gerir as opções disponíveis nas Definições."
+      },
+      "themeChanged": {
+        "question": "Mudei o tema Shopify e o botão desapareceu. O que faço?",
+        "answer": "Abra o editor do novo tema e confirme que a incorporação ou o bloco EU Withdrawal Button está ativado."
+      },
+      "hideButton": {
+        "question": "Posso ocultar temporariamente o botão de livre resolução?",
+        "answer": "Sim. Pode desativar o botão da loja sem desinstalar a aplicação."
+      },
+      "missingEmails": {
+        "question": "Porque é que não recebo emails de notificação?",
+        "answer": "Verifique o email de notificações e as definições de envio nas Definições. Consulte também a pasta de spam."
+      },
+      "legalCompliance": {
+        "question": "Esta aplicação garante que a loja cumpre a lei?",
+        "answer": "Não. A aplicação fornece ferramentas para gerir pedidos de livre resolução. Continua responsável por garantir que as políticas e processos da loja cumprem as leis aplicáveis ao seu negócio."
+      }
+    }
+  },
+  "apiErrors": {
+    "shopNotFound": "Loja não encontrada.",
+    "entitlementUnavailable": "Não foi possível verificar o direito ao Shopify App Pricing.",
+    "planRequired": "É necessário um plano Shopify pago.",
+    "languagesInvalid": "Os idiomas selecionados são inválidos.",
+    "basicLanguageLimit": "O plano Gratuito anterior inclui inglês e mais um idioma.",
+    "withdrawalPeriod": "O prazo de livre resolução tem de estar entre 1 e 365 dias.",
+    "smtpHost": "O servidor SMTP é obrigatório.",
+    "smtpPort": "A verificação SMTP está limitada às portas 465 e 587.",
+    "smtpUsername": "O utilizador SMTP é obrigatório.",
+    "smtpFromEmail": "O endereço de email do remetente é obrigatório.",
+    "smtpPassword": "A palavra-passe SMTP é obrigatória.",
+    "settingsUpdate": "Não foi possível atualizar as definições.",
+    "requestNotFound": "Pedido não encontrado.",
+    "invalidStatus": "Estado do pedido inválido.",
+    "setupStatus": "Não foi possível carregar o estado da configuração.",
+    "upgradeRequired": "Atualize para Pro para utilizar esta funcionalidade."
+  }
+}
